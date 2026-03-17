@@ -1,0 +1,23 @@
+# Credentials
+.env
+
+# Generated data
+data/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+
+# OS
+.DS_Store
+
+# Virtual environment
+.venv/
+venv/
+
+# Claude Code
+.claude/settings.local.json
+
+# Streamlit
+.streamlit_server.log
