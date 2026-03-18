@@ -14,6 +14,8 @@ Insurance/shipping data added to annotations.
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from datetime import datetime, timedelta
+from pathlib import Path
+import webbrowser
 
 # ---------------------------------------------------------------------------
 # Date helpers
@@ -354,9 +356,10 @@ fig.add_hline(y=0, line_dash="dash", line_color="gray", line_width=1, row=1, col
 fig.add_hline(y=0, line_dash="dash", line_color="gray", line_width=1, row=2, col=1)
 
 # --- Save ---
-output_path = "/Users/mikemadden/Desktop/Claude Projects/research/hormuz_supply_chart.html"
-fig.write_html(output_path, include_plotlyjs=True)
+output_path = Path(__file__).parent / "hormuz_supply_chart.html"
+fig.write_html(str(output_path), include_plotlyjs=True)
 print(f"Chart saved to: {output_path}")
+webbrowser.open(output_path.as_uri())
 
 # Print summary stats
 print(f"\nAs of Mar 17, 2026:")
@@ -369,7 +372,7 @@ print(f"  GL 134 inventory:     +{gl134_series[idx_mar17]:.1f} mb/d (one-time, e
 print(f"  Russian production:   +{russia_series[idx_mar17]:.1f} mb/d")
 print(f"  Iranian own exports:  +{iran_series[idx_mar17]:.1f} mb/d")
 print(f"  Infra repair:         +{repair_series[idx_mar17]:.1f} mb/d")
-print(f"  ─────────────────────────────")
+print(f"  {'=' * 29}")
 print(f"  NET SHORTAGE:         {net_shortage_series[idx_mar17]:.1f} mb/d")
 
 print(f"\nAs of Apr 12, 2026 (day after GL 134 expires):")
