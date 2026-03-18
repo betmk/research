@@ -270,14 +270,122 @@
     margin: 1rem 0;
   }
 
-  /* Sources */
-  .sources { font-size: 0.82rem; line-height: 1.5; margin-top: 1rem; border-top: 2px solid var(--border); padding-top: 1rem; }
+  /* ===================== DATA FRESHNESS BADGES ===================== */
+  .badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 1px 5px;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-left: 3px;
+    line-height: 1.6;
+  }
+  .badge.live    { background: #fde8e8; color: #c0392b; border: 1px solid #f5c6c6; }
+  .badge.policy  { background: #fff3e0; color: #e65100; border: 1px solid #ffe0b2; }
+  .badge.structural { background: #e3f2fd; color: #1565c0; border: 1px solid #bbdefb; }
+
+  /* ===================== FOOTNOTE SYSTEM ===================== */
+  /* Inline superscript reference */
+  sup.fn {
+    line-height: 0;
+  }
+  sup.fn a {
+    font-size: 0.68em;
+    color: var(--accent2);
+    text-decoration: none;
+    font-weight: 700;
+    padding: 0 1px;
+    border-bottom: 1px dotted var(--accent2);
+    transition: color 0.15s;
+  }
+  sup.fn a:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* Back-link arrow in citation */
+  .fn-back {
+    color: var(--subtle);
+    text-decoration: none;
+    font-size: 0.9em;
+    margin-right: 0.4rem;
+    flex-shrink: 0;
+    transition: color 0.15s;
+  }
+  .fn-back:hover { color: var(--accent); }
+
+  /* Sources section */
+  .sources {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin-top: 1rem;
+    border-top: 2px solid var(--border);
+    padding-top: 1rem;
+  }
+  .sources h2 { font-size: 1.2rem; }
   .sources h3 { font-size: 0.9rem; margin-top: 1rem; margin-bottom: 0.3rem; }
-  .sources a { color: var(--accent2); text-decoration: none; word-break: break-all; }
+  .sources a { color: var(--accent2); text-decoration: none; }
   .sources a:hover { color: var(--accent); text-decoration: underline; }
-  .sources ul { list-style: none; padding-left: 0; }
-  .sources li { margin-bottom: 0.3rem; padding-left: 0.5rem; }
-  .sources li::before { content: "\2022"; color: var(--accent); margin-right: 0.5rem; }
+
+  /* Numbered footnote list */
+  .fn-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0.3rem 0 0.8rem;
+  }
+  .fn-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.3rem;
+    margin-bottom: 0.35rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+  }
+  .fn-num {
+    min-width: 2.2em;
+    font-weight: 700;
+    color: var(--subtle);
+    font-size: 0.8em;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  /* Highlight flash when jumped to via anchor link */
+  @keyframes fn-flash {
+    0%   { background-color: #fff3a3; }
+    30%  { background-color: #fff3a3; }
+    100% { background-color: transparent; }
+  }
+  :target {
+    animation: fn-flash 2.8s ease-out;
+    border-radius: 4px;
+  }
+
+  /* Freshness legend */
+  .freshness-legend {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+    color: var(--subtle);
+    margin: 0.5rem 0 1.5rem;
+    padding: 0.5rem 0.75rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+  .freshness-legend span { display: flex; align-items: center; gap: 0.3rem; }
+
+  /* Sources note */
+  .sources-note {
+    font-size: 0.78rem;
+    color: var(--subtle);
+    font-style: italic;
+    margin-bottom: 0.75rem;
+  }
 
   /* Leadership table */
   .leadership-table td:nth-child(2) { color: var(--accent); font-weight: 600; }
@@ -296,10 +404,17 @@
 <body>
 
 <h1>Strait of Hormuz Crisis</h1>
-<p class="subtitle">Oil Supply Disruption Briefing &mdash; <span>March 17, 2026 (Day 18)</span> &mdash; Crisis ongoing: Selective blockade since Mar 5; Iran granting passage to India/China-linked vessels; No ceasefire talks; Allies declining escort coalition</p>
+<p class="subtitle">Oil Supply Disruption Briefing &mdash; <span>March 18, 2026 (Day 19)</span> &mdash; Crisis ongoing: Selective blockade since Mar 5; Mojtaba Khamenei declares Hormuz "must be used as leverage"; No ceasefire talks; Most allies declining escort coalition</p>
+
+<div class="freshness-legend">
+  <strong>Data freshness:</strong>
+  <span><span class="badge live">LIVE</span> Daily market price &mdash; verify before trading</span>
+  <span><span class="badge policy">POLICY</span> Government action &mdash; check for updates</span>
+  <span><span class="badge structural">STRUCTURAL</span> Infrastructure / historical &mdash; stable</span>
+</div>
 
 <div class="exec-summary">
-  <span class="big-number">-12.0</span> mb/d net global oil shortage (temporarily improved by GL 134 waiver; <strong>reverts to ~-13.2 after Apr 11</strong>). The US-Israel war on Iran (Feb 28) triggered the largest oil supply disruption in history. Hormuz took ~20 mb/d offline (~20% of global supply). Iran is running a <strong>selective blockade</strong> &mdash; blocking Western-allied ships while allowing Iranian, Indian, Turkish, Pakistani, and China-bound vessels through. Brent at $103/bbl (+45%). Diesel at $5.04/gal (+38% m/m). IEA's record 400M barrel SPR release failed to push prices below $100. GL 134 Russian oil waiver (186M bbl floating inventory) expires Apr 11 with no extension signals. Mojtaba Khamenei (new Supreme Leader) and Iran FM reject ceasefire. 40+ Iranian officials killed. Germany, Japan, Australia declined Trump's escort coalition request.
+  <span class="big-number">-12.0</span> mb/d net global oil shortage<sup class="fn" id="fnref-1"><a href="#fn-1">[1]</a></sup> (temporarily improved by GL 134 waiver; <strong>reverts to ~-13.2 after Apr 11</strong>). The US-Israel war on Iran (Feb 28) triggered the largest oil supply disruption in history.<sup class="fn" id="fnref-8"><a href="#fn-8">[8]</a></sup> Hormuz took ~20 mb/d offline (~20% of global supply).<sup class="fn" id="fnref-1b"><a href="#fn-1">[1]</a></sup> Iran is running a <strong>selective blockade</strong> &mdash; blocking Western-allied ships while allowing Iranian, Indian, Turkish, Pakistani, and China-bound vessels through. Brent <span class="badge live">LIVE</span> at $102.64/bbl (+45%).<sup class="fn" id="fnref-9"><a href="#fn-9">[9]</a></sup> Diesel <span class="badge live">LIVE</span> $5.04/gal (+38%).<sup class="fn" id="fnref-14"><a href="#fn-14">[14]</a></sup> IEA's record 400M barrel SPR release<sup class="fn" id="fnref-11"><a href="#fn-11">[11]</a></sup> failed to push prices below $100. GL 134 Russian oil waiver (186M bbl floating inventory)<sup class="fn" id="fnref-15"><a href="#fn-15">[15]</a></sup> expires Apr 11 &mdash; no extension signals.<sup class="fn" id="fnref-3"><a href="#fn-3">[3]</a></sup> Mojtaba Khamenei (new Supreme Leader) issued his first public statement Mar 16: <em>"the Strait must continue to be used as leverage"</em> and rejected ceasefire overtures from two intermediary states.<sup class="fn" id="fnref-26"><a href="#fn-26">[26]</a></sup>
 </div>
 
 <div class="stat-row">
@@ -316,12 +431,12 @@
     <span class="label">mb/d Net Shortage</span>
   </div>
   <div class="stat-card yellow">
-    <span class="number">$103</span>
-    <span class="label">Brent Crude (/bbl)</span>
+    <span class="number">$102.64</span>
+    <span class="label">Brent Crude (/bbl) <span class="badge live">LIVE</span></span>
   </div>
   <div class="stat-card red">
     <span class="number">$5.04</span>
-    <span class="label">US Diesel (/gal)</span>
+    <span class="label">US Diesel (/gal) <span class="badge live">LIVE</span></span>
   </div>
 </div>
 
@@ -333,7 +448,7 @@
   </div>
   <div class="clock-card">
     <div class="date">Apr 11</div>
-    <div class="desc">GL 134 expires<br>-2 mb/d cliff (no extension signals)</div>
+    <div class="desc">GL 134 expires<br>&minus;2 mb/d cliff (no extension signals)</div>
   </div>
   <div class="clock-card">
     <div class="date">~Jul 10</div>
@@ -349,30 +464,31 @@
   <div class="timeline-item"><span class="timeline-date">Mar 3</span> Iraq shuts Rumaila field (storage full); Assembly of Experts convenes for succession</div>
   <div class="timeline-item"><span class="timeline-date">Mar 5</span> IRGC announces Strait of Hormuz closure to US/Israel/Western-allied ships</div>
   <div class="timeline-item"><span class="timeline-date">Mar 6</span> IMO confirms 4 seafarers killed; first Qatar LNG cargo loaded since shutdown</div>
-  <div class="timeline-item"><span class="timeline-date">Mar 7</span> Kuwait declares force majeure; combined Gulf production cuts reach ~6.7 mb/d</div>
+  <div class="timeline-item"><span class="timeline-date">Mar 7</span> Kuwait declares force majeure; combined Gulf cuts ~6.7 mb/d; <strong>first VLCC loading at Jask since Oct 2024</strong> (~2M bbl; only 5th Jask loading in 5 years)<sup class="fn" id="fnref-41"><a href="#fn-41">[41]</a></sup></div>
   <div class="timeline-item"><span class="timeline-date">Mar 9</span> Brent surges past $100/bbl; <strong>Mojtaba Khamenei elected Supreme Leader</strong> (IRGC-backed); Fujairah first strike</div>
-  <div class="timeline-item"><span class="timeline-date">Mar 11</span> Saudi activates full East-West Pipeline; IEA releases 400M bbl (largest ever); UN Security Council Resolution 2817 (13-0-2)</div>
-  <div class="timeline-item"><span class="timeline-date">Mar 12</span> SPR releases begin; OFAC issues GL 134 (30-day Russian oil waiver); Brent holds $100+</div>
-  <div class="timeline-item"><span class="timeline-date">Mar 13</span> Turkish vessel granted passage; Bessent confirms US allowing Iranian tankers</div>
-  <div class="timeline-item"><span class="timeline-date">Mar 14</span> US strikes 90+ military targets on Kharg Island (oil spared); Fujairah struck again; France pledges 2 frigates</div>
-  <div class="timeline-item"><span class="timeline-date">Mar 15-16</span> Pakistani tanker KARACHI transits with AIS on; Saudi tanker (1M bbl for India) allowed through; Iran resumes loading at Jask terminal (bypasses Hormuz)</div>
-  <div class="timeline-item"><span class="timeline-date">Mar 17</span> Ali Larijani + Gholamreza Soleimani killed (40+ officials total); Germany, Japan, Australia decline escort coalition; Brent $103</div>
+  <div class="timeline-item"><span class="timeline-date">Mar 11</span> Saudi activates full East-West Pipeline; IEA releases 400M bbl (largest ever);<sup class="fn" id="fnref-11b"><a href="#fn-11">[11]</a></sup> UN Security Council Resolution 2817 (13-0-2)<sup class="fn" id="fnref-2"><a href="#fn-2">[2]</a></sup></div>
+  <div class="timeline-item"><span class="timeline-date">Mar 12</span> SPR releases begin; OFAC issues GL 134 (30-day Russian oil waiver);<sup class="fn" id="fnref-3b"><a href="#fn-3">[3]</a></sup> Brent holds $100+</div>
+  <div class="timeline-item"><span class="timeline-date">Mar 13</span> Turkish vessel granted passage; Bessent confirms US allowing Iranian tankers<sup class="fn" id="fnref-16"><a href="#fn-16">[16]</a></sup></div>
+  <div class="timeline-item"><span class="timeline-date">Mar 14</span> US strikes 90+ military targets on Kharg Island (oil spared); Fujairah struck again; France pledges 2 frigates<sup class="fn" id="fnref-36"><a href="#fn-36">[36]</a></sup></div>
+  <div class="timeline-item"><span class="timeline-date">Mar 15-16</span> Pakistani tanker KARACHI transits with AIS on; Saudi tanker (1M bbl for India) allowed through; Iran resumes loading at Jask; <strong>Khamenei issues first public statement</strong>: "Strait must be used as leverage" &mdash; rejects ceasefire from 2 intermediary states<sup class="fn" id="fnref-26b"><a href="#fn-26">[26]</a></sup></div>
+  <div class="timeline-item"><span class="timeline-date">Mar 17</span> Ali Larijani + Gholamreza Soleimani killed (40+ officials total);<sup class="fn" id="fnref-19"><a href="#fn-19">[19]</a></sup> Germany, Japan, Italy, Romania, Spain, UK, Australia decline escort coalition;<sup class="fn" id="fnref-18"><a href="#fn-18">[18]</a></sup> Brent ~$103</div>
+  <div class="timeline-item"><span class="timeline-date">Mar 18</span> Brent $102.64 (&minus;$0.78 on day); WTI $94.23 (&minus;$1.30); VLCC spot AG/Far East ~$440K/day<sup class="fn" id="fnref-43"><a href="#fn-43">[43]</a></sup></div>
 </div>
 
 <!-- Iran's Selective Blockade -->
 <h2>Iran's Selective Blockade Strategy</h2>
 <div class="blockade-callout">
-  <p>Iran is <strong>not</strong> enforcing a total closure. It is operating a <strong>selective blockade</strong> &mdash; blocking US/Western-allied shipping while allowing passage for strategically useful traffic. This divides the Western coalition (India and China have less incentive to act), maintains Iran's revenue, and turns Hormuz into a diplomatic lever.</p>
+  <p>Iran is <strong>not</strong> enforcing a total closure. It is operating a <strong>selective blockade</strong> &mdash; blocking US/Western-allied shipping while allowing passage for strategically useful traffic. This divides the Western coalition (India and China have less incentive to act), maintains Iran's revenue, and turns Hormuz into a diplomatic lever.<sup class="fn" id="fnref-6"><a href="#fn-6">[6]</a></sup></p>
 </div>
 
 <table>
   <tr><th>Allowed Through</th><th>Details</th></tr>
   <tr><td><strong>Iranian-flagged vessels</strong></td><td>~1.5 mb/d continuing exports; ~1.25 mb/d reaching China via dark fleet</td></tr>
-  <tr><td><strong>India-linked cargoes</strong></td><td>2 Indian LPG carriers; 1 Saudi tanker (1M bbl for India)</td></tr>
+  <tr><td><strong>India-linked cargoes</strong></td><td>2 Indian LPG carriers; 1 Saudi tanker (1M bbl for India)<sup class="fn" id="fnref-6b"><a href="#fn-6">[6]</a></sup></td></tr>
   <tr><td><strong>Turkish vessel</strong></td><td>Granted passage Mar 13</td></tr>
   <tr><td><strong>Pakistani tanker</strong></td><td>KARACHI transited Mar 15 with AIS active</td></tr>
-  <tr><td><strong>China-bound dark fleet</strong></td><td>11.7M bbl Iranian crude transited since Feb 28, all China-bound</td></tr>
-  <tr><td><strong>Jask terminal</strong></td><td>Iran loading south of Hormuz, bypassing strait entirely</td></tr>
+  <tr><td><strong>China-bound dark fleet</strong></td><td>11.7M bbl Iranian crude transited since Feb 28, all China-bound<sup class="fn" id="fnref-12"><a href="#fn-12">[12]</a></sup></td></tr>
+  <tr><td><strong>Jask terminal</strong></td><td>Iran loading south of Hormuz; only 5th VLCC loading there in 5 years &mdash; not a meaningful large-scale bypass<sup class="fn" id="fnref-41b"><a href="#fn-41">[41]</a></sup></td></tr>
 </table>
 <p>Iran is reportedly considering allowing <strong>yuan-denominated cargoes</strong> to transit &mdash; turning the energy corridor into a currency weapon and challenging petrodollar dynamics.</p>
 
@@ -380,111 +496,112 @@
 <h2>Infrastructure Damage by Country</h2>
 <table>
   <tr><th>Country</th><th>Facility</th><th>Type</th><th>Attack</th><th>Status</th></tr>
-  <tr><td><strong>Saudi Arabia</strong></td><td>Ras Tanura</td><td>Refinery + terminal (550K b/d)</td><td>Drone debris</td><td>Fire, halted. 2-4 weeks to repair</td></tr>
-  <tr><td><strong>Qatar</strong></td><td>Ras Laffan</td><td>LNG (20% global supply)</td><td>Drone strike</td><td>Force majeure; 1 cargo loaded Mar 6; <strong>North Field expansion pushed to 2027</strong></td></tr>
+  <tr><td><strong>Saudi Arabia</strong></td><td>Ras Tanura</td><td>Refinery + terminal (550K b/d) <span class="badge structural">STRUCTURAL</span></td><td>Drone debris</td><td>Fire, halted. 2-4 weeks to repair<sup class="fn" id="fnref-5"><a href="#fn-5">[5]</a></sup></td></tr>
+  <tr><td><strong>Qatar</strong></td><td>Ras Laffan</td><td>LNG (20% global supply) <span class="badge structural">STRUCTURAL</span></td><td>Drone strike</td><td>Force majeure; 1 cargo loaded Mar 6; <strong>North Field expansion pushed to 2027</strong><sup class="fn" id="fnref-22"><a href="#fn-22">[22]</a></sup></td></tr>
   <tr><td><strong>Qatar</strong></td><td>Mesaieed</td><td>Petrochemicals/power</td><td>Drone strike</td><td>Downstream halted</td></tr>
   <tr><td><strong>UAE</strong></td><td>Mussafah</td><td>Fuel terminal</td><td>Direct hit</td><td>Fire; assessment ongoing</td></tr>
-  <tr><td><strong>UAE</strong></td><td>Fujairah</td><td>Oil terminal (ADCOP bypass)</td><td>Hit 3 times (Mar 9, 14, 16)</td><td>Loading impaired; pipeline still flowing</td></tr>
+  <tr><td><strong>UAE</strong></td><td>Fujairah</td><td>Oil terminal (ADCOP bypass)</td><td>Hit 3 times (Mar 9, 14, 16)</td><td>Loading impaired; pipeline still flowing<sup class="fn" id="fnref-10"><a href="#fn-10">[10]</a></sup></td></tr>
   <tr><td><strong>Oman</strong></td><td>Duqm</td><td>Fuel storage</td><td>Multiple drones</td><td>Direct hit, explosion</td></tr>
   <tr><td><strong>Oman</strong></td><td>Salalah</td><td>Port</td><td>Drone strike</td><td>Damage reported</td></tr>
-  <tr><td><strong>Iran</strong></td><td>Kharg Island</td><td>Oil export hub (7M b/d)</td><td>US strikes Mar 14</td><td>Military targets only; oil infrastructure spared; 8+ loadings (~14M bbl) continue</td></tr>
+  <tr><td><strong>Iran</strong></td><td>Kharg Island</td><td>Oil export hub (7M b/d) <span class="badge structural">STRUCTURAL</span></td><td>US strikes Mar 14</td><td>Military targets only; oil infrastructure spared; 8+ loadings (~14M bbl) continue<sup class="fn" id="fnref-28"><a href="#fn-28">[28]</a></sup></td></tr>
 </table>
-<p><strong>Maritime:</strong> 21 confirmed Iranian ship attacks as of Mar 12. Athe Nova (Honduran-flagged) set ablaze near UAE.</p>
+<p><strong>Maritime:</strong> 21 confirmed Iranian ship attacks as of Mar 12.<sup class="fn" id="fnref-54"><a href="#fn-54">[54]</a></sup> Athe Nova (Honduran-flagged) set ablaze near UAE.</p>
 
 <!-- Production Cuts -->
 <h2>Production Cuts (Shut-ins from Storage Constraints)</h2>
 <table>
-  <tr><th>Country</th><th>Pre-Crisis</th><th>Current (est.)</th><th>Cut</th><th>Notes</th></tr>
+  <tr><th>Country</th><th>Pre-Crisis <span class="badge structural">STRUCTURAL</span></th><th>Current (est.) <span class="badge policy">POLICY</span></th><th>Cut</th><th>Notes</th></tr>
   <tr><td><strong>Saudi Arabia</strong></td><td>~10.5 mb/d</td><td>~8-8.5 mb/d</td><td>~2.0-2.5 mb/d</td><td>Partially offset by East-West Pipeline</td></tr>
   <tr><td><strong>Iraq</strong></td><td>~4.3 mb/d</td><td>~1.4 mb/d</td><td>~2.9 mb/d</td><td>Rumaila shut-in Mar 3; largest single-country cut</td></tr>
   <tr><td><strong>Kuwait</strong></td><td>~2.7 mb/d</td><td>~2.2 mb/d</td><td>~0.5 mb/d</td><td>Force majeure declared Mar 7</td></tr>
-  <tr><td><strong>UAE</strong></td><td>~3.2 mb/d</td><td>~2.4-2.7 mb/d</td><td>~0.5-0.8 mb/d</td><td>ADCOP providing partial relief</td></tr>
-  <tr><td><strong>Iran</strong></td><td>~3.2 mb/d</td><td>Exporting via own control</td><td>Complex</td><td>~1.5 mb/d reaching China through Kharg + Jask</td></tr>
-  <tr class="total-row"><td><strong>Total Gulf</strong></td><td>~24 mb/d</td><td></td><td>~5.9-6.7 mb/d offline</td><td>IEA projects ~6 mb/d net supply loss this month</td></tr>
+  <tr><td><strong>UAE</strong></td><td>~3.2 mb/d</td><td>~1.7-2.0 mb/d</td><td>~1.2-1.5 mb/d</td><td>Production down "almost half" per Bloomberg<sup class="fn" id="fnref-21"><a href="#fn-21">[21]</a></sup></td></tr>
+  <tr><td><strong>Iran</strong></td><td>~3.2 mb/d</td><td>Exporting via own control</td><td>Complex</td><td>~1.5 mb/d via Kharg + Jask, China-bound</td></tr>
+  <tr class="total-row"><td><strong>Total Gulf</strong></td><td>~24 mb/d</td><td></td><td>~6.7 mb/d offline</td><td>IEA projects ~6 mb/d net supply loss<sup class="fn" id="fnref-1c"><a href="#fn-1">[1]</a></sup></td></tr>
 </table>
 
 <!-- Repair Timelines -->
 <h2>Repair &amp; Restart Timelines</h2>
 <h3>Physical Damage</h3>
 <ul>
-  <li><strong>Ras Tanura:</strong> 2-4 weeks (fire damage, equipment inspection)</li>
-  <li><strong>Ras Laffan LNG:</strong> 2 weeks restart + 2 weeks to full capacity; North Field expansion delayed to 2027</li>
+  <li><strong>Ras Tanura:</strong> 2-4 weeks (fire damage, equipment inspection)<sup class="fn" id="fnref-5b"><a href="#fn-5">[5]</a></sup></li>
+  <li><strong>Ras Laffan LNG:</strong> 2 weeks restart + 2 weeks to full capacity; North Field expansion delayed to 2027<sup class="fn" id="fnref-22b"><a href="#fn-22">[22]</a></sup></li>
   <li><strong>Fujairah:</strong> Hit 3 times; loading impaired but ADCOP pipeline flowing at 1.8 mb/d</li>
   <li><strong>Others:</strong> Weeks to assess; fuel storage tank replacement 4-8 weeks minimum</li>
 </ul>
 
 <h3>Shut-in Wells</h3>
 <div class="flow-callout">
-  <span class="big-label">Water Coning Risk</span>
-  Wells shut >4 weeks face permanent damage. Bottom water rushes into mature reservoirs during extended shut-ins, trapping oil in pore spaces &mdash; potentially irreversible formation damage. This is the under-discussed mechanism behind the 4-week threshold. Wells shut since Mar 3 hit this window around Mar 28.
+  <span class="big-label">Water Coning Risk &mdash; Mar 28 Threshold</span>
+  Wells shut &gt;4 weeks face permanent damage. Bottom water rushes into mature reservoirs during extended shut-ins, trapping oil in pore spaces &mdash; potentially irreversible formation damage. This is the under-discussed mechanism behind the 4-week threshold.<sup class="fn" id="fnref-53"><a href="#fn-53">[53]</a></sup> Wells shut since Mar 3 hit this window around <strong>Mar 28</strong>.
 </div>
 <ul>
   <li><strong>First 2 weeks:</strong> Restart straightforward (days to a week per well)</li>
   <li><strong>2-4 weeks idle:</strong> Corrosion begins; inspection and equipment replacement needed</li>
   <li><strong>Beyond 4 weeks:</strong> Risk of permanent well damage &mdash; oil becomes trapped, potentially unrecoverable</li>
-  <li><strong>IEA:</strong> "Upstream production will take weeks and, in some cases, months, to return to pre-crisis levels"</li>
+  <li><strong>IEA:</strong> "Upstream production will take weeks and, in some cases, months, to return to pre-crisis levels"<sup class="fn" id="fnref-1d"><a href="#fn-1">[1]</a></sup></li>
 </ul>
 
 <h3>Strait Reopening Scenarios</h3>
 <ul>
   <li><strong>ING base case:</strong> 4 weeks total (2 full closure + 2 at 50%)</li>
-  <li><strong>Bull case:</strong> Selective passage already occurring; US Navy estimates escort readiness by end of March (needs 8-10 destroyers per convoy)</li>
-  <li><strong>Bear case:</strong> Mojtaba Khamenei hardliner; Iran FM "we never asked for ceasefire"; could extend months</li>
+  <li><strong>Bull case:</strong> Selective passage already occurring; US Navy estimates escort readiness by end of March (needs 8-10 destroyers per convoy); prerequisite per Bessent: "complete control of the skies and Iran's missile rebuilding capabilities completely degraded"<sup class="fn" id="fnref-40"><a href="#fn-40">[40]</a></sup></li>
+  <li><strong>Bear case:</strong> Khamenei's first statement confirmed Hormuz as leverage; Iran FM "we never asked for ceasefire"; could extend months</li>
 </ul>
 
 <!-- Mitigating Factors -->
 <h2>Mitigating Factors</h2>
 
-<h3>1. Saudi East-West Pipeline (Petroline)</h3>
+<h3>1. Saudi East-West Pipeline (Petroline) <span class="badge structural">STRUCTURAL</span></h3>
 <ul>
   <li><strong>Pipe capacity:</strong> 7 mb/d (after NGL line conversion)</li>
-  <li><strong>Yanbu throughput:</strong> ~2.5 mb/d (Sparta, Mar 16) vs 750K pre-crisis</li>
+  <li><strong>Yanbu throughput:</strong> ~2.5 mb/d (Sparta Commodities, Mar 16) vs 750K pre-crisis<sup class="fn" id="fnref-10b"><a href="#fn-10">[10]</a></sup></li>
   <li><strong>Net new export:</strong> +1.75 mb/d</li>
   <li><strong>Limitation:</strong> Only moves crude &mdash; no refined products, LPG, or LNG</li>
 </ul>
 
-<h3>2. UAE ADCOP Pipeline</h3>
+<h3>2. UAE ADCOP Pipeline <span class="badge structural">STRUCTURAL</span></h3>
 <ul>
-  <li><strong>Pipe capacity:</strong> 1.5-1.8 mb/d (now at full capacity)</li>
+  <li><strong>Pipe capacity:</strong> 1.5-1.8 mb/d (now at full capacity)<sup class="fn" id="fnref-10c"><a href="#fn-10">[10]</a></sup></li>
   <li><strong>Spare activated:</strong> +0.7 mb/d</li>
   <li><strong>Risk:</strong> Fujairah hit 3 times but still operational</li>
 </ul>
 
-<h3>3. IEA Strategic Petroleum Reserve</h3>
+<h3>3. IEA Strategic Petroleum Reserve <span class="badge policy">POLICY</span></h3>
 <ul>
-  <li><strong>Total committed:</strong> 400M bbl (largest in IEA's 50-year history)</li>
+  <li><strong>Total committed:</strong> 400M bbl (largest in IEA's 50-year history)<sup class="fn" id="fnref-11c"><a href="#fn-11">[11]</a></sup></li>
   <li><strong>Structure:</strong> First tranche is 86M bbl exchange (loan; must return with interest)</li>
   <li><strong>Rate:</strong> ~2.0 mb/d (US: 1.43 mb/d over 120 days; others: 0.57 mb/d)</li>
-  <li><strong>US pre-release level:</strong> 415.4M bbl</li>
+  <li><strong>US pre-release level:</strong> 415.4M bbl<sup class="fn" id="fnref-23"><a href="#fn-23">[23]</a></sup></li>
   <li><strong>Refill plan:</strong> Energy Sec. Wright: 200M bbl repurchased within one year</li>
   <li><strong>Market reaction:</strong> Flat. Brent held $100+ on announcement day.</li>
+  <li><strong>Reality check:</strong> Actual delivered barrels not yet confirmed &mdash; physical pipeline lag from Gulf Coast caverns means first barrels only now reaching markets</li>
 </ul>
 
-<h3>4. GL 134: Russian Oil Waiver (One-Time)</h3>
+<h3>4. GL 134: Russian Oil Waiver (One-Time) <span class="badge policy">POLICY</span></h3>
 <div class="flow-callout">
   <span class="big-label">Cliff Risk: Apr 11</span>
-  GL 134 is a STOCK, not a FLOW. 186M bbl on ~238 tankers depletes and vanishes after expiration. No extension signals as of Mar 17. This is the single most predictable near-term catalyst for price spikes.
+  GL 134 is a STOCK, not a FLOW. 186M bbl on ~238 tankers depletes and vanishes after expiration. No extension signals as of Mar 18 &mdash; legal analyses (Baker McKenzie, Thompson Hine) treat this as a one-time, cargo-specific reprieve with no automatic renewal.<sup class="fn" id="fnref-45"><a href="#fn-45">[45]</a></sup> This is the single most predictable near-term catalyst for price spikes.
 </div>
 <ul>
-  <li><strong>OFAC GL 134:</strong> Authorizes delivery of Russian crude already loaded as of Mar 12</li>
+  <li><strong>OFAC GL 134:</strong> Authorizes delivery of Russian crude already loaded as of Mar 12<sup class="fn" id="fnref-3c"><a href="#fn-3">[3]</a></sup></li>
   <li><strong>Effective flow:</strong> ~2.0 mb/d tapering; 60-70M bbl near India/China for prompt delivery</li>
   <li><strong>Expires:</strong> April 11, 2026 (30 days)</li>
-  <li><strong>Politics:</strong> Congressional Democrats call it "inexplicable"; Russia selling Urals at premium for first time since Ukraine invasion</li>
+  <li><strong>Politics:</strong> Congressional Democrats call it "inexplicable"; Russia selling Urals at premium for first time since Ukraine invasion<sup class="fn" id="fnref-48"><a href="#fn-48">[48]</a></sup></li>
 </ul>
 
 <h3>5. Other Mitigations</h3>
 <ul>
   <li><strong>Russian production:</strong> +0.1 mb/d (minimal; Feb production was falling -56K bpd m/m; may cut 300K bpd by April per Rystad)</li>
-  <li><strong>Iranian own exports:</strong> +1.5 mb/d via Kharg + Jask, almost entirely China-bound</li>
+  <li><strong>Iranian own exports:</strong> +1.5 mb/d via Kharg + Jask, almost entirely China-bound<sup class="fn" id="fnref-24"><a href="#fn-24">[24]</a></sup></li>
 </ul>
 
 <h3>Combined Supply Balance</h3>
 <table>
   <tr><th>Mitigation</th><th>Volume (mb/d)</th><th>Start</th><th>Duration</th></tr>
-  <tr><td>Saudi Pipeline (net)</td><td>+1.75</td><td>Mar 11</td><td>Indefinite</td></tr>
-  <tr><td>UAE ADCOP spare</td><td>+0.70</td><td>Mar 1</td><td>Indefinite</td></tr>
-  <tr><td>IEA SPR release</td><td>+2.00</td><td>Mar 12</td><td>~120 days (US)</td></tr>
-  <tr><td>GL 134 floating inventory</td><td>+2.00</td><td>Mar 12</td><td>Expires Apr 11</td></tr>
+  <tr><td>Saudi Pipeline (net) <span class="badge structural">STRUCTURAL</span></td><td>+1.75</td><td>Mar 11</td><td>Indefinite</td></tr>
+  <tr><td>UAE ADCOP spare <span class="badge structural">STRUCTURAL</span></td><td>+0.70</td><td>Mar 1</td><td>Indefinite</td></tr>
+  <tr><td>IEA SPR release <span class="badge policy">POLICY</span></td><td>+2.00</td><td>Mar 12</td><td>~120 days (US)</td></tr>
+  <tr><td>GL 134 floating inventory <span class="badge policy">POLICY</span></td><td>+2.00</td><td>Mar 12</td><td>Expires Apr 11</td></tr>
   <tr><td>Russian increase</td><td>+0.10</td><td>Mar 3</td><td>Ongoing</td></tr>
   <tr><td>Iranian own exports</td><td>+1.50</td><td>Ongoing</td><td>Ongoing</td></tr>
   <tr class="total-row"><td><strong>Total mitigations</strong></td><td><strong>+8.05</strong></td><td></td><td></td></tr>
@@ -493,45 +610,45 @@
 </table>
 
 <!-- Oil Price Impact -->
-<h2>Oil Price Impact</h2>
+<h2>Oil Price Impact <span class="badge live">LIVE</span></h2>
 <table>
-  <tr><th>Metric</th><th>Pre-Crisis (Feb 27)</th><th>Current (Mar 17)</th><th>Change</th></tr>
-  <tr><td>Brent Crude</td><td>~$71/bbl</td><td>~$103/bbl</td><td style="color:var(--accent);">+45%</td></tr>
-  <tr><td>WTI</td><td>~$67/bbl</td><td>~$96/bbl</td><td style="color:var(--accent);">+43%</td></tr>
+  <tr><th>Metric</th><th>Pre-Crisis (Feb 27)</th><th>Current (Mar 18)</th><th>Change</th></tr>
+  <tr><td>Brent Crude <span class="badge live">LIVE</span></td><td>~$71/bbl</td><td>~$102.64/bbl<sup class="fn" id="fnref-9b"><a href="#fn-9">[9]</a></sup></td><td style="color:var(--accent);">+45%</td></tr>
+  <tr><td>WTI <span class="badge live">LIVE</span></td><td>~$67/bbl</td><td>~$94.23/bbl</td><td style="color:var(--accent);">+41%</td></tr>
   <tr><td>Brent intraday peak</td><td>&mdash;</td><td>$126/bbl</td><td>&mdash;</td></tr>
-  <tr><td>US Gasoline (avg)</td><td>$2.92/gal</td><td>$3.79/gal</td><td style="color:var(--accent);">+30%</td></tr>
-  <tr><td>US Diesel (avg)</td><td>$3.65/gal</td><td>$5.04/gal</td><td style="color:var(--accent);">+38%</td></tr>
+  <tr><td>US Gasoline (avg) <span class="badge live">LIVE</span></td><td>$2.92/gal</td><td>$3.79/gal<sup class="fn" id="fnref-20"><a href="#fn-20">[20]</a></sup></td><td style="color:var(--accent);">+30%</td></tr>
+  <tr><td>US Diesel (avg) <span class="badge live">LIVE</span></td><td>$3.65/gal</td><td>$5.04/gal<sup class="fn" id="fnref-14b"><a href="#fn-14">[14]</a></sup></td><td style="color:var(--accent);">+38%</td></tr>
 </table>
 <ul>
-  <li>Diesel hit $5/gal for first time since 2022 &mdash; worse than gasoline but less coverage</li>
-  <li>Geopolitical risk premium: ~$40/bbl (oil would be in $40s without the war)</li>
-  <li>Goldman: Brent $100+ in March, $85 in April. UBS: $90 by June, $85 year-end.</li>
-  <li>Russia selling Urals at premium for first time since Ukraine invasion (+14% daily revenue)</li>
+  <li>Diesel hit $5/gal for first time since 2022 &mdash; worse than gasoline but less coverage<sup class="fn" id="fnref-14c"><a href="#fn-14">[14]</a></sup></li>
+  <li>Geopolitical risk premium: ~$40/bbl (oil would be in $40s without the war)<sup class="fn" id="fnref-46"><a href="#fn-46">[46]</a></sup></li>
+  <li>Goldman: Brent $100+ in March, $85 in April. UBS: $90 by June, $85 year-end.<sup class="fn" id="fnref-32"><a href="#fn-32">[32]</a></sup></li>
+  <li>Russia selling Urals at premium for first time since Ukraine invasion (+14% daily revenue)<sup class="fn" id="fnref-48b"><a href="#fn-48">[48]</a></sup></li>
 </ul>
 
 <!-- LNG -->
 <h2>LNG &amp; Natural Gas Impact</h2>
 <table>
-  <tr><th>Benchmark</th><th>Pre-Crisis</th><th>Current</th><th>Change</th></tr>
-  <tr><td>JKM (Asian LNG spot)</td><td>&mdash;</td><td>$19.27/MMBtu</td><td>Elevated; outpacing Europe</td></tr>
-  <tr><td>TTF (European gas)</td><td>EUR 31.96/MWh</td><td>EUR 50.75/MWh</td><td style="color:var(--accent);">+59%</td></tr>
+  <tr><th>Benchmark</th><th>Pre-Crisis</th><th>Current <span class="badge live">LIVE</span></th><th>Change</th></tr>
+  <tr><td>JKM (Asian LNG spot)</td><td>&mdash;</td><td>~$19-20/MMBtu<sup class="fn" id="fnref-31"><a href="#fn-31">[31]</a></sup></td><td>Elevated; outpacing Europe</td></tr>
+  <tr><td>TTF (European gas) <span class="badge live">LIVE</span></td><td>EUR 31.96/MWh</td><td>EUR 50.75/MWh</td><td style="color:var(--accent);">+59%</td></tr>
   <tr><td>TTF peak</td><td>&mdash;</td><td>EUR 59.57/MWh (Mar 10)</td><td>+86%</td></tr>
 </table>
 <ul>
-  <li>European gas jumped 45% the day Qatar halted production (Mar 2)</li>
+  <li>European gas jumped 45% the day Qatar halted production (Mar 2)<sup class="fn" id="fnref-31b"><a href="#fn-31">[31]</a></sup></li>
   <li>Asian buyers aggressively competing for prompt cargoes, diverting from Europe</li>
-  <li>Qatar <strong>North Field expansion pushed to at least 2027</strong> &mdash; long-term supply implications for 20% of global LNG</li>
+  <li>Qatar <strong>North Field expansion pushed to at least 2027</strong> &mdash; long-term supply implications for 20% of global LNG<sup class="fn" id="fnref-22c"><a href="#fn-22">[22]</a></sup></li>
 </ul>
 
 <!-- Insurance & Shipping -->
 <h2>Insurance &amp; Shipping</h2>
 <ul>
-  <li><strong>War risk premiums:</strong> ~5% of vessel value (from 0.02-0.05% pre-crisis). $100M tanker = $5M for one transit.</li>
-  <li>Major P&amp;I clubs (Gard, Skuld, NorthStandard, London P&amp;I, American Club) cancelled war risk cover effective Mar 5</li>
-  <li>Hormuz now the "world's most expensive waterway" after 300% premium surge</li>
+  <li><strong>War risk premiums:</strong> ~5% of vessel value (from 0.02-0.05% pre-crisis).<sup class="fn" id="fnref-29"><a href="#fn-29">[29]</a></sup> $100M tanker = $5M for one transit.</li>
+  <li>Major P&amp;I clubs (Gard, Skuld, NorthStandard, London P&amp;I, American Club) cancelled war risk cover effective Mar 5<sup class="fn" id="fnref-30"><a href="#fn-30">[30]</a></sup></li>
+  <li>Hormuz now the "world's most expensive waterway" after 300% premium surge<sup class="fn" id="fnref-29b"><a href="#fn-29">[29]</a></sup></li>
   <li>Maersk, CMA CGM, Hapag-Lloyd all suspended Hormuz/Red Sea transits</li>
-  <li><strong>Tanker stocks surging:</strong> BWET +243% YTD; FRO +62.6%, NAT +63.2%, DHT +59.1%</li>
-  <li>VLCC spot rates ~$170K/day</li>
+  <li><strong>Tanker stocks:</strong> BWET (Breakwave Tanker ETF) ~+470% YTD (Mar 18: -5.2% on day, futures curve softening);<sup class="fn" id="fnref-47"><a href="#fn-47">[47]</a></sup> FRO +62.6%, NAT +63.2%, DHT +59.1% YTD <span class="badge live">LIVE</span></li>
+  <li><strong>VLCC spot rates:</strong> ~$440K/day AG/Far East voyage (Poten &amp; Partners, Mar 16);<sup class="fn" id="fnref-43b"><a href="#fn-43">[43]</a></sup> spot fixtures at $430-450K/day. Note: company-reported Q1 averages of $78-107K/day reflect pre-crisis time charters still in effect.<sup class="fn" id="fnref-44"><a href="#fn-44">[44]</a></sup> <span class="badge live">LIVE</span></li>
 </ul>
 
 <!-- Diplomatic -->
@@ -540,23 +657,24 @@
 <h3>Naval Coalition (Hormuz Escort)</h3>
 <ul>
   <li>Trump called on NATO, China, Japan, South Korea, UK, France to send warships</li>
-  <li><strong>Declined:</strong> Germany, Japan, Australia, Luxembourg; EU voted against expanding naval ops</li>
-  <li><strong>Partial:</strong> France pledged 2 frigates ("purely defensive"); Pakistan launched Operation Muhafiz-ul-Bahr</li>
-  <li>US Navy estimates escort readiness by end of March (needs 8-10 destroyers per convoy)</li>
-  <li>Military analysts: forcing Hormuz open against asymmetric threats "almost suicidal" &mdash; would require ~80,000 marines</li>
+  <li><strong>Declined:</strong> Germany, Japan, Australia, Luxembourg, Italy, Romania, Spain, UK; EU voted against expanding naval ops<sup class="fn" id="fnref-18b"><a href="#fn-18">[18]</a></sup></li>
+  <li><strong>Partial:</strong> France pledged 2 frigates ("purely defensive");<sup class="fn" id="fnref-36b"><a href="#fn-36">[36]</a></sup> Pakistan launched Operation Muhafiz-ul-Bahr for its own vessels</li>
+  <li>US Navy estimates escort readiness by end of March (needs 8-10 destroyers per convoy); prerequisite per Bessent: "complete control of the skies and Iran's missile rebuilding capabilities completely degraded"<sup class="fn" id="fnref-40b"><a href="#fn-40">[40]</a></sup></li>
+  <li>Military analysts: forcing Hormuz open against asymmetric threats "almost suicidal" &mdash; would require ~80,000 marines<sup class="fn" id="fnref-38"><a href="#fn-38">[38]</a></sup></li>
 </ul>
 
 <h3>UN Security Council</h3>
 <ul>
-  <li><strong>Resolution 2817</strong> (Mar 11): Condemned Iran's attacks. Vote: 13-0-2 (China/Russia abstained). 135 co-sponsors (record).</li>
+  <li><strong>Resolution 2817</strong> (Mar 11): Condemned Iran's attacks. Vote: 13-0-2 (China/Russia abstained). 135 co-sponsors (record).<sup class="fn" id="fnref-2b"><a href="#fn-2">[2]</a></sup></li>
   <li>Competing Russian draft failed (4-2-9)</li>
 </ul>
 
 <h3>Ceasefire: No Active Negotiations</h3>
 <ul>
   <li>Iran FM Araghchi: "We never asked for a ceasefire"</li>
+  <li>Mojtaba Khamenei (first public statement, Mar 16, via state TV): "the Strait must continue to be used as leverage" &mdash; rejected ceasefire from two intermediary states. Has not appeared in person since election; statement delivered over a still photo.<sup class="fn" id="fnref-26c"><a href="#fn-26">[26]</a></sup></li>
   <li>Trump (Mar 15): Iran "willing" but "terms aren't good enough yet"</li>
-  <li>Pezeshkian preconditions: recognition of rights, reparations, guarantees against future aggression</li>
+  <li>Pezeshkian preconditions: recognition of rights, reparations, guarantees against future aggression<sup class="fn" id="fnref-26d"><a href="#fn-26">[26]</a></sup></li>
 </ul>
 
 <!-- Iran Leadership -->
@@ -568,7 +686,7 @@
   <tr><td>Security Chief</td><td>Ali Larijani (Mar 17)</td><td>&mdash;</td><td>&mdash;</td></tr>
   <tr><td>Basij Commander</td><td>Gholamreza Soleimani (Mar 17)</td><td>&mdash;</td><td>&mdash;</td></tr>
 </table>
-<p><strong>40+ Iranian officials killed total.</strong> Mojtaba Khamenei's election under IRGC pressure suggests the hardline faction has consolidated control &mdash; reducing the likelihood of near-term de-escalation.</p>
+<p><strong>40+ Iranian officials killed total.</strong><sup class="fn" id="fnref-19b"><a href="#fn-19">[19]</a></sup> Mojtaba Khamenei's election under IRGC pressure suggests the hardline faction has consolidated control. His first public statement (Mar 16) confirmed this: delivered via state TV over a still photo &mdash; no live appearance.</p>
 
 <!-- Country Vulnerability -->
 <h2>Country-Level Vulnerability</h2>
@@ -579,12 +697,12 @@
   <span class="leg-low">Low (direct)</span>
 </div>
 <table>
-  <tr><th>Country</th><th>Hormuz Dep.</th><th>Reserves</th><th>Key Vulnerability</th></tr>
-  <tr class="vuln-critical"><td><strong>Japan</strong></td><td>75% of oil</td><td>80M bbl SPR</td><td>PM warned of collapse within 8-9 months; declined escort</td></tr>
-  <tr class="vuln-critical"><td><strong>India</strong></td><td>60% of oil; 87% import dependent</td><td>~7 days</td><td>Secured limited passage; 30x spike in induction stove sales</td></tr>
+  <tr><th>Country</th><th>Hormuz Dep.</th><th>Reserves <span class="badge structural">STRUCTURAL</span></th><th>Key Vulnerability</th></tr>
+  <tr class="vuln-critical"><td><strong>Japan</strong></td><td>75% of oil</td><td>80M bbl SPR</td><td>PM warned of collapse within 8-9 months; declined escort<sup class="fn" id="fnref-35"><a href="#fn-35">[35]</a></sup></td></tr>
+  <tr class="vuln-critical"><td><strong>India</strong></td><td>60% of oil; 87% import dependent</td><td>~7 days<sup class="fn" id="fnref-6c"><a href="#fn-6">[6]</a></sup></td><td>Secured limited passage; 30x spike in induction stove sales; balancing US relationship vs. energy needs</td></tr>
   <tr class="vuln-high"><td><strong>South Korea</strong></td><td>~70% of oil</td><td>~90 days</td><td>Refineries designed for Gulf crude grades</td></tr>
   <tr class="vuln-high"><td><strong>Australia</strong></td><td>90% refined fuel imports</td><td>Lowest OECD compliance</td><td>Minimal domestic refining capacity</td></tr>
-  <tr class="vuln-moderate"><td><strong>China</strong></td><td>45% of oil</td><td>~120 days</td><td>Receiving Iranian crude; 75% rail electrified; in talks for guaranteed passage</td></tr>
+  <tr class="vuln-moderate"><td><strong>China</strong></td><td>45% of oil</td><td>~120 days (~1.4B bbl)</td><td>Receiving Iranian crude; in talks for guaranteed passage; 75% rail electrified; 50% of 2025 semi-tractor sales electric</td></tr>
   <tr class="vuln-moderate"><td><strong>Europe</strong></td><td>10-15% oil; 20% LNG</td><td>Varies</td><td>TTF gas +59%; Qatar LNG halt; North Field delay</td></tr>
   <tr class="vuln-low"><td><strong>United States</strong></td><td>Net exporter</td><td>415M bbl SPR</td><td>Indirect: allied collapse = global recession; SPR depleting</td></tr>
 </table>
@@ -597,14 +715,14 @@
 
 <!-- What to Watch -->
 <h2>What to Watch</h2>
-<div class="watch-item"><strong>1. 4-week shut-in threshold (~Mar 28):</strong> Wells shut since Mar 3 approach permanent damage window. Water coning risk accelerates with every additional week.</div>
-<div class="watch-item"><strong>2. GL 134 expiration (Apr 11):</strong> -2 mb/d cliff drop from mitigation stack. No extension signals. Single most predictable near-term price catalyst.</div>
-<div class="watch-item"><strong>3. Coalition escort formation:</strong> US Navy estimates readiness by end of March (8-10 destroyers per convoy). Allies declining. Military analysts say forcing Hormuz open would be "almost suicidal."</div>
-<div class="watch-item"><strong>4. Mojtaba Khamenei's posture:</strong> IRGC-backed hardliner. Iran FM: "We never asked for ceasefire." His stance determines if closure is bargaining chip or long-term strategy.</div>
-<div class="watch-item"><strong>5. SPR drawdown pace:</strong> US portion (172M bbl) gone by mid-July at 1.43 mb/d. Post-SPR cliff if crisis extends past summer.</div>
-<div class="watch-item"><strong>6. Refined products crunch:</strong> Bypass pipelines only move crude. Diesel $5.04/gal. Ras Laffan LNG + North Field delay = 20% of global LNG supply impacted for years.</div>
+<div class="watch-item"><strong>1. 4-week shut-in threshold (~Mar 28):</strong> Wells shut since Mar 3 approach permanent damage window. Water coning risk accelerates with every additional week.<sup class="fn" id="fnref-53b"><a href="#fn-53">[53]</a></sup></div>
+<div class="watch-item"><strong>2. GL 134 expiration (Apr 11) <span class="badge policy">POLICY</span>:</strong> &minus;2 mb/d cliff drop from mitigation stack. No extension signals. Single most predictable near-term price catalyst.<sup class="fn" id="fnref-45b"><a href="#fn-45">[45]</a></sup></div>
+<div class="watch-item"><strong>3. Coalition escort formation:</strong> US Navy estimates readiness by end of March (8-10 destroyers per convoy). Most allies declining. Military analysts say forcing Hormuz open would be "almost suicidal."<sup class="fn" id="fnref-38b"><a href="#fn-38">[38]</a></sup></div>
+<div class="watch-item"><strong>4. Mojtaba Khamenei's posture:</strong> IRGC-backed hardliner. First statement: Hormuz "must be used as leverage." Iran FM: "We never asked for ceasefire." Stance determines if closure is a bargaining chip or long-term strategy.<sup class="fn" id="fnref-26e"><a href="#fn-26">[26]</a></sup></div>
+<div class="watch-item"><strong>5. SPR drawdown pace <span class="badge policy">POLICY</span>:</strong> US portion (172M bbl) gone by mid-July at 1.43 mb/d. Post-SPR cliff if crisis extends past summer. Watch for actual delivered barrels vs. announced commitment.</div>
+<div class="watch-item"><strong>6. Refined products crunch <span class="badge live">LIVE</span>:</strong> Bypass pipelines only move crude. Diesel $5.04/gal. Ras Laffan LNG + North Field delay = 20% of global LNG supply impacted for years.<sup class="fn" id="fnref-14d"><a href="#fn-14">[14]</a></sup></div>
 <div class="watch-item"><strong>7. Yuan-denominated Hormuz transit:</strong> If Iran allows yuan-settled cargoes, it's a structural shift in petrodollar dynamics. Watch China-Iran negotiations.</div>
-<div class="watch-item"><strong>8. Insurance normalization:</strong> War risk at 5% of hull value makes commercial transit economically unviable even if militarily possible.</div>
+<div class="watch-item"><strong>8. Insurance normalization <span class="badge live">LIVE</span>:</strong> War risk at 5% of hull value makes commercial transit economically unviable even if militarily possible.<sup class="fn" id="fnref-29c"><a href="#fn-29">[29]</a></sup></div>
 
 <!-- Market Intelligence -->
 <h2>Market &amp; Social Intelligence</h2>
@@ -612,18 +730,18 @@
 <div class="sweep-section">
   <h3>Fintwit / X Sentiment</h3>
   <ul>
-    <li><strong>Consensus long energy.</strong> BWET +243% YTD. USO +64%. XLE +27%. Record $211M retail inflows on Mar 12.</li>
+    <li><strong>Consensus long energy.</strong> BWET ~+470% YTD. USO +64%. XLE +27%. Record $211M retail inflows on Mar 12.<sup class="fn" id="fnref-13"><a href="#fn-13">[13]</a></sup></li>
     <li><strong>Iran's selective blockade</strong> widely discussed as strategically effective &mdash; divides Western coalition.</li>
-    <li><strong>"Stalemate at sea"</strong> framing gaining traction. Ritter analysis: reopening requires ~80,000 marines.</li>
+    <li><strong>"Stalemate at sea"</strong> framing gaining traction. Ritter analysis: reopening requires ~80,000 marines.<sup class="fn" id="fnref-38c"><a href="#fn-38">[38]</a></sup></li>
     <li>Relief rallies treated as <strong>"sell the rip"</strong> &mdash; not genuine de-escalation.</li>
-    <li>Goldman: $100+ March, $85 April. UBS: $90 June, $85 year-end.</li>
+    <li>Goldman: $100+ March, $85 April. UBS: $90 June, $85 year-end.<sup class="fn" id="fnref-32b"><a href="#fn-32">[32]</a></sup></li>
   </ul>
 </div>
 
 <div class="sweep-section">
   <h3>Reddit (WSB, r/investing, r/stocks)</h3>
   <ul>
-    <li><strong>"Oil is the new meme stock."</strong> USO largest single-day inflow since Aug 2020. CNBC: "meme-style" trading.</li>
+    <li><strong>"Oil is the new meme stock."</strong> USO largest single-day inflow since Aug 2020. CNBC: "meme-style" trading.<sup class="fn" id="fnref-13b"><a href="#fn-13">[13]</a></sup></li>
     <li><strong>SPY sentiment still bullish (68/100)</strong> &mdash; WSB shorting VIX, betting crisis contained.</li>
     <li><strong>USO contango warnings</strong> from experienced traders: "Don't confuse an oil trade with an oil investment."</li>
     <li><strong>Futures curve disconnect:</strong> Jan 2027 Brent ~$70. Retail more bullish than curve implies.</li>
@@ -634,19 +752,20 @@
 <div class="sweep-section">
   <h3>HackerNews Technical</h3>
   <ul>
-    <li><strong>Escort infeasibility:</strong> Iran's asymmetric threats in confined waters make convoy escort untenable without massive amphibious deployment.</li>
+    <li><strong>Escort infeasibility:</strong> Iran's asymmetric threats in confined waters make convoy escort untenable without massive amphibious deployment.<sup class="fn" id="fnref-52"><a href="#fn-52">[52]</a></sup></li>
     <li><strong>Refinery grade mismatch:</strong> Can't swap crude sources without retooling &mdash; constrains substitution speed.</li>
-    <li><strong>Water coning:</strong> Under-discussed mechanism behind 4-week well damage threshold.</li>
-    <li><strong>No shale response at $100:</strong> "Wall Street killed the wildcatters" &mdash; capital discipline = buybacks over capex.</li>
-    <li><strong>Pozsar's Bretton Woods III:</strong> Hormuz as structural validation of physical commodity repricing.</li>
+    <li><strong>Water coning:</strong> Under-discussed mechanism behind 4-week well damage threshold.<sup class="fn" id="fnref-53c"><a href="#fn-53">[53]</a></sup></li>
+    <li><strong>No shale response at $100:</strong> "Wall Street killed the wildcatters" &mdash; capital discipline = buybacks over capex.<sup class="fn" id="fnref-53d"><a href="#fn-53">[53]</a></sup></li>
+    <li><strong>Pozsar's Bretton Woods III:</strong> Hormuz as structural validation of physical commodity repricing.<sup class="fn" id="fnref-52b"><a href="#fn-52">[52]</a></sup></li>
     <li><strong>China's resilience:</strong> 75% rail electrified, 50% of 2025 semi-tractor sales electric, Russian gas via pipelines.</li>
+    <li><strong>Silicon Valley gasoline at $7+/gal</strong> (reported @Animats).<sup class="fn" id="fnref-52c"><a href="#fn-52">[52]</a></sup></li>
   </ul>
 </div>
 
 <div class="sweep-section">
   <h3>YouTube Coverage</h3>
   <ul>
-    <li><strong>Peter Zeihan</strong> most prolific &mdash; rapid-fire series since Feb 28. Also on Prof G Pod with Galloway (Mar 9).</li>
+    <li><strong>Peter Zeihan</strong> most prolific &mdash; rapid-fire series since Feb 28. Also on Prof G Pod with Galloway (Mar 9).<sup class="fn" id="fnref-51"><a href="#fn-51">[51]</a></sup></li>
     <li><strong>Al Jazeera Inside Story</strong> (Mar 16): panel on Hormuz as Trump's problem. Military analyst: "almost suicidal."</li>
     <li><strong>Key thesis:</strong> US doesn't need Gulf oil (net exporter) but allies do &mdash; strait closure accelerates deglobalization.</li>
   </ul>
@@ -655,77 +774,90 @@
 <h3>Trading Signals</h3>
 <table>
   <tr><th>Signal</th><th>Bull Case</th><th>Bear Case</th></tr>
-  <tr><td>Futures curve</td><td>Backwardation = expects short disruption</td><td>If wrong, violent catch-up repricing</td></tr>
-  <tr><td>Retail inflows ($211M)</td><td>Momentum extends rally</td><td>Meme-style = fragile, reverses fast</td></tr>
+  <tr><td>Futures curve <span class="badge live">LIVE</span></td><td>Backwardation = expects short disruption</td><td>If wrong, violent catch-up repricing</td></tr>
+  <tr><td>Retail inflows ($211M)<sup class="fn" id="fnref-13c"><a href="#fn-13">[13]</a></sup></td><td>Momentum extends rally</td><td>Meme-style = fragile, reverses fast</td></tr>
   <tr><td>Shale non-response</td><td>No new supply = sustained shortage</td><td>Discipline could break at $130+</td></tr>
-  <tr><td>Tankers (BWET +243%)</td><td>Longer routes for months</td><td>Snap back on ceasefire signal</td></tr>
-  <tr><td>SPR drawdown</td><td>Buys 120-200 days</td><td>Post-SPR cliff past Jul</td></tr>
-  <tr><td>GL 134 (Apr 11)</td><td>Extension = more supply</td><td>No extension = -2 mb/d cliff</td></tr>
+  <tr><td>Tankers (BWET ~+470%) <span class="badge live">LIVE</span></td><td>Longer routes for months</td><td>Snap back on ceasefire signal</td></tr>
+  <tr><td>SPR drawdown <span class="badge policy">POLICY</span></td><td>Buys 120-200 days</td><td>Post-SPR cliff past Jul</td></tr>
+  <tr><td>GL 134 (Apr 11) <span class="badge policy">POLICY</span></td><td>Extension = more supply</td><td>No extension = -2 mb/d cliff</td></tr>
   <tr><td>Clean energy flat</td><td>Not pricing structural shift</td><td>Could catch bid at 3-month mark</td></tr>
-  <tr><td>Insurance (5% hull)</td><td>Commercial transit dead</td><td>Normalization = de-escalation signal</td></tr>
+  <tr><td>Insurance (5% hull) <span class="badge live">LIVE</span></td><td>Commercial transit dead</td><td>Normalization = de-escalation signal</td></tr>
 </table>
 
-<!-- Sources -->
+<!-- ======================== SOURCES ======================== -->
 <div class="sources">
 <h2>Sources</h2>
+<p class="sources-note">Click a numbered reference [N] in the text to jump to its citation below, highlighted. Click the &#8593; arrow next to a citation to return to where it is referenced in the text.</p>
 
 <h3>Primary / Government</h3>
-<ul>
-  <li><a href="https://www.iea.org/reports/oil-market-report-march-2026">IEA: Oil Market Report &mdash; March 2026</a></li>
-  <li><a href="https://press.un.org/en/2026/sc16315.doc.htm">UN Press: Security Council Resolution 2817</a></li>
-  <li><a href="https://www.clearytradewatch.com/2026/03/ofac-issues-temporary-reprieve-for-certain-russian-origin-crude-oil-shipments/">OFAC: General License 134</a></li>
-</ul>
+<ol class="fn-list">
+  <li id="fn-1"><a href="#fnref-1" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[1]</span> <a href="https://www.iea.org/reports/oil-market-report-march-2026" target="_blank">IEA: Oil Market Report &mdash; March 2026</a></li>
+  <li id="fn-2"><a href="#fnref-2" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[2]</span> <a href="https://press.un.org/en/2026/sc16315.doc.htm" target="_blank">UN Press: Security Council Resolution 2817</a></li>
+  <li id="fn-3"><a href="#fnref-3" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[3]</span> <a href="https://www.clearytradewatch.com/2026/03/ofac-issues-temporary-reprieve-for-certain-russian-origin-crude-oil-shipments/" target="_blank">OFAC / Cleary TradeWatch: General License 134 &mdash; Russian oil waiver</a></li>
+  <li id="fn-4"><a href="#fnref-4" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[4]</span> <a href="https://www.energy.gov/articles/united-states-release-172-million-barrels-oil-strategic-petroleum-reserve" target="_blank">DOE: United States to release 172M barrels from SPR</a></li>
+</ol>
 
 <h3>Wire Services / Major Outlets</h3>
-<ul>
-  <li><a href="https://www.aljazeera.com/news/2026/3/4/which-oil-and-gas-facilities-in-the-gulf-have-been-attacked">Al Jazeera: Which oil and gas facilities have been attacked?</a></li>
-  <li><a href="https://www.aljazeera.com/economy/2026/3/16/strait-of-hormuz-which-countriess-ships-has-iran-allowed-safe-passage-to">Al Jazeera: Which ships has Iran allowed safe passage?</a></li>
-  <li><a href="https://www.aljazeera.com/economy/2026/3/15/strategic-oil-release-may-calm-markets-but-cannot-fix-hormuz-disruption">Al Jazeera: SPR cannot fix Hormuz</a></li>
-  <li><a href="https://fortune.com/2026/03/13/middle-east-energy-crisis-could-outlast-the-iran-war/">Fortune: Biggest oil supply disruption in history</a></li>
-  <li><a href="https://fortune.com/article/price-of-oil-03-17-2026/">Fortune: Oil prices Mar 17</a></li>
-  <li><a href="https://www.cnbc.com/2026/03/12/strait-of-hormuz-oil-pipelines-iran-war-saudi-arabia-uae.html">CNBC: Pipeline bypass capacity</a></li>
-  <li><a href="https://www.cnbc.com/2026/03/11/iea-oil-reserves-crude-prices-iran-g7-energy.html">CNBC: IEA 400M barrel release</a></li>
-  <li><a href="https://www.cnbc.com/2026/03/11/iran-ships-oil-china-strait-hormuz-closure-.html">CNBC: Iran ships oil to China through closed strait</a></li>
-  <li><a href="https://www.cnbc.com/2026/03/16/oil-crude-iran-war-retailers-meme.html">CNBC: Oil meme-style retail trading</a></li>
-  <li><a href="https://www.cnbc.com/2026/03/17/diesel-gas-oil-price-iran-war-hormuz.html">CNBC: Diesel at $5/gal</a></li>
-  <li><a href="https://www.cnbc.com/2026/03/13/bessent-us-allows-purchase-russian-oil-stranded-sea-energy-markets.html">CNBC: GL 134 Russian oil waiver</a></li>
-  <li><a href="https://www.npr.org/2026/03/04/nx-s1-5736104/iran-war-oil-trump-israel-strait-hormuz-closed-energy-crisis">NPR: Hormuz traffic dried up</a></li>
-  <li><a href="https://www.npr.org/2026/03/16/nx-s1-5749109/trump-threatens-nato-strait-hormuz-iran-war">NPR: Trump demands NATO police Hormuz</a></li>
-  <li><a href="https://www.npr.org/2026/03/17/nx-s1-5750253/israel-kills-two-top-iranian-commanders">NPR: Larijani and Soleimani killed</a></li>
-  <li><a href="https://www.cnn.com/2026/03/16/business/iranian-oil-exports-hormuz-strait-intl-cmd">CNN: Iran still exporting through Hormuz</a></li>
-  <li><a href="https://www.france24.com/en/live-news/20260313-war-has-halted-gulf-oil-flow-and-restarting-it-won-t-be-easy">France24: Restarting Gulf oil won't be easy</a></li>
-  <li><a href="https://www.nbcnews.com/politics/donald-trump/iran-negotiate-ceasefire-deal-trump-kharg-hormuz-oil-rcna263474">NBC: Iran ceasefire signals</a></li>
-</ul>
+<ol class="fn-list" start="5">
+  <li id="fn-5"><a href="#fnref-5" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[5]</span> <a href="https://www.aljazeera.com/news/2026/3/4/which-oil-and-gas-facilities-in-the-gulf-have-been-attacked" target="_blank">Al Jazeera: Which oil and gas facilities in the Gulf have been attacked?</a></li>
+  <li id="fn-6"><a href="#fnref-6" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[6]</span> <a href="https://www.aljazeera.com/economy/2026/3/16/strait-of-hormuz-which-countriess-ships-has-iran-allowed-safe-passage-to" target="_blank">Al Jazeera: Which countries&rsquo; ships has Iran allowed safe passage?</a></li>
+  <li id="fn-7"><a href="#fnref-7" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[7]</span> <a href="https://www.aljazeera.com/economy/2026/3/15/strategic-oil-release-may-calm-markets-but-cannot-fix-hormuz-disruption" target="_blank">Al Jazeera: Strategic oil release cannot fix Hormuz disruption</a></li>
+  <li id="fn-8"><a href="#fnref-8" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[8]</span> <a href="https://fortune.com/2026/03/13/middle-east-energy-crisis-could-outlast-the-iran-war/" target="_blank">Fortune: The war in Iran has caused the biggest oil supply disruption in history</a></li>
+  <li id="fn-9"><a href="#fnref-9" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[9]</span> <a href="https://fortune.com/article/price-of-oil-03-17-2026/" target="_blank">Fortune: Oil prices (Mar 17, 2026)</a></li>
+  <li id="fn-10"><a href="#fnref-10" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[10]</span> <a href="https://www.cnbc.com/2026/03/12/strait-of-hormuz-oil-pipelines-iran-war-saudi-arabia-uae.html" target="_blank">CNBC: The two oil pipelines helping Saudi Arabia and UAE bypass Hormuz</a></li>
+  <li id="fn-11"><a href="#fnref-11" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[11]</span> <a href="https://www.cnbc.com/2026/03/11/iea-oil-reserves-crude-prices-iran-g7-energy.html" target="_blank">CNBC: IEA agrees to release record 400 million barrels</a></li>
+  <li id="fn-12"><a href="#fnref-12" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[12]</span> <a href="https://www.cnbc.com/2026/03/11/iran-ships-oil-china-strait-hormuz-closure-.html" target="_blank">CNBC: Iran ships oil to China through the strait it closed</a></li>
+  <li id="fn-13"><a href="#fnref-13" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[13]</span> <a href="https://www.cnbc.com/2026/03/16/oil-crude-iran-war-retailers-meme.html" target="_blank">CNBC: Oil&rsquo;s meme-style retail trading &mdash; $211M inflows</a></li>
+  <li id="fn-14"><a href="#fnref-14" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[14]</span> <a href="https://www.cnbc.com/2026/03/17/diesel-gas-oil-price-iran-war-hormuz.html" target="_blank">CNBC: Diesel prices surge to $5/gal &mdash; first time since 2022</a></li>
+  <li id="fn-15"><a href="#fnref-15" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[15]</span> <a href="https://www.cnbc.com/2026/03/13/bessent-us-allows-purchase-russian-oil-stranded-sea-energy-markets.html" target="_blank">CNBC: Bessent on GL 134 Russian oil waiver</a></li>
+  <li id="fn-16"><a href="#fnref-16" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[16]</span> <a href="https://www.cnbc.com/2026/03/16/us-is-allowing-iranian-tankers-through-strait-of-hormuz-says-bessent.html" target="_blank">CNBC: Bessent confirms US allowing Iranian tankers through Hormuz</a></li>
+  <li id="fn-17"><a href="#fnref-17" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[17]</span> <a href="https://www.npr.org/2026/03/04/nx-s1-5736104/iran-war-oil-trump-israel-strait-hormuz-closed-energy-crisis" target="_blank">NPR: How traffic dried up in the Strait of Hormuz</a></li>
+  <li id="fn-18"><a href="#fnref-18" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[18]</span> <a href="https://www.npr.org/2026/03/16/nx-s1-5749109/trump-threatens-nato-strait-hormuz-iran-war" target="_blank">NPR: Trump demands NATO and China police Hormuz; allies declining</a></li>
+  <li id="fn-19"><a href="#fnref-19" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[19]</span> <a href="https://www.npr.org/2026/03/17/nx-s1-5750253/israel-kills-two-top-iranian-commanders" target="_blank">NPR: Israel kills two top Iranian commanders (Larijani, Soleimani)</a></li>
+  <li id="fn-20"><a href="#fnref-20" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[20]</span> <a href="https://www.npr.org/2026/03/16/nx-s1-5749333/iran-war-gasoline-prices-day-17" target="_blank">NPR: Iran war gasoline prices &mdash; Day 17</a></li>
+  <li id="fn-21"><a href="#fnref-21" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[21]</span> <a href="https://www.bloomberg.com/news/articles/2026-03-16/uae-oil-production-is-down-by-almost-half-amid-hormuz-closure" target="_blank">Bloomberg: UAE oil production down by almost half</a></li>
+  <li id="fn-22"><a href="#fnref-22" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[22]</span> <a href="https://www.bloomberg.com/news/articles/2026-03-09/qatar-said-to-push-lng-expansion-to-2027-after-iran-drone-attack" target="_blank">Bloomberg: Qatar pushes North Field LNG expansion to 2027</a></li>
+  <li id="fn-23"><a href="#fnref-23" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[23]</span> <a href="https://www.bloomberg.com/news/articles/2026-03-11/us-to-release-172-million-barrels-for-iea-plan-to-tap-reserves" target="_blank">Bloomberg: US to release 172 million barrels for IEA plan</a></li>
+  <li id="fn-24"><a href="#fnref-24" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[24]</span> <a href="https://www.cnn.com/2026/03/16/business/iranian-oil-exports-hormuz-strait-intl-cmd" target="_blank">CNN: Iran still exporting oil through Hormuz</a></li>
+  <li id="fn-25"><a href="#fnref-25" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[25]</span> <a href="https://www.france24.com/en/live-news/20260313-war-has-halted-gulf-oil-flow-and-restarting-it-won-t-be-easy" target="_blank">France24: War has halted Gulf oil flow &mdash; restarting won&rsquo;t be easy</a></li>
+  <li id="fn-26"><a href="#fnref-26" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[26]</span> <a href="https://www.nbcnews.com/politics/donald-trump/iran-negotiate-ceasefire-deal-trump-kharg-hormuz-oil-rcna263474" target="_blank">NBC News: Iran ceasefire signals; Khamenei rejects talks</a></li>
+</ol>
 
 <h3>Specialist / Industry</h3>
-<ul>
-  <li><a href="https://www.kpler.com/blog/us-iran-conflict-strait-of-hormuz-crisis-reshapes-global-oil-markets">Kpler: Hormuz crisis reshapes oil markets</a></li>
-  <li><a href="https://www.kpler.com/blog/explainer-why-kharg-island-is-the-backbone-of-irans-oil-economy---and-its-greatest-vulnerability">Kpler: Kharg Island vulnerability</a></li>
-  <li><a href="https://www.euronews.com/business/2026/03/16/hormuz-becomes-worlds-most-expensive-waterway-after-300-surge-in-risk-premiums">Euronews: Hormuz most expensive waterway</a></li>
-  <li><a href="https://www.spglobal.com/energy/en/news-research/latest-news/shipping/030926-tankers-take-insurance-at-record-premiums-yet-stay-away-from-hormuz">S&amp;P Global: Record insurance premiums</a></li>
-  <li><a href="https://naturalgasintel.com/news/asian-lng-prices-outpacing-european-gains-as-war-begins-to-fully-strain-global-natural-gas-market/">Natural Gas Intel: Asian LNG prices</a></li>
-  <li><a href="https://www.goldmansachs.com/insights/articles/how-will-the-iran-conflict-impact-oil-prices">Goldman Sachs: Iran oil price impact</a></li>
-  <li><a href="https://www.morganstanley.com/insights/articles/iran-war-oil-inflation-stock-market-2026">Morgan Stanley: Oil, inflation, markets</a></li>
-  <li><a href="https://seekingalpha.com/news/4564570-oil-rally-from-iran-war-could-deliver-60b-windfall-for-u-s-producers">Seeking Alpha: $60B US producer windfall</a></li>
-  <li><a href="https://www.energypolicy.columbia.edu/iran-conflict-brief-what-it-will-take-to-open-up-the-strait-of-hormuz/">Columbia SIPA: Opening the Strait</a></li>
-  <li><a href="https://news.usni.org/2026/03/09/french-navy-pledges-10-additional-warships-to-middle-east-escorts-for-strait-of-hormuz">USNI: French Navy pledges warships</a></li>
-  <li><a href="https://www.meforum.org/mef-online/irans-blockade-of-the-strait-of-hormuz-is-destined-to-fail">Middle East Forum: Blockade destined to fail</a></li>
-  <li><a href="https://www.csis.org/analysis/no-one-not-even-beijing-getting-through-strait-of-hormuz">CSIS: No one getting through Hormuz</a></li>
-  <li><a href="https://www.insurancejournal.com/news/international/2026/03/17/862173.htm">Insurance Journal: Maritime war risk</a></li>
-</ul>
+<ol class="fn-list" start="27">
+  <li id="fn-27"><a href="#fnref-27" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[27]</span> <a href="https://www.kpler.com/blog/us-iran-conflict-strait-of-hormuz-crisis-reshapes-global-oil-markets" target="_blank">Kpler: US-Iran conflict reshapes global oil markets</a></li>
+  <li id="fn-28"><a href="#fnref-28" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[28]</span> <a href="https://www.kpler.com/blog/explainer-why-kharg-island-is-the-backbone-of-irans-oil-economy---and-its-greatest-vulnerability" target="_blank">Kpler: Why Kharg Island is Iran&rsquo;s greatest vulnerability &mdash; 8+ loadings data</a></li>
+  <li id="fn-29"><a href="#fnref-29" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[29]</span> <a href="https://www.euronews.com/business/2026/03/16/hormuz-becomes-worlds-most-expensive-waterway-after-300-surge-in-risk-premiums" target="_blank">Euronews: Hormuz becomes world&rsquo;s most expensive waterway after 300% surge</a></li>
+  <li id="fn-30"><a href="#fnref-30" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[30]</span> <a href="https://www.spglobal.com/energy/en/news-research/latest-news/shipping/030926-tankers-take-insurance-at-record-premiums-yet-stay-away-from-hormuz" target="_blank">S&amp;P Global: Tankers take insurance at record premiums yet stay away from Hormuz</a></li>
+  <li id="fn-31"><a href="#fnref-31" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[31]</span> <a href="https://naturalgasintel.com/news/asian-lng-prices-outpacing-european-gains-as-war-begins-to-fully-strain-global-natural-gas-market/" target="_blank">Natural Gas Intel: Asian LNG prices outpacing European gains</a></li>
+  <li id="fn-32"><a href="#fnref-32" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[32]</span> <a href="https://www.goldmansachs.com/insights/articles/how-will-the-iran-conflict-impact-oil-prices" target="_blank">Goldman Sachs: How will the Iran conflict impact oil prices?</a></li>
+  <li id="fn-33"><a href="#fnref-33" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[33]</span> <a href="https://www.morganstanley.com/insights/articles/iran-war-oil-inflation-stock-market-2026" target="_blank">Morgan Stanley: Iran conflict &mdash; oil price impacts and inflation</a></li>
+  <li id="fn-34"><a href="#fnref-34" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[34]</span> <a href="https://seekingalpha.com/news/4564570-oil-rally-from-iran-war-could-deliver-60b-windfall-for-u-s-producers" target="_blank">Seeking Alpha: Oil rally could deliver $60B windfall for US producers</a></li>
+  <li id="fn-35"><a href="#fnref-35" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[35]</span> <a href="https://www.energypolicy.columbia.edu/iran-conflict-brief-what-it-will-take-to-open-up-the-strait-of-hormuz/" target="_blank">Columbia SIPA: What it will take to open up the Strait of Hormuz &mdash; Japan vulnerability</a></li>
+  <li id="fn-36"><a href="#fnref-36" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[36]</span> <a href="https://news.usni.org/2026/03/09/french-navy-pledges-10-additional-warships-to-middle-east-escorts-for-strait-of-hormuz" target="_blank">USNI News: French Navy pledges warships to Hormuz escorts</a></li>
+  <li id="fn-37"><a href="#fnref-37" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[37]</span> <a href="https://www.meforum.org/mef-online/irans-blockade-of-the-strait-of-hormuz-is-destined-to-fail" target="_blank">Middle East Forum: Iran&rsquo;s blockade of Hormuz is destined to fail</a></li>
+  <li id="fn-38"><a href="#fnref-38" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[38]</span> <a href="https://www.csis.org/analysis/no-one-not-even-beijing-getting-through-strait-of-hormuz" target="_blank">CSIS: No one, not even Beijing, is getting through Hormuz &mdash; ~80,000 marines estimate</a></li>
+  <li id="fn-39"><a href="#fnref-39" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[39]</span> <a href="https://www.insurancejournal.com/news/international/2026/03/17/862173.htm" target="_blank">Insurance Journal: Maritime war risk &mdash; war coverage cancelled</a></li>
+  <li id="fn-40"><a href="#fnref-40" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[40]</span> <a href="https://www.twz.com/news-features/u-s-navy-wont-be-ready-to-escort-tankers-through-hormuz-for-weeks" target="_blank">The War Zone: US Navy won&rsquo;t be ready to escort tankers through Hormuz for weeks</a></li>
+  <li id="fn-41"><a href="#fnref-41" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[41]</span> <a href="https://www.iranintl.com/en/202603152504" target="_blank">Iran International: Iran revives Jask terminal &mdash; first VLCC since Oct 2024, only 5th in 5 years</a></li>
+  <li id="fn-42"><a href="#fnref-42" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[42]</span> <a href="https://www.tradewindsnews.com/tankers/iran-revives-tanker-export-terminal-outside-middle-east-gulf-with-vlcc-loading/2-1-1957267" target="_blank">TradeWinds: Iran revives tanker export terminal with VLCC loading</a></li>
+  <li id="fn-43"><a href="#fnref-43" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[43]</span> <a href="https://www.seatrade-maritime.com/tankers/vlcc-rates-skyrocket-to-hit-never-done-before-highs" target="_blank">Seatrade Maritime: VLCC rates skyrocket to never-before-seen highs &mdash; ~$440K/day AG/Far East</a></li>
+  <li id="fn-44"><a href="#fnref-44" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[44]</span> <a href="https://gcaptain.com/vlcc-charter-rates-top-100000-as-dht-locks-in-premium-one-year-charter/" target="_blank">gCaptain: VLCC charter rates &mdash; DHT one-year TC at $105K/day; FRO Q1 spot TCE $107K/day (pre-crisis TCs still active)</a></li>
+  <li id="fn-45"><a href="#fnref-45" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[45]</span> <a href="https://sanctionsnews.bakermckenzie.com/temporary-ofac-general-licenses-authorize-transactions-involving-russian-origin-crude-oil-and-petroleum/" target="_blank">Baker McKenzie: OFAC GL 134 &mdash; one-time, cargo-specific; no automatic renewal mechanism</a></li>
+</ol>
 
 <h3>Social / Commentary</h3>
-<ul>
-  <li><a href="https://247wallst.com/investing/2026/03/04/commodity-strategist-oil-would-be-in-the-40s-without-iran-war/">247 Wall St: Oil in $40s without war</a></li>
-  <li><a href="https://247wallst.com/investing/2026/03/09/tankers-surge-on-rising-oil-prices-fro-nat-dht-add-to-massive-2026-returns/">247 Wall St: Tanker stocks surge</a></li>
-  <li><a href="https://www.washingtonpost.com/world/2026/03/14/russia-oil-sanction-iran-war-trump/">Washington Post: Russia oil windfall</a></li>
-  <li><a href="https://time.com/7383068/iran-war-russia-oil/">TIME: Russia as early winner</a></li>
-  <li><a href="https://www.cbsnews.com/video/strait-of-hormuz-choke-point-60-minutes-video-2026-03-15/">60 Minutes: Choke Point</a></li>
-  <li><a href="https://www.profgmedia.com/p/peter-zeihan-on-how-the-war-with">Prof G Pod: Zeihan on Iran war</a></li>
-  <li><a href="https://news.ycombinator.com/item?id=47346137">HN: Oil hits $100 despite reserves</a></li>
-  <li><a href="https://news.ycombinator.com/item?id=47293482">HN: What if closure isn't brief?</a></li>
-  <li><a href="https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis">Wikipedia: 2026 Strait of Hormuz crisis</a></li>
-</ul>
+<ol class="fn-list" start="46">
+  <li id="fn-46"><a href="#fnref-46" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[46]</span> <a href="https://247wallst.com/investing/2026/03/04/commodity-strategist-oil-would-be-in-the-40s-without-iran-war/" target="_blank">247 Wall St: Oil would be in the $40s without Iran war &mdash; ~$40/bbl geopolitical premium</a></li>
+  <li id="fn-47"><a href="#fnref-47" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[47]</span> <a href="https://247wallst.com/investing/2026/03/09/tankers-surge-on-rising-oil-prices-fro-nat-dht-add-to-massive-2026-returns/" target="_blank">247 Wall St: Tanker stocks surge &mdash; FRO, NAT, DHT YTD returns</a></li>
+  <li id="fn-48"><a href="#fnref-48" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[48]</span> <a href="https://www.washingtonpost.com/world/2026/03/14/russia-oil-sanction-iran-war-trump/" target="_blank">Washington Post: Russia oil windfall &mdash; Urals at premium for first time since Ukraine invasion</a></li>
+  <li id="fn-49"><a href="#fnref-49" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[49]</span> <a href="https://time.com/7383068/iran-war-russia-oil/" target="_blank">TIME: Russia as early winner of the Iran war</a></li>
+  <li id="fn-50"><a href="#fnref-50" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[50]</span> <a href="https://www.cbsnews.com/video/strait-of-hormuz-choke-point-60-minutes-video-2026-03-15/" target="_blank">60 Minutes: Choke Point (Mar 15, 2026)</a></li>
+  <li id="fn-51"><a href="#fnref-51" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[51]</span> <a href="https://www.profgmedia.com/p/peter-zeihan-on-how-the-war-with" target="_blank">Prof G Pod: Peter Zeihan on the Iran war (Mar 9, 2026)</a></li>
+  <li id="fn-52"><a href="#fnref-52" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[52]</span> <a href="https://news.ycombinator.com/item?id=47346137" target="_blank">HackerNews: Oil hits $100 despite record reserve release &mdash; technical analysis thread</a></li>
+  <li id="fn-53"><a href="#fnref-53" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[53]</span> <a href="https://news.ycombinator.com/item?id=47293482" target="_blank">HackerNews: What if the Hormuz closure will not be brief? &mdash; water coning, shale non-response, Pozsar analysis</a></li>
+  <li id="fn-54"><a href="#fnref-54" class="fn-back" title="Back to text">&#8593;</a><span class="fn-num">[54]</span> <a href="https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis" target="_blank">Wikipedia: 2026 Strait of Hormuz crisis &mdash; ship attack tracker</a></li>
+</ol>
 </div>
 
 </body>
