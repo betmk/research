@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-03-18 17:00 — `report-2026-03-18-1700`
+**Iran FM proposes permanent Hormuz protocol; Brent/WTI rise; SPR first barrels imminent**
+
+- Brent updated: $102.64 → $103.42/bbl (+$0.78; Mar 17 close); WTI: $94.23 → $96.21/bbl (+$1.98, >2% move)
+- New development (Mar 18): Iran FM Araghchi proposes new regional Hormuz Strait protocol post-war — institutionalizing Iranian control of the strait permanently; adds source [55]
+- France and Italy contacted Iran directly about bilateral ship passage; Iran "open" to bilateral passage talks — early coalition fracture signal
+- SPR first physical barrels confirmed expected to reach market Mar 19 (48-hour pipeline lag from Gulf Coast caverns)
+- JKM Asian LNG updated: $19-20 → $20-22/MMBtu; VLCC spot updated: $440K → $445K/day (peak $480K/day noted)
+- Added Watch Item 9: Iran Hormuz protocol as structural long-term risk
+- 55 total sources (was 54)
+
+---
+
 ## 2026-03-18 — `report-2026-03-18`
 **Bi-directional footnotes, data freshness badges, research refresh**
 

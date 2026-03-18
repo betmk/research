@@ -7,7 +7,7 @@
 
 ## Executive Summary
 
-The US-Israel war on Iran (Feb 28, 2026) triggered the largest oil supply disruption in history. Iran's selective closure of the Strait of Hormuz has taken ~20 million barrels/day (mb/d) of transit offline — roughly 20% of global daily oil supply. Combined mitigating factors (bypass pipelines, SPR releases, GL 134 Russian oil waiver, Iranian own exports) cover only ~8 mb/d, leaving a **net shortage of ~12 mb/d**. Brent crude has surged ~45% to ~$103/bbl; WTI ~$95/bbl. Extended well shut-ins risk permanent damage if the crisis exceeds 4 weeks (~Mar 28). No ceasefire negotiations are active. Iran's new Supreme Leader Mojtaba Khamenei (elected Mar 9) issued his first public statement Mar 16 declaring "the Strait must continue to be used as leverage" and rejected ceasefire overtures conveyed by two intermediary states. The IEA's record 400M barrel SPR release failed to move prices below $100. GL 134 Russian oil waiver (186M bbl floating inventory) expires April 11 with no extension signals — this is the single most predictable near-term price catalyst.
+The US-Israel war on Iran (Feb 28, 2026) triggered the largest oil supply disruption in history. Iran's selective closure of the Strait of Hormuz has taken ~20 million barrels/day (mb/d) of transit offline — roughly 20% of global daily oil supply. Combined mitigating factors (bypass pipelines, SPR releases, GL 134 Russian oil waiver, Iranian own exports) cover only ~8 mb/d, leaving a **net shortage of ~12 mb/d**. Brent crude has surged ~46% to ~$103.42/bbl; WTI ~$96.21/bbl. Extended well shut-ins risk permanent damage if the crisis exceeds 4 weeks (~Mar 28). No ceasefire negotiations are active. Iran's new Supreme Leader Mojtaba Khamenei (elected Mar 9) issued his first public statement declaring "the Strait must continue to be used as leverage." Iran FM Araghchi (Mar 18) proposed a new regional Hormuz Strait protocol post-war to institutionalize Iran's control — a structural escalation signal. The IEA's record 400M barrel SPR release failed to move prices below $100; first physical barrels expected to reach market Mar 19. GL 134 Russian oil waiver (186M bbl floating inventory) expires April 11 with no extension signals — this is the single most predictable near-term price catalyst.
 
 ---
 
@@ -29,7 +29,7 @@ The US-Israel war on Iran (Feb 28, 2026) triggered the largest oil supply disrup
 | **Mar 14** | US strikes 90+ military targets on Kharg Island; oil infrastructure deliberately spared; Fujairah struck again; France pledges 2 frigates to EU NAVFOR Aspides |
 | **Mar 15-16** | Pakistani tanker KARACHI transits with AIS on; Saudi tanker (1M bbl for India) allowed through; Iran resumes loading at Jask terminal; Mojtaba Khamenei issues first public statement: "Strait must continue to be used as leverage"; rejects ceasefire overtures from two intermediary states |
 | **Mar 17** | Ali Larijani and Gholamreza Soleimani killed (40+ officials total); Brent ~$103; Germany, Japan, Italy, Romania, Spain, UK, Australia decline escort coalition |
-| **Mar 18** | Brent ~$102.64 (-$0.78 on day); WTI ~$94.23 (-$1.30); VLCC spot AG/Far East ~$440K/day |
+| **Mar 18** | Brent ~$103.42 (+$0.78); WTI ~$96.21 (+$1.98); VLCC spot AG/Far East ~$445K/day; **Iran FM Araghchi proposes new regional Hormuz Strait protocol** post-war; France and Italy contact Iran directly about bilateral ship passage; Iran "open to countries who want to talk about safe passage" |
 
 ---
 
@@ -139,7 +139,7 @@ Gulf producers have been forced to curtail production because tankers can't exit
 - **Pre-release US SPR level:** 415.4M bbl (as of Mar 6)
 - **Refill plan:** Energy Sec. Chris Wright says 200M bbl will be repurchased within one year
 - **Duration:** 120-200 days depending on member
-- **Reality check:** 400M bbl = only ~4 days of global consumption; market reaction was flat — Brent held $100+ on announcement day. Actual delivered barrels to market are not yet confirmed; first physical drawdown likely reaching markets only now (>1 week pipeline lag from Gulf Coast caverns).
+- **Reality check:** 400M bbl = only ~4 days of global consumption; market reaction was flat — Brent held $100+ on announcement day. **First physical barrels expected to reach market Mar 19** (pipeline lag from Gulf Coast caverns confirmed as of Mar 17 — within 48 hours).
 
 ### 4. GL 134: Russian Oil Floating Inventory (One-Time)
 - **OFAC General License 134:** Issued Mar 12, authorizes delivery/sale of Russian crude and petroleum products **already loaded on vessels** as of 12:01am ET Mar 12
@@ -186,8 +186,8 @@ Gulf producers have been forced to curtail production because tankers can't exit
 
 | Metric | Pre-Crisis (Feb 27) | Current (Mar 18) | Change |
 |--------|---------------------|-------------------|--------|
-| Brent Crude | ~$71/bbl | ~$102.64/bbl | +45% |
-| WTI | ~$67/bbl | ~$94.23/bbl | +41% |
+| Brent Crude | ~$71/bbl | ~$103.42/bbl | +46% |
+| WTI | ~$67/bbl | ~$96.21/bbl | +43% |
 | Brent intraday peak | — | $126/bbl | — |
 | US Gasoline (avg) | $2.92/gal | $3.79/gal | +30% |
 | US Diesel (avg) | $3.65/gal | $5.04/gal | +38% |
@@ -212,7 +212,7 @@ Gulf producers have been forced to curtail production because tankers can't exit
 
 | Benchmark | Pre-Crisis (Feb 27) | Current (Mar 16-17) | Change |
 |-----------|---------------------|---------------------|--------|
-| JKM (Asian LNG spot) | — | ~$19-20/MMBtu | Elevated; outpacing Europe |
+| JKM (Asian LNG spot) | — | ~$20-22/MMBtu | Elevated; outpacing Europe |
 | TTF (European gas) | EUR 31.96/MWh | EUR 50.75/MWh | +59% |
 | TTF peak | — | EUR 59.57/MWh (Mar 10) | +86% |
 
@@ -228,7 +228,7 @@ Gulf producers have been forced to curtail production because tankers can't exit
 - Hormuz now the "world's most expensive waterway" after 300% premium surge
 - Maersk, CMA CGM, Hapag-Lloyd all suspended Hormuz/Red Sea transits
 - **Tanker stocks surging:** BWET (Breakwave Tanker ETF) ~+470% YTD (Mar 18: -5.2% on day, futures curve softening); FRO +62.6%, NAT +63.2%, DHT +59.1% YTD
-- **VLCC spot rates:** ~$440K/day (AG/Far East voyage, Poten & Partners Mar 16); spot fixtures at $430-450K/day — far above company-reported Q1 averages ($78-107K/day) which reflect pre-crisis time charters still in effect
+- **VLCC spot rates:** ~$445K/day (AG/Far East voyage, Mar 18); spot fixtures at $430-480K/day (peak $480K/day reported) — far above company-reported Q1 averages ($78-107K/day) which reflect pre-crisis time charters still in effect
 
 ---
 
@@ -247,10 +247,12 @@ Gulf producers have been forced to curtail production because tankers can't exit
 - Competing Russian draft resolution failed (4 in favor, 2 against, 9 abstentions)
 
 ### Ceasefire Status: No Active Negotiations
-- Iran FM Araghchi: "We never asked for a ceasefire"
-- Mojtaba Khamenei's first public statement (Mar 16, via state TV): Hormuz "must continue to be used as leverage"; rejected ceasefire overtures conveyed by two intermediary states
-- Trump (Mar 15): Iran is "willing" to negotiate but "terms aren't good enough yet"
+- Iran FM Araghchi: "We never asked for a ceasefire, and we have never asked even for negotiation"
+- Mojtaba Khamenei's first public statement (via state TV): Hormuz "must continue to be used as leverage"; rejected ceasefire overtures conveyed by two intermediary states
+- Trump (Mar 15): Iran "willing" but "I don't think they are ready"; US still in contact with Iran
 - Iran's President Pezeshkian set preconditions: recognition of Iran's rights, reparations, guarantees against future aggression
+- **Mar 18 — Iran FM proposes new Hormuz Strait protocol:** Araghchi called for a new regional framework for Hormuz passage post-war, aimed at regulating safe transit under conditions reflecting Iranian interests — framing Hormuz control as a permanent institutional lever, not just a wartime tactic.
+- **Bilateral passage contacts:** France and Italy contacted Iran directly to negotiate safe passage. Iran stated it is "open to countries who want to talk to us about the safe passage of their vessels."
 - Pre-war Oman-mediated nuclear talks collapsed when strikes began
 
 ### China & India Positioning
@@ -319,6 +321,7 @@ Gulf producers have been forced to curtail production because tankers can't exit
 6. **Refined products crunch:** Bypass pipelines only move crude. Diesel at $5.04/gal; refinery crack spreads widening. Ras Laffan LNG suspension + North Field expansion delay affects 20% of global LNG supply.
 7. **China/India positioning:** Both receiving Iranian crude. Yuan-denominated Hormuz passage would be a structural shift in petrodollar dynamics.
 8. **Insurance normalization:** War risk at 5% of hull value makes commercial transit economically unviable even if militarily possible.
+9. **Iran's new Hormuz protocol proposal (Mar 18):** Iran FM Araghchi's call for a permanent post-war strait protocol signals Iran intends to institutionalize leverage over Hormuz regardless of how this conflict ends. Watch for whether this gains traction with China or India — it would represent a structural reordering of energy transit rights. France and Italy's bilateral outreach to Iran about passage is a first signal of coalition fracture at the diplomatic level.
 
 ---
 
@@ -441,3 +444,4 @@ See **`hormuz_supply_chart.html`** for an interactive Plotly visualization showi
 52. [HN: Oil hits $100 despite record reserve release](https://news.ycombinator.com/item?id=47346137)
 53. [HN: What if the Hormuz closure will not be brief?](https://news.ycombinator.com/item?id=47293482)
 54. [Wikipedia: 2026 Strait of Hormuz crisis](https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis)
+55. [Modern Diplomacy: Iran Signals Nuclear Continuity and Calls for New Hormuz Strait Protocol (Mar 18, 2026)](https://moderndiplomacy.eu/2026/03/18/iran-signals-nuclear-continuity-and-calls-for-new-hormuz-strait-protocol/)
