@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-03-18 19:30 — `report-2026-03-18-1930`
+**Israel strikes South Pars gas field; Brent spikes to $108.78; Hormuz vessel traffic doubles**
+
+- **MAJOR EVENT (Mar 18):** Israel strikes Iran's South Pars gas field (world's largest, phases 3-6), coordinated with US — first attack on upstream Iranian energy infrastructure since war began; Iran vows to escalate "in new ways"; Qatar condemns as "dangerous and irresponsible"
+- Brent updated: $103.42 → $108.78/bbl (+5.1% on day, +53% from pre-crisis); WTI: $96.21 → $94.23/bbl
+- US gasoline updated: $3.79 → $3.84/gal (+32% from pre-crisis); diesel: $5.04 → $5.07/gal (+39%)
+- Vessel traffic through Hormuz nearly doubled: 8 non-Iranian vessels detected on Monday (Windward); Iran expanding permission-based transits to friendly nations
+- US dropped bunker buster bombs on hardened Iranian missile sites near the strait
+- Added South Pars to infrastructure damage table (new row); added South Pars strike note to LNG section
+- Added Watch Items 10 (South Pars retaliation risk) and 11 (Hormuz traffic normalization signals)
+- Added sources [56] Fortune (Brent $110/South Pars), [57] Al Jazeera (vessel traffic doubles), [58] CNBC (Hormuz tracker), [59] Jerusalem Post (South Pars strike)
+- 59 total sources (was 55)
+
+---
+
 ## 2026-03-18 17:00 — `report-2026-03-18-1700`
 **Iran FM proposes permanent Hormuz protocol; Brent/WTI rise; SPR first barrels imminent**
 

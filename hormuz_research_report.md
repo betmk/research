@@ -1,13 +1,13 @@
 # Strait of Hormuz Crisis: Oil Supply Disruption Briefing
 
 **Date:** March 18, 2026
-**Status:** Crisis ongoing — Day 19 of US-Israel strikes on Iran; Strait effectively closed since Mar 5; selective passage for Iran/India/China-linked vessels
+**Status:** Crisis ongoing — Day 19 of US-Israel strikes on Iran; Strait effectively closed since Mar 5; selective passage for Iran/India/China-linked vessels; **Israel strikes South Pars gas field (world's largest); Brent spikes to ~$108.78**
 
 ---
 
 ## Executive Summary
 
-The US-Israel war on Iran (Feb 28, 2026) triggered the largest oil supply disruption in history. Iran's selective closure of the Strait of Hormuz has taken ~20 million barrels/day (mb/d) of transit offline — roughly 20% of global daily oil supply. Combined mitigating factors (bypass pipelines, SPR releases, GL 134 Russian oil waiver, Iranian own exports) cover only ~8 mb/d, leaving a **net shortage of ~12 mb/d**. Brent crude has surged ~46% to ~$103.42/bbl; WTI ~$96.21/bbl. Extended well shut-ins risk permanent damage if the crisis exceeds 4 weeks (~Mar 28). No ceasefire negotiations are active. Iran's new Supreme Leader Mojtaba Khamenei (elected Mar 9) issued his first public statement declaring "the Strait must continue to be used as leverage." Iran FM Araghchi (Mar 18) proposed a new regional Hormuz Strait protocol post-war to institutionalize Iran's control — a structural escalation signal. The IEA's record 400M barrel SPR release failed to move prices below $100; first physical barrels expected to reach market Mar 19. GL 134 Russian oil waiver (186M bbl floating inventory) expires April 11 with no extension signals — this is the single most predictable near-term price catalyst.
+The US-Israel war on Iran (Feb 28, 2026) triggered the largest oil supply disruption in history. Iran's selective closure of the Strait of Hormuz has taken ~20 million barrels/day (mb/d) of transit offline — roughly 20% of global daily oil supply. Combined mitigating factors (bypass pipelines, SPR releases, GL 134 Russian oil waiver, Iranian own exports) cover only ~8 mb/d, leaving a **net shortage of ~12 mb/d**. Brent crude has surged ~53% to ~$108.78/bbl (spiked ~5% on day); WTI ~$94.23/bbl. **Israel (Mar 18) struck Iran's South Pars gas field** (world's largest natural gas reserve, phases 3-6) in the first attack on Iran's upstream energy infrastructure since the war began — Iran vowed to escalate "in new ways"; Qatar condemned the strike as "dangerous and irresponsible." Vessel traffic through Hormuz nearly doubled (8 non-Iranian vessels detected, per Windward data); Iran expanding permission-based transits to friendly nations. Extended well shut-ins risk permanent damage if the crisis exceeds 4 weeks (~Mar 28). No ceasefire negotiations are active. Iran's new Supreme Leader Mojtaba Khamenei (elected Mar 9) issued his first public statement declaring "the Strait must continue to be used as leverage." Iran FM Araghchi (Mar 18) proposed a new regional Hormuz Strait protocol post-war to institutionalize Iran's control — a structural escalation signal. The IEA's record 400M barrel SPR release failed to move prices below $100; first physical barrels expected to reach market Mar 19. GL 134 Russian oil waiver (186M bbl floating inventory) expires April 11 with no extension signals — this is the single most predictable near-term price catalyst.
 
 ---
 
@@ -29,7 +29,8 @@ The US-Israel war on Iran (Feb 28, 2026) triggered the largest oil supply disrup
 | **Mar 14** | US strikes 90+ military targets on Kharg Island; oil infrastructure deliberately spared; Fujairah struck again; France pledges 2 frigates to EU NAVFOR Aspides |
 | **Mar 15-16** | Pakistani tanker KARACHI transits with AIS on; Saudi tanker (1M bbl for India) allowed through; Iran resumes loading at Jask terminal; Mojtaba Khamenei issues first public statement: "Strait must continue to be used as leverage"; rejects ceasefire overtures from two intermediary states |
 | **Mar 17** | Ali Larijani and Gholamreza Soleimani killed (40+ officials total); Brent ~$103; Germany, Japan, Italy, Romania, Spain, UK, Australia decline escort coalition |
-| **Mar 18** | Brent ~$103.42 (+$0.78); WTI ~$96.21 (+$1.98); VLCC spot AG/Far East ~$445K/day; **Iran FM Araghchi proposes new regional Hormuz Strait protocol** post-war; France and Italy contact Iran directly about bilateral ship passage; Iran "open to countries who want to talk about safe passage" |
+| **Mar 18 (morning)** | Iran FM Araghchi proposes new regional Hormuz Strait protocol post-war; France and Italy contact Iran directly about bilateral ship passage; Iran "open to countries who want to talk about safe passage"; vessel traffic through Hormuz nearly doubles (8 non-Iranian vessels detected per Windward) — Iran expanding permission-based transits |
+| **Mar 18 (afternoon)** | Brent spikes 5% to ~$108.78; WTI ~$94.23; **Israel strikes South Pars gas field** (world's largest natural gas reserve, phases 3-6), coordinated with US — first attack on Iran's upstream energy infrastructure since war began; Iran vows to escalate "in new ways"; Qatar condemns as "dangerous and irresponsible"; US drops bunker buster bombs on hardened Iranian missile sites near strait |
 
 ---
 
@@ -47,6 +48,7 @@ The US-Israel war on Iran (Feb 28, 2026) triggered the largest oil supply disrup
 | **Oman** | Port of Duqm | Fuel storage | — | Multiple Iranian drones | Direct hit on fuel storage tank, explosion |
 | **Oman** | Port of Salalah | Port (fuel + minerals) | — | Drone strike | Damage reported, specifics TBD |
 | **Iran** | Kharg Island | Oil export hub | 7M b/d loading, 30M bbl storage | US strikes (Mar 14) | **Military targets only** — oil infrastructure deliberately spared; Kpler data shows 8+ crude loadings (~14M bbl) in first 2 weeks of March |
+| **Iran** | South Pars | Natural gas (world's largest; 730M m³/day; shared with Qatar) | **Israeli airstrike (Mar 18)**, coordinated with US | **Phases 3-6 hit; first attack on upstream Iranian energy infrastructure since war began**; Iran vows to escalate "in new ways"; Qatar condemns as "dangerous and irresponsible" |
 
 ### Maritime
 - **Athe Nova** (Honduran-flagged tanker): Set ablaze by Iranian drone near Khor Fakkan, UAE. Exited strait, no casualties.
@@ -186,11 +188,11 @@ Gulf producers have been forced to curtail production because tankers can't exit
 
 | Metric | Pre-Crisis (Feb 27) | Current (Mar 18) | Change |
 |--------|---------------------|-------------------|--------|
-| Brent Crude | ~$71/bbl | ~$103.42/bbl | +46% |
-| WTI | ~$67/bbl | ~$96.21/bbl | +43% |
+| Brent Crude | ~$71/bbl | ~$108.78/bbl | +53% |
+| WTI | ~$67/bbl | ~$94.23/bbl | +41% |
 | Brent intraday peak | — | $126/bbl | — |
-| US Gasoline (avg) | $2.92/gal | $3.79/gal | +30% |
-| US Diesel (avg) | $3.65/gal | $5.04/gal | +38% |
+| US Gasoline (avg) | $2.92/gal | $3.84/gal | +32% |
+| US Diesel (avg) | $3.65/gal | $5.07/gal | +39% |
 
 - Diesel hit $5/gal for the first time since 2022 — worse than gasoline but getting less coverage
 - IEA's 400M barrel release failed to bring prices below $100
@@ -218,6 +220,7 @@ Gulf producers have been forced to curtail production because tankers can't exit
 
 - European gas prices jumped 45% the day Qatar halted production
 - Asian buyers aggressively competing for prompt cargoes, diverting supply from Europe
+- **South Pars strike (Mar 18):** Israel struck phases 3-6 of Iran's South Pars gas facility — world's largest natural gas reserve (730M m³/day), shared with Qatar. First time upstream Iranian gas infrastructure targeted. Potential impact on Iran's domestic gas supply and any residual LNG flows; Qatar condemned the attack. Full damage assessment pending.
 
 ---
 
@@ -322,6 +325,8 @@ Gulf producers have been forced to curtail production because tankers can't exit
 7. **China/India positioning:** Both receiving Iranian crude. Yuan-denominated Hormuz passage would be a structural shift in petrodollar dynamics.
 8. **Insurance normalization:** War risk at 5% of hull value makes commercial transit economically unviable even if militarily possible.
 9. **Iran's new Hormuz protocol proposal (Mar 18):** Iran FM Araghchi's call for a permanent post-war strait protocol signals Iran intends to institutionalize leverage over Hormuz regardless of how this conflict ends. Watch for whether this gains traction with China or India — it would represent a structural reordering of energy transit rights. France and Italy's bilateral outreach to Iran about passage is a first signal of coalition fracture at the diplomatic level.
+10. **South Pars damage assessment (Mar 18+):** First attack on Iran's upstream energy infrastructure. Phases 3-6 of South Pars hit — these phases supply a significant share of Iran's domestic gas and any residual LNG output. Iran vowed to escalate "in new ways," increasing the probability of counter-strikes on Gulf energy infrastructure (Saudi Ghawar, UAE ADNOC facilities, Qatar Ras Laffan). Watch for: (a) damage assessment of phases 3-6; (b) whether Iran retaliates against Saudi/UAE/Qatar energy assets; (c) Qatar's response given South Pars is jointly operated and directly adjacent to Qatar's North Field.
+11. **Hormuz traffic normalization signals:** Vessel transits nearly doubled (8 non-Iranian vessels on one day per Windward). Iran is expanding permission-based access to "friendly" nations. Watch whether this trend accelerates or is reversed by the South Pars escalation.
 
 ---
 
@@ -445,3 +450,7 @@ See **`hormuz_supply_chart.html`** for an interactive Plotly visualization showi
 53. [HN: What if the Hormuz closure will not be brief?](https://news.ycombinator.com/item?id=47293482)
 54. [Wikipedia: 2026 Strait of Hormuz crisis](https://en.wikipedia.org/wiki/2026_Strait_of_Hormuz_crisis)
 55. [Modern Diplomacy: Iran Signals Nuclear Continuity and Calls for New Hormuz Strait Protocol (Mar 18, 2026)](https://moderndiplomacy.eu/2026/03/18/iran-signals-nuclear-continuity-and-calls-for-new-hormuz-strait-protocol/)
+56. [Fortune: Oil prices hit nearly $110 as Iran vows to escalate the war 'in new ways' (Mar 18, 2026)](https://fortune.com/2026/03/18/oil-prices-110-crude-brent-iran-war-israel-strait-hormuz-lng/)
+57. [Al Jazeera: Iran allowing more ships through Strait of Hormuz, data suggest (Mar 18, 2026)](https://www.aljazeera.com/economy/2026/3/18/iran-allowing-more-ships-through-strait-of-hormuz-data-shows)
+58. [CNBC: Traffic is trickling through Strait of Hormuz — who's moving and who's stranded (Mar 18, 2026)](https://www.cnbc.com/2026/03/18/hormuz-bottleneck-vessel-tanker-tracker-shipping-strait-of-hormuz.html)
+59. [Jerusalem Post: Israel strikes Iran's South Pars natural gas facility (Mar 18, 2026)](https://www.jpost.com/middle-east/iran-news/article-890393)
