@@ -6,6 +6,9 @@ and net shortage evolving from Feb 28 through May 31, 2026.
 Updated: Mar 17 — GL 134 floating inventory modeled as separate depleting factor;
 UAE ADCOP at +0.7 (Sparta: pipeline at 1.8 mb/d despite Fujairah damage);
 Russian production revised to +0.1; stranded inventory 186M bbl (Sparta).
+Iran selective blockade: ~1.5 mb/d own exports continuing.
+Iraq shut-in revised to ~2.9 mb/d (largest single-country cut).
+Insurance/shipping data added to annotations.
 """
 
 import plotly.graph_objects as go
@@ -53,7 +56,7 @@ def hormuz_closure(dt: datetime) -> float:
 def saudi_pipeline(dt: datetime) -> float:
     """Saudi East-West Pipeline (Petroline) net new exports via Yanbu.
     Yanbu loading at ~2.5 mb/d (Sparta, Mar 16) vs 750K pre-crisis.
-    Net new export: ~1.75 mb/d. Arab Light only. Target 7 mb/d within weeks."""
+    Net new export: ~1.75 mb/d. Arab Light only."""
     if dt < d("2026-03-01"):
         return 0.0
     if dt < d("2026-03-11"):
@@ -63,14 +66,12 @@ def saudi_pipeline(dt: datetime) -> float:
 def uae_adcop(dt: datetime) -> float:
     """UAE ADCOP pipeline spare capacity to Fujairah.
     Pipeline at full capacity (~1.8 mb/d, up from ~1.1 pre-crisis); spare = ~0.7 mb/d.
-    Fujairah hit 3 times (Mar 9, 14, 16) — loading impaired but not fully halted.
-    Per Sparta Commodities: combined pipeline potential 5-5.5 mb/d."""
+    Fujairah hit 3 times (Mar 9, 14, 16) — loading impaired but not fully halted."""
     if dt < d("2026-03-01"):
         return 0.0
     if dt < d("2026-03-09"):
         return 0.5  # ramping spare capacity before first Fujairah strike
-    # Post-Fujairah strikes: pipeline still flowing at 1.8 mb/d (Sparta);
-    # spare capacity of ~0.7 mb/d activated despite terminal damage
+    # Post-Fujairah strikes: pipeline still flowing at 1.8 mb/d (Sparta)
     return 0.7
 
 def iea_spr(dt: datetime) -> float:
@@ -88,7 +89,7 @@ def gl134_floating_inventory(dt: datetime) -> float:
     """GL 134 one-time release of stranded Russian oil at sea.
     ~186M bbl total on ~238 laden tankers. 60-70M bbl near India/China
     deliverable within the 30-day window = ~2.0 mb/d effective flow.
-    Waiver: Mar 12 → Apr 11 (30 days). This is a STOCK, not a FLOW —
+    Waiver: Mar 12 -> Apr 11 (30 days). This is a STOCK, not a FLOW —
     it depletes and vanishes after expiration unless extended."""
     if dt < d("2026-03-12"):
         return 0.0
@@ -113,7 +114,8 @@ def russian_production(dt: datetime) -> float:
 
 def iranian_exports(dt: datetime) -> float:
     """Iran's own exports through strait it controls.
-    ~1.5 mb/d continuing via Iranian-flagged/allied vessels."""
+    ~1.5 mb/d continuing via Iranian-flagged/allied vessels + Jask terminal.
+    Almost entirely China-bound (~1.25 mb/d)."""
     if dt < d("2026-03-01"):
         return 0.0
     return 1.5
@@ -121,7 +123,7 @@ def iranian_exports(dt: datetime) -> float:
 def infrastructure_repair(dt: datetime) -> float:
     """Production recovery from shut-in wells + repaired facilities.
     Gradual ramp starting ~2 weeks after facilities are fixed.
-    Major risk: wells shut >4 weeks may have permanent damage."""
+    Major risk: wells shut >4 weeks may have permanent damage (water coning)."""
     if dt < d("2026-03-20"):
         return 0.0
     if dt < d("2026-04-01"):
@@ -229,11 +231,12 @@ events = [
     ("2026-03-01", "Iran strikes Gulf infra",                        -70),
     ("2026-03-05", "IRGC: full Hormuz closure",                     -40),
     ("2026-03-07", "Kuwait force majeure",                           -70),
-    ("2026-03-09", "Fujairah 1st strike (ADCOP impaired)",          -40),
-    ("2026-03-11", "Saudi pipeline + IEA 400M bbl",                 -70),
+    ("2026-03-09", "Fujairah 1st strike; Mojtaba Khamenei elected", -40),
+    ("2026-03-11", "Saudi pipeline + IEA 400M bbl + UNSC 2817",     -70),
     ("2026-03-12", "GL 134: Russian oil waiver (186M bbl)",         -40),
-    ("2026-03-14", "US hits Kharg Island (oil spared)",             -70),
-    ("2026-03-16", "First non-Iran transit",                         -40),
+    ("2026-03-14", "US hits Kharg Island (oil spared); Fujairah 2nd strike", -70),
+    ("2026-03-16", "First non-Iran transits (Pakistan, India-linked)", -40),
+    ("2026-03-17", "Larijani + Soleimani killed; allies decline escort", -70),
 ]
 
 for date_str, label, ay_offset in events:
@@ -266,10 +269,26 @@ for date_str, label, ay_offset in events:
 fig.add_annotation(
     x=d("2026-04-11"),
     y=-10,
-    text="⚠ GL 134 expires<br>-2 mb/d cliff",
+    text="GL 134 expires<br>-2 mb/d cliff",
     showarrow=True,
     arrowhead=2,
     ax=40, ay=-30,
+    font=dict(size=9, color="rgb(220, 53, 69)", weight="bold"),
+    bgcolor="rgba(255,255,255,0.95)",
+    bordercolor="rgb(220, 53, 69)",
+    borderwidth=2,
+    borderpad=4,
+    row=2, col=1
+)
+
+# 4-week well damage threshold annotation
+fig.add_annotation(
+    x=d("2026-03-28"),
+    y=-15,
+    text="4-week shut-in threshold<br>Permanent well damage risk",
+    showarrow=True,
+    arrowhead=2,
+    ax=60, ay=-40,
     font=dict(size=9, color="rgb(220, 53, 69)", weight="bold"),
     bgcolor="rgba(255,255,255,0.95)",
     bordercolor="rgb(220, 53, 69)",
@@ -282,7 +301,7 @@ fig.add_annotation(
 fig.add_annotation(
     x=d("2026-04-15"),
     y=-10,
-    text="Scenario: gradual<br>Hormuz reopening →",
+    text="Scenario: gradual<br>Hormuz reopening",
     showarrow=True,
     arrowhead=2,
     ax=-80, ay=0,
@@ -290,6 +309,20 @@ fig.add_annotation(
     bgcolor="rgba(255,255,255,0.9)",
     borderpad=3,
     row=1, col=1
+)
+
+# SPR exhaustion annotation
+fig.add_annotation(
+    x=d("2026-05-20"),
+    y=-8,
+    text="Non-US SPR members<br>begin exhausting",
+    showarrow=True,
+    arrowhead=2,
+    ax=0, ay=-40,
+    font=dict(size=8, color="rgb(255, 193, 7)"),
+    bgcolor="rgba(255,255,255,0.9)",
+    borderpad=3,
+    row=2, col=1
 )
 
 # --- Layout ---
