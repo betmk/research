@@ -1,13 +1,13 @@
 # Strait of Hormuz Crisis: Oil Supply Disruption Briefing
 
 **Date:** March 20, 2026
-**Status:** Crisis ongoing — Day 21 of US-Israel strikes on Iran; Strait effectively closed since Mar 5; selective passage for Iran/India/China-linked vessels; **QatarEnergy CEO: Ras Laffan damage = 3-5 YEAR repair timeline (17% of global LNG); Bessent signals ~140M bbl Iranian crude sanctions relief; Brent ~$104.96 (sold off 3% on news)**
+**Status:** Crisis ongoing — Day 21 of US-Israel strikes on Iran; Strait effectively closed since Mar 5; selective passage for Iran/India/China-linked vessels; **QatarEnergy CEO: Ras Laffan damage = 3-5 YEAR repair timeline (17% of global LNG); Bessent signals ~140M bbl Iranian crude sanctions relief; Brent ~$108.48 (recovered from $104.96 Bessent selloff — market concluded 140M bbl insufficient to offset 12mb/d gap)**
 
 ---
 
 ## Executive Summary
 
-The US-Israel war on Iran (Feb 28, 2026) triggered the largest oil supply disruption in history. Iran's selective closure of the Strait of Hormuz has taken ~20 million barrels/day (mb/d) of transit offline — roughly 20% of global daily oil supply. Combined mitigating factors (bypass pipelines, SPR releases, GL 134 Russian oil waiver, Iranian own exports) cover only ~8 mb/d, leaving a **net shortage of ~12 mb/d**. Brent crude ~$104.96/bbl (sold off ~3% Mar 20 after US Treasury Sec. Bessent signaled relief of sanctions on ~140M bbl of Iranian crude at sea; intraday high $110.28); WTI ~$92.47/bbl. **Israel (Mar 18) struck Iran's South Pars gas field** (world's largest natural gas reserve, phases 3-6) in the first attack on Iran's upstream energy infrastructure since the war began — Iran vowed to escalate "in new ways"; Qatar condemned the strike as "dangerous and irresponsible." **QatarEnergy CEO (Mar 19): Ras Laffan damage is 17% of Qatar's LNG capacity (12.8M mt/yr) and will take 3-5 YEARS to repair** — permanently structural supply loss, not a weeks-long disruption. Extended well shut-ins risk permanent damage if the crisis exceeds 4 weeks (~Mar 28 threshold). Iran's new Supreme Leader Mojtaba Khamenei (elected Mar 9) remains out of public view; new written statement issued amid health questions. Iran FM warned "zero restraint" if infrastructure attacked again. Iran FM Araghchi (Mar 18) proposed a new regional Hormuz Strait protocol post-war. The IEA's record 400M barrel SPR release has begun delivering (first barrels reached markets ~Mar 19). GL 134 Russian oil waiver (186M bbl floating inventory) expires April 11 with no extension signals. TTF European gas surged to EUR 61.90/MWh (+94% from pre-crisis). NATO explicitly rejected Trump's Hormuz escort coalition call; 6 allies pledged support only after a ceasefire.
+The US-Israel war on Iran (Feb 28, 2026) triggered the largest oil supply disruption in history. Iran's selective closure of the Strait of Hormuz has taken ~20 million barrels/day (mb/d) of transit offline — roughly 20% of global daily oil supply. Combined mitigating factors (bypass pipelines, SPR releases, GL 134 Russian oil waiver, Iranian own exports) cover only ~8 mb/d, leaving a **net shortage of ~12 mb/d**. Brent crude ~$108.48/bbl (recovered from $104.96 early-day low after markets concluded Bessent's ~140M bbl Iranian crude relief signal was insufficient to offset the 12mb/d gap; Mar 20 range $104.96–$110.28); WTI ~$96.69/bbl. **Israel (Mar 18) struck Iran's South Pars gas field** (world's largest natural gas reserve, phases 3-6) in the first attack on Iran's upstream energy infrastructure since the war began — Iran vowed to escalate "in new ways"; Qatar condemned the strike as "dangerous and irresponsible." **QatarEnergy CEO (Mar 19): Ras Laffan damage is 17% of Qatar's LNG capacity (12.8M mt/yr) and will take 3-5 YEARS to repair** — permanently structural supply loss, not a weeks-long disruption. Extended well shut-ins risk permanent damage if the crisis exceeds 4 weeks (~Mar 28 threshold). Iran's new Supreme Leader Mojtaba Khamenei (elected Mar 9) remains out of public view; new written statement issued amid health questions. Iran FM warned "zero restraint" if infrastructure attacked again. Iran FM Araghchi (Mar 18) proposed a new regional Hormuz Strait protocol post-war. The IEA's record 400M barrel SPR release has begun delivering (first barrels reached markets ~Mar 19). GL 134 Russian oil waiver (186M bbl floating inventory) expires April 11 with no extension signals. TTF European gas surged to EUR 61.90/MWh (+94% from pre-crisis). NATO explicitly rejected Trump's Hormuz escort coalition call; 6 allies pledged support only after a ceasefire.
 
 ---
 
@@ -32,7 +32,7 @@ The US-Israel war on Iran (Feb 28, 2026) triggered the largest oil supply disrup
 | **Mar 18 (morning)** | Iran FM Araghchi proposes new regional Hormuz Strait protocol post-war; France and Italy contact Iran directly about bilateral ship passage; Iran "open to countries who want to talk about safe passage"; vessel traffic through Hormuz nearly doubles (8 non-Iranian vessels detected per Windward) — Iran expanding permission-based transits |
 | **Mar 18 (afternoon)** | Brent spikes 5% to ~$108.78; WTI ~$94.23; **Israel strikes South Pars gas field** (world's largest natural gas reserve, phases 3-6), coordinated with US — first attack on Iran's upstream energy infrastructure since war began; Iran vows to escalate "in new ways"; Qatar condemns as "dangerous and irresponsible"; US drops bunker buster bombs on hardened Iranian missile sites near strait |
 | **Mar 19** | **QatarEnergy CEO confirms Ras Laffan damage = 17% of Qatar's LNG capacity (12.8M mt/yr) offline for 3-5 YEARS** — first engineering assessment; North Field restart requires hostilities to end, then specialized equipment rebuild (not weeks, years); Iran FM warns Iran will show "zero restraint" if energy infrastructure attacked again; Washington Post: Iran hits more Gulf energy sites; NATO members in Europe reject Trump's call for military help to reopen Hormuz; six allies (UK, France, Germany, Italy, Japan, Netherlands) say they may "contribute" to safe passage — but only after a ceasefire; IEA SPR first physical barrels confirmed reaching markets |
-| **Mar 20** | **US Treasury Sec. Bessent signals: "In the coming days, we may unsanction the Iranian oil on the water — about 140 million barrels"** — potential new GL expansion beyond GL 134; Brent falls ~3% from $110.28 intraday high to ~$104.96; WTI falls to ~$92.47; Bloomberg notes this is "not an easy fix" (refinery/logistics constraints); TTF surges to EUR 61.90/MWh (up from EUR 50.75 on Mar 18); Mojtaba Khamenei new written statement issued amid persistent health questions and no public appearances |
+| **Mar 20** | **US Treasury Sec. Bessent signals: "In the coming days, we may unsanction the Iranian oil on the water — about 140 million barrels"** — potential new GL expansion beyond GL 134; Brent fell from $110.28 intraday high to $104.96 initially, then **recovered to ~$108.48** as market assessed 140M bbl as insufficient to offset the 12mb/d shortage; WTI recovered to ~$96.69; Bloomberg notes this is "not an easy fix" (refinery/logistics constraints); TTF EUR 61.90/MWh (flat); Mojtaba Khamenei new written statement issued amid persistent health questions and no public appearances; **7 US allies now backing Hormuz coalition "preparatory planning"** (up from 6 as of Mar 19 per Axios) |
 
 ---
 
@@ -191,11 +191,11 @@ Gulf producers have been forced to curtail production because tankers can't exit
 
 | Metric | Pre-Crisis (Feb 27) | Current (Mar 20) | Change |
 |--------|---------------------|-------------------|--------|
-| Brent Crude | ~$71/bbl | ~$104.96/bbl (intraday high $110.28; -3% on Iran sanctions relief news) | +48% |
-| WTI | ~$67/bbl | ~$92.47/bbl | +38% |
-| Brent intraday peak | — | $126/bbl | — |
+| Brent Crude | ~$71/bbl | ~$108.48/bbl (recovered from $104.96 Bessent-driven low; Mar 20 range $104.96–$110.28) | +53% |
+| WTI | ~$67/bbl | ~$96.69/bbl | +44% |
+| Brent intraday peak (all-time crisis) | — | $126/bbl | — |
 | US Gasoline (avg) | $2.92/gal | $3.88/gal | +33% |
-| US Diesel (avg) | $3.65/gal | $5.07/gal | +39% |
+| US Diesel (avg) | $3.65/gal | $5.10/gal | +40% |
 
 - Diesel hit $5/gal for the first time since 2022 — worse than gasoline but getting less coverage
 - IEA's 400M barrel release failed to bring prices below $100
@@ -235,7 +235,7 @@ Gulf producers have been forced to curtail production because tankers can't exit
 - **P&I clubs** (Gard, Skuld, NorthStandard, London P&I, American Club) cancelled war risk cover effective Mar 5
 - Hormuz now the "world's most expensive waterway" after 300% premium surge
 - Maersk, CMA CGM, Hapag-Lloyd all suspended Hormuz/Red Sea transits
-- **Tanker stocks surging:** BWET (Breakwave Tanker ETF) ~+243% YTD (recent close ~$70.70, prev $74.91); DHT +59.1% YTD ($18.97; 76% of Q1 spot days booked at $78,900/day); NAT ~65% Q1 days booked at ~$55,000/day; FRO elevated YTD
+- **Tanker stocks surging:** BWET (Breakwave Tanker ETF) ~+288% YTD (Mar 20: $79.87, +3.0% on day); DHT +59.1% YTD ($18.97; 76% of Q1 spot days booked at $78,900/day); NAT ~65% Q1 days booked at ~$55,000/day; FRO +62.6% YTD ($35.49)
 - **VLCC spot rates:** ~$445K/day (AG/Far East voyage, Mar 18); spot fixtures at $430-480K/day (peak $480K/day reported) — far above company-reported Q1 averages ($78-107K/day) which reflect pre-crisis time charters still in effect
 
 ---
@@ -340,7 +340,7 @@ Gulf producers have been forced to curtail production because tankers can't exit
 ## Market & Social Intelligence (Sweep Findings)
 
 ### Fintwit / X Sentiment
-- **Consensus long energy.** BWET tanker ETF ~+470% YTD. USO +64%. XLE +27%. Record $211M retail inflows into oil ETFs on Mar 12.
+- **Consensus long energy.** BWET tanker ETF ~+288% YTD ($79.87 Mar 20, +3% on day). USO +64%. XLE +27%. Record $211M retail inflows into oil ETFs on Mar 12.
 - **Iran's selective blockade widely discussed.** Seen as strategically effective — divides the Western coalition and maintains Iran's revenue. Araghchi's diplomatic framing resonating.
 - **"Stalemate at sea"** framing gaining traction. Scott Ritter analysis (amplified by @MarioNawfal): reopening Hormuz militarily requires ~80,000 marines.
 - **Greek ship defied blockade:** @HomerPavlos reported vessel "Shenlong" (George Procopiou) entered and exited on Mar 4 carrying 1M bbl — viral anecdote.
@@ -375,7 +375,7 @@ Gulf producers have been forced to curtail production because tankers can't exit
 | Futures curve | Backwardation = market expects short disruption | If wrong, catch-up repricing could be violent |
 | Retail inflows ($211M record) | Momentum-driven, could extend rally | Meme-style trading = fragile, reverses fast |
 | Shale non-response | No new supply at any price = sustained shortage | Capital discipline could break at $130+ |
-| Tanker stocks (BWET ~+470%) | Longer routes = higher utilization for months | Snap back hard on any ceasefire signal |
+| Tanker stocks (BWET ~+288% YTD; $79.87) | Longer routes = higher utilization for months | Snap back hard on any ceasefire signal |
 | SPR drawdown | Buys 120-200 days | Post-SPR cliff if crisis extends past Jul |
 | GL 134 expiration (Apr 11) | Extension could add supply | No extension = -2 mb/d cliff |
 | Clean energy flat | Not pricing structural shift | Could catch bid if crisis crosses 3-month mark |
@@ -434,6 +434,8 @@ See **`hormuz_supply_chart.html`** for an interactive Plotly visualization showi
 32. [Goldman Sachs: How will the Iran conflict impact oil prices?](https://www.goldmansachs.com/insights/articles/how-will-the-iran-conflict-impact-oil-prices)
 33. [Morgan Stanley: Iran conflict — oil price impacts and inflation](https://www.morganstanley.com/insights/articles/iran-war-oil-inflation-stock-market-2026)
 34. [Seeking Alpha: Oil rally could deliver $60B windfall for US producers](https://seekingalpha.com/news/4564570-oil-rally-from-iran-war-could-deliver-60b-windfall-for-u-s-producers)
+35. [Axios: Seven US allies back potential Strait of Hormuz coalition — "preparatory planning"](https://www.axios.com/2026/03/19/strait-hormuz-coalition-allies-statement-uk) (Mar 19, 2026)
+36. [CNBC: Oil prices little changed at $108 as US considers lifting sanctions on Iranian crude](https://www.cnbc.com/2026/03/20/oil-wti-brent-us-weighs-releasing-sanctioned-iranian-crude.html) (Mar 20, 2026)
 35. [Columbia SIPA: What it will take to open up the Strait of Hormuz](https://www.energypolicy.columbia.edu/iran-conflict-brief-what-it-will-take-to-open-up-the-strait-of-hormuz/)
 36. [USNI News: French Navy pledges warships to Middle East escorts](https://news.usni.org/2026/03/09/french-navy-pledges-10-additional-warships-to-middle-east-escorts-for-strait-of-hormuz)
 37. [Middle East Forum: Iran's Blockade of Hormuz is Destined to Fail](https://www.meforum.org/mef-online/irans-blockade-of-the-strait-of-hormuz-is-destined-to-fail)

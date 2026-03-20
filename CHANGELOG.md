@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-03-20 12:00 — `report-2026-03-20-1200`
+**Brent recovers to $108.48 after Bessent-driven selloff; WTI +4.6% to $96.69; BWET +13% to $79.87; 7 allies backing Hormuz coalition**
+
+- Brent updated: $104.96 -> $108.48 (market concluded 140M bbl Iranian relief insufficient to offset 12mb/d gap; Mar 20 range $104.96-$110.28); change column: +48% -> +53%
+- WTI updated: $92.47 -> $96.69 (+44% from pre-crisis)
+- Diesel updated: $5.07 -> $5.10/gal; +39% -> +40%
+- BWET updated: $70.70 (+243% YTD) -> $79.87 (+288% YTD, +3.0% on day); FRO $35.49 added
+- Coalition: 7 US allies now backing Hormuz preparatory planning (up from 6); Axios Mar 19
+- Mar 20 timeline entry updated with price recovery narrative
+- Sources: added [69] Axios (Seven allies coalition statement); updated [62] CNBC to reflect $108.48 recovery price; updated [68] diesel to $5.10; 69 total sources
+
+---
+
 ## 2026-03-20 — `report-2026-03-20`
 **QatarEnergy CEO: Ras Laffan damage = 3-5 YEAR repair; Bessent signals ~140M bbl Iranian crude relief; Brent sold off 3% to ~$104.96; TTF surges to EUR 61.90/MWh**
 
