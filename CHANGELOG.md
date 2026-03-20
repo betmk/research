@@ -1,5 +1,27 @@
 # Changelog
 
+## 2026-03-20 — `report-2026-03-20`
+**QatarEnergy CEO: Ras Laffan damage = 3-5 YEAR repair; Bessent signals ~140M bbl Iranian crude relief; Brent sold off 3% to ~$104.96; TTF surges to EUR 61.90/MWh**
+
+- Day count updated: 19 -> 21 (March 20, 2026)
+- **MAJOR UPDATE (Mar 19):** QatarEnergy CEO confirms Ras Laffan structural damage: 12.8M mt/yr (17% of Qatar's LNG capacity) offline for 3-5 YEARS — not reparable in weeks; $20B/yr lost revenue; North Field timeline already slipped to 2027; repair requires specialized equipment unavailable off-shelf
+- **MAJOR UPDATE (Mar 20):** US Treasury Sec. Bessent signals potential sanctions relief on ~140M bbl Iranian crude at sea — Brent fell from $110.28 intraday high to ~$104.96 (-3%); WTI to ~$92.47; Bloomberg warns logistics/refinery constraints limit actual market impact
+- Brent updated: $108.78 -> ~$104.96 (intraday high $110.28); WTI: $94.23 -> ~$92.47
+- Gasoline updated: $3.84 -> $3.88/gal; diesel: $5.07/gal (unchanged)
+- TTF updated: EUR 50.75 -> EUR 61.90/MWh (+22% since last run); intraday high EUR 69.35/MWh
+- JKM updated: ~$20-22 -> ~$20.18/MMBtu; pre-crisis baseline ($8/MMBtu) added for context
+- BWET updated: was described as ~+470% YTD; corrected to ~+243% YTD (~$70.70, off highs); DHT and NAT Q1 booking data added
+- Timeline: added Mar 19 and Mar 20 rows
+- Infrastructure table: Ras Laffan updated with 3-5 year timeline and $20B/yr revenue loss figure
+- Repair timelines: Ras Laffan updated from "2 weeks" to "3-5 YEARS"
+- GL 134 section: confirmed no extension; added note on potential separate Iranian crude license
+- What to Watch: updated item 1 (Mar 28 threshold "8 days away"); added items 13 (Iranian crude relief) and 14 (Ras Laffan structural LNG loss)
+- Trading signals table: updated BWET row; added Iranian crude sanctions relief row
+- Sources: added [60]-[68] (QatarEnergy CEO, Bloomberg LNG damage, Bessent sanctions, Axios, Bloomberg analysis, Al Jazeera zero restraint, WaPo, TTF live, Fortune gas prices)
+- 68 total sources (was 59)
+
+---
+
 ## 2026-03-18 19:30 — `report-2026-03-18-1930`
 **Israel strikes South Pars gas field; Brent spikes to $108.78; Hormuz vessel traffic doubles**
 
