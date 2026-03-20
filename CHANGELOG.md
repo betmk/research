@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-03-20 (evening) — `report-2026-03-20-evening`
+**IDF overnight strikes on Tehran; Iran 5-salvo missile barrage at Israel + hit Saudi/Kuwait energy; Khamenei Nowruz "enemies defeated"; Brent $107.40 intraday (closed $112.19 Mar 19); WTI $93.55 intraday**
+
+- **MAJOR: IDF launched two waves of overnight strikes on Tehran/central Iran (Mar 19-20)** — military infrastructure targeted; Iran fired back toward southern/central Israel
+- **MAJOR: Iran retaliates for South Pars: 5 missile salvos at Jerusalem/northern Israel within one hour; Iran struck Saudi energy sites and Kuwait Gulf infrastructure (Mar 19)**
+- **Khamenei Nowruz written message (Mar 20):** declared "enemies defeated", promoted resistance economy, denied Iran/proxies responsible for Turkey/Oman attacks ("false flag")
+- **Trump called NATO allies "cowards"** for refusing Hormuz escort coalition (Mar 20)
+- Pentagon requests $200B supplemental; additional MEU + USS Boxer ARG rerouted to Middle East
+- Brent updated: $108.48 → ~$107.40 intraday (Mar 20); note Mar 19 close was $112.19 (3-week high); change column: +53% → +51%
+- WTI updated: $96.69 → ~$93.55 intraday (Mar 20); note Mar 19 settle was $98.32
+- Stat card Brent updated: $108 → $107
+- Timeline: added Mar 19 retaliation details (5-salvo barrage, Saudi/Kuwait hits, $112.19 close), new Mar 19-20 overnight row (IDF Tehran strikes), updated Mar 20 row (Khamenei Nowruz, Trump "cowards")
+- What to Watch: updated item 6 (Khamenei Nowruz); added items 15 (Iran-Israel escalation spiral) and 16 (US military reinforcement)
+- Sources: added [70] Al Jazeera Khamenei Nowruz, [71] CNN live Mar 20, [72] NPR Mar 20, [73] Fortune oil price Mar 20 — 73 total sources
+
+---
+
 ## 2026-03-20 12:00 — `report-2026-03-20-1200`
 **Brent recovers to $108.48 after Bessent-driven selloff; WTI +4.6% to $96.69; BWET +13% to $79.87; 7 allies backing Hormuz coalition**
 
