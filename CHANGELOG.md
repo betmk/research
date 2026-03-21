@@ -1,5 +1,28 @@
 # Changelog
 
+## 2026-03-21 — `report-2026-03-21`
+**Kuwait Mina Al-Ahmadi refinery hit 2nd time; Trump rules out ceasefire; Brent ~$110; chart overhauled with lettered events + weekly x-axis**
+
+- **MAJOR: Iran drones hit Kuwait's Mina Al-Ahmadi refinery overnight (2nd strike in 48 hrs)** — fires; ~730K b/d; no injuries; systematic escalation pattern now targets full upstream-to-refinery chain
+- **MAJOR: Trump (Mar 21) rules out ceasefire** — "you don't do a ceasefire when you're literally obliterating the other side"; declares Hormuz "other nations' problem"; brands NATO "a paper tiger"
+- Israel launched fresh strikes on Tehran on Nowruz morning (Mar 21)
+- QatarEnergy CEO warns US officials of "consequences" for attacking Iranian energy infrastructure
+- 11th MEU (~2,200 Marines) deploying from San Diego (accelerated); Sri Lanka denies US fighter jet request; Switzerland halts weapons exports to US
+- Brent updated: ~$107.40 intraday → ~$110 (Mar 21, range $105-$113); prev close $108.65 (Mar 20); change +51% → +55%
+- WTI updated: ~$93.55 → ~$94.74 (Mar 21); prev close $95.55
+- Gasoline updated: $3.88 → $3.79/gal (AAA Mar 17, latest); +33% → +30%
+- Diesel updated: $5.10 → $5.04/gal (AAA Mar 17, latest); +40% → +38%
+- Day count: 21 → 22; date: March 20 → March 21
+- What to Watch: 4-week threshold 8 days → 7 days away; added items 16 (Kuwait escalation) and 17 ($200/bbl scenario)
+- Infrastructure table: added Kuwait Mina Al-Ahmadi second hit row
+- Timeline: added Mar 21 row; updated Mar 20 row with corrected close price ($108.65)
+- Sources: added [74] Al Jazeera Mar 21 liveblog, [75] USNews/AP Kuwait refinery, [76] Al Jazeera Kuwait, [77] Al Jazeera $200/bbl, [78] NBC News Mar 21 — 78 total sources
+- **Chart overhaul:** weekly x-axis ticks (was monthly); event annotations changed from full labels to letters A–J with readable footnote key below chart; font 12pt monospace; legend spacing increased; height 1100px
+
+---
+
+
+
 ## 2026-03-20 (evening) — `report-2026-03-20-evening`
 **IDF overnight strikes on Tehran; Iran 5-salvo missile barrage at Israel + hit Saudi/Kuwait energy; Khamenei Nowruz "enemies defeated"; Brent $107.40 intraday (closed $112.19 Mar 19); WTI $93.55 intraday**
 
