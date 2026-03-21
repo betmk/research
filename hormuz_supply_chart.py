@@ -11,6 +11,7 @@ Iraq shut-in revised to ~2.9 mb/d (largest single-country cut).
 Insurance/shipping data added to annotations.
 """
 
+import argparse
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from datetime import datetime, timedelta
@@ -23,8 +24,18 @@ import webbrowser
 def d(s: str) -> datetime:
     return datetime.strptime(s, "%Y-%m-%d")
 
-START = d("2026-02-28")
-END   = d("2026-05-31")
+# Defaults for the Hormuz crisis scenario — override via CLI args
+_DEFAULT_START = "2026-02-28"
+_DEFAULT_END   = "2026-05-31"
+
+_parser = argparse.ArgumentParser(description="Generate Hormuz supply disruption chart")
+_parser.add_argument("--start", default=_DEFAULT_START, help="Chart start date (YYYY-MM-DD)")
+_parser.add_argument("--end",   default=_DEFAULT_END,   help="Chart end date (YYYY-MM-DD)")
+_parser.add_argument("--no-browser", action="store_true", help="Skip auto-opening browser")
+_args, _ = _parser.parse_known_args()
+
+START = d(_args.start)
+END   = d(_args.end)
 
 def date_range(start: datetime, end: datetime) -> list[datetime]:
     """Daily date range inclusive."""
@@ -358,8 +369,11 @@ fig.add_hline(y=0, line_dash="dash", line_color="gray", line_width=1, row=2, col
 # --- Save ---
 output_path = Path(__file__).parent / "hormuz_supply_chart.html"
 fig.write_html(str(output_path), include_plotlyjs=True)
-print(f"Chart saved to: {output_path}")
-webbrowser.open(output_path.as_uri())
+if not output_path.exists() or output_path.stat().st_size == 0:
+    raise RuntimeError(f"Chart write failed — {output_path} is missing or empty")
+print(f"Chart saved to: {output_path} ({output_path.stat().st_size / 1024:.0f} KB)")
+if not _args.no_browser:
+    webbrowser.open(output_path.as_uri())
 
 # Print summary stats
 print(f"\nAs of Mar 17, 2026:")
