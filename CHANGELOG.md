@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-03-21 14:00 — `report-2026-03-21-1400`
+**Gasoline updated to AAA Mar 21 figure ($3.912/gal); TTF intraday peak corrected to EUR 74/MWh**
+
+- Gasoline updated: $3.79/gal (Mar 17) → $3.912/gal (AAA, Mar 21); change +30% → +34%
+- TTF intraday high (Mar 20) corrected: EUR 69.35 → EUR 74/MWh (after Ras Laffan missile strikes); +117% → +132% vs. pre-crisis
+- Added source [79] AAA newsroom Mar 21 gasoline; [80] TTF EUR 74 intraday high — 80 total sources
+
+---
+
 ## 2026-03-21 — `report-2026-03-21`
 **Kuwait Mina Al-Ahmadi refinery hit 2nd time; Trump rules out ceasefire; Brent ~$110; chart overhauled with lettered events + weekly x-axis**
 

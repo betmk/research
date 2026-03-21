@@ -198,7 +198,7 @@ Gulf producers have been forced to curtail production because tankers can't exit
 | Brent Crude | ~$71/bbl | ~$110/bbl (Mar 21 intraday); prev close $108.65 (Mar 20); crisis peak $112.19 (Mar 19); Mar 21 range $105–$113 | +55% |
 | WTI | ~$67/bbl | ~$94.74/bbl (Mar 21); prev close $95.55 (Mar 20); range $92.48–$98.75 | +41% |
 | Brent intraday peak (all-time crisis) | — | $126/bbl | — |
-| US Gasoline (avg) | $2.92/gal | $3.79/gal (AAA, Mar 17 — latest available) | +30% |
+| US Gasoline (avg) | $2.92/gal | $3.912/gal (AAA, Mar 21) | +34% |
 | US Diesel (avg) | $3.65/gal | $5.04/gal (AAA, Mar 17 — latest available) | +38% |
 
 - Diesel hit $5/gal for the first time since 2022 — worse than gasoline but getting less coverage
@@ -225,7 +225,7 @@ Gulf producers have been forced to curtail production because tankers can't exit
 |-----------|---------------------|------------------|--------|
 | JKM (Asian LNG spot) | ~$8/MMBtu | ~$20.18/MMBtu | +152% |
 | TTF (European gas) | EUR 31.96/MWh | EUR 61.90/MWh | +94% |
-| TTF peak | — | EUR 69.35/MWh (Mar 20 intraday high) | +117% |
+| TTF peak | — | EUR 74/MWh (Mar 20 intraday high, after Ras Laffan missile strikes) | +132% |
 
 - European gas prices jumped 45% the day Qatar halted production
 - Asian buyers aggressively competing for prompt cargoes, diverting supply from Europe
@@ -492,3 +492,5 @@ See **`hormuz_supply_chart.html`** for an interactive Plotly visualization showi
 76. [Al Jazeera: Iran hits Kuwaiti oil refinery as Israel renews attacks on Tehran (Mar 20, 2026)](https://www.aljazeera.com/news/2026/3/20/kuwait-oil-refinery-hit-again-as-iran-targets-gulf-energy-infrastructure)
 77. [Al Jazeera: Could oil hit $200 a barrel? Analysts no longer think it is far-fetched (Mar 19, 2026)](https://www.aljazeera.com/news/2026/3/19/could-oil-hit-200-a-barrel-analysts-no-longer-think-its-far-fetched)
 78. [NBC News: Live updates — Iran attacks Gulf energy sites, exchanges strikes with Israel as oil and gas prices soar (Mar 21, 2026)](https://www.nbcnews.com/world/iran/live-blog/live-updates-iran-war-gulf-energy-attacks-israel-trump-nowruz-rcna264408)
+79. [AAA: Jump at the Pump — National Average Goes Up Nearly 27 Cents; $3.912/gal (Mar 21, 2026)](https://newsroom.aaa.com/2026/03/jump-at-the-pump-as-national-average-goes-up-nearly-27-cents/)
+80. [Natural Gas Price Today: Europe Gas Hits Highest Since 2023 After Qatar LNG Strike — TTF EUR 74/MWh intraday high (Mar 20, 2026)](https://ts2.tech/en/natural-gas-price-today-europe-gas-hits-highest-since-2023-after-qatar-lng-strike/)
