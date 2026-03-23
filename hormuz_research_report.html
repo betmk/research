@@ -94,11 +94,22 @@
     font-weight: 800;
     display: block;
   }
+  .stat-card .unit {
+    font-size: 1.8rem;
+    font-weight: 800;
+  }
   .stat-card .label {
     font-size: 0.8rem;
     color: var(--subtle);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+  }
+  .stat-card .price-time {
+    font-size: 0.68rem;
+    color: var(--subtle);
+    display: block;
+    margin-top: 0.25rem;
+    font-style: italic;
   }
   .stat-card.red .number { color: var(--accent); }
   .stat-card.green .number { color: var(--green); }
@@ -390,14 +401,80 @@
   /* Leadership table */
   .leadership-table td:nth-child(2) { color: var(--accent); font-weight: 600; }
 
+  /* Two-column timeline */
+  .timeline-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  .timeline-col-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.3rem 0.75rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0.75rem;
+  }
+  .timeline-col-label.infra {
+    background: #fdf2f2;
+    color: var(--accent);
+    border: 1px solid #f5c6c6;
+  }
+  .timeline-col-label.other {
+    background: #eef2f7;
+    color: var(--accent2);
+    border: 1px solid #c5d0df;
+  }
+
   @media (max-width: 768px) {
     body { padding: 1rem; }
     .stat-row { grid-template-columns: repeat(2, 1fr); }
     .clocks { grid-template-columns: 1fr; }
+    .timeline-columns { grid-template-columns: 1fr; }
   }
   @media print {
     body { max-width: 100%; padding: 1rem; }
-    .chart-container { page-break-inside: avoid; }
+
+    /* Prevent orphan headings — never let an h2/h3 sit alone at the bottom of a page */
+    h2, h3 { page-break-after: avoid; }
+
+    /* Keep column label pinned to its timeline content */
+    .timeline-col-label { page-break-after: avoid; }
+
+    /* Keep these blocks from splitting mid-element */
+    .chart-container  { page-break-inside: avoid; }
+    .exec-summary     { page-break-inside: avoid; }
+    .stat-row         { page-break-inside: avoid; }
+    .clocks           { page-break-inside: avoid; }
+    .clock-card       { page-break-inside: avoid; }
+    .blockade-callout { page-break-inside: avoid; }
+    .flow-callout     { page-break-inside: avoid; }
+    .stat-card        { page-break-inside: avoid; }
+    .timeline-item    { page-break-inside: avoid; }
+    li                { page-break-inside: avoid; }
+
+    /* Keep tables together — they're all short enough to fit on one A3 page */
+    table             { page-break-inside: avoid; }
+
+    /* Explicit page breaks — applied only where requested */
+    .break-before { page-break-before: always; }
+
+    /* Country-Level Vulnerability: sized to fill one A3 page comfortably */
+    .vuln-table {
+      font-size: 0.82rem;
+      margin: 0.75rem 0 0;
+    }
+    .vuln-table th {
+      padding: 0.45rem 0.7rem;
+      font-size: 0.73rem;
+    }
+    .vuln-table td {
+      padding: 0.38rem 0.7rem;
+      line-height: 1.45;
+    }
   }
 </style>
 </head>
@@ -419,16 +496,16 @@
 
 <div class="stat-row">
   <div class="stat-card red">
-    <span class="number">-20.0</span>
-    <span class="label">mb/d Hormuz Transit Lost</span>
+    <span class="number">-20.0 <span class="unit">mb/d</span></span>
+    <span class="label">Hormuz Transit Lost</span>
   </div>
   <div class="stat-card green">
-    <span class="number">+8.05</span>
-    <span class="label">mb/d Mitigations (thru Apr 11)</span>
+    <span class="number">+8.05 <span class="unit">mb/d</span></span>
+    <span class="label">Mitigations (thru Apr 11)</span>
   </div>
   <div class="stat-card red">
-    <span class="number">-12.0</span>
-    <span class="label">mb/d Net Shortage</span>
+    <span class="number">-12.0 <span class="unit">mb/d</span></span>
+    <span class="label">Net Shortage</span>
   </div>
   <div class="stat-card yellow">
     <span class="number">$103</span>
@@ -659,7 +736,8 @@
   <li>Geopolitical risk premium: ~$35-40/bbl — "oil would be in the $40s without the Iran war."<sup class="fn"><a href="#fn50" id="ref50a">[50]</a></sup></li>
   <li>Brent Mar 18 peak: $108.78 on South Pars strike news; +$5.80 on day, +$41.18 from one month ago.<sup class="fn"><a href="#fn22" id="ref22a">[22]</a></sup></li>
   <li>Citi (Mar 18): Brent to rally to $120 near-term; $130 avg Q2/Q3 in extended disruption scenario.<sup class="fn"><a href="#fn23" id="ref23e">[23]</a></sup></li>
-  <li>Goldman Sachs (Mar 11 revision): raised Q4 Brent to $71, WTI to $67 — assumes 21 days at 10% normal Hormuz flows then 30-day recovery. Bears view this as badly underpricing tail risk.<sup class="fn"><a href="#fn25" id="ref25a">[25]</a></sup><sup class="fn"><a href="#fn34" id="ref34a">[34]</a></sup></li>
+  <li>Goldman Sachs (Mar 18 revision): raised full-year 2026 Brent forecast; Q4 Brent $71, WTI $67 (assumes 21-day disruption + 30-day recovery — increasingly disconnected from facts on the ground given Day 20 with no ceasefire).<sup class="fn"><a href="#fn25" id="ref25a">[25]</a></sup><sup class="fn"><a href="#fn34" id="ref34a">[34]</a></sup></li>
+  <li>US gasoline +32.6% in one month (AAA, Mar 19): $3.884/gal vs. $2.929 on Feb 19.<sup class="fn"><a href="#fn65" id="ref65c">[65]</a></sup></li>
   <li>EU diesel: Germany, France, Italy, Netherlands, Finland all above EUR 2.00/L; Ireland highest at EUR 2.30/L; Spain largest jump at +27% to EUR 1.79/L.<sup class="fn"><a href="#fn46" id="ref46b">[46]</a></sup></li>
 </ul>
 
@@ -796,7 +874,7 @@
 </div>
 
 <!-- Country Vulnerability -->
-<h2>Country-Level Vulnerability</h2>
+<h2 class="break-before">Country-Level Vulnerability</h2>
 <p style="font-size:0.85rem;color:var(--subtle);margin-bottom:0.5rem;">Adjusted Days of Cover = Strategic Reserves &divide; (Daily Consumption &times; Hormuz Dependency %). Measures runway against the <em>Hormuz-disrupted portion</em> of supply specifically &mdash; more meaningful than headline days-of-supply figures.</p>
 <div class="vuln-legend">
   <span class="leg-critical">Critical (&lt;45 adj. days)</span>
@@ -804,7 +882,7 @@
   <span class="leg-moderate">Moderate (100&ndash;200 adj. days)</span>
   <span class="leg-low">Low (direct exposure)</span>
 </div>
-<table>
+<table class="vuln-table">
   <tr><th>Country</th><th>Consumption</th><th>Hormuz Dep.</th><th>Strategic Reserves</th><th>Adj. Days Cover</th><th>Key Vulnerability</th></tr>
 
   <tr class="vuln-critical"><td><strong>Singapore</strong></td><td>~1.5 mb/d (refinery)</td><td>&gt;90%</td><td>&lt;14 days</td><td>~11 days</td><td>Regional refining hub; minimal strategic storage; choke point for SE Asia fuel</td></tr>
@@ -849,7 +927,7 @@
 <h2>What to Watch</h2>
 <div class="watch-item"><strong>1. 4-week shut-in threshold (~Mar 28 &mdash; 4 DAYS AWAY):</strong> Wells shut since Mar 3 approach permanent water coning damage window. Risk accelerates with every additional week. This is now an <strong>imminent, not theoretical</strong> risk. Trump&rsquo;s 5-day pause also expires ~Mar 28 &mdash; the same window is both a production and diplomatic inflection point.<sup class="fn"><a href="#fn7" id="ref7c">[7]</a></sup></div>
 <div class="watch-item"><strong>2. GL 134 expiration (Apr 11):</strong> &minus;2 mb/d cliff drop from mitigation stack when 186M bbl floating inventory depletes. No extension signals. Single most predictable near-term price catalyst.<sup class="fn"><a href="#fn3" id="ref3f">[3]</a></sup><sup class="fn"><a href="#fn13" id="ref13c">[13]</a></sup></div>
-<div class="watch-item"><strong>3. IRGC retaliation on Gulf energy sites (imminent):</strong> Five named targets "to be struck within hours" (as of Mar 18 morning): SAMREF Yanbu (400K b/d), Sadara Jubail, Qatar Chemical, Ras Laffan refinery (305K b/d), Al-Hosn gasfield (1 bcf/d). Any strike would send Brent to new highs.<sup class="fn"><a href="#fn49" id="ref49g">[49]</a></sup><sup class="fn"><a href="#fn42" id="ref42i">[42]</a></sup></div>
+<div class="watch-item"><strong>3. IRGC retaliation on Gulf energy sites — one confirmed strike (Mar 18):</strong> Five named targets (as of Mar 18 morning): SAMREF Yanbu (400K b/d), Sadara Jubail, Qatar Chemical, Ras Laffan refinery (305K b/d), Al-Hosn gasfield (1 bcf/d). Ras Laffan was hit that evening (ballistic missile strike, "extensive damage"). Remaining four targets still at risk. Any additional strike sends Brent to new highs.<sup class="fn"><a href="#fn49" id="ref49g">[49]</a></sup><sup class="fn"><a href="#fn42" id="ref42i">[42]</a></sup><sup class="fn"><a href="#fn61" id="ref61d">[61]</a></sup></div>
 <div class="watch-item"><strong>4. South Pars damage assessment:</strong> Phases 3–6 gas treatment facilities offline; Tehran refinery (220K b/d) hit. Qatar's FM noted South Pars is "an extension of Qatar's North Field" — strikes on shared reservoir risk multi-year supply implications beyond the war itself.<sup class="fn"><a href="#fn42" id="ref42j">[42]</a></sup><sup class="fn"><a href="#fn49" id="ref49h">[49]</a></sup></div>
 <div class="watch-item"><strong>5. Coalition escort formation:</strong> US Navy estimates readiness by end of March (8–10 destroyers per convoy). Germany, Japan, Australia declined. Military analysts: "almost suicidal" without ~80,000 marines.<sup class="fn"><a href="#fn40" id="ref40b">[40]</a></sup><sup class="fn"><a href="#fn38" id="ref38e">[38]</a></sup></div>
 <div class="watch-item"><strong>6. Mojtaba Khamenei's posture:</strong> IRGC-backed hardliner. Iran FM: &ldquo;We never asked for a ceasefire.&rdquo; Nowruz message (Mar 20): declared &ldquo;enemies defeated&rdquo;, resistance economy, denied Turkey/Oman attacks as &ldquo;false flag.&rdquo; Has not appeared in person since election &mdash; IRGC tightly controls access. His resistance framing signals prolonged conflict intent.<sup class="fn"><a href="#fn70" id="ref70c">[70]</a></sup><sup class="fn"><a href="#fn6" id="ref6e">[6]</a></sup><sup class="fn"><a href="#fn39" id="ref39b">[39]</a></sup></div>
@@ -869,7 +947,18 @@
 <div class="watch-item"><strong>20. Valero Port Arthur TX refinery (Mar 24):</strong> 380K b/d refinery shut after diesel hydrotreater explosion and fire. No injuries; fire extinguished. Adds domestic refining capacity loss on top of Gulf crisis &mdash; already-elevated diesel prices ($5.35/gal) face additional upward pressure until restart assessment completed.<sup class="fn"><a href="#fn86" id="ref86c">[86]</a></sup></div>
 
 <!-- Market Intelligence -->
-<h2>Market &amp; Social Intelligence</h2>
+<h2 class="break-before">Market &amp; Social Intelligence</h2>
+
+<div class="sweep-section">
+  <h3>Sparta Commodities (Physical Market Intelligence)</h3>
+  <ul>
+    <li><strong>Neil Crosby, Head of Research:</strong> <em>&ldquo;Brent is too low. Prices will grind higher the longer this conflict continues. Physical markets still haven&rsquo;t fully priced medium-term disruption &mdash; each week should see further repricing.&rdquo;</em><sup class="fn"><a href="#fn85" id="ref85a">[85]</a></sup></li>
+    <li><strong>Philip Jones-Lux, Sparta:</strong> <em>&ldquo;This is the most important oil supply disruption event since the 1970s.&rdquo;</em><sup class="fn"><a href="#fn85" id="ref85b">[85]</a></sup></li>
+    <li><strong>Jet fuel at 10-year high</strong> (Sparta data cited by AGBI): jet cannot be blended like diesel; Gulf crude is the optimal feedstock; Hormuz disruption hits jet supply disproportionately. Approximately 1/5 of global jet exports transited Hormuz pre-war.<sup class="fn"><a href="#fn85" id="ref85c">[85]</a></sup></li>
+    <li><strong>Products more stressed than crude</strong> (Sparta): refined products margins have widened far more than crude differentials &mdash; refiners outside the Gulf are the indirect beneficiaries.</li>
+    <li>Track real-time Sparta analysis: <a href="https://x.com/JuneGoh_Sparta" target="_blank">@JuneGoh_Sparta on X</a></li>
+  </ul>
+</div>
 
 <div class="sweep-section">
   <h3>Fintwit / X Sentiment</h3>
