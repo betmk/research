@@ -1,5 +1,28 @@
 # Changelog
 
+## 2026-03-24 — `report-2026-03-24`
+**Trump 5-day pause on Iran energy strikes; Hormuz mines confirmed; Valero Port Arthur explosion; Brent ~$103 (down from $110); diesel $5.35/gal (new high); TTF EUR 53.82 (down on ceasefire optimism)**
+
+- **MAJOR: Trump (Mar 23) postponed all strikes on Iranian power plants/energy for 5 days** — citing "productive conversations"; Brent dropped to ~$100 then recovered to ~$103 on skepticism
+- Iran denied direct talks but senior FM official confirmed via CBS News: "received points from US through mediators"; Pakistan, Oman, Egypt active mediators
+- Trump hinted at possible "joint US-Iran Hormuz management arrangement" post-war
+- **MAJOR: US officials confirmed ~12 Iranian mines in Hormuz** (Maham 3 moored/magnetic-acoustic; Maham 7 seabed limpet) — minesweeping now prerequisite for reopening even under ceasefire
+- **Valero Port Arthur TX (380K b/d) explosion and fire (Mar 24)** — diesel hydrotreater (47K b/d) damaged; refinery shut; no injuries; adds domestic refining pressure
+- Brent updated: ~$110 (Mar 21) -> ~$103 (Mar 24); change +55% -> +45%
+- WTI updated: ~$94.74 (Mar 21) -> ~$91.64 (Mar 24); change +41% -> +37%
+- Gasoline updated: $3.912/gal (AAA Mar 21) -> $3.95/gal (AAA Mar 24); +$1.02 over the month
+- Diesel updated: $5.04/gal (Mar 17) -> $5.35/gal (AAA Mar 24); new crisis high; change +38% -> +47%
+- TTF updated: EUR 61.90/MWh (Mar 20) -> EUR 53.82/MWh (Mar 24); down on ceasefire optimism; +68% from pre-crisis
+- BWET updated: $79.87 (Mar 20) -> $92.80 (Mar 24); YTD +288% -> ~+330%
+- Day count: 22 -> 25; date: March 21 -> March 24
+- Well-damage threshold: 7 DAYS AWAY -> 4 DAYS AWAY; 5-day pause expiry also ~Mar 28
+- Timeline: added Mar 22-23 row (Trump pause/mediators); added Mar 24 row (mines confirmed, Valero)
+- What to Watch: updated item 1 (threshold 4 days); added items 18 (Trump pause expiry), 19 (minesweeping), 20 (Valero refinery)
+- Diplomatic section: updated Ceasefire Status with Trump 5-day pause details; added new "Hormuz Mines Confirmed" subsection
+- Sources: added fn81-fn88 — 88 total sources
+
+---
+
 ## 2026-03-21 14:00 — `report-2026-03-21-1400`
 **Gasoline updated to AAA Mar 21 figure ($3.912/gal); TTF intraday peak corrected to EUR 74/MWh**
 
