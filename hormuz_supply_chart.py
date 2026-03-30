@@ -238,21 +238,35 @@ fig.add_trace(go.Scatter(
     hovertemplate="%{x|%b %d}: %{y:.1f} mb/d<extra>Net Shortage</extra>"
 ), row=2, col=1)
 
-# --- Key event annotations ---
+# --- Key event annotations (lettered for readability) ---
 events = [
-    ("2026-02-28", "US/Israel strike Iran",                          -40),
-    ("2026-03-01", "Iran strikes Gulf infra",                        -70),
-    ("2026-03-05", "IRGC: full Hormuz closure",                     -40),
-    ("2026-03-07", "Kuwait force majeure",                           -70),
-    ("2026-03-09", "Fujairah 1st strike; Mojtaba Khamenei elected", -40),
-    ("2026-03-11", "Saudi pipeline + IEA 400M bbl + UNSC 2817",     -70),
-    ("2026-03-12", "GL 134: Russian oil waiver (186M bbl)",         -40),
-    ("2026-03-14", "US hits Kharg Island (oil spared); Fujairah 2nd strike", -70),
-    ("2026-03-16", "First non-Iran transits (Pakistan, India-linked)", -40),
-    ("2026-03-17", "Larijani + Soleimani killed; allies decline escort", -70),
+    ("2026-02-28", "A", -40),
+    ("2026-03-01", "B", -70),
+    ("2026-03-05", "C", -40),
+    ("2026-03-07", "D", -70),
+    ("2026-03-09", "E", -40),
+    ("2026-03-11", "F", -70),
+    ("2026-03-12", "G", -40),
+    ("2026-03-14", "H", -70),
+    ("2026-03-16", "I", -40),
+    ("2026-03-17", "J", -70),
 ]
 
-for date_str, label, ay_offset in events:
+# Full descriptions for the footnote legend
+event_legend = [
+    ("A", "Feb 28", "US/Israel launch strikes on Iran; Supreme Leader Ali Khamenei killed"),
+    ("B", "Mar 1",  "Iran retaliates — drone/missile strikes on Saudi, Qatar, UAE, Oman energy infrastructure"),
+    ("C", "Mar 5",  "IRGC announces full Strait of Hormuz closure to US/Western-allied ships"),
+    ("D", "Mar 7",  "Kuwait declares force majeure; combined Gulf production cuts reach ~6.7 mb/d"),
+    ("E", "Mar 9",  "Fujairah first strike; Mojtaba Khamenei elected Supreme Leader (IRGC-backed)"),
+    ("F", "Mar 11", "Saudi East-West Pipeline at full capacity; IEA releases 400M bbl (record); UNSC Res. 2817"),
+    ("G", "Mar 12", "OFAC issues GL 134 — 30-day Russian oil waiver (~186M bbl floating inventory)"),
+    ("H", "Mar 14", "US strikes 90+ military targets on Kharg Island (oil infrastructure deliberately spared); Fujairah 2nd strike"),
+    ("I", "Mar 16", "First non-Iran transits: Pakistani tanker + Saudi tanker (India) + 2 Indian LPG carriers"),
+    ("J", "Mar 17", "Larijani + Soleimani killed (40+ officials total); Germany, Japan, UK, Italy, Romania, Spain, Australia decline escort coalition"),
+]
+
+for date_str, letter, ay_offset in events:
     fig.add_vline(
         x=d(date_str).timestamp() * 1000,
         line_dash="dot", line_color="rgba(100,100,100,0.3)", line_width=1,
@@ -262,7 +276,7 @@ for date_str, label, ay_offset in events:
         x=d(date_str),
         y=-20,
         yref="y",
-        text=label,
+        text=f"<b>{letter}</b>",
         showarrow=True,
         arrowhead=2,
         arrowsize=1,
@@ -270,13 +284,36 @@ for date_str, label, ay_offset in events:
         arrowcolor="rgb(100,100,100)",
         ax=0,
         ay=ay_offset,
-        font=dict(size=8, color="rgb(60,60,60)"),
-        bgcolor="rgba(255,255,255,0.9)",
-        bordercolor="rgb(180,180,180)",
+        font=dict(size=10, color="rgb(40,40,40)"),
+        bgcolor="rgba(255,255,255,0.95)",
+        bordercolor="rgb(130,130,130)",
         borderwidth=1,
-        borderpad=3,
+        borderpad=4,
         row=1, col=1
     )
+
+# Build footnote legend text (two columns for compactness)
+legend_lines = ["<b>Event Key:</b>"]
+for letter, date, desc in event_legend:
+    legend_lines.append(f"  <b>{letter}</b> ({date}): {desc}")
+legend_text = "<br>".join(legend_lines)
+
+fig.add_annotation(
+    x=0.0,
+    y=-0.22,
+    xref="paper",
+    yref="paper",
+    text=legend_text,
+    showarrow=False,
+    align="left",
+    font=dict(size=12, color="rgb(40,40,40)", family="monospace"),
+    bgcolor="rgba(248,248,248,0.95)",
+    bordercolor="rgb(200,200,200)",
+    borderwidth=1,
+    borderpad=10,
+    xanchor="left",
+    yanchor="top",
+)
 
 # GL 134 expiration annotation
 fig.add_annotation(
@@ -340,25 +377,26 @@ fig.add_annotation(
 
 # --- Layout ---
 fig.update_layout(
-    height=800,
+    height=1100,
     template="plotly_white",
     legend=dict(
         orientation="h",
         yanchor="bottom",
-        y=1.02,
+        y=1.12,
         xanchor="center",
         x=0.5,
         font=dict(size=11)
     ),
-    margin=dict(t=100, b=60, l=60, r=30),
+    margin=dict(t=160, b=380, l=60, r=30),
     hovermode="x unified",
 )
 
 fig.update_yaxes(title_text="Million Barrels / Day", row=1, col=1)
 fig.update_yaxes(title_text="mb/d", row=2, col=1)
 fig.update_xaxes(
-    dtick="M1",
+    dtick=7 * 24 * 60 * 60 * 1000,  # weekly ticks (ms)
     tickformat="%b %d",
+    tick0="2026-03-01",
     row=2, col=1
 )
 
