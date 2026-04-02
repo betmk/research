@@ -1,5 +1,31 @@
 # Changelog
 
+## 2026-04-01 — `report-2026-04-01`
+**Trump prime-time address: war "nearing completion"; well-damage threshold CROSSED; GL 134 10 days to expiry; China-Pakistan peace proposal; Brent ~$102 (war premium deflating); diesel $5.49/gal; BWET $116.32 (~+480% YTD)**
+
+- **MAJOR: Trump prime-time address (Apr 1)** — war "nearing completion," Iran "no longer a threat"; 13 US servicemember deaths confirmed; "extremely hard" strikes in next 2-3 weeks; ceasefire only when Hormuz "open, free and clear"
+- **MAJOR: Trump claims Iran's President Pezeshkian asked for ceasefire** — Iran FM Araghchi immediately denied: "false and baseless"; Axios: US and Iran "discussing ceasefire for reopening strait" per officials
+- **MAJOR: Well-damage threshold CROSSED (Mar 28)** — wells idle 30+ days; Kuwait Petroleum CEO: "3-4 months to return to full production once war ends"; IEA raised curtailment estimate to ~8 mb/d crude
+- Trump extended Iran deadline **twice** (Mar 26, then again per ABC News) — current deadline ~April 6; also threatened desalination plants (Mar 30)
+- **China-Pakistan joint peace initiative (Mar 31)** — ceasefire-for-Hormuz proposal; most credible third-party framework since crisis began
+- Iran formally rejected US 15-point plan via Pakistan (demands: $2M/vessel Hormuz fee, reparations, missile program, full sanctions lift)
+- GL 134A (issued Mar 19) confirmed same Apr 11 expiry — now 10 days away; no extension signals
+- Mojtaba Khamenei injury/death rumors circulating (Al Jazeera Apr 1 — unconfirmed)
+- Brent updated: ~$103 (Mar 24) → ~$101.97 (Apr 1; range $98.52-$105.93); WTI ~$102 (unusual premium over Brent)
+- Gasoline updated: $3.95/gal (Mar 24) → $4.018/gal (AAA, Apr 1); change +35% → +38%
+- Diesel updated: $5.35/gal (Mar 24) → $5.49/gal (AAA, Apr 1); change +47% → +50%
+- TTF updated: EUR 53.82 (Mar 24) → ~EUR 55.80 (Mar 30); down from EUR 61.90 peak
+- JKM updated: ~$20/MMBtu → mid-$20s/MMBtu (Mar 27; Australian cyclone outages)
+- BWET updated: $92.80 (Mar 24) → $116.32 (Apr 1); ~+480% YTD; range $104-$122
+- VLCC rates: ~$445K/day (Mar 18) → ~$400-424K/day (Apr 1; still record levels)
+- Day count: 25 → 33; date: March 24 → April 1
+- Clock cards updated: Mar 28 threshold → "CROSSED"; added Apr 6 Trump deadline card
+- Timeline: added Mar 25, Mar 26, Mar 28, Mar 30, Mar 31, Apr 1 rows
+- What to Watch: updated items 1 (CROSSED), 2 (10 days), 17, 18 (deadline extended); added items 21 (Trump address), 22 (Khamenei rumors), 23 (Kuwait recovery timeline)
+- Sources: added fn104-fn114 — 114 total sources
+
+---
+
 ## 2026-03-24 — `report-2026-03-24`
 **Trump 5-day pause on Iran energy strikes; Hormuz mines confirmed; Valero Port Arthur explosion; Brent ~$103 (down from $110); diesel $5.35/gal (new high); TTF EUR 53.82 (down on ceasefire optimism)**
 
