@@ -1,14 +1,13 @@
 """
 Strait of Hormuz Oil Supply Disruption — Interactive Timeline Chart
 Generates an interactive Plotly HTML showing supply lost, mitigating factors,
-and net shortage evolving from Feb 28 through May 31, 2026.
+and net shortage evolving from Feb 28 through Jun 30, 2026.
 
-Updated: Mar 17 — GL 134 floating inventory modeled as separate depleting factor;
-UAE ADCOP at +0.7 (Sparta: pipeline at 1.8 mb/d despite Fujairah damage);
-Russian production revised to +0.1; stranded inventory 186M bbl (Sparta).
-Iran selective blockade: ~1.5 mb/d own exports continuing.
-Iraq shut-in revised to ~2.9 mb/d (largest single-country cut).
-Insurance/shipping data added to annotations.
+Updated: Apr 8 — Ceasefire in effect Apr 7 (Hormuz still closed, Iran retains control);
+reopening modeled as gradual negotiated partial recovery (never reaches 100%);
+added demand destruction (IEA: 640K b/d) and OECD commercial inventory drawdown;
+GL 134 expires Apr 11 with no extension; well damage threshold crossed Mar 28;
+event annotations updated through Apr 8.
 """
 
 import argparse
@@ -24,9 +23,8 @@ import webbrowser
 def d(s: str) -> datetime:
     return datetime.strptime(s, "%Y-%m-%d")
 
-# Defaults for the Hormuz crisis scenario — override via CLI args
 _DEFAULT_START = "2026-02-28"
-_DEFAULT_END   = "2026-05-31"
+_DEFAULT_END   = "2026-06-30"
 
 _parser = argparse.ArgumentParser(description="Generate Hormuz supply disruption chart")
 _parser.add_argument("--start", default=_DEFAULT_START, help="Chart start date (YYYY-MM-DD)")
@@ -38,7 +36,6 @@ START = d(_args.start)
 END   = d(_args.end)
 
 def date_range(start: datetime, end: datetime) -> list[datetime]:
-    """Daily date range inclusive."""
     days = (end - start).days + 1
     return [start + timedelta(days=i) for i in range(days)]
 
@@ -46,8 +43,7 @@ ALL_DATES = date_range(START, END)
 
 # ---------------------------------------------------------------------------
 # Supply disruption & mitigation curves (million barrels per day)
-# Each function returns the mb/d contribution for a given date.
-# Negative = supply lost; Positive = supply restored.
+# Negative = supply lost; Positive = supply restored / demand reduced.
 # ---------------------------------------------------------------------------
 
 def hormuz_closure(dt: datetime) -> float:
@@ -59,11 +55,46 @@ def hormuz_closure(dt: datetime) -> float:
     if dt <= d("2026-03-04"):
         return -14.0  # ~70% blocked
     # Mar 5+: full closure (IRGC announcement)
-    if dt >= d("2026-04-15"):
-        # Scenario: gradual reopening over 4 weeks (ING base case)
-        weeks_open = (dt - d("2026-04-15")).days / 7
-        restored = min(weeks_open * 5.0, 20.0)
+    # Apr 7: ceasefire in effect, but Hormuz still functionally closed
+    #         (Iran retains vetting control, mines in water, insurance 5% of hull,
+    #          800+ ships stranded, $2M/vessel IRGC fee)
+    #
+    # Realistic multi-phase reopening model (never reaches 100%):
+    #
+    # Phase 1 — Apr 7-14: Ceasefire "freeze" period
+    #   ~3 ships/day vs 135 normal; 800+ stranded; mines uncleared
+    #   Negligible improvement in transit volume
+    if dt >= d("2026-04-07") and dt < d("2026-04-15"):
+        return -19.0
+    #
+    # Phase 2 — Apr 15 - May 7: Tentative reopening (~3 weeks)
+    #   Islamabad talks (Apr 10) produce partial framework;
+    #   Iran allows trickle of vetted vessels; insurance still 2-5% hull;
+    #   mine risk deters most commercial traffic; ~10-20 ships/day
+    #   Restore rate: ~0.12 mb/d per day (~0.84 mb/d per week)
+    #   Starts from -19 (Phase 1 level), not -20
+    if dt >= d("2026-04-15") and dt < d("2026-05-08"):
+        days_in = (dt - d("2026-04-15")).days
+        restored = 1.0 + days_in * 0.12  # 1.0 = the 1 mb/d already restored in Phase 1
         return -(20.0 - restored)
+    #
+    # Phase 3 — May 8 - Jun 30: Accelerating but heavily constrained
+    #   Transit capacity improving (insurance 1-2%, bilateral deals, 40-60 ships/day)
+    #   BUT actual flow limited by:
+    #   - Well damage: ~6-7 mb/d of Gulf production IMPAIRED (3-4 month recovery)
+    #   - Ras Laffan LNG: ~1.5 mb/d equiv offline for 3-5 YEARS
+    #   - Iran retains permanent vetting control + IRGC $2M fee
+    #   - Damaged facilities (Mina Al-Ahmadi, Fujairah, Duqm)
+    #   Restore rate: ~0.15 mb/d per day, decelerating
+    #   Cap: 10 of 20 mb/d restored (-10 mb/d residual through end of chart)
+    #     Residual = well damage (~4-5) + Ras Laffan (~1.5) + Iran control/fee (~1)
+    #               + facility damage (~1.5) + insurance drag (~1)
+    if dt >= d("2026-05-08"):
+        phase2_restored = 1.0 + 23 * 0.12  # Phase 1 + Phase 2 total
+        days_in_p3 = (dt - d("2026-05-08")).days
+        phase3_restored = days_in_p3 * 0.15
+        total_restored = min(phase2_restored + phase3_restored, 10.0)
+        return -(20.0 - total_restored)
     return -20.0
 
 def saudi_pipeline(dt: datetime) -> float:
@@ -73,8 +104,8 @@ def saudi_pipeline(dt: datetime) -> float:
     if dt < d("2026-03-01"):
         return 0.0
     if dt < d("2026-03-11"):
-        return 0.5  # existing flow, partial ramp
-    return 1.75  # Sparta-verified: 2.5 mb/d throughput minus 750K pre-crisis
+        return 0.5
+    return 1.75
 
 def uae_adcop(dt: datetime) -> float:
     """UAE ADCOP pipeline spare capacity to Fujairah.
@@ -83,44 +114,39 @@ def uae_adcop(dt: datetime) -> float:
     if dt < d("2026-03-01"):
         return 0.0
     if dt < d("2026-03-09"):
-        return 0.5  # ramping spare capacity before first Fujairah strike
-    # Post-Fujairah strikes: pipeline still flowing at 1.8 mb/d (Sparta)
+        return 0.5
     return 0.7
 
 def iea_spr(dt: datetime) -> float:
     """IEA strategic reserve release — 400M barrels total.
     US: 1.43 mb/d over 120 days (172M bbl). Others: ~0.6 mb/d.
-    Total ~2.0 mb/d, starting Mar 12. US portion exhausted by ~Jul 10."""
+    Total ~2.0 mb/d, starting Mar 12. US portion exhausted by ~Jul 10.
+    Country reserves committed: Japan 80M bbl, Germany 19.7M bbl,
+    UK 13.5M bbl, + 28 other IEA members."""
     if dt < d("2026-03-12"):
         return 0.0
     days_in = (dt - d("2026-03-12")).days
     us = 1.43 if days_in < 120 else 0.0
+    # Non-US members exhaust faster (smaller reserves, ~100 days)
     others = 0.57 if days_in < 100 else 0.0
     return us + others
 
 def gl134_floating_inventory(dt: datetime) -> float:
     """GL 134 one-time release of stranded Russian oil at sea.
-    ~186M bbl total on ~238 laden tankers. 60-70M bbl near India/China
-    deliverable within the 30-day window = ~2.0 mb/d effective flow.
-    Waiver: Mar 12 -> Apr 11 (30 days). This is a STOCK, not a FLOW —
-    it depletes and vanishes after expiration unless extended."""
+    ~186M bbl total on ~238 laden tankers. 60-70M bbl near India/China.
+    Waiver: Mar 12 -> Apr 11 (30 days). STOCK, not FLOW — depletes."""
     if dt < d("2026-03-12"):
         return 0.0
     if dt > d("2026-04-11"):
         return 0.0  # waiver expired, relief gone
-    # Model as 2.0 mb/d for first 20 days (immediate India/China delivery),
-    # tapering to 1.0 mb/d as nearby inventory depletes, then 0 at expiration
     days_in = (dt - d("2026-03-12")).days
     if days_in <= 20:
-        return 2.0  # 60-70M bbl near India/China at ~2 mb/d
-    # Days 21-30: depleting (distant barrels, slower delivery)
+        return 2.0
     return max(2.0 - (days_in - 20) * 0.2, 0.0)
 
 def russian_production(dt: datetime) -> float:
     """Russian production increase — minimal / near zero.
-    Feb 2026 production was FALLING (-56K bpd m/m). Russia may be forced
-    to CUT 300K bpd by Apr due to storage saturation (Rystad).
-    Net incremental new global supply: ~0.1 mb/d."""
+    Feb 2026 production was FALLING (-56K bpd m/m). ~0.1 mb/d net."""
     if dt < d("2026-03-03"):
         return 0.0
     return 0.1
@@ -133,18 +159,78 @@ def iranian_exports(dt: datetime) -> float:
         return 0.0
     return 1.5
 
+def demand_destruction(dt: datetime) -> float:
+    """Demand destruction from high prices.
+    IEA raised estimate from 210K to 640K b/d. Ramps up over time as prices
+    stay elevated and behavioral/policy changes take effect.
+    India ethanol mandates, Japan conservation orders, China trucking restrictions."""
+    if dt < d("2026-03-10"):
+        return 0.0
+    if dt < d("2026-03-20"):
+        return 0.2  # early price response
+    if dt < d("2026-04-01"):
+        return 0.4  # Asian emergency measures kicking in
+    if dt < d("2026-05-01"):
+        return 0.64  # IEA revised estimate (640K b/d)
+    # May: demand destruction peaks as crisis is worst
+    if dt < d("2026-05-15"):
+        return 0.8  # peak behavioral/policy response
+    # Late May+: as reopening progresses and prices ease, demand destruction
+    # STABILIZES then slowly reverses (people resume driving, factories restart)
+    # But structural shifts (India ethanol, China EV adoption) are permanent
+    weeks_past_may15 = (dt - d("2026-05-15")).days / 7
+    return max(0.8 - weeks_past_may15 * 0.05, 0.4)  # floors at 0.4 (permanent shifts)
+
+def oecd_commercial_drawdown(dt: datetime) -> float:
+    """OECD commercial inventory drawdown.
+    ~2.7B bbl commercial stocks; industry holds min ~60 days of demand.
+    Draws at ~1.0 mb/d effectively — this is implicit market supply.
+    Not unlimited: accelerates the clock toward rationing."""
+    if dt < d("2026-03-05"):
+        return 0.0
+    if dt < d("2026-04-15"):
+        return 1.0  # comfortable draw rate
+    if dt < d("2026-05-15"):
+        return 0.8  # stocks depleting, draw rate slows
+    # Beyond mid-May: approaching minimum operating levels
+    return 0.5
+
 def infrastructure_repair(dt: datetime) -> float:
     """Production recovery from shut-in wells + repaired facilities.
-    Gradual ramp starting ~2 weeks after facilities are fixed.
-    Major risk: wells shut >4 weeks may have permanent damage (water coning)."""
+    ~6-7 mb/d of Gulf production is IMPAIRED (well damage + facility damage).
+    Kuwait CEO (Mar 28): 3-4 months to full production POST-WAR.
+    Ceasefire began Apr 7 — repair clock starts now, not at crisis start.
+
+    Recovery phases (from Apr 7 ceasefire):
+    Month 1 (Apr 7 - May 7):  +0.5-1.0 mb/d — quick restarts, Ras Tanura patching
+    Month 2 (May 7 - Jun 7):  +1.0-1.5 mb/d — well reactivation begins (slow due to damage)
+    Month 3 (Jun 7 - Jul 7):  +0.5-1.0 mb/d — complex wells, Mina Al-Ahmadi repair
+    Month 4+ (Jul+):          long tail — worst-damaged wells, some permanently lost
+
+    Total by Jun 30 (~3 months post-ceasefire): ~2.0-2.5 mb/d recovered
+    Total by Sep 30 (~6 months): ~4-5 mb/d recovered
+    Ras Laffan LNG: ~1.5 mb/d equiv — NEVER recovers in 2026 (3-5 year timeline)
+    Full pre-crisis levels: NOT before Q4 2026 at earliest (excl Ras Laffan)"""
     if dt < d("2026-03-20"):
         return 0.0
-    if dt < d("2026-04-01"):
-        return 0.3
-    if dt < d("2026-04-15"):
-        return 0.8
-    weeks_since_apr15 = (dt - d("2026-04-15")).days / 7
-    return min(0.8 + weeks_since_apr15 * 0.5, 3.0)
+    # Pre-ceasefire: minimal repair possible (active conflict zone)
+    if dt < d("2026-04-07"):
+        return 0.3  # only Jask-area + Saudi pipeline-connected fields
+    # Month 1 post-ceasefire: access restored but structural damage limits speed
+    # Quick wins: Ras Tanura (550K b/d, 2-4 week repair = done by ~May 1)
+    # Some shallow wells restarted in Saudi (non-water-coning fields)
+    if dt < d("2026-05-07"):
+        days_in = (dt - d("2026-04-07")).days
+        return 0.3 + days_in * 0.025  # ~0.75 mb/d/month → ~1.05 by May 7
+    # Month 2: well reactivation ramp — but water-coned wells are very slow
+    # Mina Al-Ahmadi still offline; Iraq Rumaila barely starting
+    if dt < d("2026-06-07"):
+        days_in = (dt - d("2026-05-07")).days
+        return 1.05 + days_in * 0.02  # ~0.6 mb/d/month → ~1.65 by Jun 7
+    # Month 3+: decelerating — the easy wells are done, hard ones remain
+    # Some Iraq/Kuwait wells permanently impaired (water coning)
+    days_in = (dt - d("2026-06-07")).days
+    return min(1.65 + days_in * 0.012, 2.5)  # very slow tail; cap 2.5 by late summer
 
 # ---------------------------------------------------------------------------
 # Compute daily totals
@@ -156,6 +242,8 @@ spr_series = []
 gl134_series = []
 russia_series = []
 iran_series = []
+demand_series = []
+oecd_series = []
 repair_series = []
 net_shortage_series = []
 
@@ -167,6 +255,8 @@ for dt in ALL_DATES:
     gl1 = gl134_floating_inventory(dt)
     rus = russian_production(dt)
     irn = iranian_exports(dt)
+    dem = demand_destruction(dt)
+    oec = oecd_commercial_drawdown(dt)
     rep = infrastructure_repair(dt)
 
     disruption_series.append(dis)
@@ -176,9 +266,11 @@ for dt in ALL_DATES:
     gl134_series.append(gl1)
     russia_series.append(rus)
     iran_series.append(irn)
+    demand_series.append(dem)
+    oecd_series.append(oec)
     repair_series.append(rep)
 
-    net = dis + sau + uae + spr + gl1 + rus + irn + rep
+    net = dis + sau + uae + spr + gl1 + rus + irn + dem + oec + rep
     net_shortage_series.append(net)
 
 # ---------------------------------------------------------------------------
@@ -195,8 +287,6 @@ fig = make_subplots(
     )
 )
 
-# --- Top chart: stacked area showing disruption + mitigations ---
-
 # Disruption (negative, red)
 fig.add_trace(go.Scatter(
     x=ALL_DATES, y=disruption_series,
@@ -209,12 +299,14 @@ fig.add_trace(go.Scatter(
 
 # Mitigations (positive, stacked)
 mitigation_colors = [
-    ("Saudi East-West Pipeline", saudi_series, "rgb(40, 167, 69)", "rgba(40, 167, 69, 0.5)"),
-    ("UAE ADCOP Pipeline", uae_series, "rgb(0, 123, 255)", "rgba(0, 123, 255, 0.5)"),
-    ("IEA SPR Release", spr_series, "rgb(255, 193, 7)", "rgba(255, 193, 7, 0.5)"),
-    ("GL 134 Floating Inventory (one-time)", gl134_series, "rgb(255, 127, 14)", "rgba(255, 127, 14, 0.5)"),
+    ("Saudi East-West Pipeline (+1.75)", saudi_series, "rgb(40, 167, 69)", "rgba(40, 167, 69, 0.5)"),
+    ("UAE ADCOP Pipeline (+0.7)", uae_series, "rgb(0, 123, 255)", "rgba(0, 123, 255, 0.5)"),
+    ("IEA SPR Release (+2.0)", spr_series, "rgb(255, 193, 7)", "rgba(255, 193, 7, 0.5)"),
+    ("GL 134 Floating Inventory (expires Apr 11)", gl134_series, "rgb(255, 127, 14)", "rgba(255, 127, 14, 0.5)"),
+    ("OECD Commercial Inventory Drawdown", oecd_series, "rgb(52, 152, 219)", "rgba(52, 152, 219, 0.4)"),
+    ("Demand Destruction (IEA: 640K b/d+)", demand_series, "rgb(155, 89, 182)", "rgba(155, 89, 182, 0.4)"),
     ("Russian Production (+0.1)", russia_series, "rgb(108, 117, 125)", "rgba(108, 117, 125, 0.5)"),
-    ("Iranian Own Exports", iran_series, "rgb(111, 66, 193)", "rgba(111, 66, 193, 0.5)"),
+    ("Iranian Own Exports (+1.5)", iran_series, "rgb(111, 66, 193)", "rgba(111, 66, 193, 0.5)"),
     ("Infrastructure Repair/Restart", repair_series, "rgb(23, 162, 184)", "rgba(23, 162, 184, 0.5)"),
 ]
 
@@ -228,7 +320,7 @@ for name, series, line_color, fill_color in mitigation_colors:
         hovertemplate="%{x|%b %d}: +%{y:.1f} mb/d<extra>" + name + "</extra>"
     ), row=1, col=1)
 
-# --- Bottom chart: net shortage ---
+# Net shortage (bottom panel)
 fig.add_trace(go.Scatter(
     x=ALL_DATES, y=net_shortage_series,
     name="Net Shortage",
@@ -238,32 +330,37 @@ fig.add_trace(go.Scatter(
     hovertemplate="%{x|%b %d}: %{y:.1f} mb/d<extra>Net Shortage</extra>"
 ), row=2, col=1)
 
-# --- Key event annotations (lettered for readability) ---
+# ---------------------------------------------------------------------------
+# Event annotations (lettered A-N)
+# ---------------------------------------------------------------------------
 events = [
     ("2026-02-28", "A", -40),
     ("2026-03-01", "B", -70),
     ("2026-03-05", "C", -40),
-    ("2026-03-07", "D", -70),
-    ("2026-03-09", "E", -40),
-    ("2026-03-11", "F", -70),
-    ("2026-03-12", "G", -40),
-    ("2026-03-14", "H", -70),
-    ("2026-03-16", "I", -40),
-    ("2026-03-17", "J", -70),
+    ("2026-03-09", "D", -70),
+    ("2026-03-11", "E", -40),
+    ("2026-03-12", "F", -70),
+    ("2026-03-18", "G", -40),
+    ("2026-03-19", "H", -70),
+    ("2026-03-28", "I", -40),
+    ("2026-04-07", "J", -70),
+    ("2026-04-08", "K", -40),
+    ("2026-04-11", "L", -70),
 ]
 
-# Full descriptions for the footnote legend
 event_legend = [
-    ("A", "Feb 28", "US/Israel launch strikes on Iran; Supreme Leader Ali Khamenei killed"),
-    ("B", "Mar 1",  "Iran retaliates — drone/missile strikes on Saudi, Qatar, UAE, Oman energy infrastructure"),
-    ("C", "Mar 5",  "IRGC announces full Strait of Hormuz closure to US/Western-allied ships"),
-    ("D", "Mar 7",  "Kuwait declares force majeure; combined Gulf production cuts reach ~6.7 mb/d"),
-    ("E", "Mar 9",  "Fujairah first strike; Mojtaba Khamenei elected Supreme Leader (IRGC-backed)"),
-    ("F", "Mar 11", "Saudi East-West Pipeline at full capacity; IEA releases 400M bbl (record); UNSC Res. 2817"),
-    ("G", "Mar 12", "OFAC issues GL 134 — 30-day Russian oil waiver (~186M bbl floating inventory)"),
-    ("H", "Mar 14", "US strikes 90+ military targets on Kharg Island (oil infrastructure deliberately spared); Fujairah 2nd strike"),
-    ("I", "Mar 16", "First non-Iran transits: Pakistani tanker + Saudi tanker (India) + 2 Indian LPG carriers"),
-    ("J", "Mar 17", "Larijani + Soleimani killed (40+ officials total); Germany, Japan, UK, Italy, Romania, Spain, Australia decline escort coalition"),
+    ("A", "Feb 28", "US/Israel strike Iran; Supreme Leader Khamenei killed"),
+    ("B", "Mar 1",  "Iran retaliates — drone/missile strikes on Saudi, Qatar, UAE, Oman energy infra"),
+    ("C", "Mar 5",  "IRGC announces full Hormuz closure to Western-allied ships"),
+    ("D", "Mar 9",  "Brent >$100; Mojtaba Khamenei elected Supreme Leader; Fujairah struck"),
+    ("E", "Mar 11", "Saudi pipeline activated; IEA 400M bbl SPR release; UNSC Res. 2817"),
+    ("F", "Mar 12", "GL 134 issued — 30-day Russian oil waiver (186M bbl, expires Apr 11)"),
+    ("G", "Mar 18", "Israel strikes South Pars gas field (phases 3-6); Iran FM proposes Hormuz protocol"),
+    ("H", "Mar 19", "Ras Laffan: 3-5 YEAR damage (17% Qatar LNG); Iran 5 salvos at Israel"),
+    ("I", "Mar 28", "WELL DAMAGE THRESHOLD CROSSED — 25+ days idle; Kuwait CEO: 3-4 mo recovery"),
+    ("J", "Apr 7",  "CEASEFIRE: Trump suspends bombing 2 weeks; Iran SNSC accepts; Russia/China veto UNSC"),
+    ("K", "Apr 8",  "Hormuz still closed; 800+ ships stranded; mines uncleared; Brent -15% to ~$95"),
+    ("L", "Apr 11", "GL 134 EXPIRES — -2 mb/d cliff; Islamabad talks (Apr 10) outcome pending"),
 ]
 
 for date_str, letter, ay_offset in events:
@@ -278,101 +375,117 @@ for date_str, letter, ay_offset in events:
         yref="y",
         text=f"<b>{letter}</b>",
         showarrow=True,
-        arrowhead=2,
-        arrowsize=1,
-        arrowwidth=1,
+        arrowhead=2, arrowsize=1, arrowwidth=1,
         arrowcolor="rgb(100,100,100)",
-        ax=0,
-        ay=ay_offset,
+        ax=0, ay=ay_offset,
         font=dict(size=10, color="rgb(40,40,40)"),
         bgcolor="rgba(255,255,255,0.95)",
         bordercolor="rgb(130,130,130)",
-        borderwidth=1,
-        borderpad=4,
+        borderwidth=1, borderpad=4,
         row=1, col=1
     )
 
-# Build footnote legend text (two columns for compactness)
+# Event key legend
 legend_lines = ["<b>Event Key:</b>"]
 for letter, date, desc in event_legend:
     legend_lines.append(f"  <b>{letter}</b> ({date}): {desc}")
 legend_text = "<br>".join(legend_lines)
 
 fig.add_annotation(
-    x=0.0,
-    y=-0.22,
-    xref="paper",
-    yref="paper",
+    x=0.0, y=-0.22, xref="paper", yref="paper",
     text=legend_text,
-    showarrow=False,
-    align="left",
-    font=dict(size=12, color="rgb(40,40,40)", family="monospace"),
+    showarrow=False, align="left",
+    font=dict(size=11, color="rgb(40,40,40)", family="monospace"),
     bgcolor="rgba(248,248,248,0.95)",
     bordercolor="rgb(200,200,200)",
-    borderwidth=1,
-    borderpad=10,
-    xanchor="left",
-    yanchor="top",
+    borderwidth=1, borderpad=10,
+    xanchor="left", yanchor="top",
 )
 
-# GL 134 expiration annotation
+# Key annotations on the net shortage panel
 fig.add_annotation(
-    x=d("2026-04-11"),
-    y=-10,
+    x=d("2026-04-11"), y=-10,
     text="GL 134 expires<br>-2 mb/d cliff",
-    showarrow=True,
-    arrowhead=2,
-    ax=40, ay=-30,
+    showarrow=True, arrowhead=2, ax=40, ay=-30,
     font=dict(size=9, color="rgb(220, 53, 69)", weight="bold"),
     bgcolor="rgba(255,255,255,0.95)",
-    bordercolor="rgb(220, 53, 69)",
-    borderwidth=2,
-    borderpad=4,
+    bordercolor="rgb(220, 53, 69)", borderwidth=2, borderpad=4,
     row=2, col=1
 )
 
-# 4-week well damage threshold annotation
 fig.add_annotation(
-    x=d("2026-03-28"),
-    y=-15,
-    text="4-week shut-in threshold<br>Permanent well damage risk",
-    showarrow=True,
-    arrowhead=2,
-    ax=60, ay=-40,
+    x=d("2026-03-28"), y=-15,
+    text="Well damage threshold<br>CROSSED (Mar 28)",
+    showarrow=True, arrowhead=2, ax=60, ay=-40,
     font=dict(size=9, color="rgb(220, 53, 69)", weight="bold"),
     bgcolor="rgba(255,255,255,0.95)",
-    bordercolor="rgb(220, 53, 69)",
-    borderwidth=2,
-    borderpad=4,
+    bordercolor="rgb(220, 53, 69)", borderwidth=2, borderpad=4,
     row=2, col=1
 )
 
-# Scenario annotation
 fig.add_annotation(
-    x=d("2026-04-15"),
-    y=-10,
-    text="Scenario: gradual<br>Hormuz reopening",
-    showarrow=True,
-    arrowhead=2,
-    ax=-80, ay=0,
-    font=dict(size=9, color="rgb(100,100,100)"),
-    bgcolor="rgba(255,255,255,0.9)",
-    borderpad=3,
+    x=d("2026-04-07"), y=-12,
+    text="<b>Apr 7: Ceasefire</b><br>Hormuz still closed<br>800+ ships stranded",
+    showarrow=True, arrowhead=2, ax=60, ay=-50,
+    font=dict(size=9, color="rgb(39, 174, 96)", weight="bold"),
+    bgcolor="rgba(255,255,255,0.95)",
+    bordercolor="rgb(39, 174, 96)", borderwidth=2, borderpad=4,
     row=1, col=1
 )
 
-# SPR exhaustion annotation
 fig.add_annotation(
-    x=d("2026-05-20"),
-    y=-8,
+    x=d("2026-04-15"), y=-12,
+    text="Phase 2: Tentative<br>reopening (~10-20 ships/day)<br>Insurance still 2-5% hull",
+    showarrow=True, arrowhead=2, ax=-90, ay=-20,
+    font=dict(size=8, color="rgb(100,100,100)"),
+    bgcolor="rgba(255,255,255,0.9)", borderpad=3,
+    row=1, col=1
+)
+
+fig.add_annotation(
+    x=d("2026-05-08"), y=-8,
+    text="Phase 3: Transit improving<br>but production impaired<br>(6-7 mb/d well damage;<br>Ras Laffan 3-5 yr offline)",
+    showarrow=True, arrowhead=2, ax=70, ay=-30,
+    font=dict(size=8, color="rgb(100,100,100)"),
+    bgcolor="rgba(255,255,255,0.9)", borderpad=3,
+    row=1, col=1
+)
+
+fig.add_annotation(
+    x=d("2026-05-20"), y=-6,
     text="Non-US SPR members<br>begin exhausting",
-    showarrow=True,
-    arrowhead=2,
-    ax=0, ay=-40,
+    showarrow=True, arrowhead=2, ax=0, ay=-40,
     font=dict(size=8, color="rgb(255, 193, 7)"),
-    bgcolor="rgba(255,255,255,0.9)",
-    borderpad=3,
+    bgcolor="rgba(255,255,255,0.9)", borderpad=3,
     row=2, col=1
+)
+
+fig.add_annotation(
+    x=d("2026-06-15"), y=-3,
+    text="OECD commercial<br>stocks near minimum<br>operating levels",
+    showarrow=True, arrowhead=2, ax=0, ay=-35,
+    font=dict(size=8, color="rgb(52, 152, 219)"),
+    bgcolor="rgba(255,255,255,0.9)", borderpad=3,
+    row=2, col=1
+)
+
+# "Today" marker
+fig.add_vline(
+    x=d("2026-04-08").timestamp() * 1000,
+    line_dash="dash", line_color="rgba(39,174,96,0.6)", line_width=2,
+    row=1, col=1
+)
+fig.add_vline(
+    x=d("2026-04-08").timestamp() * 1000,
+    line_dash="dash", line_color="rgba(39,174,96,0.6)", line_width=2,
+    row=2, col=1
+)
+fig.add_annotation(
+    x=d("2026-04-08"), y=8, yref="y",
+    text="<b>TODAY</b>", showarrow=False,
+    font=dict(size=10, color="rgb(39,174,96)"),
+    bgcolor="rgba(255,255,255,0.9)", borderpad=3,
+    row=1, col=1
 )
 
 # --- Layout ---
@@ -381,26 +494,23 @@ fig.update_layout(
     template="plotly_white",
     legend=dict(
         orientation="h",
-        yanchor="bottom",
-        y=1.12,
-        xanchor="center",
-        x=0.5,
-        font=dict(size=11)
+        yanchor="bottom", y=1.12,
+        xanchor="center", x=0.5,
+        font=dict(size=10)
     ),
-    margin=dict(t=160, b=380, l=60, r=30),
+    margin=dict(t=160, b=420, l=60, r=30),
     hovermode="x unified",
 )
 
 fig.update_yaxes(title_text="Million Barrels / Day", row=1, col=1)
 fig.update_yaxes(title_text="mb/d", row=2, col=1)
 fig.update_xaxes(
-    dtick=7 * 24 * 60 * 60 * 1000,  # weekly ticks (ms)
+    dtick=7 * 24 * 60 * 60 * 1000,
     tickformat="%b %d",
     tick0="2026-03-01",
     row=2, col=1
 )
 
-# Zero line
 fig.add_hline(y=0, line_dash="dash", line_color="gray", line_width=1, row=1, col=1)
 fig.add_hline(y=0, line_dash="dash", line_color="gray", line_width=1, row=2, col=1)
 
@@ -414,20 +524,30 @@ if not _args.no_browser:
     webbrowser.open(output_path.as_uri())
 
 # Print summary stats
-print(f"\nAs of Mar 17, 2026:")
-idx_mar17 = (d("2026-03-17") - START).days
-print(f"  Hormuz transit lost:  {disruption_series[idx_mar17]:.1f} mb/d")
-print(f"  Saudi pipeline:       +{saudi_series[idx_mar17]:.1f} mb/d")
-print(f"  UAE ADCOP:            +{uae_series[idx_mar17]:.1f} mb/d (spare activated; Fujairah impaired)")
-print(f"  IEA SPR:              +{spr_series[idx_mar17]:.1f} mb/d")
-print(f"  GL 134 inventory:     +{gl134_series[idx_mar17]:.1f} mb/d (one-time, expires Apr 11)")
-print(f"  Russian production:   +{russia_series[idx_mar17]:.1f} mb/d")
-print(f"  Iranian own exports:  +{iran_series[idx_mar17]:.1f} mb/d")
-print(f"  Infra repair:         +{repair_series[idx_mar17]:.1f} mb/d")
-print(f"  {'=' * 29}")
-print(f"  NET SHORTAGE:         {net_shortage_series[idx_mar17]:.1f} mb/d")
+print(f"\nAs of Apr 8, 2026 (Day 40 — ceasefire in effect, Hormuz still largely closed):")
+idx_apr8 = (d("2026-04-08") - START).days
+print(f"  Hormuz transit lost:  {disruption_series[idx_apr8]:.1f} mb/d")
+print(f"  Saudi pipeline:       +{saudi_series[idx_apr8]:.1f} mb/d")
+print(f"  UAE ADCOP:            +{uae_series[idx_apr8]:.1f} mb/d")
+print(f"  IEA SPR:              +{spr_series[idx_apr8]:.1f} mb/d")
+print(f"  GL 134 inventory:     +{gl134_series[idx_apr8]:.1f} mb/d (expires Apr 11)")
+print(f"  OECD commercial draw: +{oecd_series[idx_apr8]:.1f} mb/d")
+print(f"  Demand destruction:   +{demand_series[idx_apr8]:.1f} mb/d")
+print(f"  Russian production:   +{russia_series[idx_apr8]:.1f} mb/d")
+print(f"  Iranian own exports:  +{iran_series[idx_apr8]:.1f} mb/d")
+print(f"  Infra repair:         +{repair_series[idx_apr8]:.1f} mb/d")
+print(f"  {'=' * 35}")
+print(f"  NET SHORTAGE:         {net_shortage_series[idx_apr8]:.1f} mb/d")
 
 print(f"\nAs of Apr 12, 2026 (day after GL 134 expires):")
 idx_apr12 = (d("2026-04-12") - START).days
 print(f"  GL 134 inventory:     +{gl134_series[idx_apr12]:.1f} mb/d")
 print(f"  NET SHORTAGE:         {net_shortage_series[idx_apr12]:.1f} mb/d")
+
+print(f"\nCountry strategic reserves (context — not modeled as direct flow):")
+print(f"  China:  ~1,400M bbl (~120 days at import rate)")
+print(f"  Japan:  80M bbl (committed to IEA SPR above)")
+print(f"  Germany: 19.7M bbl (committed to IEA SPR above)")
+print(f"  India:  ~7 days coverage only (critically low)")
+print(f"  US:     415M bbl SPR pre-release (172M committed)")
+print(f"  OECD commercial: ~2,700M bbl (drawing at ~1.0 mb/d)")

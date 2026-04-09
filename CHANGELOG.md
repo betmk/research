@@ -1,5 +1,30 @@
 # Changelog
 
+## 2026-04-08 — `report-2026-04-08`
+**Two-week ceasefire in effect (Apr 7) — but Hormuz still largely closed; 800+ ships stranded; mines uncleared; GL 134 expires in 3 days; Brent ~$95 (-15% selloff); diesel ~$5.81/gal; BWET $148.56 (+7.5% on ceasefire day)**
+
+- **MAJOR: Two-week ceasefire announced April 7** — Trump suspended US bombing; Iran SNSC formally accepted; ceasefire violations reported within hours by UAE and Kuwait
+- **MAJOR: Hormuz still largely closed** — only ~3 ships transited on ceasefire day vs. 135/day normal; 800+ freighters stranded inside Gulf; mines still in water; Iran retains transit control
+- **Russia and China vetoed** April 7 UN Security Council resolution aimed at protecting commercial shipping
+- **Islamabad negotiations begin April 10** — first structured US-Iran talks under Pakistani mediation; Iran's 10-point demands incompatible with US red lines
+- **GL 134 expires April 11 — 3 days away** — no extension announced; ceasefire may lead Treasury to let lapse
+- Iran formally rejected Trump's 45-day ceasefire on April 6 before accepting the 2-week deal
+- Brent updated: ~$102 (Apr 1) → ~$95 (Apr 8; ceasefire selloff -15%; intraday ~$91-$113); WTI ~$93
+- Gasoline updated: $4.02/gal → $4.12/gal (AAA, Apr 8); change +38% → +41%
+- Diesel updated: $5.49/gal → ~$5.81/gal (regional/unverified national; change +50% → ~+59%)
+- TTF updated: ~EUR 55.80 → ~EUR 44/MWh (-20% on ceasefire day); prior LNGPriceIndex Apr 3: EUR 50.08
+- JKM updated: mid-$20s → ~$18.75-19.87/MMBtu (easing on shoulder season + ceasefire relief)
+- BWET updated: $116.32 (Apr 1) → $148.56 (Apr 8, +7.5% on day) — trading above prior 52-week high of $147.40
+- Day count: 33 → 40; date: April 1 → April 8
+- Clock cards updated: Trump deadline (Apr 6) → "CEASEFIRE" (green); GL 134 → "3 days away"
+- Timeline: added Apr 6, Apr 7, Apr 8 rows; condensed Mar 25–Apr 1 into summary
+- What to Watch: removed Trump deadline/strikes items (resolved); added ceasefire compliance, Islamabad talks, mine removal, AIS ship count
+- Trading signals: replaced war-premium signals with ceasefire-phase signals
+- Market Intelligence: updated themes for ceasefire day
+- Sources: added fn115–fn128 (ceasefire, BWET, LNG, shipping insurance) — 128 total sources
+
+---
+
 ## 2026-04-01 — `report-2026-04-01`
 **Trump prime-time address: war "nearing completion"; well-damage threshold CROSSED; GL 134 10 days to expiry; China-Pakistan peace proposal; Brent ~$102 (war premium deflating); diesel $5.49/gal; BWET $116.32 (~+480% YTD)**
 

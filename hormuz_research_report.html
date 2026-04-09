@@ -21,39 +21,39 @@
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.45;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 2rem 2.5rem;
+    padding: 0.75rem 1.5rem;
   }
   h1 {
-    font-size: 2rem;
+    font-size: 1.6rem;
     color: var(--accent2);
     border-bottom: 3px solid var(--accent);
-    padding-bottom: 0.5rem;
-    margin-bottom: 0.25rem;
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.15rem;
   }
   .subtitle {
     color: var(--subtle);
     font-size: 0.95rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
   }
   .subtitle span { font-weight: 600; }
   h2 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: var(--accent2);
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0.5rem;
     padding-bottom: 0.3rem;
     border-bottom: 2px solid var(--border);
   }
   h3 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--accent2);
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
+    margin-top: 0.75rem;
+    margin-bottom: 0.3rem;
   }
-  p, li { margin-bottom: 0.5rem; }
+  p, li { margin-bottom: 0.3rem; }
   ul { padding-left: 1.5rem; }
   strong { color: var(--accent2); }
 
@@ -61,13 +61,13 @@
   .exec-summary {
     background: linear-gradient(135deg, #fdf2f2, #fef9e7);
     border-left: 5px solid var(--accent);
-    padding: 1.25rem 1.5rem;
+    padding: 0.75rem 1rem;
     border-radius: 0 8px 8px 0;
-    margin: 1.5rem 0;
-    font-size: 1.05rem;
+    margin: 0.75rem 0;
+    font-size: 0.92rem;
   }
   .exec-summary .big-number {
-    font-size: 2.2rem;
+    font-size: 1.25rem;
     font-weight: 800;
     color: var(--accent);
     display: inline-block;
@@ -78,24 +78,24 @@
   .stat-row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin: 1.5rem 0;
+    gap: 0.5rem;
+    margin: 0.75rem 0;
   }
   .stat-card {
     background: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
     text-align: center;
     box-shadow: 0 1px 3px rgba(0,0,0,0.06);
   }
   .stat-card .number {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     font-weight: 800;
     display: block;
   }
   .stat-card .unit {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     font-weight: 800;
   }
   .stat-card .label {
@@ -111,16 +111,16 @@
     margin-top: 0.25rem;
     font-style: italic;
   }
-  .stat-card.red .number { color: var(--accent); }
-  .stat-card.green .number { color: var(--green); }
-  .stat-card.yellow .number { color: var(--yellow); }
+  .stat-card.red .number, .stat-card.red .unit { color: var(--accent); }
+  .stat-card.green .number, .stat-card.green .unit { color: var(--green); }
+  .stat-card.yellow .number, .stat-card.yellow .unit { color: var(--yellow); }
 
   /* Tables */
   table {
     width: 100%;
     border-collapse: collapse;
-    margin: 1rem 0 1.5rem;
-    font-size: 0.9rem;
+    margin: 0.5rem 0 0.75rem;
+    font-size: 0.85rem;
   }
   th {
     background: var(--accent2);
@@ -158,8 +158,9 @@
   }
   .timeline-item {
     position: relative;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.35rem;
     padding-left: 1rem;
+    font-size: 0.88rem;
   }
   .timeline-item::before {
     content: '';
@@ -176,9 +177,50 @@
   .timeline-date {
     font-weight: 700;
     color: var(--accent2);
-    font-size: 0.85rem;
-    min-width: 60px;
+    font-size: 0.82rem;
+    min-width: 55px;
     display: inline-block;
+  }
+
+  /* Two-column timeline layout */
+  .timeline-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1.25rem;
+    margin: 0.5rem 0 1rem;
+  }
+  .timeline-grid .timeline-col h3 {
+    margin: 0 0 0.4rem 0;
+    padding-bottom: 0.25rem;
+    border-bottom: 2px solid var(--border);
+    font-size: 0.9rem;
+  }
+  .timeline-col.policy h3 { color: var(--accent2); border-color: var(--accent2); }
+  .timeline-col.structural h3 { color: var(--accent); border-color: var(--accent); }
+  .timeline-col .timeline {
+    margin: 0;
+    padding-left: 1.5rem;
+  }
+  .timeline-col .timeline-item {
+    font-size: 0.82rem;
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+  }
+  .timeline-col .timeline-item::before {
+    width: 8px;
+    height: 8px;
+    left: -1.45rem;
+    top: 0.35rem;
+  }
+  .timeline-col.policy .timeline::before { background: var(--accent2); }
+  .timeline-col.structural .timeline::before { background: var(--accent); }
+  .timeline-col.structural .timeline-item::before {
+    background: var(--accent);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+  .timeline-col.policy .timeline-item::before {
+    background: var(--accent2);
+    box-shadow: 0 0 0 2px var(--accent2);
   }
 
   /* Watchlist */
@@ -187,8 +229,9 @@
     border: 1px solid var(--border);
     border-left: 4px solid var(--yellow);
     border-radius: 0 6px 6px 0;
-    padding: 0.75rem 1rem;
-    margin-bottom: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.88rem;
   }
   .watch-item strong { color: var(--accent2); }
 
@@ -211,8 +254,8 @@
   .sweep-section {
     background: #f4f6f9;
     border-radius: 8px;
-    padding: 1.25rem 1.5rem;
-    margin: 1rem 0;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
   }
   .sweep-section h3 {
     margin-top: 0;
@@ -226,30 +269,30 @@
   .clocks {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin: 1.5rem 0;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
   }
   .clock-card {
     background: #fff;
     border: 2px solid var(--accent);
-    border-radius: 8px;
-    padding: 1rem;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
     text-align: center;
   }
-  .clock-card .date { font-size: 1.5rem; font-weight: 800; color: var(--accent); }
-  .clock-card .desc { font-size: 0.85rem; color: var(--subtle); margin-top: 0.3rem; }
+  .clock-card .date { font-size: 1.05rem; font-weight: 800; color: var(--accent); }
+  .clock-card .desc { font-size: 0.78rem; color: var(--subtle); margin-top: 0.15rem; }
 
   /* Flow rate callout */
   .flow-callout {
     background: linear-gradient(135deg, #fef9e7, #fdf2f2);
     border-left: 5px solid var(--yellow);
-    padding: 1rem 1.25rem;
+    padding: 0.75rem 1rem;
     border-radius: 0 8px 8px 0;
-    margin: 1rem 0;
-    font-size: 0.95rem;
+    margin: 0.5rem 0;
+    font-size: 0.88rem;
   }
   .flow-callout .big-label {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     font-weight: 800;
     color: var(--accent);
     display: block;
@@ -276,9 +319,9 @@
   .blockade-callout {
     background: linear-gradient(135deg, #eef2f7, #f4f6f9);
     border-left: 5px solid var(--accent2);
-    padding: 1.25rem 1.5rem;
+    padding: 0.75rem 1rem;
     border-radius: 0 8px 8px 0;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
   }
 
   /* ===================== DATA FRESHNESS BADGES ===================== */
@@ -336,6 +379,35 @@
     border-top: 2px solid var(--border);
     padding-top: 1rem;
   }
+  /* Part divider banners */
+  .part-divider {
+    background: var(--accent2);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    margin: 1.5rem 0 0.75rem;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    page-break-before: always;
+  }
+  .part-divider.gas {
+    background: linear-gradient(135deg, #1565c0, #0d47a1);
+  }
+  .part-divider.oil {
+    background: linear-gradient(135deg, #c0392b, #962d22);
+  }
+  .part-divider .part-sub {
+    font-size: 0.78rem;
+    font-weight: 400;
+    opacity: 0.85;
+    text-transform: none;
+    letter-spacing: 0;
+    display: block;
+    margin-top: 0.15rem;
+  }
+
   .sources h2 { font-size: 1.2rem; }
   .sources h3 { font-size: 0.9rem; margin-top: 1rem; margin-bottom: 0.3rem; }
   .sources a { color: var(--accent2); text-decoration: none; }
@@ -436,16 +508,13 @@
     .timeline-columns { grid-template-columns: 1fr; }
   }
   @media print {
-    body { max-width: 100%; padding: 1rem; }
+    body { max-width: 100%; padding: 0.5rem 0.75rem; font-size: 0.88rem; }
 
-    /* Prevent orphan headings — never let an h2/h3 sit alone at the bottom of a page */
+    /* Prevent orphan headings */
     h2, h3 { page-break-after: avoid; }
-
-    /* Keep column label pinned to its timeline content */
     .timeline-col-label { page-break-after: avoid; }
 
-    /* Keep these blocks from splitting mid-element */
-    .chart-container  { page-break-inside: avoid; }
+    /* Keep blocks together */
     .exec-summary     { page-break-inside: avoid; }
     .stat-row         { page-break-inside: avoid; }
     .clocks           { page-break-inside: avoid; }
@@ -462,18 +531,22 @@
     /* Explicit page breaks — applied only where requested */
     .break-before { page-break-before: always; }
 
-    /* Country-Level Vulnerability: sized to fill one A3 page comfortably */
+    /* Country-Level Vulnerability: compact to minimize whitespace */
     .vuln-table {
-      font-size: 0.82rem;
-      margin: 0.75rem 0 0;
+      font-size: 0.72rem;
+      margin: 0.25rem 0 0;
+      page-break-inside: auto;
     }
     .vuln-table th {
-      padding: 0.45rem 0.7rem;
-      font-size: 0.73rem;
+      padding: 0.25rem 0.4rem;
+      font-size: 0.65rem;
     }
     .vuln-table td {
-      padding: 0.38rem 0.7rem;
-      line-height: 1.45;
+      padding: 0.2rem 0.4rem;
+      line-height: 1.3;
+    }
+    .vuln-table tr {
+      page-break-inside: avoid;
     }
   }
 </style>
@@ -481,542 +554,425 @@
 <body>
 
 <h1>Strait of Hormuz Crisis</h1>
-<p class="subtitle">Oil Supply Disruption Briefing &mdash; <span>April 8, 2026 (Day 40)</span> &mdash; Last refreshed: Apr 8, 2026 &mdash; <strong>Two-week ceasefire in effect (Apr 7) — but Hormuz still largely closed;</strong> ~3 ships/day vs. 135 normal; 800+ ships stranded; mines uncleared; violations within hours; <strong>GL 134 expires in 3 DAYS (Apr 11)</strong>; Islamabad talks Apr 10; Brent ~$95/bbl (ceasefire selloff &minus;15%); WTI ~$93/bbl; gasoline $4.12/gal; diesel ~$5.81/gal; TTF ~&euro;44/MWh (&minus;20%); BWET $148.56 (+7.5%)</p>
+<p class="subtitle">Oil &amp; Gas Supply Disruption Briefing &mdash; <span>April 8, 2026 (Day 40)</span> &mdash; <strong>&ldquo;Ceasefire&rdquo; in name only (Apr 7) &mdash; violations within hours, goals irreconcilable, Hormuz still closed;</strong> ~3 ships/day vs. 135 normal; 800+ ships stranded; mines uncleared; GL 134 expires Apr 11 (3 days); Islamabad talks Apr 10; Brent ~$95 (&minus;15%); diesel ~$5.81/gal; TTF ~&euro;44/MWh; BWET $148.56</p>
 
-<div class="freshness-legend">
+<div class="freshness-legend" style="margin:0.25rem 0;font-size:0.78rem;">
   <strong>Data freshness:</strong>
-  <span><span class="badge live">LIVE</span> Daily market price &mdash; verify before trading</span>
-  <span><span class="badge policy">POLICY</span> Government action &mdash; check for updates</span>
-  <span><span class="badge structural">STRUCTURAL</span> Infrastructure / historical &mdash; stable</span>
+  <span><span class="badge live">LIVE</span> Daily market price</span>
+  <span><span class="badge policy">POLICY</span> Government action</span>
+  <span><span class="badge structural">STRUCTURAL</span> Infrastructure / historical</span>
 </div>
 
+<!-- ═══════════ EXECUTIVE SUMMARY ═══════════ -->
 <div class="exec-summary">
-  <p><strong>Day 40. Ceasefire in effect &mdash; but Hormuz still closed. Net shortage: ~12 mb/d. Well damage structural. GL 134 expires in 3 days.</strong></p>
-  <p><span class="big-number">-12.0</span> mb/d net global oil shortage. The US-Israel war on Iran (Feb 28) triggered history&rsquo;s largest oil supply disruption.<sup class="fn"><a href="#fn7" id="ref7a">[7]</a></sup> Iran&rsquo;s selective Hormuz closure took ~20 mb/d offline; mitigations cover ~8 mb/d.<sup class="fn"><a href="#fn1" id="ref1a">[1]</a></sup></p>
-  <p><strong>Latest developments (Apr 7&ndash;8):</strong></p>
-  <ul>
-    <li><strong>Two-week ceasefire in effect:</strong> Trump suspended US bombing April 7; Iran&rsquo;s SNSC formally accepted. Ceasefire violations reported within hours by UAE and Kuwait.<sup class="fn"><a href="#fn115" id="ref115a">[115]</a></sup><sup class="fn"><a href="#fn118" id="ref118a">[118]</a></sup></li>
-    <li><strong>Hormuz still largely closed:</strong> Only ~3 ships transited on ceasefire day (vs. 135/day normal); 800+ freighters stranded inside Gulf; Iran retains operational transit control<sup class="fn"><a href="#fn119" id="ref119a">[119]</a></sup></li>
-    <li><strong>Mines uncleared:</strong> Iran has not announced mine removal &mdash; minesweeping is prerequisite for safe commercial traffic, adding 7&ndash;14 days beyond any political deal</li>
-    <li><strong>Russia and China vetoed</strong> April 7 UN Security Council resolution on commercial shipping protection<sup class="fn"><a href="#fn121" id="ref121a">[121]</a></sup></li>
-    <li><strong>Islamabad negotiations begin April 10</strong> &mdash; first structured US-Iran talks; Iran&rsquo;s 10-point demands include troop withdrawal, full sanctions lift, and IRGC Hormuz fee retention<sup class="fn"><a href="#fn116" id="ref116a">[116]</a></sup></li>
-    <li><strong>GL 134 expires April 11</strong> &mdash; 3 days away; no extension announced; ceasefire may lead Treasury to let lapse; &minus;2 mb/d cliff<sup class="fn"><a href="#fn3" id="ref3a">[3]</a></sup></li>
+  <p><strong>Day 40. &ldquo;Ceasefire&rdquo; in name only &mdash; fighting ongoing, goals irreconcilable, Hormuz still closed. Net shortage: <span class="big-number">~10 mb/d.</span> Well damage structural. GL 134 expires in 3 days.</strong></p>
+  <ul style="margin-top:0.3rem;">
+    <li><strong>&ldquo;Ceasefire&rdquo; (Apr 7):</strong> Trump suspended US bombing 2 weeks; Iran SNSC accepted; <strong>violations within hours;</strong> Israel not bound; both sides&rsquo; objectives have zero overlap (see Ceasefire section); only ~3 ships/day; 800+ stranded; mines uncleared<sup class="fn"><a href="#fn115" id="ref115a">[115]</a></sup></li>
+    <li><strong>GL 134 expires Apr 11</strong> &mdash; 3 days; no extension announced; &minus;2 mb/d cliff from mitigation stack<sup class="fn"><a href="#fn3" id="ref3a">[3]</a></sup></li>
+    <li><strong>Islamabad talks Apr 10</strong> &mdash; first structured US-Iran negotiations; Iran&rsquo;s 10-point demands largely incompatible with US red lines<sup class="fn"><a href="#fn116" id="ref116a">[116]</a></sup></li>
+    <li><strong>Well damage (41+ days idle):</strong> Water coning active since Mar 28; Kuwait CEO: &ldquo;3&ndash;4 months to recover post-war&rdquo;<sup class="fn"><a href="#fn114" id="ref114a">[114]</a></sup></li>
+    <li><strong>Ras Laffan LNG:</strong> 12.8M mt/yr (17% Qatar capacity) offline for 3&ndash;5 years regardless of ceasefire<sup class="fn"><a href="#fn60" id="ref60a">[60]</a></sup></li>
   </ul>
-  <p><strong>Thresholds (unchanged):</strong> Well damage active since Mar 28 (now 41+ days idle; Kuwait CEO: &ldquo;3&ndash;4 months to recover&rdquo;).<sup class="fn"><a href="#fn114" id="ref114a">[114]</a></sup> Ras Laffan LNG: 12.8M mt/yr offline for 3&ndash;5 years regardless of ceasefire.<sup class="fn"><a href="#fn60" id="ref60a">[60]</a></sup></p>
-  <p><strong>Prices (Apr 8):</strong> Brent <span class="badge live">LIVE</span> ~$95/bbl (ceasefire selloff &minus;15%; intraday ~$91&ndash;$113); WTI ~$93/bbl; gasoline $4.12/gal (+41%); diesel ~$5.81/gal (~+59%, regional); TTF ~&euro;44/MWh (&minus;20%); JKM ~$19/MMBtu; BWET $148.56 (+7.5% &mdash; tanker freight still near record).<sup class="fn"><a href="#fn124" id="ref124a">[124]</a></sup><sup class="fn"><a href="#fn125" id="ref125a">[125]</a></sup></p>
+  <p><strong>Prices (Apr 8):</strong> Brent <span class="badge live">LIVE</span> ~$95 (ceasefire selloff &minus;15%); WTI ~$93; gasoline $4.12/gal (+41%); diesel ~$5.81/gal (+59%); 3-2-1 crack ~$42/bbl; TTF ~&euro;44/MWh (&minus;20%); JKM ~$19/MMBtu; BWET $148.56 (+7.5%); VLCC spot ~$250K/day<sup class="fn"><a href="#fn124" id="ref124a">[124]</a></sup></p>
 </div>
 
+<!-- Stat Cards -->
 <div class="stat-row">
-  <div class="stat-card red">
-    <span class="number">-20.0 <span class="unit">mb/d</span></span>
-    <span class="label">Hormuz Transit Lost</span>
-  </div>
-  <div class="stat-card green">
-    <span class="number">+8.05 <span class="unit">mb/d</span></span>
-    <span class="label">Mitigations (thru Apr 11)</span>
-  </div>
-  <div class="stat-card red">
-    <span class="number">-12.0 <span class="unit">mb/d</span></span>
-    <span class="label">Net Shortage</span>
-  </div>
-  <div class="stat-card yellow">
-    <span class="number">~$95</span>
-    <span class="label">Brent Crude (/bbl) <span class="badge live">LIVE</span></span>
-    <span class="price-time">Apr 8 &mdash; ceasefire selloff &minus;15%; range ~$91&ndash;$113; WTI ~$93; prior session ~$112+</span>
-  </div>
-  <div class="stat-card red">
-    <span class="number">~$5.81</span>
-    <span class="label">US Diesel (/gal) <span class="badge live">LIVE</span></span>
-    <span class="price-time">Apr 8 &mdash; regional/unverified national; gas $4.12/gal (AAA)</span>
-  </div>
+  <div class="stat-card red"><span class="number">-20.0 <span class="unit">mb/d</span></span><span class="label">Hormuz Transit Lost</span></div>
+  <div class="stat-card green"><span class="number">+10.1 <span class="unit">mb/d</span></span><span class="label">Total Mitigations</span></div>
+  <div class="stat-card red"><span class="number">-9.9 <span class="unit">mb/d</span></span><span class="label">Net Shortage</span></div>
+  <div class="stat-card yellow"><span class="number">~$95</span><span class="label">Brent (/bbl) <span class="badge live">LIVE</span></span><span class="price-time">Apr 8 &mdash; ceasefire selloff &minus;15%; prior ~$112</span></div>
+  <div class="stat-card red"><span class="number">~$42</span><span class="label">3-2-1 Crack (/bbl) <span class="badge live">LIVE</span></span><span class="price-time">USGC; pre-crisis ~$22; +91%</span></div>
 </div>
 
-<!-- Critical Thresholds -->
+<!-- Clock Cards -->
 <div class="clocks">
   <div class="clock-card" style="border-color:#c0392b;background:#fdf2f2;">
-    <div class="date" style="color:#c0392b;">&#9888; CROSSED</div>
-    <div class="desc">4-week shut-in threshold (Mar 28)<br>Now 41+ days idle &mdash; Kuwait CEO: 3&ndash;4 month post-war recovery</div>
+    <div class="date" style="color:#c0392b;">&#9888; 41 DAYS</div>
+    <div class="desc">Wells idle since Mar 3<br>Water coning active &mdash; 3&ndash;4 mo recovery</div>
   </div>
   <div class="clock-card" style="border-color:#27ae60;background:#f0fff4;">
-    <div class="date" style="color:#27ae60;">&#10003; CEASEFIRE</div>
-    <div class="desc">Apr 7: Trump suspended bombing (2 weeks)<br>Iran SNSC accepted &mdash; but Hormuz still closed, 800+ ships stranded</div>
+    <div class="date" style="color:#e67e22;">&ldquo;CEASEFIRE&rdquo;</div>
+    <div class="desc">Apr 7 &mdash; US bombing paused 2 wks<br>Violations within hours; Israel not bound;<br>goals irreconcilable; Hormuz still closed</div>
   </div>
   <div class="clock-card" style="border-color:#e65100;background:#fff3e0;">
     <div class="date" style="color:#e65100;">Apr 11</div>
-    <div class="desc">GL 134 expires &mdash; <strong>3 days away</strong><br>&minus;2 mb/d cliff; no extension announced; Islamabad talks Apr 10</div>
+    <div class="desc">GL 134 expires &mdash; <strong>3 days</strong><br>&minus;2 mb/d cliff; no extension</div>
   </div>
 </div>
 
-<!-- Timeline -->
+<!-- ═══════════ TIMELINE ═══════════ -->
 <h2>Timeline of Key Events</h2>
+
+<div style="background:#f8f9fa;border-radius:6px;padding:0.5rem 0.75rem;margin-bottom:0.5rem;font-size:0.82rem;line-height:1.4;">
+<strong>Crisis Origins (Feb 28 &ndash; Mar 14):</strong> US/Israel struck Iran Feb 28, killing Supreme Leader Ali Khamenei. Iran retaliated with drone/missile strikes on Saudi, Qatar, UAE, and Oman energy infrastructure (Mar 1&ndash;2). European gas surged 45%. Iraq shut Rumaila field Mar 3 (storage full). IRGC announced Hormuz closure Mar 5. Kuwait declared force majeure Mar 7. Mojtaba Khamenei elected Supreme Leader Mar 9 (IRGC-backed). Saudi activated East-West Pipeline and IEA authorized record 400M bbl SPR release Mar 11. OFAC issued GL 134 (30-day Russian oil waiver) Mar 12. US struck Kharg Island Mar 14 (oil infra deliberately spared). P&amp;I clubs cancelled war risk; Maersk, CMA CGM, Hapag-Lloyd suspended transits.<sup class="fn"><a href="#fn58" id="ref58a">[58]</a></sup><sup class="fn"><a href="#fn33" id="ref33a">[33]</a></sup><sup class="fn"><a href="#fn14" id="ref14a">[14]</a></sup><sup class="fn"><a href="#fn1" id="ref1a">[1]</a></sup><sup class="fn"><a href="#fn3" id="ref3b">[3]</a></sup>
+</div>
+
+<div class="timeline-grid">
+<div class="timeline-col policy">
+<h3>&#9881; Policy &amp; Diplomacy</h3>
 <div class="timeline">
-  <div class="timeline-item"><span class="timeline-date">Feb 28</span> US/Israel launch strikes on Iran; Supreme Leader Ali Khamenei killed; "major combat operations" declared.<sup class="fn"><a href="#fn58" id="ref58a">[58]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 1–2</span> Iran retaliates with drone/missile strikes on Saudi, Qatar, UAE, Oman energy infrastructure; QatarEnergy declares force majeure on LNG at Ras Laffan; European gas benchmark +45% in one session.<sup class="fn"><a href="#fn33" id="ref33a">[33]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 3</span> Iraq shuts Rumaila field (storage full); Assembly of Experts convenes for succession — combined Gulf production cuts reach ~5.9 mb/d.<sup class="fn"><a href="#fn44" id="ref44a">[44]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 5</span> IRGC formally announces Strait of Hormuz closure to US/Israel/Western-allied ships; major P&amp;I clubs cancel war risk cover; Maersk, CMA CGM, Hapag-Lloyd suspend transits.<sup class="fn"><a href="#fn14" id="ref14a">[14]</a></sup><sup class="fn"><a href="#fn32" id="ref32a">[32]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 6</span> IMO confirms 4 seafarers killed; vessel <em>Athe Nova</em> (Honduran-flagged) set ablaze near UAE; first Qatar LNG cargo (Al Ghashamiya) loaded at Ras Laffan since shutdown.<sup class="fn"><a href="#fn33" id="ref33b">[33]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 7</span> Kuwait declares force majeure; combined Gulf crude production offline reaches ~6.7 mb/d; <strong>first VLCC loading at Jask terminal since Oct 2024</strong> (~2M bbl — only the 5th Jask loading in 5 years).<sup class="fn"><a href="#fn44" id="ref44b">[44]</a></sup><sup class="fn"><a href="#fn10" id="ref10g">[10]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 9</span> Brent surges past $100/bbl for first time; <strong>Mojtaba Khamenei elected Supreme Leader</strong> (IRGC-backed); Fujairah terminal struck for first time.<sup class="fn"><a href="#fn58" id="ref58b">[58]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 11</span> Saudi activates full East-West Pipeline (Yanbu throughput 2.5 mb/d); IEA authorizes record 400M bbl emergency release;<sup class="fn"><a href="#fn1" id="ref1b">[1]</a></sup> UN Security Council Resolution 2817 passes 13-0-2 (China/Russia abstain).<sup class="fn"><a href="#fn2" id="ref2a">[2]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 12</span> SPR physical releases begin; OFAC issues GL 134, authorizing delivery of 186M bbl Russian crude already loaded as of Mar 12; Brent holds above $100.<sup class="fn"><a href="#fn3" id="ref3b">[3]</a></sup><sup class="fn"><a href="#fn13" id="ref13a">[13]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 13</span> Turkish vessel granted first non-Iranian passage; Treasury Sec. Bessent confirms US allowing Iranian tankers through.<sup class="fn"><a href="#fn5" id="ref5b">[5]</a></sup><sup class="fn"><a href="#fn13" id="ref13b">[13]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 14</span> US strikes 90+ military targets on Kharg Island (oil infrastructure deliberately spared); Fujairah struck again (2nd time); France pledges 2 frigates "purely defensive."<sup class="fn"><a href="#fn30" id="ref30a">[30]</a></sup><sup class="fn"><a href="#fn38" id="ref38a">[38]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 15&ndash;17</span> First non-Iran transits (Pakistan, Saudi, Indian vessels); Mojtaba Khamenei first statement: &ldquo;Strait must be used as leverage&rdquo;; Ali Larijani + Soleimani killed (40+ officials total); all major allies decline escort coalition.<sup class="fn"><a href="#fn5" id="ref5c">[5]</a></sup><sup class="fn"><a href="#fn16" id="ref16a">[16]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 18</span> <strong>Israel strikes South Pars gas field</strong> (phases 3&ndash;6) &mdash; first upstream Iranian energy hit; Iran FM proposes permanent Hormuz protocol; vessel traffic nearly doubles; Brent spikes 5% to ~$109.<sup class="fn"><a href="#fn42" id="ref42b">[42]</a></sup><sup class="fn"><a href="#fn19" id="ref19a">[19]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 19</span> <strong>Ras Laffan damage = 3&ndash;5 YEARS</strong> (QatarEnergy CEO: 12.8M mt/yr offline); Iran retaliates for South Pars: 5 missile salvos at Israel + Saudi/Kuwait energy strikes; SPR first barrels reach market; Brent $112.<sup class="fn"><a href="#fn60" id="ref60b">[60]</a></sup><sup class="fn"><a href="#fn73" id="ref73b">[73]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 19&ndash;20</span> IDF strikes Tehran overnight; Bessent signals ~140M bbl Iranian crude sanctions relief; Khamenei Nowruz message (&ldquo;enemies defeated&rdquo;); Trump calls NATO &ldquo;cowards&rdquo;; Brent volatile $105&ndash;$110.<sup class="fn"><a href="#fn62" id="ref62b">[62]</a></sup><sup class="fn"><a href="#fn70" id="ref70b">[70]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 21</span> Iran hits Kuwait Mina Al-Ahmadi refinery twice in 48hrs (~730K b/d); Israel strikes Tehran on Nowruz; Trump rules out ceasefire; 11th MEU deploying; Brent ~$110.<sup class="fn"><a href="#fn75" id="ref75a">[75]</a></sup><sup class="fn"><a href="#fn77" id="ref77a">[77]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 22&ndash;23</span> Trump issues ultimatum then <strong>postpones all Iran energy strikes for 5 days</strong> citing &ldquo;productive conversations&rdquo;; Brent volatile ($114 &rarr; $101); Goldman raises 2026 Brent to $85/bbl avg; Pakistan/Oman/Egypt mediating.<sup class="fn"><a href="#fn83" id="ref83c">[83]</a></sup><sup class="fn"><a href="#fn85" id="ref85c2">[85]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 24</span> <strong>~12 Iranian mines confirmed in Hormuz</strong> (Maham 3/7 types) &mdash; minesweeping now prerequisite for reopening; Valero Port Arthur TX refinery explosion (380K b/d shut); diesel $5.35/gal (new high).<sup class="fn"><a href="#fn99" id="ref99d">[99]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Mar 25&ndash;Apr 1</span> Brent falls below $100 (Mar 25, $99.61/bbl) on ceasefire talk optimism; Trump grants two deadline extensions (~10 days each) via backchannel to ~Apr 6; Iran formally submits counter-conditions (IRGC transit fee, reparations, sanctions lift); well damage threshold crossed Mar 28 (25+ days idle); China-Pakistan joint peace initiative presented Mar 31; Trump prime-time address Apr 1: war &ldquo;nearing completion,&rdquo; pledges &ldquo;extremely hard&rdquo; strikes in 2&ndash;3 weeks; BWET $116.</div>
-  <div class="timeline-item"><span class="timeline-date">Apr 6</span> Iran formally rejects Trump&rsquo;s 45-day ceasefire proposal; only 11 vessels transited Hormuz (4 inbound, 7 outbound) vs. 135/day normal; Brent ~$113 intraday; US-Iran backchannel still open via Pakistani mediation.<sup class="fn"><a href="#fn120" id="ref120a">[120]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Apr 7</span> <strong>Trump suspends US bombing for 2 weeks</strong> contingent on Hormuz reopening; Iran&rsquo;s Supreme National Security Council formally accepts; <strong>Russia and China veto</strong> UN Security Council resolution aimed at protecting commercial shipping; ceasefire violations reported within hours by UAE and Kuwait; Iran states passage only permitted &ldquo;in coordination with Iranian Armed Forces&rdquo; &mdash; Tehran retains operational control; only ~3 ships cross on ceasefire day.<sup class="fn"><a href="#fn115" id="ref115b">[115]</a></sup><sup class="fn"><a href="#fn117" id="ref117a">[117]</a></sup><sup class="fn"><a href="#fn121" id="ref121b">[121]</a></sup></div>
-  <div class="timeline-item"><span class="timeline-date">Apr 8</span> Ceasefire technically in effect but <strong>Hormuz remains largely closed</strong>; <strong>800+ ships stranded inside Gulf</strong> waiting to exit; mines still in water; Iran has not announced mine removal; Islamabad negotiations scheduled April 10 under Pakistani PM Sharif mediation; Brent ~$95 (ceasefire selloff &minus;15% from ~$112); WTI ~$93; TTF ~&euro;44/MWh (&minus;20%); <strong>BWET $148.56 (+7.5%)</strong> &mdash; tanker freight elevated as backlog and rerouting sustain demand; GL 134 expires in 3 days with no extension announced.<sup class="fn"><a href="#fn119" id="ref119b">[119]</a></sup><sup class="fn"><a href="#fn124" id="ref124b">[124]</a></sup><sup class="fn"><a href="#fn125" id="ref125b">[125]</a></sup></div>
+  <div class="timeline-item"><span class="timeline-date">Apr 8</span> Ceasefire in effect; Islamabad talks scheduled Apr 10; GL 134 expires in 3 days; no extension announced.<sup class="fn"><a href="#fn119" id="ref119b">[119]</a></sup></div>
+  <div class="timeline-item"><span class="timeline-date">Apr 7</span> <strong>Trump suspends bombing 2 weeks</strong>; Iran SNSC accepts; Russia/China veto UNSC commercial shipping resolution; violations within hours.<sup class="fn"><a href="#fn115" id="ref115b">[115]</a></sup><sup class="fn"><a href="#fn121" id="ref121b">[121]</a></sup></div>
+  <div class="timeline-item"><span class="timeline-date">Apr 6</span> Iran rejects Trump 45-day ceasefire proposal; only 11 vessels transit Hormuz.<sup class="fn"><a href="#fn120" id="ref120a">[120]</a></sup></div>
+  <div class="timeline-item"><span class="timeline-date">Mar 25&ndash;Apr 1</span> Trump grants two deadline extensions to ~Apr 6; Iran rejects 15-point plan; China-Pakistan peace initiative (Mar 31); Trump prime-time address Apr 1.</div>
+  <div class="timeline-item"><span class="timeline-date">Mar 22&ndash;23</span> Trump postpones Iran energy strikes 5 days; Goldman raises 2026 Brent avg to $85.<sup class="fn"><a href="#fn83" id="ref83c">[83]</a></sup><sup class="fn"><a href="#fn85" id="ref85c2">[85]</a></sup></div>
+  <div class="timeline-item"><span class="timeline-date">Mar 19&ndash;20</span> IDF strikes Tehran overnight; Bessent signals ~140M bbl Iranian crude relief; Trump calls NATO &ldquo;cowards.&rdquo;<sup class="fn"><a href="#fn62" id="ref62b">[62]</a></sup></div>
+  <div class="timeline-item"><span class="timeline-date">Mar 15&ndash;17</span> First non-Iran transits; Khamenei: &ldquo;Strait as leverage&rdquo;; Larijani + Soleimani killed (40+ officials total); allies decline escort.<sup class="fn"><a href="#fn5" id="ref5c">[5]</a></sup></div>
+</div>
+</div>
+<div class="timeline-col structural">
+<h3>&#128293; Infrastructure &amp; Supply</h3>
+<div class="timeline">
+  <div class="timeline-item"><span class="timeline-date">Apr 8</span> <strong>800+ ships stranded</strong>; mines uncleared; ~3 ships/day; BWET $148.56 (+7.5%); VLCC spot ~$250K/day.<sup class="fn"><a href="#fn124" id="ref124b">[124]</a></sup><sup class="fn"><a href="#fn125" id="ref125b">[125]</a></sup></div>
+  <div class="timeline-item"><span class="timeline-date">Mar 28</span> <strong>Well-damage threshold crossed</strong> &mdash; 25+ days idle; Kuwait CEO: 3&ndash;4 months; IEA raises cut to ~8 mb/d + ~2 mb/d condensates.<sup class="fn"><a href="#fn114" id="ref114b">[114]</a></sup></div>
+  <div class="timeline-item"><span class="timeline-date">Mar 24</span> ~12 Iranian mines confirmed (Maham 3/7); Valero Port Arthur explosion (380K b/d shut).<sup class="fn"><a href="#fn99" id="ref99d">[99]</a></sup></div>
+  <div class="timeline-item"><span class="timeline-date">Mar 21</span> Iran hits Kuwait Mina Al-Ahmadi twice in 48hrs (~730K b/d).<sup class="fn"><a href="#fn75" id="ref75a">[75]</a></sup></div>
+  <div class="timeline-item"><span class="timeline-date">Mar 19</span> Ras Laffan: 12.8M mt/yr offline 3&ndash;5 YEARS; Iran retaliates: 5 salvos at Israel + Saudi/Kuwait strikes.<sup class="fn"><a href="#fn60" id="ref60b">[60]</a></sup></div>
+  <div class="timeline-item"><span class="timeline-date">Mar 18</span> Israel strikes South Pars gas field (phases 3&ndash;6) &mdash; first upstream Iranian energy hit.<sup class="fn"><a href="#fn42" id="ref42b">[42]</a></sup></div>
+  <div class="timeline-item"><span class="timeline-date">Mar 14</span> US strikes Kharg Island (oil infra spared); Fujairah struck 2nd time.<sup class="fn"><a href="#fn30" id="ref30a">[30]</a></sup></div>
+</div>
+</div>
 </div>
 
-<!-- Iran's Selective Blockade -->
-<h2>Iran's Selective Blockade Strategy</h2>
+<!-- ═══════════ PART 1: OIL & DISTILLATES ═══════════ -->
+<div class="part-divider oil">Part 1: Oil &amp; Distillates<span class="part-sub">Crude supply disruption, bypass pipelines, production cuts, pricing, crack spreads, freight, and demand</span></div>
+
+<h2>Iran&rsquo;s Selective Blockade &amp; Dark Fleet</h2>
 <div class="blockade-callout">
-  <p>Iran is <strong>not</strong> enforcing a total closure. It is operating a <strong>selective blockade</strong> &mdash; blocking US/Western-allied shipping while allowing passage for strategically useful traffic.<sup class="fn"><a href="#fn5" id="ref5d">[5]</a></sup> This divides the Western coalition (India and China have less incentive to act), maintains Iran's revenue, and turns Hormuz into a diplomatic lever. Traffic has collapsed 95%+ from the pre-war 100+ ships/day.<sup class="fn"><a href="#fn17" id="ref17a">[17]</a></sup></p>
+  <p>Iran operates a <strong>selective blockade</strong> &mdash; blocking Western-allied shipping while allowing strategically useful traffic. This divides the Western coalition, maintains Iran&rsquo;s revenue, and turns Hormuz into a diplomatic lever. Traffic collapsed 97%+ from the pre-war ~135 ships/day.<sup class="fn"><a href="#fn5" id="ref5d">[5]</a></sup><sup class="fn"><a href="#fn17" id="ref17a">[17]</a></sup></p>
 </div>
-
 <table>
   <tr><th>Allowed Through</th><th>Details</th></tr>
-  <tr><td><strong>Iranian-flagged vessels</strong></td><td>~1.5 mb/d continuing exports; ~1.25 mb/d reaching China via dark fleet; 11.7M bbl since Feb 28.<sup class="fn"><a href="#fn10" id="ref10b">[10]</a></sup></td></tr>
-  <tr><td><strong>India-linked cargoes</strong></td><td>2 Indian LPG carriers; 1 Saudi tanker (1M bbl for India).<sup class="fn"><a href="#fn5" id="ref5e">[5]</a></sup></td></tr>
-  <tr><td><strong>Turkish vessel</strong></td><td>Granted passage Mar 13 — confirmed by Turkish transport minister.<sup class="fn"><a href="#fn5" id="ref5f">[5]</a></sup></td></tr>
-  <tr><td><strong>Pakistani tanker</strong></td><td><em>KARACHI</em> transited Mar 15 with AIS active.<sup class="fn"><a href="#fn59" id="ref59a">[59]</a></sup></td></tr>
-  <tr><td><strong>China-bound dark fleet</strong></td><td>11.7M bbl Iranian crude transited since Feb 28, all China-bound.<sup class="fn"><a href="#fn10" id="ref10c">[10]</a></sup></td></tr>
-  <tr><td><strong>Jask terminal</strong></td><td>Iran executing crude exports from Kooh Mobarak terminal south of Hormuz, bypassing strait entirely.<sup class="fn"><a href="#fn10" id="ref10d">[10]</a></sup></td></tr>
-  <tr><td><strong>Japan-flagged vessels</strong></td><td>Formally approved for transit Mar 21 &mdash; first non-China/India/Pakistan/Turkey clearance via Iran&rsquo;s emerging vetting system.<sup class="fn"><a href="#fn86" id="ref86c">[86]</a></sup></td></tr>
-  <tr><td><strong>IRGC per-vessel transit fee</strong></td><td><strong>$2 million per vessel</strong> &mdash; Iran charging negotiated fee per ship, operated by IRGC; Iranian lawmaker Alaeddin Boroujerdi confirmed implementation. Countries in direct talks: India, Pakistan, Iraq, Malaysia, China, Turkey.<sup class="fn"><a href="#fn94" id="ref94a">[94]</a></sup></td></tr>
+  <tr><td><strong>Iranian-flagged vessels</strong></td><td>~1.5 mb/d continuing; ~1.25 mb/d China-bound via dark fleet; 11.7M+ bbl since Feb 28<sup class="fn"><a href="#fn10" id="ref10b">[10]</a></sup></td></tr>
+  <tr><td><strong>India-linked</strong></td><td>2 LPG carriers + 1 Saudi tanker (1M bbl for India); bilateral passage deal<sup class="fn"><a href="#fn5" id="ref5e">[5]</a></sup></td></tr>
+  <tr><td><strong>Japan, Turkey, Pakistan</strong></td><td>Formally approved via Iran&rsquo;s vetting system (Mar 13&ndash;21)<sup class="fn"><a href="#fn86" id="ref86c">[86]</a></sup></td></tr>
+  <tr><td><strong>IRGC transit fee</strong></td><td><strong>$2M per vessel</strong> &mdash; confirmed by Iranian lawmaker Boroujerdi; countries in direct talks: India, Pakistan, Iraq, Malaysia, China, Turkey<sup class="fn"><a href="#fn94" id="ref94a">[94]</a></sup></td></tr>
+  <tr><td><strong>Yuan-denominated cargoes</strong></td><td>Under consideration &mdash; would turn Hormuz into a currency weapon challenging petrodollar dynamics<sup class="fn"><a href="#fn26" id="ref26a">[26]</a></sup></td></tr>
 </table>
-<p>As of Mar 18, vessel transits have nearly doubled to 8 non-Iranian ships detected Monday (MarineTraffic/S&amp;P Global), up from 2–5/day in prior days — "a growing number rerouting via Iran's territorial waters," reflecting permission-based expansion to friendly nations.<sup class="fn"><a href="#fn19" id="ref19b">[19]</a></sup><sup class="fn"><a href="#fn17" id="ref17b">[17]</a></sup> Iran FM Araghchi: the strait is <strong>"open, but closed to our enemies."</strong><sup class="fn"><a href="#fn18" id="ref18c">[18]</a></sup></p>
-<p>Iran is reportedly considering allowing <strong>yuan-denominated cargoes</strong> to transit &mdash; turning the energy corridor into a currency weapon and challenging petrodollar dynamics.<sup class="fn"><a href="#fn26" id="ref26a">[26]</a></sup></p>
 
-<!-- Infrastructure Damage -->
-<h2>Infrastructure Damage by Country</h2>
+<h2>Infrastructure Damage <span class="badge structural">STRUCTURAL</span></h2>
 <table>
-  <tr><th>Country</th><th>Facility</th><th>Type</th><th>Attack</th><th>Status</th></tr>
-  <tr><td><strong>Saudi Arabia</strong></td><td>Ras Tanura</td><td>Refinery + terminal (550K b/d)</td><td>Drone debris Mar 1</td><td>Fire, halted. 2–4 weeks to repair.<sup class="fn"><a href="#fn4" id="ref4a">[4]</a></sup></td></tr>
-  <tr><td><strong>Qatar</strong></td><td>Ras Laffan</td><td>LNG plant (~20% global LNG supply)</td><td>Drone strike Mar 2</td><td>Force majeure declared; 1 cargo loaded Mar 6; <strong>QatarEnergy CEO (Mar 19): 2 LNG trains + 1 GTL destroyed — 12.8M mt/yr (17%) offline for 3-5 YEARS; ~$20B/yr lost revenue;</strong> restart requires hostilities to cease then specialized equipment rebuild; North Field expansion delayed to 2027.<sup class="fn"><a href="#fn33" id="ref33c">[33]</a></sup><sup class="fn"><a href="#fn60" id="ref60c">[60]</a></sup></td></tr>
-  <tr><td><strong>Qatar</strong></td><td>Mesaieed</td><td>Petrochemicals/power</td><td>Drone strike Mar 2</td><td>Downstream production halted.<sup class="fn"><a href="#fn4" id="ref4b">[4]</a></sup></td></tr>
-  <tr><td><strong>UAE</strong></td><td>Mussafah</td><td>Fuel terminal</td><td>Direct hit Mar 1</td><td>Fire; assessment ongoing.<sup class="fn"><a href="#fn4" id="ref4c">[4]</a></sup></td></tr>
-  <tr><td><strong>UAE</strong></td><td>Fujairah</td><td>Oil terminal (key ADCOP exit)</td><td>Hit 3 times (Mar 9, 14, 16)</td><td>Loading impaired; ADCOP pipeline still flowing at 1.8 mb/d.<sup class="fn"><a href="#fn8" id="ref8a">[8]</a></sup></td></tr>
-  <tr><td><strong>Oman</strong></td><td>Duqm</td><td>Fuel storage</td><td>Multiple drones Mar 1–2</td><td>Direct hit, explosion reported.<sup class="fn"><a href="#fn4" id="ref4d">[4]</a></sup></td></tr>
-  <tr><td><strong>Oman</strong></td><td>Salalah</td><td>Port</td><td>Drone strike</td><td>Damage reported.<sup class="fn"><a href="#fn4" id="ref4e">[4]</a></sup></td></tr>
-  <tr><td><strong>Iran</strong></td><td>Kharg Island</td><td>Oil export hub (~7M b/d capacity)</td><td>US strikes Mar 14 (90+ targets)</td><td>Military targets only; oil infrastructure spared; 8+ tanker loadings (~14M bbl) continuing.<sup class="fn"><a href="#fn30" id="ref30b">[30]</a></sup></td></tr>
-  <tr><td><strong>Iran</strong></td><td>South Pars / Assaluyeh</td><td>World's largest gas field (70–75% of Iranian gas production); phases 3–6 onshore processing</td><td>US/Israel strikes Mar 18</td><td>4 gas treatment facilities taken offline; Tehran refinery (220K b/d) also damaged; fire at gasfield brought under control; production volumes not disclosed.<sup class="fn"><a href="#fn42" id="ref42c">[42]</a></sup><sup class="fn"><a href="#fn47" id="ref47a">[47]</a></sup></td></tr>
+  <tr><th>Facility</th><th>Type</th><th>Attack</th><th>Status</th></tr>
+  <tr><td><strong>Saudi</strong> Ras Tanura</td><td>Refinery + terminal (550K b/d)</td><td>Drone debris (Mar 1)</td><td>Fire; 2&ndash;4 week repair<sup class="fn"><a href="#fn4" id="ref4a">[4]</a></sup></td></tr>
+  <tr><td><strong>Qatar</strong> Ras Laffan</td><td>LNG (~20% global supply)</td><td>Drone (Mar 2)</td><td>2 trains + GTL destroyed; <strong>12.8M mt/yr offline 3&ndash;5 YEARS</strong><sup class="fn"><a href="#fn60" id="ref60c">[60]</a></sup></td></tr>
+  <tr><td><strong>UAE</strong> Fujairah</td><td>Oil terminal (ADCOP exit)</td><td>Hit 3x (Mar 9,14,16)</td><td>Loading impaired; ADCOP still flowing 1.8 mb/d<sup class="fn"><a href="#fn8" id="ref8a">[8]</a></sup></td></tr>
+  <tr><td><strong>Kuwait</strong> Mina Al-Ahmadi</td><td>Refinery (~730K b/d)</td><td>Drones 2x (Mar 20&ndash;21)</td><td>Fires; timeline TBD<sup class="fn"><a href="#fn75" id="ref75b">[75]</a></sup></td></tr>
+  <tr><td><strong>Iran</strong> South Pars</td><td>Gas field (world&rsquo;s largest)</td><td>US/Israel (Mar 18)</td><td>Phases 3&ndash;6 offline; assessment pending<sup class="fn"><a href="#fn42" id="ref42c">[42]</a></sup></td></tr>
+  <tr><td><strong>Iran</strong> Kharg Island</td><td>Oil export hub (7M b/d cap.)</td><td>US (Mar 14)</td><td>Military targets only; oil infra spared<sup class="fn"><a href="#fn30" id="ref30b">[30]</a></sup></td></tr>
+  <tr><td><strong>Oman</strong> Duqm / Salalah</td><td>Fuel storage / port</td><td>Multiple drones (Mar 1&ndash;2)</td><td>Direct hits; weeks to repair<sup class="fn"><a href="#fn4" id="ref4d">[4]</a></sup></td></tr>
+  <tr><td><strong>US</strong> Valero Port Arthur TX</td><td>Refinery (380K b/d)</td><td>Explosion (Mar 24)</td><td>Main unit restarting; 47K b/d hydrotreater offline</td></tr>
 </table>
-<p><strong>Maritime:</strong> 21 confirmed Iranian ship attacks as of Mar 12.<sup class="fn"><a href="#fn58" id="ref58c">[58]</a></sup> Vessel <em>Athe Nova</em> (Honduran-flagged) set ablaze near UAE.</p>
-<p><strong>Imminent threats (Mar 18):</strong> Iran's armed forces named five Gulf facilities as "direct and legitimate targets to be struck within hours": SAMREF refinery Yanbu, Saudi Arabia (400K b/d); Sadara petrochemical complex, Jubail; Qatar Chemical, Doha; Ras Laffan refinery (305K b/d); Al-Hosn sour gas field, Abu Dhabi (1 bcf/d).<sup class="fn"><a href="#fn49" id="ref49c">[49]</a></sup></p>
+<p><strong>Maritime:</strong> 21+ confirmed Iranian ship attacks; ~12 mines deployed in strait (Maham 3/7 types); 800+ vessels stranded inside Gulf.<sup class="fn"><a href="#fn58" id="ref58c">[58]</a></sup></p>
 
-<!-- Production Cuts -->
-<h2>Production Cuts (Shut-ins from Storage Constraints)</h2>
-<p>Global oil supply collapsed to 98.8 mb/d in March vs. ~106 mb/d pre-crisis — a loss of ~7.2 mb/d at the system level.<sup class="fn"><a href="#fn44" id="ref44c">[44]</a></sup> IEA projects global supply down 8 mb/d in March; at least 8 mb/d crude + 2 mb/d condensate/NGL curtailed.<sup class="fn"><a href="#fn1" id="ref1c">[1]</a></sup><sup class="fn"><a href="#fn45" id="ref45a">[45]</a></sup> Gulf refining capacity shut: 3+ mb/d, freezing 3.3 mb/d of refined product exports and 1.5 mb/d of LPG exports.<sup class="fn"><a href="#fn1" id="ref1d">[1]</a></sup></p>
+<h2>Production Cuts by Country <span class="badge structural">STRUCTURAL</span></h2>
 <table>
   <tr><th>Country</th><th>Pre-Crisis</th><th>Current (est.)</th><th>Cut</th><th>Notes</th></tr>
-  <tr><td><strong>Saudi Arabia</strong></td><td>~10.5 mb/d</td><td>~8.0–8.5 mb/d</td><td>~2.0–2.5 mb/d</td><td>Partially offset by East-West Pipeline (2.5 mb/d Yanbu throughput).<sup class="fn"><a href="#fn44" id="ref44d">[44]</a></sup></td></tr>
-  <tr><td><strong>Iraq</strong></td><td>~4.3 mb/d</td><td>~1.4 mb/d</td><td>~2.9 mb/d</td><td>Rumaila shut-in Mar 3 (storage full); largest single-country cut.<sup class="fn"><a href="#fn44" id="ref44e">[44]</a></sup></td></tr>
-  <tr><td><strong>Kuwait</strong></td><td>~2.7 mb/d</td><td>~2.2 mb/d</td><td>~0.5 mb/d</td><td>Force majeure declared Mar 7; no pipeline bypass option.<sup class="fn"><a href="#fn44" id="ref44f">[44]</a></sup></td></tr>
-  <tr><td><strong>UAE</strong></td><td>~3.2 mb/d</td><td>~2.4–2.7 mb/d</td><td>~0.5–0.8 mb/d</td><td>ADCOP pipeline (1.8 mb/d) providing partial export relief.<sup class="fn"><a href="#fn8" id="ref8b">[8]</a></sup></td></tr>
-  <tr><td><strong>Iran</strong></td><td>~3.2 mb/d</td><td>Exporting via own control</td><td>Complex</td><td>~1.5 mb/d reaching China through Kharg + Jask terminals.<sup class="fn"><a href="#fn10" id="ref10e">[10]</a></sup></td></tr>
-  <tr class="total-row"><td><strong>Total Gulf crude</strong></td><td>~24 mb/d</td><td>~98.8 mb/d global</td><td>~5.9–6.7 mb/d offline</td><td>IEA: "largest supply disruption in history of the global oil market."<sup class="fn"><a href="#fn1" id="ref1e">[1]</a></sup></td></tr>
+  <tr><td><strong>Saudi Arabia</strong></td><td>10.5 mb/d</td><td>~8.0&ndash;8.5</td><td>2.0&ndash;2.5</td><td>Partially offset by Petroline<sup class="fn"><a href="#fn44" id="ref44d">[44]</a></sup></td></tr>
+  <tr><td><strong>Iraq</strong></td><td>4.3 mb/d</td><td>~1.4</td><td><strong>2.9</strong></td><td>Rumaila shut Mar 3; largest single-country cut; severe well damage<sup class="fn"><a href="#fn44" id="ref44e">[44]</a></sup></td></tr>
+  <tr><td><strong>Kuwait</strong></td><td>2.7 mb/d</td><td>~2.0</td><td>0.7</td><td>Force majeure Mar 7; CEO: 3&ndash;4 month recovery<sup class="fn"><a href="#fn44" id="ref44f">[44]</a></sup></td></tr>
+  <tr><td><strong>UAE</strong></td><td>3.2 mb/d</td><td>~1.7&ndash;2.0</td><td>1.2&ndash;1.5</td><td>Bloomberg: production down &ldquo;almost half&rdquo;<sup class="fn"><a href="#fn8" id="ref8b">[8]</a></sup></td></tr>
+  <tr><td><strong>Iran</strong></td><td>3.2 mb/d</td><td>~1.5 exported</td><td>Complex</td><td>Exporting via Kharg + Jask to China<sup class="fn"><a href="#fn10" id="ref10e">[10]</a></sup></td></tr>
+  <tr class="total-row"><td><strong>Total Gulf</strong></td><td>24 mb/d</td><td></td><td style="color:var(--accent);font-size:0.95rem;"><strong>~10 mb/d</strong></td><td>IEA: ~8 mb/d crude + ~2 mb/d condensates/NGLs<sup class="fn"><a href="#fn1" id="ref1c">[1]</a></sup></td></tr>
 </table>
 
-<!-- Repair Timelines -->
-<h2>Repair &amp; Restart Timelines</h2>
-<h3>Physical Damage</h3>
-<ul>
-  <li><strong>Ras Tanura:</strong> 2–4 weeks (fire damage, equipment inspection).<sup class="fn"><a href="#fn27" id="ref27a">[27]</a></sup></li>
-  <li><strong>Ras Laffan LNG:</strong> <strong>3–5 YEARS</strong> for 12.8M mt/yr (17% of Qatar's capacity — two trains + one GTL facility) per QatarEnergy CEO (Mar 19); ~$20B/yr lost revenue; specialized LNG super-cooling equipment must be rebuilt; work cannot begin until hostilities cease; North Field expansion delayed to at least 2027.<sup class="fn"><a href="#fn60" id="ref60d">[60]</a></sup><sup class="fn"><a href="#fn61" id="ref61b">[61]</a></sup></li>
-  <li><strong>Fujairah:</strong> Hit 3 times; loading impaired but ADCOP pipeline flowing at 1.8 mb/d.<sup class="fn"><a href="#fn8" id="ref8c">[8]</a></sup></li>
-  <li><strong>South Pars / Assaluyeh:</strong> 4 gas treatment facilities offline (phases 3–6); fire controlled but no production timeline given; Tehran refinery (220K b/d) damaged separately.<sup class="fn"><a href="#fn42" id="ref42d">[42]</a></sup></li>
-  <li><strong>Others:</strong> Weeks to assess; fuel storage tank replacement 4–8 weeks minimum.<sup class="fn"><a href="#fn27" id="ref27b">[27]</a></sup></li>
-</ul>
-
-<h3>Shut-in Wells</h3>
-<div class="flow-callout">
-  <span class="big-label">Water Coning Risk</span>
-  Wells shut >4 weeks face permanent damage. Bottom water rushes into mature reservoirs during extended shut-ins, trapping oil in pore spaces &mdash; potentially irreversible formation damage.<sup class="fn"><a href="#fn7" id="ref7b">[7]</a></sup> Wells shut since Mar 3 hit this critical window around <strong>Mar 28</strong>.
-</div>
-<ul>
-  <li><strong>First 2 weeks:</strong> Restart straightforward (days to a week per well)</li>
-  <li><strong>2–4 weeks idle:</strong> Corrosion begins; inspection and equipment replacement needed</li>
-  <li><strong>Beyond 4 weeks:</strong> Risk of permanent well damage — oil trapped in pore spaces, potentially unrecoverable</li>
-  <li><strong>IEA:</strong> "Upstream production will take weeks and, in some cases, months, to return to pre-crisis levels."<sup class="fn"><a href="#fn1" id="ref1f">[1]</a></sup></li>
-</ul>
-
-<h3>Strait Reopening Scenarios</h3>
-<ul>
-  <li><strong>ING base case:</strong> 4 weeks total (2 full closure + 2 at 50%).</li>
-  <li><strong>Bull case:</strong> Selective passage already occurring; US Navy estimates escort readiness by end of March (needs 8–10 destroyers per convoy).<sup class="fn"><a href="#fn38" id="ref38b">[38]</a></sup></li>
-  <li><strong>Bear case:</strong> Mojtaba Khamenei hardliner; Iran FM "we never asked for a ceasefire"<sup class="fn"><a href="#fn6" id="ref6a">[6]</a></sup>; South Pars strike risks full-scale energy war — Iranian official warned it "triggers full-scale economic war."<sup class="fn"><a href="#fn47" id="ref47b">[47]</a></sup></li>
-</ul>
-
-<h3>Post-Reopening Recovery Lag</h3>
-<div class="flow-callout">
-  <span class="big-label">2&ndash;2.5 Months to Steady State</span>
-  Even after Hormuz reopens, the system does not normalize immediately. Well restarts, pipeline recommissioning, insurance market normalization, and tanker fleet repositioning create a 2–2.5 month lag before Gulf supply returns to pre-crisis levels.<sup class="fn"><a href="#fn27" id="ref27c">[27]</a></sup>
-</div>
-<ul>
-  <li><strong>Week 1–2:</strong> Selective vessels begin transit; war risk premiums remain elevated (1–2% of hull); tanker fleet repositioning underway</li>
-  <li><strong>Week 2–4:</strong> Well restarts (those not permanently damaged); pipeline recommissioning; port congestion clears</li>
-  <li><strong>Month 2:</strong> Insurance market begins normalizing; more tankers return to route; refinery crude slates rebalance</li>
-  <li><strong>Month 2–2.5:</strong> Supply returns to 80–85% of pre-crisis levels; North Sea, US, Russian substitute barrels begin unwinding</li>
-  <li><strong>Persistent damage:</strong> North Field expansion delayed to 2027<sup class="fn"><a href="#fn33" id="ref33e">[33]</a></sup>; wells damaged by water coning potentially unrecoverable; South Pars phases 3–6 restart timeline unknown.</li>
-</ul>
-
-<!-- Mitigating Factors -->
-<h2>Mitigating Factors</h2>
+<h2 class="break-before">Mitigating Factors &amp; Flow Rate Constraints</h2>
+<p style="font-size:0.82rem;color:var(--subtle);">Announced relief ≠ delivered barrels. Physical deployment rates are constrained by pipeline bottlenecks, terminal capacity, and logistics. The paper balance sheet and physical market diverge significantly.</p>
 
 <h3>1. Saudi East-West Pipeline (Petroline) <span class="badge structural">STRUCTURAL</span></h3>
 <ul>
-  <li><strong>Pipe capacity:</strong> 7 mb/d (after NGL line conversion)</li>
-  <li><strong>Yanbu throughput:</strong> ~2.5 mb/d (Sparta Commodities, Mar 16) vs. 750K b/d pre-crisis<sup class="fn"><a href="#fn44" id="ref44g">[44]</a></sup></li>
-  <li><strong>Net new export:</strong> +1.75 mb/d above pre-crisis baseline<sup class="fn"><a href="#fn8" id="ref8d">[8]</a></sup></li>
-  <li><strong>Limitation:</strong> Only moves crude — no refined products, LPG, or LNG<sup class="fn"><a href="#fn8" id="ref8e">[8]</a></sup></li>
+  <li>Pipe capacity: 7 mb/d (after NGL line conversion). Yanbu throughput: ~2.5 mb/d (Sparta, Mar 16) vs 750K pre-crisis.</li>
+  <li><strong>Net new export: +1.75 mb/d.</strong> Duration: indefinite. Limitation: crude only (no products, LPG, or LNG).<sup class="fn"><a href="#fn10" id="ref10g">[10]</a></sup></li>
 </ul>
 
 <h3>2. UAE ADCOP Pipeline <span class="badge structural">STRUCTURAL</span></h3>
 <ul>
-  <li><strong>Pipe capacity:</strong> 1.5–1.8 mb/d; now at full capacity<sup class="fn"><a href="#fn8" id="ref8f">[8]</a></sup></li>
-  <li><strong>Spare activated:</strong> +0.7 mb/d above pre-crisis flow<sup class="fn"><a href="#fn8" id="ref8g">[8]</a></sup></li>
-  <li><strong>Risk:</strong> Fujairah terminal hit 3 times but pipeline still operational; IRGC now threatening Fujairah area facilities explicitly<sup class="fn"><a href="#fn49" id="ref49d">[49]</a></sup></li>
+  <li>Pipeline at full capacity (~1.8 mb/d, up from ~1.1 pre-crisis). <strong>Spare activated: +0.7 mb/d.</strong> Fujairah loading impaired but flowing.<sup class="fn"><a href="#fn8" id="ref8c">[8]</a></sup></li>
 </ul>
 
-<h3>3. IEA Strategic Petroleum Reserve <span class="badge policy">POLICY</span></h3>
+<h3>3. IEA SPR Release <span class="badge policy">POLICY</span></h3>
 <ul>
-  <li><strong>Total committed:</strong> 400M bbl — largest coordinated release in IEA's 50-year history<sup class="fn"><a href="#fn1" id="ref1g">[1]</a></sup><sup class="fn"><a href="#fn9" id="ref9b">[9]</a></sup></li>
-  <li><strong>Structure:</strong> First tranche is 86M bbl exchange (loan; must be returned with interest)</li>
-  <li><strong>Rate:</strong> ~2.0 mb/d combined (US: 1.43 mb/d over 120 days; IEA non-US: 0.57 mb/d)<sup class="fn"><a href="#fn1" id="ref1h">[1]</a></sup></li>
-  <li><strong>US SPR capacity:</strong> 714M bbl total; held 415.4M bbl pre-release (peaked at 695M bbl in 2010)<sup class="fn"><a href="#fn1" id="ref1i">[1]</a></sup></li>
-  <li><strong>OECD government stocks:</strong> ~1.25B bbl total across IEA members<sup class="fn"><a href="#fn1" id="ref1j">[1]</a></sup></li>
-  <li><strong>Global observed stocks:</strong> ~8,210M bbl (IEA Jan 2026 estimate; highest since early 2021)<sup class="fn"><a href="#fn44" id="ref44h">[44]</a></sup></li>
-  <li><strong>SPR refill = structural price floor:</strong> 172M bbl committed requires ~$17B in repurchases at $100/bbl — a sustained government buy program supporting prices long after the crisis ends</li>
-  <li><strong>Market reaction:</strong> Flat. Brent held $100+ on announcement day. Insufficient to offset &minus;12 mb/d structural gap.<sup class="fn"><a href="#fn6" id="ref6b">[6]</a></sup></li>
+  <li><strong>400M bbl total</strong> (largest in IEA&rsquo;s 50-year history). Max rate: ~2.0 mb/d. First tranche: 86M bbl exchange (loan).<sup class="fn"><a href="#fn1" id="ref1b">[1]</a></sup></li>
+  <li>US: 172M bbl at 1.43 mb/d (~120 days, exhausted ~Jul 10). Japan: 80M bbl. Germany: 19.7M bbl. UK: 13.5M bbl.<sup class="fn"><a href="#fn1" id="ref1d">[1]</a></sup></li>
+  <li><strong>Constraint:</strong> US cavern withdrawal maxes at 4.4 mb/d mechanically, but pipeline/terminal bottlenecks limit effective delivery to 1.43 mb/d committed rate.</li>
 </ul>
 
 <h3>4. GL 134: Russian Oil Waiver (One-Time) <span class="badge policy">POLICY</span></h3>
-<div class="flow-callout">
-  <span class="big-label">Cliff Risk: Apr 11</span>
-  GL 134 is a STOCK, not a FLOW. 186M bbl on ~238 tankers depletes and vanishes after expiration.<sup class="fn"><a href="#fn3" id="ref3c">[3]</a></sup><sup class="fn"><a href="#fn44" id="ref44i">[44]</a></sup> No extension signals as of Mar 18. This is the single most predictable near-term catalyst for price spikes.
-</div>
 <ul>
-  <li><strong>OFAC GL 134:</strong> Authorizes delivery of Russian crude already loaded as of Mar 12<sup class="fn"><a href="#fn3" id="ref3d">[3]</a></sup></li>
-  <li><strong>Effective flow:</strong> ~2.0 mb/d tapering; 60–70M bbl near India/China for prompt delivery<sup class="fn"><a href="#fn44" id="ref44j">[44]</a></sup></li>
-  <li><strong>Expires:</strong> April 11, 2026 (30 days from issuance)</li>
-  <li><strong>Russia windfall:</strong> Urals swung from &minus;$13/bbl discount to +$4–5/bbl premium (an $18/bbl swing); India's Russian crude imports up ~50% to 1.5 mb/d; Russia earning ~$150M/day additional revenue<sup class="fn"><a href="#fn44" id="ref44k">[44]</a></sup><sup class="fn"><a href="#fn52" id="ref52a">[52]</a></sup></li>
+  <li>~186M bbl on ~238 laden tankers. 60&ndash;70M bbl near India/China deliverable. Effective flow: ~2.0 mb/d tapering to zero.<sup class="fn"><a href="#fn3" id="ref3c">[3]</a></sup></li>
+  <li><strong>Expires April 11 (3 days).</strong> No extension signals. Baker McKenzie: one-time, cargo-specific, no automatic renewal.</li>
+  <li>This is a STOCK, not a FLOW &mdash; it depletes and vanishes. The &minus;2 mb/d cliff is the single most predictable near-term catalyst.</li>
 </ul>
 
-<h3>5. Other Mitigations</h3>
+<h3>5. Other Supply Mitigations</h3>
 <ul>
-  <li><strong>Russian production:</strong> +0.1 mb/d (minimal; Feb production falling &minus;56K bpd m/m; may cut 300K bpd by April per Rystad)</li>
-  <li><strong>Iranian own exports:</strong> +1.5 mb/d via Kharg + Jask terminals, almost entirely China-bound<sup class="fn"><a href="#fn10" id="ref10f">[10]</a></sup></li>
-</ul>
-
-<h3>6. Policy Measures</h3>
-<ul>
-  <li><strong>Jones Act waiver:</strong> Under consideration — would allow foreign-flagged tankers to move crude between US ports, freeing Gulf Coast refinery capacity. Politically sensitive (longshore labor opposition); last waived post-Katrina 2005.<sup class="fn"><a href="#fn28" id="ref28a">[28]</a></sup></li>
-  <li><strong>US crude export ban:</strong> Congressional Democrats proposing emergency ban on US crude exports. Would spike WTI vs. Brent; alienates allies dependent on 2–3 mb/d of US exports; opposed by producers and Treasury.<sup class="fn"><a href="#fn28" id="ref28b">[28]</a></sup></li>
-  <li><strong>CME Group warning:</strong> Exchange described potential $200+ Brent as a "biblical disaster for the global economy" — prompting review of emergency margin and circuit-breaker protocols.<sup class="fn"><a href="#fn11" id="ref11a">[11]</a></sup></li>
+  <li><strong>Iranian own exports:</strong> +1.5 mb/d continuing via Kharg + Jask to China.<sup class="fn"><a href="#fn10" id="ref10c">[10]</a></sup></li>
+  <li><strong>Russian production:</strong> +0.1 mb/d (minimal; Feb output was falling &minus;56K bpd m/m).</li>
+  <li><strong>OECD commercial drawdown:</strong> ~1.0 mb/d effective draw rate from ~2.7B bbl stocks. Slows as stocks approach minimum operating levels (~60 days).</li>
+  <li><strong>Demand destruction:</strong> IEA revised to 640K b/d; peaks ~0.8 mb/d in May then eases as prices fall (see Demand Destruction section).</li>
 </ul>
 
 <h3>Combined Supply Balance</h3>
 <table>
-  <tr><th>Mitigation</th><th>Volume (mb/d)</th><th>Start</th><th>Duration</th></tr>
-  <tr><td>Saudi Pipeline (net) <span class="badge structural">STRUCTURAL</span></td><td>+1.75</td><td>Mar 11</td><td>Indefinite</td></tr>
-  <tr><td>UAE ADCOP spare <span class="badge structural">STRUCTURAL</span></td><td>+0.70</td><td>Mar 1</td><td>Indefinite</td></tr>
-  <tr><td>IEA SPR release <span class="badge policy">POLICY</span></td><td>+2.00</td><td>Mar 12</td><td>~120 days (US)</td></tr>
-  <tr><td>GL 134 floating inventory <span class="badge policy">POLICY</span></td><td>+2.00</td><td>Mar 12</td><td>Expires Apr 11</td></tr>
-  <tr><td>Russian increase</td><td>+0.10</td><td>Mar 3</td><td>Ongoing</td></tr>
+  <tr><th>Factor</th><th>Volume (mb/d)</th><th>Start</th><th>Duration</th></tr>
+  <tr><td>Saudi Pipeline (net)</td><td>+1.75</td><td>Mar 11</td><td>Indefinite</td></tr>
+  <tr><td>UAE ADCOP spare</td><td>+0.70</td><td>Mar 1</td><td>Indefinite</td></tr>
+  <tr><td>IEA SPR release</td><td>+2.00</td><td>Mar 12</td><td>~120 days (US)</td></tr>
+  <tr><td>GL 134 floating inventory</td><td>+0.60 (depleting)</td><td>Mar 12</td><td><strong>Expires Apr 11</strong></td></tr>
   <tr><td>Iranian own exports</td><td>+1.50</td><td>Ongoing</td><td>Ongoing</td></tr>
-  <tr class="total-row"><td><strong>Total mitigations</strong></td><td><strong>+8.05</strong></td><td></td><td></td></tr>
-  <tr class="total-row"><td><strong>Hormuz transit lost</strong></td><td><strong>-20.0</strong></td><td>Feb 28</td><td>Until reopened</td></tr>
-  <tr class="total-row"><td><strong>NET SHORTAGE</strong></td><td style="color:var(--accent);font-size:1.1rem;"><strong>~-12.0 mb/d</strong></td><td></td><td></td></tr>
+  <tr><td>OECD commercial drawdown</td><td>+1.00</td><td>Mar 5</td><td>Months (depleting)</td></tr>
+  <tr><td>Demand destruction</td><td>+0.64</td><td>Mar 10</td><td>Variable</td></tr>
+  <tr><td>Russian production</td><td>+0.10</td><td>Mar 3</td><td>Ongoing</td></tr>
+  <tr><td>Infrastructure repair</td><td>+0.30</td><td>Mar 20</td><td>3&ndash;4 months to ramp</td></tr>
+  <tr class="total-row"><td><strong>Total mitigations</strong></td><td><strong>+8.6 &rarr; +10.1</strong></td><td></td><td></td></tr>
+  <tr style="background:#fdf2f2;"><td><strong>Hormuz transit lost</strong></td><td style="color:var(--accent);"><strong>&minus;19.0</strong></td><td>Feb 28</td><td>Until reopened</td></tr>
+  <tr class="total-row"><td><strong>NET SHORTAGE</strong></td><td style="color:var(--accent);"><strong>~&minus;9.9 mb/d</strong></td><td></td><td>Widens to &minus;10.5 after Apr 11</td></tr>
 </table>
 
-<!-- Oil Price Impact -->
 <h2>Oil Price Impact <span class="badge live">LIVE</span></h2>
 <table>
   <tr><th>Metric</th><th>Pre-Crisis (Feb 27)</th><th>Current (Apr 8)</th><th>Change</th></tr>
-  <tr><td>Brent Crude <span class="badge live">LIVE</span></td><td>~$71.00/bbl</td><td>~$95/bbl (Apr 8 &mdash; ceasefire selloff &minus;15%; intraday range ~$91&ndash;$113; prior session ~$112+; crisis intraday high $126/bbl)<sup class="fn"><a href="#fn124" id="ref124c">[124]</a></sup></td><td style="color:var(--accent);">+34%</td></tr>
-  <tr><td>WTI <span class="badge live">LIVE</span></td><td>~$67.00/bbl</td><td>~$93/bbl (Apr 8 &mdash; ceasefire selloff; intraday range $91.11&ndash;$109.00; prior close $112.95)<sup class="fn"><a href="#fn124" id="ref124d">[124]</a></sup></td><td style="color:var(--accent);">+39%</td></tr>
-  <tr><td>Brent intraday peak (all-time crisis)</td><td>&mdash;</td><td>$126/bbl</td><td>&mdash;</td></tr>
-  <tr><td>US Gasoline (AAA national avg) <span class="badge live">LIVE</span></td><td>$2.92/gal</td><td>$4.119/gal (AAA, Apr 8)<sup class="fn"><a href="#fn124" id="ref124e">[124]</a></sup></td><td style="color:var(--accent);">+41%</td></tr>
-  <tr><td>US Diesel <span class="badge live">LIVE</span></td><td>$3.65/gal</td><td>~$5.81/gal (Apr 8 &mdash; Virginia regional data; national avg unverified; verify at gasprices.aaa.com)</td><td style="color:var(--accent);">~+59%</td></tr>
-  <tr><td>EU diesel (weighted avg)</td><td>~EUR 1.60/L</td><td>EUR 1.835/L (GlobalPetrolPrices, Mar 16)<sup class="fn"><a href="#fn88" id="ref88a">[88]</a></sup></td><td style="color:var(--accent);">+15%</td></tr>
-  <tr><td>ICE Low Sulphur Gasoil (front month) <span class="badge live">LIVE</span></td><td>&mdash;</td><td>~$1,290.50/tonne (as of Mar 23 &mdash; verify on ICE before trading)<sup class="fn"><a href="#fn97" id="ref97a">[97]</a></sup></td><td>Verify on ICE before trading</td></tr>
-  <tr><td>European jet fuel crack vs. ICE gasoil</td><td>&mdash;</td><td>$518.5/t (all-time record)<sup class="fn"><a href="#fn43" id="ref43a">[43]</a></sup></td><td>First ever >$500/t</td></tr>
+  <tr><td>Brent Crude</td><td>~$71/bbl</td><td>~$95 (ceasefire selloff; range $91&ndash;$113; crisis peak $126)<sup class="fn"><a href="#fn124" id="ref124c">[124]</a></sup></td><td style="color:var(--accent);">+34%</td></tr>
+  <tr><td>WTI</td><td>~$67/bbl</td><td>~$93 (range $91&ndash;$109; prior close $113)<sup class="fn"><a href="#fn124" id="ref124d">[124]</a></sup></td><td style="color:var(--accent);">+39%</td></tr>
+  <tr><td>US Gasoline (AAA)</td><td>$2.92/gal</td><td>$4.12/gal<sup class="fn"><a href="#fn124" id="ref124e">[124]</a></sup></td><td style="color:var(--accent);">+41%</td></tr>
+  <tr><td>US Diesel (AAA)</td><td>$3.65/gal</td><td>~$5.81/gal (regional; verify at gasprices.aaa.com)</td><td style="color:var(--accent);">~+59%</td></tr>
+  <tr><td>EU Diesel (weighted avg)</td><td>~EUR 1.60/L</td><td>EUR 1.835/L<sup class="fn"><a href="#fn88" id="ref88a">[88]</a></sup></td><td style="color:var(--accent);">+15%</td></tr>
+  <tr><td>ICE Low Sulphur Gasoil</td><td>&mdash;</td><td>~$1,291/t<sup class="fn"><a href="#fn97" id="ref97a">[97]</a></sup></td><td>Verify on ICE</td></tr>
 </table>
+
+<h2>Crack Spreads &amp; Refined Products <span class="badge live">LIVE</span></h2>
+<p style="font-size:0.82rem;color:var(--subtle);">Refined products are where the real P&amp;L concentration is. Gulf refining capacity (~3+ mb/d) offline means global product markets are tighter than crude. Bypass pipelines move crude only &mdash; no relief for diesel, jet, or LPG.</p>
+<table>
+  <tr><th>Spread</th><th>Pre-Crisis</th><th>Current (Apr 8 est.)</th><th>Change</th></tr>
+  <tr><td>USGC 3-2-1 crack</td><td>~$22/bbl</td><td>~$42/bbl</td><td style="color:var(--accent);">+91%</td></tr>
+  <tr><td>European jet crack vs ICE gasoil</td><td>$150&ndash;250/t</td><td><strong>$518.5/t</strong> (all-time record; first &gt;$500/t)<sup class="fn"><a href="#fn43" id="ref43a">[43]</a></sup></td><td style="color:var(--accent);">+107&ndash;246%</td></tr>
+  <tr><td>Diesel/gasoil crack</td><td>~$17/bbl</td><td>~$38/bbl</td><td style="color:var(--accent);">+124%</td></tr>
+  <tr><td>HSFO 180cst crack</td><td>&minus;$8/bbl (discount)</td><td>+$10/bbl (narrowed ~$18/bbl)</td><td>Flipped to premium</td></tr>
+  <tr><td>Singapore complex GRM</td><td>~$6/bbl</td><td>~$20/bbl (peaked ~$30 on Mar 5)</td><td style="color:var(--accent);">+233%</td></tr>
+  <tr><td>Hi-5 spread (VLSFO&minus;HSFO)</td><td>~$100&ndash;150/mt</td><td>&gt;$300/mt</td><td style="color:var(--accent);">&gt;+100%</td></tr>
+</table>
+<p><strong>Key dynamic:</strong> Iranian illicit HSFO supply collapsed after March strikes, forcing legitimate spot buying and flipping the HSFO crack from discount to premium. Jet fuel crack at record $518.5/t reflects Gulf jet export shutdown (~1/5 of global jet exports transited Hormuz) with no near-term substitute supply.<sup class="fn"><a href="#fn43" id="ref43b">[43]</a></sup></p>
+
+<h2>Forward Curve Structure</h2>
+<p style="font-size:0.82rem;color:var(--subtle);">The term structure reveals what the market is actually pricing about the duration and severity of this crisis &mdash; more informative than any single analyst forecast.</p>
+<table>
+  <tr><th>Metric</th><th>Value</th><th>Signal</th></tr>
+  <tr><td>Curve shape</td><td><strong>Steep backwardation</strong></td><td>Acute near-term tightness; market expects resolution</td></tr>
+  <tr><td>Brent M1&ndash;M2 spread</td><td>~$10/bbl backwardation</td><td>Widest since conflict began; exceeds 2022 Russia-Ukraine peaks</td></tr>
+  <tr><td>Brent M1&ndash;M6 spread</td><td>~$20&ndash;25/bbl</td><td>Front ~$95; M6 ~$75&ndash;80. Market prices short disruption</td></tr>
+  <tr><td>Brent M1&ndash;Dec 2026</td><td>~$15&ndash;20/bbl</td><td>Dec contracts $79&ndash;85 &mdash; prices in normalized supply by year-end</td></tr>
+  <tr><td>F1&ndash;F2 annualized roll</td><td>&minus;110% (record)</td><td>Extreme negative carry for long positions rolling forward</td></tr>
+</table>
+<p><strong>Implication:</strong> The back end of the curve is NOT pricing structural risks: Ras Laffan offline 3&ndash;5 years, well damage requiring 3&ndash;4 months recovery, and Iran&rsquo;s retained Hormuz control. If the ceasefire collapses or Islamabad talks fail, Dec 2026 contracts reprice sharply higher. The curve is a time-limited thesis &mdash; it&rsquo;s right if the crisis resolves by June, wrong if it extends past summer.</p>
+
+<h2 class="break-before">Freight &amp; Shipping Rates <span class="badge live">LIVE</span></h2>
+<p style="font-size:0.82rem;color:var(--subtle);">Freight is one of the largest trades of this crisis. BWET is up 700%+ from its 52-week low. Even the ceasefire pushed BWET UP +7.5% &mdash; the market correctly prices that vessel backlog and rerouting sustain elevated freight regardless of political developments.</p>
+<table>
+  <tr><th>Route / Metric</th><th>Pre-Crisis</th><th>Current (Apr 8)</th><th>Notes</th></tr>
+  <tr><td>VLCC AG&rarr;Far East spot</td><td>$40&ndash;50K/day</td><td><strong>~$250K/day</strong> (off $445K peak)</td><td>Moderated on ceasefire; still 5x+ normal</td></tr>
+  <tr><td>VLCC AG&rarr;West (Cape)</td><td>$35&ndash;45K/day</td><td>~$300&ndash;350K/day</td><td>Cape adds 10&ndash;14 days and ~$1M fuel cost<sup class="fn"><a href="#fn41" id="ref41a">[41]</a></sup></td></tr>
+  <tr><td>Suezmax</td><td>$30&ndash;40K/day</td><td>~$150&ndash;200K/day</td><td>Multi-year highs</td></tr>
+  <tr><td>Aframax</td><td>$25&ndash;35K/day</td><td>~$100&ndash;150K/day</td><td>Baltic global avg hit $62K pre-conflict</td></tr>
+  <tr><td>BWET (Breakwave Tanker ETF)</td><td>$9.60 (52-wk low)</td><td><strong>$148.56</strong> (+7.5% on ceasefire day)</td><td>52-wk range $9.60&ndash;$148.56; <strong>trading at all-time high</strong><sup class="fn"><a href="#fn125" id="ref125c">[125]</a></sup></td></tr>
+  <tr><td>1-yr time charter vs spot</td><td>TC ~20&ndash;30% below spot</td><td>TC $90&ndash;135K/day vs spot $250K+</td><td>Charterers locking in 1&ndash;3yr TCs defensively</td></tr>
+  <tr><td>War risk insurance</td><td>0.02&ndash;0.05% hull</td><td><strong>5% hull</strong> ($5M per $100M vessel)</td><td>P&amp;I clubs cancelled cover Mar 5<sup class="fn"><a href="#fn41" id="ref41b">[41]</a></sup></td></tr>
+</table>
+
+<h2>Non-Gulf Supply Response</h2>
+<p style="font-size:0.82rem;color:var(--subtle);">At $95+ Brent, why isn&rsquo;t new supply coming online? The structural answer is capital discipline &mdash; a post-2020 paradigm shift that has broken the historical price-supply feedback loop.</p>
+<table>
+  <tr><th>Producer</th><th>Response</th><th>Timeline</th></tr>
+  <tr><td><strong>US Shale (Permian)</strong></td><td>Rig count flat at ~411 (Baker Hughes, Apr 2). 2026 output forecast 13.5 mb/d (&minus;100K from 2025 record). <strong>DUC inventory expanding</strong> &mdash; operators building drilled-but-uncompleted wells rather than producing.</td><td>6&ndash;9 month lag minimum from drill decision to output</td></tr>
+  <tr><td><strong>Brazil (pre-salt)</strong></td><td>Petrobras 2026 target: 2.2 mb/d. No incremental response; projects on multi-year timelines.</td><td>No near-term upside</td></tr>
+  <tr><td><strong>Guyana</strong></td><td>ExxonMobil Stabroek at ~640K b/d. Yellowtail (4th FPSO) scheduled mid-2026.</td><td>+250K b/d when Yellowtail starts; not accelerable</td></tr>
+  <tr><td><strong>West Africa</strong></td><td>Nigeria and Angola output declining due to underinvestment. No marginal response.</td><td>Structural decline</td></tr>
+  <tr><td><strong>North Sea</strong></td><td>UK output at multi-decade lows. Norway at capacity.</td><td>No incremental supply</td></tr>
+</table>
+<p><strong>Why capital discipline holds at $95:</strong> Public E&amp;Ps entered 2026 with budgets based on $55&ndash;60 WTI. Shareholder return commitments (dividends + buybacks) are contractual. Hedging locks in lower prices. Resource maturity means each new well is more expensive than the last. It takes 4+ years to shift capital allocation philosophy. The &ldquo;Wall Street killed the wildcatters&rdquo; dynamic is structural, not cyclical.</p>
+
+<h2>Repair &amp; Restart Timelines</h2>
+<h3>Shut-in Wells (Well Damage) <span class="badge structural">STRUCTURAL</span></h3>
 <ul>
-  <li>Brent Mar 19 close: $112.19/bbl (3-week high on Iran retaliatory strikes). Brent Mar 20 intraday: ~$107.40 (easing from high; earlier fell to $104.96 after Bessent signal then recovered).<sup class="fn"><a href="#fn73" id="ref73d">[73]</a></sup><sup class="fn"><a href="#fn62" id="ref62e">[62]</a></sup><sup class="fn"><a href="#fn64" id="ref64b">[64]</a></sup></li>
-  <li>Geopolitical risk premium: ~$35-40/bbl — "oil would be in the $40s without the Iran war."<sup class="fn"><a href="#fn50" id="ref50a">[50]</a></sup></li>
-  <li>Brent Mar 18 peak: $108.78 on South Pars strike news; +$5.80 on day, +$41.18 from one month ago.<sup class="fn"><a href="#fn22" id="ref22a">[22]</a></sup></li>
-  <li>Citi (Mar 18): Brent to rally to $120 near-term; $130 avg Q2/Q3 in extended disruption scenario.<sup class="fn"><a href="#fn23" id="ref23e">[23]</a></sup></li>
-  <li>Goldman Sachs (Mar 18 revision): raised full-year 2026 Brent forecast; Q4 Brent $71, WTI $67 (assumes 21-day disruption + 30-day recovery — increasingly disconnected from facts on the ground given Day 20 with no ceasefire).<sup class="fn"><a href="#fn25" id="ref25a">[25]</a></sup><sup class="fn"><a href="#fn34" id="ref34a">[34]</a></sup></li>
-  <li><strong>Goldman Sachs (Mar 23 — updated):</strong> Raised 2026 Brent avg to <strong>$85/bbl</strong> (from $77); WTI to $79/bbl (from $72). Called this &ldquo;the largest-ever oil supply shock on record,&rdquo; surpassing 1973 OPEC embargo and 1990 Gulf War. Assumes Hormuz flows at 5% of normal for 6 weeks then 1-month recovery; cumulative loss &gt;800M barrels; peak disruption ~17 mb/d in full-closure scenario. <strong>Expects Brent to avg $110 in March–April</strong> (up from prior $98 forecast). Lead analyst: Daan Struyven.<sup class="fn"><a href="#fn85" id="ref85d2">[85]</a></sup></li>
-  <li><strong>JPMorgan (Mar 23):</strong> Brent forecast ~$60/bbl avg 2026. Maintains view that protracted disruptions are unlikely.<sup class="fn"><a href="#fn89" id="ref89a">[89]</a></sup></li>
-  <li><strong>Citigroup (Mar 23):</strong> Brent $75/bbl Q1, $78/bbl Q2, $68/bbl Q3 2026.<sup class="fn"><a href="#fn89" id="ref89b">[89]</a></sup></li>
-  <li>US gasoline +32.6% in one month (AAA, Mar 19): $3.884/gal vs. $2.929 on Feb 19.<sup class="fn"><a href="#fn65" id="ref65c">[65]</a></sup></li>
-  <li>EU diesel: Germany, France, Italy, Netherlands, Finland all above EUR 2.00/L; Ireland highest at EUR 2.30/L; Spain largest jump at +27% to EUR 1.79/L.<sup class="fn"><a href="#fn46" id="ref46b">[46]</a></sup></li>
+  <li><strong>41+ days idle</strong> as of Apr 8. Water coning risk active since Mar 28 in mature Gulf reservoirs (Iraq Rumaila, Saudi, Kuwait).</li>
+  <li>Kuwait Petroleum CEO (Mar 28): <strong>&ldquo;3&ndash;4 months to return to full production once the war ends.&rdquo;</strong><sup class="fn"><a href="#fn114" id="ref114c">[114]</a></sup></li>
+  <li>IEA: &ldquo;Upstream production will take weeks and, in some cases, months, to return to pre-crisis levels.&rdquo;</li>
+  <li>Ceasefire (Apr 7) starts the repair clock &mdash; but even best case, Gulf production stays 3&ndash;4 mb/d below pre-crisis through July.</li>
+</ul>
+<h3>Strait Reopening Scenarios</h3>
+<ul>
+  <li><strong>Current (Apr 8):</strong> ~3 ships/day; 800+ stranded; mines in water; insurance 5% hull; Iran retains vetting control.</li>
+  <li><strong>ING base case:</strong> 2&ndash;2.5 months to reach 80% of pre-crisis flow (post-mine clearance + insurance normalization).</li>
+  <li><strong>Bear case:</strong> Iran institutionalizes permanent $2M/vessel protocol; Hormuz never fully normalizes; &ldquo;new normal&rdquo; at 50&ndash;60% of pre-crisis traffic.</li>
 </ul>
 
-<h3>GDP Sensitivity: Gulf Producers</h3>
+<h2 class="break-before">Demand Destruction by Sector</h2>
+<p style="font-size:0.82rem;color:var(--subtle);">IEA revised demand destruction from 210K to 640K b/d (Apr 1). Breakdown by sector reveals where the adjustment is happening and which sectors are structurally slow to recover.</p>
 <table>
-  <tr><th>Country</th><th>GDP Impact</th><th>Mechanism</th><th>Source</th></tr>
-  <tr><td><strong>Qatar</strong></td><td style="color:var(--accent);font-weight:700;">&minus;14%</td><td>100% LNG/oil exports through Hormuz; Ras Laffan force majeure; North Field delayed to 2027</td><td>Goldman Sachs<sup class="fn"><a href="#fn34" id="ref34b">[34]</a></sup></td></tr>
-  <tr><td><strong>Kuwait</strong></td><td style="color:var(--accent);font-weight:700;">&minus;14%</td><td>No pipeline bypass; 100% of 2.7 mb/d exports transit Hormuz; force majeure Mar 7</td><td>Goldman Sachs<sup class="fn"><a href="#fn34" id="ref34c">[34]</a></sup></td></tr>
-  <tr><td><strong>UAE</strong></td><td style="color:var(--accent);font-weight:700;">&minus;5%</td><td>ADCOP bypass partially offsets; Fujairah loading impaired; Mussafah terminal hit</td><td>Goldman Sachs<sup class="fn"><a href="#fn34" id="ref34d">[34]</a></sup></td></tr>
-  <tr><td><strong>Saudi Arabia</strong></td><td style="color:var(--accent);font-weight:700;">&minus;3%</td><td>East-West pipeline partially offsets; Ras Tanura fire; ~2.0–2.5 mb/d production cut</td><td>Goldman Sachs<sup class="fn"><a href="#fn34" id="ref34e">[34]</a></sup></td></tr>
+  <tr><th>Sector</th><th>Share of Demand</th><th>Estimated Destruction</th><th>Response Speed</th><th>Mechanism</th></tr>
+  <tr><td><strong>Road transport</strong></td><td>~45%</td><td>~300K b/d</td><td>Fast (weeks)</td><td>Reduced VMT; modal shift; fuel switching; India EV/induction stove spike</td></tr>
+  <tr><td><strong>Aviation</strong></td><td>~8%</td><td>~80K b/d</td><td>Medium (1&ndash;3 mo)</td><td>Route cuts; frequency reductions; Asia-Pacific worst hit</td></tr>
+  <tr><td><strong>Industrial</strong></td><td>~25%</td><td>~150K b/d</td><td>Medium (1&ndash;6 mo)</td><td>Factory idling; gas switching where dual-fuel; conservation orders (Japan, S. Korea)</td></tr>
+  <tr><td><strong>Petrochemical</strong></td><td>~15%</td><td>~60K b/d</td><td>Slow (months)</td><td>Cracker utilization cuts; 20% of Asian ethylene under force majeure; naphtha substitute limited</td></tr>
+  <tr><td><strong>Power gen</strong></td><td>~5%</td><td>~50K b/d</td><td>Fast (days)</td><td>Gas/coal/renewables substitute; ME and SE Asia switch fastest</td></tr>
+  <tr class="total-row"><td><strong>Total</strong></td><td>100%</td><td><strong>~640K b/d</strong></td><td></td><td>IEA revised estimate (Apr 1)</td></tr>
 </table>
+<p><strong>Structural vs cyclical:</strong> EV adoption already displacing ~1.3 mb/d globally (2024; +30% YoY). India&rsquo;s 10% ethanol mandate and China&rsquo;s odd/even trucking restrictions may persist post-crisis. If closure extends 3+ months, IEA models 15&ndash;20% demand contraction in Asia-Pacific &mdash; triggering a recession that itself destroys demand.</p>
 
-<!-- LNG -->
-<h2>LNG &amp; Natural Gas Impact</h2>
+<!-- ═══════════ PART 2: NATURAL GAS & LNG ═══════════ -->
+<div class="part-divider gas">Part 2: Natural Gas &amp; LNG<span class="part-sub">Qatar LNG shutdown, Ras Laffan structural damage, South Pars strike, TTF/JKM pricing, petrochemical cascade</span></div>
+
+<h2>LNG &amp; Natural Gas Impact <span class="badge live">LIVE</span></h2>
 <table>
-  <tr><th>Benchmark</th><th>Pre-Crisis</th><th>Current</th><th>Change</th></tr>
-  <tr><td>JKM (Asian LNG spot) <span class="badge live">LIVE</span></td><td>~$8/MMBtu</td><td>~$18.75&ndash;19.87/MMBtu (LNGPriceIndex Apr 3: $18.75; futures $19.87; easing from March highs on shoulder season + partial ceasefire relief)<sup class="fn"><a href="#fn126" id="ref126a">[126]</a></sup></td><td style="color:var(--accent);">+135&ndash;148%</td></tr>
-  <tr><td>TTF (European gas) <span class="badge live">LIVE</span></td><td>EUR 31.96/MWh</td><td>~EUR 44/MWh (Apr 8 &mdash; ceasefire selloff &minus;20% on day; LNGPriceIndex Apr 3: EUR 50.08/MWh; TTF peak EUR 74/MWh Mar 20)<sup class="fn"><a href="#fn127" id="ref127a">[127]</a></sup><sup class="fn"><a href="#fn126" id="ref126b">[126]</a></sup></td><td style="color:var(--accent);">+38%</td></tr>
-  <tr><td>TTF intraday high (Mar 20)</td><td>&mdash;</td><td>EUR 74/MWh (after Ras Laffan missile strikes)<sup class="fn"><a href="#fn80" id="ref80a">[80]</a></sup></td><td>+132% vs. pre-crisis</td></tr>
-  <tr><td>TTF prior peak (Mar 10)</td><td>&mdash;</td><td>EUR 59.57/MWh</td><td>Now exceeded</td></tr>
+  <tr><th>Benchmark</th><th>Pre-Crisis</th><th>Current (Apr 8)</th><th>Change</th></tr>
+  <tr><td>JKM (Asian LNG spot)</td><td>~$8/MMBtu</td><td>~$19/MMBtu (easing from March highs)<sup class="fn"><a href="#fn126" id="ref126a">[126]</a></sup></td><td style="color:var(--accent);">+138%</td></tr>
+  <tr><td>TTF (European gas)</td><td>EUR 31.96/MWh</td><td>~EUR 44/MWh (ceasefire selloff &minus;20%)<sup class="fn"><a href="#fn127" id="ref127a">[127]</a></sup></td><td style="color:var(--accent);">+38%</td></tr>
+  <tr><td>TTF peak (Mar 20)</td><td>&mdash;</td><td>EUR 74/MWh (after Ras Laffan strikes)<sup class="fn"><a href="#fn80" id="ref80a">[80]</a></sup></td><td>+132%</td></tr>
 </table>
 <ul>
-  <li>European gas jumped ~45% the day Qatar halted production at Ras Laffan (Mar 2).<sup class="fn"><a href="#fn33" id="ref33h">[33]</a></sup></li>
-  <li>Asian buyers aggressively competing for prompt cargoes, diverting from Europe; Asian LNG prices outpacing European gains.<sup class="fn"><a href="#fn33" id="ref33i">[33]</a></sup></li>
-  <li>Qatar <strong>North Field expansion pushed to at least 2027</strong> — long-term supply implications for ~20% of global LNG capacity.<sup class="fn"><a href="#fn33" id="ref33j">[33]</a></sup></li>
-  <li>South Pars phases 3–6 taken offline Mar 18 — South Pars accounts for 70–75% of Iranian gas production; also feeds petrochemical feedstock supply chains.<sup class="fn"><a href="#fn42" id="ref42h">[42]</a></sup><sup class="fn"><a href="#fn47" id="ref47c">[47]</a></sup></li>
-  <li>Qatar's FM noted South Pars is "an extension of Qatar's North Field" — strike on Iranian side raises risks to shared reservoir pressure.<sup class="fn"><a href="#fn49" id="ref49e">[49]</a></sup></li>
+  <li><strong>Qatar Ras Laffan:</strong> 2 of 14 LNG trains + 1 GTL facility destroyed. <strong>12.8M mt/yr (17% of Qatar capacity) offline for 3&ndash;5 YEARS.</strong> ~$20B/yr lost revenue. North Field expansion pushed to 2027+.<sup class="fn"><a href="#fn60" id="ref60d">[60]</a></sup></li>
+  <li><strong>South Pars (Mar 18):</strong> Israel struck phases 3&ndash;6 (70&ndash;75% of Iranian gas production). Shared reservoir with Qatar&rsquo;s North Field &mdash; strikes risk multi-year pressure implications.<sup class="fn"><a href="#fn42" id="ref42h">[42]</a></sup></li>
+  <li>European gas jumped ~45% the day Qatar halted production. Asian buyers aggressively diverting supply from Europe.<sup class="fn"><a href="#fn33" id="ref33h">[33]</a></sup></li>
 </ul>
 
-<!-- Petrochemical Cascade -->
 <h2>Petrochemical Cascade</h2>
 <ul>
-  <li><strong>Steam cracker physics:</strong> Crackers operate at a minimum ~60% utilization or must shut down entirely — no idle mode. A cold shutdown requires 2+ months to restart, creating downstream disruptions that outlast the oil crisis itself. ~20% of Asian ethylene capacity is currently under force majeure.<sup class="fn"><a href="#fn44" id="ref44l">[44]</a></sup></li>
-  <li><strong>Asian naphtha dependency:</strong> Over 60% of Asian naphtha is sourced from the Middle East — blocked Hormuz transit is simultaneously a crude shortage and a petrochemical feedstock crisis.<sup class="fn"><a href="#fn44" id="ref44m">[44]</a></sup></li>
-  <li><strong>LPG yield collapse:</strong> When crude slates shift from light Gulf grades to heavier alternatives, LPG yield drops from ~2% to ~1% of feedstock — compounding the direct LPG shortage from blocked transit.</li>
-  <li><strong>Feedstock cost spike:</strong> Petrochemical feedstock costs up 15–25% globally; downstream impacts cascade through plastics, fertilizers, and pharmaceuticals.<sup class="fn"><a href="#fn44" id="ref44n">[44]</a></sup></li>
-  <li><strong>China exposure:</strong> Over 80% of China's petrochemical capacity is configured for Iranian crude grades. Iran's continued Kharg + Jask exports partially mitigate this, but any escalation halting Iranian exports triggers immediate cracker shutdowns across China's industrial northeast.<sup class="fn"><a href="#fn44" id="ref44o">[44]</a></sup></li>
-  <li><strong>HSFO crack spread:</strong> High-sulphur fuel oil (180 cst) widened +$20/bbl as bunker demand surges from longer rerouting distances. Cape route adds 10–14 days of fuel burn per voyage.<sup class="fn"><a href="#fn44" id="ref44p">[44]</a></sup></li>
-  <li><strong>European jet crack:</strong> Jet fuel premium to ICE gasoil hit all-time record of $518.5/t — first time ever above $500/t.<sup class="fn"><a href="#fn43" id="ref43b">[43]</a></sup></li>
-  <li><strong>US LPG:</strong> US produces 2.3 mb/d LPG with ~450K b/d spare export capacity. However, 5–6 week sailing time to Asia limits near-term relief — cargoes contracted today don't arrive until late April.<sup class="fn"><a href="#fn44" id="ref44q">[44]</a></sup></li>
+  <li><strong>Steam crackers:</strong> Operate at &ge;60% utilization or must shut down entirely. Cold shutdown = 2+ months to restart. ~20% of Asian ethylene under force majeure.<sup class="fn"><a href="#fn44" id="ref44l">[44]</a></sup></li>
+  <li><strong>Asian naphtha:</strong> &gt;60% sourced from Middle East &mdash; Hormuz closure is simultaneously a crude and feedstock crisis.<sup class="fn"><a href="#fn44" id="ref44m">[44]</a></sup></li>
+  <li><strong>LPG yield collapse:</strong> Crude slate shift from light Gulf grades to heavier alternatives drops LPG yield from ~2% to ~1%.</li>
+  <li><strong>China:</strong> &gt;80% of petrochemical capacity configured for Iranian crude grades. Any halt to Iranian exports triggers cracker shutdowns across China&rsquo;s industrial northeast.<sup class="fn"><a href="#fn44" id="ref44o">[44]</a></sup></li>
+  <li><strong>Jet fuel:</strong> European jet crack hit all-time record $518.5/t (first &gt;$500/t). ~1/5 of global jet exports transited Hormuz pre-war.<sup class="fn"><a href="#fn43" id="ref43c">[43]</a></sup></li>
 </ul>
 
-<!-- Insurance & Shipping -->
-<h2>Insurance &amp; Shipping</h2>
+<!-- ═══════════ GEOPOLITICAL & CROSS-CUTTING ═══════════ -->
+<div class="part-divider" style="background:linear-gradient(135deg,#2c3e50,#34495e);">Geopolitical &amp; Cross-Cutting Analysis<span class="part-sub">Diplomacy, ceasefire status, fiscal pressure, China strategy, country vulnerability, and catalysts</span></div>
+
+<h2>Ceasefire Status: &ldquo;Ceasefire&rdquo; in Name Only (Apr 7&ndash;8)</h2>
+
+<div class="blockade-callout" style="border-left-color:var(--accent);">
+<p><strong>The ceasefire is a label, not a reality.</strong> Both sides claim adherence while pursuing fundamentally irreconcilable objectives. Fighting has not stopped &mdash; it has shifted form. Violations were reported within hours. The market sold off 15% on the headline, but the underlying supply disruption is unchanged: Hormuz is still closed, mines are still in the water, 800+ ships are still stranded, and Iran retains vetting control of all transit.</p>
+</div>
+
+<h3>What Each Side Wants (Irreconcilable)</h3>
+<table>
+  <tr><th></th><th>US / Israel Position</th><th>Iran Position</th></tr>
+  <tr><td><strong>Hormuz</strong></td><td>&ldquo;Open, free and clear&rdquo; &mdash; unconditional reopening; free navigation restored</td><td>Permanent IRGC-controlled transit protocol; $2M/vessel fee; Iranian vetting of all ships</td></tr>
+  <tr><td><strong>Military</strong></td><td>Iran&rsquo;s missile/drone capability &ldquo;completely degraded&rdquo; before any deal (Bessent)</td><td>Retain full missile program; US troop withdrawal from regional bases</td></tr>
+  <tr><td><strong>Sanctions</strong></td><td>No sanctions relief without complete denuclearization + Hormuz</td><td>Full sanctions lift; frozen asset release; war reparations</td></tr>
+  <tr><td><strong>End state</strong></td><td>Iran as a contained, non-nuclear regional actor with no Hormuz leverage</td><td>Iran as permanent gatekeeper of the world&rsquo;s most critical energy chokepoint</td></tr>
+</table>
+<p style="font-size:0.82rem;">These positions have <strong>zero overlap</strong>. The Islamabad talks (Apr 10) are the first structured attempt to find common ground, but Iran&rsquo;s 10-point demands are assessed as &ldquo;largely incompatible with US red lines.&rdquo;<sup class="fn"><a href="#fn116" id="ref116b">[116]</a></sup></p>
+
+<h3>Ongoing Hostilities Despite &ldquo;Ceasefire&rdquo;</h3>
 <ul>
-  <li><strong>War risk premiums:</strong> ~5% of vessel value per transit, up from 0.02–0.05% pre-crisis — a $100M tanker now costs $5M to insure for one transit.<sup class="fn"><a href="#fn41" id="ref41a">[41]</a></sup></li>
-  <li>Major P&amp;I clubs (Gard, Skuld, NorthStandard, London P&amp;I, American Club) cancelled war risk cover effective Mar 5.<sup class="fn"><a href="#fn41" id="ref41b">[41]</a></sup></li>
-  <li>Hormuz now the "world's most expensive waterway" after 300% premium surge.<sup class="fn"><a href="#fn31" id="ref31a">[31]</a></sup></li>
-  <li>Maersk, CMA CGM, Hapag-Lloyd all suspended Hormuz/Red Sea transits.<sup class="fn"><a href="#fn32" id="ref32b">[32]</a></sup></li>
-  <li><strong>Tanker stocks:</strong> BWET <strong>$148.56 (Apr 8, 3:11 PM EDT; +$10.32 / +7.46%; prior close $138.24; 52-wk range $9.60&ndash;$147.40 &mdash; trading ABOVE prior 52-week high)</strong>. BWET rose +7.5% even on ceasefire day &mdash; tanker freight reflects rerouting demand and vessel backlog, not spot oil price; 800+ stranded ships = weeks of elevated freight ahead.<sup class="fn"><a href="#fn125" id="ref125c">[125]</a></sup></li>
-  <li>VLCC spot rates ~$400&ndash;424K/day (AG/Far East) &mdash; off Mar 18 peak of $445K/day but far above historical norms.<sup class="fn"><a href="#fn32" id="ref32c">[32]</a></sup></li>
-  <li><strong>Container rerouting:</strong> Cape of Good Hope diversion adds 10–14 days and $500–800K per voyage; ~250,000 containers/month diverted; ~70,000 vehicles/month from Japan/South Korea plants delayed.<sup class="fn"><a href="#fn29" id="ref29a">[29]</a></sup></li>
-  <li><strong>US LPG arbitrage window:</strong> US Gulf Coast to Asian terminal = 5–6 week sailing. Cargoes contracted today arrive late April at earliest — limited near-term relief despite 450K b/d US spare export capacity.<sup class="fn"><a href="#fn44" id="ref44r">[44]</a></sup></li>
+  <li><strong>Ceasefire violations within hours:</strong> UAE and Kuwait reported continued hostile activity on Apr 7.<sup class="fn"><a href="#fn117" id="ref117a">[117]</a></sup></li>
+  <li><strong>Iran&rsquo;s position:</strong> Passage only &ldquo;in coordination with Iranian Armed Forces&rdquo; &mdash; Tehran treats the ceasefire as a pause in US bombing, not as a concession on Hormuz. The strait remains under Iranian operational control.<sup class="fn"><a href="#fn115" id="ref115c">[115]</a></sup></li>
+  <li><strong>Israel not bound:</strong> The ceasefire covers US bombing only. Israel has conducted independent strikes throughout the crisis (South Pars, Tehran, Nowruz strikes) and has not agreed to any pause.</li>
+  <li><strong>Mines remain deployed:</strong> Iran has not announced any mine removal. The ~12 confirmed mines (Maham 3/7) make commercial transit physically unsafe regardless of political agreements.</li>
+  <li><strong>Russia/China blocking:</strong> Vetoed Apr 7 UNSC resolution on commercial shipping protection &mdash; denying any multilateral enforcement mechanism for the ceasefire.<sup class="fn"><a href="#fn121" id="ref121c">[121]</a></sup></li>
 </ul>
 
-<!-- Diplomatic -->
-<h2>Diplomatic &amp; Military Developments</h2>
+<h3>Why the Market Sold Off Anyway (&minus;15%)</h3>
+<p>Brent dropped from ~$112 to ~$95 on the ceasefire headline despite all of the above. This reflects <strong>headline-driven algorithmic selling</strong>, not a fundamental reassessment. The market is pricing the <em>possibility</em> of a deal at Islamabad, not the reality on the ground. If talks collapse, the snapback to $110+ is likely violent. BWET&rsquo;s +7.5% move on ceasefire day &mdash; freight <em>rising</em> on a ceasefire &mdash; shows the physical market disagrees with the crude headline trade.<sup class="fn"><a href="#fn125" id="ref125d">[125]</a></sup></p>
 
-<h3>Naval Coalition (Hormuz Escort)</h3>
-<ul>
-  <li>Trump called on NATO, China, Japan, South Korea, UK, and France to send warships to secure Hormuz.<sup class="fn"><a href="#fn15" id="ref15c">[15]</a></sup></li>
-  <li><strong>Declined:</strong> Germany, Japan, Italy, Romania, Spain, UK, Australia, Luxembourg formally declined; EU voted against expanding naval operations.<sup class="fn"><a href="#fn15" id="ref15d">[15]</a></sup></li>
-  <li><strong>Partial:</strong> France pledged 2 frigates — Operation Aspides announced Mar 21;<sup class="fn"><a href="#fn38" id="ref38c">[38]</a></sup><sup class="fn"><a href="#fn87" id="ref87c">[87]</a></sup> Pakistan launched Operation Muhafiz-ul-Bahr.</li>
-  <li><strong>20 US allies</strong> issued joint statement Mar 21 committing to safe passage through Hormuz; Japan formally approved for Iran vetting transit (first non-China/India/Pakistan/Turkey clearance).<sup class="fn"><a href="#fn87" id="ref87d">[87]</a></sup><sup class="fn"><a href="#fn86" id="ref86d">[86]</a></sup></li>
-  <li>US Navy estimates escort readiness by end of March — needs 8–10 destroyers per convoy.<sup class="fn"><a href="#fn38" id="ref38d">[38]</a></sup></li>
-  <li>Military analysts: forcing Hormuz open against IRGC asymmetric threats would be "almost suicidal" — requiring ~80,000 marines.<sup class="fn"><a href="#fn40" id="ref40a">[40]</a></sup></li>
-  <li>Trump threatened to reconsider NATO membership after allies refused to join Hormuz mission.<sup class="fn"><a href="#fn15" id="ref15e">[15]</a></sup></li>
-</ul>
-
+<h2>Diplomatic &amp; Military</h2>
+<h3>Naval Coalition</h3>
+<p>Largely moot post-ceasefire. Germany, Japan, Australia, UK, Italy, Spain all declined escort participation. 7 allies backed &ldquo;preparatory planning&rdquo; only. US Navy estimated 8&ndash;10 destroyers per convoy; military analysts called force-opening &ldquo;almost suicidal&rdquo; given Iran&rsquo;s asymmetric threats.<sup class="fn"><a href="#fn40" id="ref40b">[40]</a></sup></p>
 <h3>UN Security Council</h3>
+<p>Resolution 2817 (Mar 11): 13-0-2 (China/Russia abstained). Condemned Iran&rsquo;s attacks; no enforcement mechanism. Russia/China vetoed Apr 7 commercial shipping resolution.<sup class="fn"><a href="#fn2" id="ref2a">[2]</a></sup></p>
+
+<h2>Iran Leadership</h2>
+<table>
+  <tr><th>Role</th><th>Status</th><th>Successor</th></tr>
+  <tr><td>Supreme Leader</td><td>Ali Khamenei killed (Feb 28)</td><td><strong>Mojtaba Khamenei</strong> (IRGC-backed, elected Mar 9)</td></tr>
+  <tr><td>40+ officials killed total</td><td colspan="2">Larijani, Soleimani, Pakpour, IRGC Aerospace chief, and others</td></tr>
+</table>
+<p>Mojtaba has not appeared in person since election. Injury/death rumors (Al Jazeera, Apr 1) unconfirmed. IRGC hardline faction controls policy; &ldquo;resistance economy&rdquo; framing signals prolonged conflict intent.<sup class="fn"><a href="#fn112" id="ref112a">[112]</a></sup></p>
+
+<h2 class="break-before">Fiscal Breakevens &amp; Sovereign Pressure</h2>
+<p style="font-size:0.82rem;color:var(--subtle);">Gulf producers are simultaneously losing export revenue (production cuts) AND spending on war-related costs. At sustained production cuts, fiscal breakeven prices become unreachable regardless of headline Brent.</p>
+<table>
+  <tr><th>Country</th><th>Fiscal Breakeven</th><th>Current Revenue Status</th><th>SWF Buffer</th></tr>
+  <tr><td><strong>Saudi Arabia</strong></td><td>$86&ndash;96/bbl (central govt); $111 incl. PIF/Vision 2030</td><td>At $95 + 2.0 mb/d cut: ~breakeven on central govt; PIF projects underwater</td><td>PIF ~$930B; SAMA reserves ~$430B</td></tr>
+  <tr><td><strong>Iraq</strong></td><td>$92/bbl (2025 est.)</td><td>At $95 + 2.9 mb/d cut: <strong>deep deficit</strong> &mdash; revenue down ~65%</td><td>Minimal; most vulnerable</td></tr>
+  <tr><td><strong>Kuwait</strong></td><td>~$78/bbl</td><td>At $95 + 0.7 mb/d cut + refinery damage: deficit; rising govt spending</td><td>KIA ~$920B</td></tr>
+  <tr><td><strong>UAE</strong></td><td>~$57/bbl</td><td>At $95 + 1.3 mb/d cut: still above breakeven; most comfortable</td><td>ADIA ~$990B; deepest buffer</td></tr>
+  <tr><td><strong>Qatar</strong></td><td>~$50/bbl</td><td>LNG revenue collapsed (Ras Laffan force majeure); offset by LNG diversification</td><td>QIA ~$510B</td></tr>
+</table>
+<p><strong>Pressure point:</strong> Iraq is the most fiscally exposed &mdash; highest breakeven, largest production cut, minimal SWF buffer. At sustained $85 Brent post-crisis, Iraq runs deficit. Saudi can cover central govt but Vision 2030 megaprojects ($1T+ pipeline) are deferred. If oil stays below $90 for 12&ndash;18 months, KIA and PIF drawdowns begin.</p>
+
+<h2>China Strategic Behavior</h2>
 <ul>
-  <li><strong>Resolution 2817</strong> (Mar 11): Condemned Iran's attacks on regional energy infrastructure. Vote: 13-0-2 (China/Russia abstained). Record 135 co-sponsors.<sup class="fn"><a href="#fn2" id="ref2b">[2]</a></sup></li>
-  <li>Competing Russian draft failed 4-2-9.</li>
+  <li><strong>Reserves:</strong> ~1,400M bbl strategic + commercial (~120 days at import rate). <strong>Unknown whether China is drawing or hoarding.</strong> Satellite data (Orbital Insight, Kayrros) on tank farm fill rates would be high-value intelligence.</li>
+  <li><strong>Iranian crude:</strong> Receiving ~1.25 mb/d via dark fleet. 11.7M+ bbl transited since Feb 28. China is the primary beneficiary of Iran&rsquo;s selective blockade.</li>
+  <li><strong>Bilateral deals:</strong> In direct talks with Iran for guaranteed safe passage. Yuan-denominated transit under consideration &mdash; structural challenge to petrodollar system.</li>
+  <li><strong>Resilience:</strong> 75% of rail electrified; 50% of 2025 semi-tractor sales electric; Russian gas via overland pipelines. Most buffered major importer.<sup class="fn"><a href="#fn39" id="ref39c">[39]</a></sup></li>
+  <li><strong>Policy signal:</strong> China &ldquo;prioritizing energy and diplomacy over Iran support.&rdquo; Joint China-Pakistan peace initiative (Mar 31) signals desire for resolution. Russia/China vetoed UNSC commercial shipping resolution (Apr 7) &mdash; protecting leverage.</li>
 </ul>
 
-<h3>Ceasefire: In Effect &mdash; But Hormuz Still Physically Closed</h3>
-<ul>
-  <li><strong>Apr 7 &mdash; Two-week ceasefire announced:</strong> Trump suspended US bombing for 14 days; Iran&rsquo;s Supreme National Security Council formally accepted. Iran stated passage permitted only &ldquo;in coordination with Iranian Armed Forces.&rdquo;<sup class="fn"><a href="#fn115" id="ref115c">[115]</a></sup><sup class="fn"><a href="#fn118" id="ref118b">[118]</a></sup></li>
-  <li><strong>Ceasefire violations within hours:</strong> UAE and Kuwait reported violations on April 7-8. Deal described as fragile; Islamabad talks April 10 are the first test of whether terms can be formalized.<sup class="fn"><a href="#fn116" id="ref116b">[116]</a></sup></li>
-  <li><strong>Hormuz still largely closed (Apr 8):</strong> ~3 ships transited vs. 135/day normal; 800+ ships stranded; mines in water; Iran has not announced mine removal operations.<sup class="fn"><a href="#fn119" id="ref119c">[119]</a></sup></li>
-  <li><strong>Iran&rsquo;s 10-point demands (confirmed):</strong> (1) US troop withdrawal from regional bases; (2) full sanctions lift; (3) release of frozen Iranian assets; (4) war damage payments; (5) IRGC-controlled Hormuz passage protocol retained; (6) missile program preserved. US has not accepted these terms.<sup class="fn"><a href="#fn116" id="ref116c">[116]</a></sup></li>
-  <li><strong>Russia/China vetoed UNSC resolution (Apr 7)</strong> aimed at commercial shipping protection; US called veto &ldquo;a gift to Tehran.&rdquo;<sup class="fn"><a href="#fn121" id="ref121c">[121]</a></sup></li>
-  <li><strong>Background:</strong> Iran FM Araghchi&rsquo;s push for a permanent post-war Hormuz protocol &mdash; framed as institutional control, not temporary military leverage &mdash; is the structural basis for Iran&rsquo;s negotiating position. IRGC $2M/vessel transit fee still in place.<sup class="fn"><a href="#fn106" id="ref106c">[106]</a></sup></li>
-</ul>
-
-<!-- Iran Leadership -->
-<h2>Iran Leadership Succession</h2>
-<table class="leadership-table">
-  <tr><th>Role</th><th>Killed/Removed</th><th>Successor</th><th>Date</th></tr>
-  <tr><td>Supreme Leader</td><td>Ali Khamenei (Feb 28)</td><td><strong>Mojtaba Khamenei</strong> (IRGC-backed)<sup class="fn"><a href="#fn58" id="ref58d">[58]</a></sup></td><td>Elected Mar 9</td></tr>
-  <tr><td>IRGC Commander</td><td>Mohammad Pakpour (Feb 28)</td><td>Ahmad Vahidi</td><td>Mar 1</td></tr>
-  <tr><td>Security Chief</td><td>Ali Larijani (Mar 17)<sup class="fn"><a href="#fn16" id="ref16b">[16]</a></sup></td><td>&mdash;</td><td>&mdash;</td></tr>
-  <tr><td>Basij Commander</td><td>Gholamreza Soleimani (Mar 17)<sup class="fn"><a href="#fn16" id="ref16c">[16]</a></sup></td><td>&mdash;</td><td>&mdash;</td></tr>
-  <tr><td>Intelligence Minister</td><td>Esmaeil Khatib (Mar 18)<sup class="fn"><a href="#fn18" id="ref18d">[18]</a></sup></td><td>&mdash;</td><td>Confirmed by President Pezeshkian</td></tr>
-</table>
-<p><strong>40+ Iranian officials killed total</strong>, including intelligence minister Khatib (Mar 18).<sup class="fn"><a href="#fn16" id="ref16d">[16]</a></sup><sup class="fn"><a href="#fn18" id="ref18e">[18]</a></sup> Mojtaba Khamenei's election under IRGC pressure suggests the hardline faction has consolidated control — reducing the likelihood of near-term de-escalation.<sup class="fn"><a href="#fn39" id="ref39a">[39]</a></sup> IRGC has issued evacuation warnings for civilians near Saudi, Qatar, and UAE energy facilities, signaling imminent strikes beyond Iran's borders.<sup class="fn"><a href="#fn49" id="ref49f">[49]</a></sup></p>
-
-<!-- Flow Rate Constraints -->
-<h2>Flow Rate Constraints: Why &ldquo;Paper&rdquo; Relief Lags Physical Reality</h2>
-<p>SPR releases and pipeline activations are announced in volume terms. The binding constraint is <strong>deployment rate</strong> &mdash; how fast the barrels can physically move. Headline numbers consistently overstate near-term relief.<sup class="fn"><a href="#fn6" id="ref6d">[6]</a></sup></p>
-
-<h3>US Strategic Petroleum Reserve</h3>
-<div class="flow-callout">
-  <span class="big-label">Theoretical 4.4 &rarr; Reality 1.2 mb/d</span>
-  The US SPR has never actually sustained its theoretical withdrawal rate. Salt cavern geology, pipeline infrastructure, and marine terminal throughput impose sequential bottlenecks that compress the effective rate to roughly one-quarter of the design maximum.<sup class="fn"><a href="#fn1" id="ref1k">[1]</a></sup>
-</div>
-<table>
-  <tr><th>Constraint Layer</th><th>Rate (mb/d)</th><th>Notes</th></tr>
-  <tr><td>Salt cavern max withdrawal</td><td>4.4</td><td>Theoretical; never achieved simultaneously across all 4 sites<sup class="fn"><a href="#fn1" id="ref1l">[1]</a></sup></td></tr>
-  <tr><td>Marine terminal throughput</td><td>2.2</td><td>Big Hill, Bryan Mound, West Hackberry combined loading capacity</td></tr>
-  <tr><td>Historical max achieved</td><td>1.2</td><td>Post-Katrina 2005 and Libya 2011 peaks; best real-world benchmark<sup class="fn"><a href="#fn1" id="ref1m">[1]</a></sup></td></tr>
-  <tr><td>Current DOE plan (120 days)</td><td>1.43</td><td>172M bbl &divide; 120 days; requires near-full terminal utilization<sup class="fn"><a href="#fn3" id="ref3e">[3]</a></sup></td></tr>
-</table>
-
-<h3>IEA Non-US Members</h3>
-<p>Combined IEA non-US committed release: ~228M bbl across Europe, Japan, South Korea — but practical deployment rates are severely constrained by logistics, not storage.<sup class="fn"><a href="#fn1" id="ref1n">[1]</a></sup></p>
-<table>
-  <tr><th>Region</th><th>Committed (Mb)</th><th>Practical Rate (mb/d)</th><th>Bottleneck</th></tr>
-  <tr><td>Europe (IEA)</td><td>~150M</td><td>~0.30</td><td>Distributed storage across 28 countries; slow drawdown logistics<sup class="fn"><a href="#fn1" id="ref1o">[1]</a></sup></td></tr>
-  <tr><td>Japan (IEA)</td><td>~80M govt</td><td>~0.20</td><td>Tanker scheduling from coastal storage tanks</td></tr>
-  <tr><td>South Korea (IEA)</td><td>~50M</td><td>~0.10</td><td>Pipeline connectivity limits throughput to domestic refineries</td></tr>
-  <tr><td><strong>Combined non-US IEA</strong></td><td><strong>~314M</strong></td><td><strong>~0.57</strong></td><td>Logistics &mdash; not storage &mdash; is the binding constraint</td></tr>
-</table>
-
-<h3>GL 134 Floating Inventory</h3>
-<table>
-  <tr><th>Metric</th><th>Figure</th><th>Notes</th></tr>
-  <tr><td>Total floating volume</td><td>186M bbl</td><td>~238 tankers; Sparta Commodities (Mar 16)</td></tr>
-  <tr><td>Near-field (India/China waters)</td><td>60-70M bbl</td><td>Prompt delivery within days to nearby refineries</td></tr>
-  <tr><td>Effective discharge rate</td><td>~2.0 mb/d tapering</td><td>Limited by port berths and unloading arms, not tanker availability</td></tr>
-  <tr><td>Expiration</td><td>Apr 11, 2026</td><td>Stock depletes; no replenishment mechanism; one-time relief</td></tr>
-</table>
-
-<h3>Reality Check: Combined Maximum Deployment</h3>
-<div class="flow-callout">
-  <span class="big-label">~6.5 mb/d Maximum &rarr; vs. &minus;20 mb/d Lost</span>
-  If every mitigation deploys simultaneously at maximum physical rate: US SPR 1.43 + IEA non-US 0.57 + GL 134 2.0 + Saudi pipeline 1.75 + ADCOP 0.70 = <strong>6.45 mb/d peak</strong>. Against 20 mb/d lost, the physical deployment gap is ~13.5 mb/d even in a best-case coordination scenario. The paper balance sheet and the physical market diverge by the rate at which barrels can actually move.
-</div>
-
-<!-- Country Vulnerability -->
 <h2 class="break-before">Country-Level Vulnerability</h2>
-<p style="font-size:0.85rem;color:var(--subtle);margin-bottom:0.5rem;">Adjusted Days of Cover = Strategic Reserves &divide; (Daily Consumption &times; Hormuz Dependency %). Measures runway against the <em>Hormuz-disrupted portion</em> of supply specifically &mdash; more meaningful than headline days-of-supply figures.</p>
-<div class="vuln-legend">
-  <span class="leg-critical">Critical (&lt;45 adj. days)</span>
-  <span class="leg-high">High (45&ndash;100 adj. days)</span>
-  <span class="leg-moderate">Moderate (100&ndash;200 adj. days)</span>
-  <span class="leg-low">Low (direct exposure)</span>
+<p style="font-size:0.78rem;color:var(--subtle);margin-bottom:0.25rem;">Adj. Days = Strategic Reserves &divide; (Consumption &times; Hormuz Dep. %). Measures runway against the Hormuz-disrupted portion of supply.</p>
+<div class="vuln-legend" style="margin:0.15rem 0 0.3rem;font-size:0.75rem;">
+  <span class="leg-critical">Critical (&lt;45d)</span>
+  <span class="leg-high">High (45&ndash;100d)</span>
+  <span class="leg-moderate">Moderate (100&ndash;200d)</span>
+  <span class="leg-low">Low</span>
 </div>
 <table class="vuln-table">
-  <tr><th>Country</th><th>Consumption</th><th>Hormuz Dep.</th><th>Strategic Reserves</th><th>Adj. Days Cover</th><th>Key Vulnerability</th></tr>
-
-  <tr class="vuln-critical"><td><strong>Singapore</strong></td><td>~1.5 mb/d (refinery)</td><td>&gt;90%</td><td>&lt;14 days</td><td>~11 days</td><td>Regional refining hub; minimal strategic storage; choke point for SE Asia fuel</td></tr>
-  <tr class="vuln-critical"><td><strong>India</strong></td><td>~5.2 mb/d</td><td>~60%</td><td>~7 days govt</td><td>~12 days</td><td>87% import-dependent; secured limited passage; 30x spike in induction stove sales; ~37M bbl total govt reserves</td></tr>
-  <tr class="vuln-critical"><td><strong>Australia</strong></td><td>~1.0 mb/d</td><td>~90% fuel imports</td><td>~21 days</td><td>~23 days</td><td>Lowest OECD compliance (IEA requires 90-day minimum); minimal domestic refining; worst-prepared OECD economy</td></tr>
-  <tr class="vuln-critical"><td><strong>Japan</strong></td><td>~3.2 mb/d</td><td>~75%</td><td>80M bbl govt SPR</td><td>~33 days</td><td>PM warned of collapse within 8-9 months; declined escort coalition; refineries designed for Arab Light grade</td></tr>
-
-  <tr class="vuln-high"><td><strong>Taiwan</strong></td><td>~1.0 mb/d</td><td>~85%</td><td>~60 days total</td><td>~71 days</td><td>No domestic production; TSMC fab energy exposure; strategic ambiguity complicates supply agreements</td></tr>
-  <tr class="vuln-high"><td><strong>Thailand</strong></td><td>~1.2 mb/d</td><td>~55%</td><td>~30 days total</td><td>~55 days</td><td>Petrochemical complex at Map Ta Phut (7% of GDP) dependent on Gulf naphtha; limited bypass options</td></tr>
-  <tr class="vuln-high"><td><strong>South Korea</strong></td><td>~2.8 mb/d</td><td>~70%</td><td>~90 days total</td><td>~129 days</td><td>Refineries designed for Gulf crude; Ulsan complex processes Arab Heavy; issued "reduce by 20%" conservation guidance</td></tr>
-  <tr class="vuln-high"><td><strong>Kuwait</strong></td><td>~0.5 mb/d (consumer)</td><td>100% exports</td><td>&mdash;</td><td>GDP &minus;14%</td><td>No pipeline bypass; 100% of 3.2 mb/d exports transit Hormuz; force majeure Mar 7; most GDP-exposed producer</td></tr>
-
-  <tr class="vuln-moderate"><td><strong>Pakistan</strong></td><td>~0.6 mb/d</td><td>~30%</td><td>~20 days total</td><td>~67 days</td><td>Iranian crude alternative available (pipeline under discussion); lower Hormuz exposure than neighbors; Operation Muhafiz-ul-Bahr</td></tr>
-  <tr class="vuln-moderate"><td><strong>Qatar</strong></td><td>~0.7 mb/d (consumer)</td><td>100% LNG exports</td><td>&mdash;</td><td>GDP &minus;14%</td><td>Ras Laffan force majeure; North Field to 2027; 20% of global LNG offline; producer vulnerability (exports, not imports)</td></tr>
-  <tr class="vuln-moderate"><td><strong>Saudi Arabia</strong></td><td>~4.0 mb/d</td><td>~65% exports</td><td>&mdash;</td><td>GDP &minus;3%</td><td>East-West pipeline partially offsets; Ras Tanura fire; ~2-2.5 mb/d cut; partial bypass mitigates worst case</td></tr>
-  <tr class="vuln-moderate"><td><strong>China</strong></td><td>~16.5 mb/d</td><td>~37%</td><td>~1,200M bbl</td><td>~197 days</td><td>Receiving Iranian crude via dark fleet; 75% rail electrified; 50% EV semi sales; in talks for guaranteed passage; most buffered major importer</td></tr>
-
-  <tr class="vuln-moderate"><td><strong>Europe (agg.)</strong></td><td>~12 mb/d</td><td>~12% oil / 20% LNG</td><td>90+ days avg</td><td>&gt;600 days</td><td>TTF gas +59%; Qatar LNG halt critical; North Field delay multi-year; oil exposure manageable but gas exposure severe</td></tr>
-
-  <tr class="vuln-low"><td><strong>UAE</strong></td><td>~1.0 mb/d</td><td>&lt;20% export exposure</td><td>&mdash;</td><td>GDP &minus;5%</td><td>ADCOP pipeline reduces export Hormuz dependency; Fujairah struck 3x but loading continues; Mussafah terminal damaged</td></tr>
-  <tr class="vuln-low"><td><strong>United States</strong></td><td>~20.0 mb/d</td><td>Net exporter</td><td>415M bbl SPR</td><td>Indirect</td><td>No direct import exposure; indirect: allied economic collapse = global recession; export ban debate; SPR depleting</td></tr>
+  <tr><th>Country</th><th>Consumption</th><th>Hormuz Dep.</th><th>Reserves</th><th>Adj. Days</th><th>Key Vulnerability</th></tr>
+  <tr class="vuln-critical"><td><strong>Singapore</strong></td><td>~1.5 mb/d</td><td>&gt;90%</td><td>&lt;14 days</td><td>~11d</td><td>Regional refining hub; minimal strategic storage</td></tr>
+  <tr class="vuln-critical"><td><strong>India</strong></td><td>~5.2 mb/d</td><td>~60%</td><td>~7 days</td><td>~12d</td><td>87% import-dependent; secured limited passage; 30x induction stove spike</td></tr>
+  <tr class="vuln-critical"><td><strong>Australia</strong></td><td>~1.0 mb/d</td><td>~90%</td><td>~21 days</td><td>~23d</td><td>Lowest OECD SPR compliance; minimal domestic refining</td></tr>
+  <tr class="vuln-critical"><td><strong>Japan</strong></td><td>~3.2 mb/d</td><td>~75%</td><td>80M bbl</td><td>~33d</td><td>PM warned of collapse within 8&ndash;9 months; declined escort</td></tr>
+  <tr class="vuln-high"><td><strong>Taiwan</strong></td><td>~1.0 mb/d</td><td>~85%</td><td>~60 days</td><td>~71d</td><td>No domestic production; TSMC fab energy exposure</td></tr>
+  <tr class="vuln-high"><td><strong>Thailand</strong></td><td>~1.2 mb/d</td><td>~55%</td><td>~30 days</td><td>~55d</td><td>Map Ta Phut petrochemical complex (7% GDP) dependent on Gulf naphtha</td></tr>
+  <tr class="vuln-high"><td><strong>S. Korea</strong></td><td>~2.8 mb/d</td><td>~70%</td><td>~90 days</td><td>~129d</td><td>Refineries designed for Gulf crude; &ldquo;reduce 20%&rdquo; conservation guidance</td></tr>
+  <tr class="vuln-high"><td><strong>Kuwait</strong></td><td>~0.5 mb/d</td><td>100%</td><td>&mdash;</td><td>GDP &minus;14%</td><td>No pipeline bypass; 100% exports transit Hormuz; most GDP-exposed</td></tr>
+  <tr class="vuln-moderate"><td><strong>China</strong></td><td>~16.5 mb/d</td><td>~37%</td><td>~1,200M bbl</td><td>~197d</td><td>Dark fleet access; 75% rail electrified; most buffered major importer</td></tr>
+  <tr class="vuln-moderate"><td><strong>Saudi</strong></td><td>~4.0 mb/d</td><td>~65% exp.</td><td>&mdash;</td><td>GDP &minus;3%</td><td>Pipeline partially offsets; fiscal breakeven $86&ndash;96</td></tr>
+  <tr class="vuln-moderate"><td><strong>Europe</strong></td><td>~12 mb/d</td><td>~12%</td><td>90+ days</td><td>&gt;600d</td><td>Oil manageable; <strong>gas/LNG exposure severe</strong> (TTF +38%)</td></tr>
+  <tr class="vuln-low"><td><strong>UAE</strong></td><td>~1.0 mb/d</td><td>&lt;20%</td><td>&mdash;</td><td>GDP &minus;5%</td><td>ADCOP pipeline reduces dependency; lowest fiscal breakeven</td></tr>
+  <tr class="vuln-low"><td><strong>US</strong></td><td>~20.0 mb/d</td><td>Net exp.</td><td>415M bbl</td><td>Indirect</td><td>No direct exposure; indirect: allied collapse &rarr; global recession</td></tr>
 </table>
 
-<!-- Chart -->
-<h2>Interactive Supply Chart</h2>
-<div class="chart-container">
-  <iframe src="hormuz_supply_chart.html" loading="lazy"></iframe>
-</div>
-
-<!-- Demand Destruction -->
-<h2>Demand Destruction Dynamics</h2>
-<ul>
-  <li><strong>Threshold price:</strong> Bernstein estimates $155/bbl Brent as the level triggering structural demand destruction &mdash; ~50% above current levels. Below this, oil demand is largely inelastic in the short run due to lack of substitutes for transportation and industrial use.</li>
-  <li><strong>Price elasticity:</strong> Short-run oil demand elasticity: &minus;0.2 to &minus;0.3. At $103 Brent, implied demand reduction: ~2-3% globally (~2-3 mb/d). Meaningful, but far from closing the -12 mb/d structural gap.</li>
-  <li><strong>IEA demand revisions:</strong> IEA raised its 2026 demand destruction estimate from 210K b/d to 640K b/d &mdash; reflecting higher-than-expected price pass-through to consumers and faster behavioral response in Asia.</li>
-  <li><strong>Asian emergency measures:</strong> India mandating 10% ethanol blending expansion; Japan activating emergency conservation orders (factories, commercial buildings); South Korea issuing "reduce by 20%" public guidance; China restricting highway trucking to odd/even license plates in 7 provinces.</li>
-  <li><strong>Stalemate scenario (15-20% demand drop):</strong> If closure extends 3+ months with no resolution, IEA models 15-20% demand contraction in Asia-Pacific &mdash; triggering a global recession that itself destroys demand. This is the self-correcting mechanism, but the adjustment is severe and non-linear.</li>
-  <li><strong>Supply-demand clearing:</strong> Futures curve implies market expects clearing at ~$85 Brent by year-end (steep contango). Structural analysts (Pozsar, Trafigura) argue this assumes a brief disruption and is badly mispriced if closure extends past June.</li>
-</ul>
-
-<!-- What to Watch -->
-<h2>What to Watch</h2>
-
+<h2 class="break-before">What to Watch</h2>
 <h3>Immediate Catalysts (next 10 days)</h3>
-
-<div class="watch-item"><strong>1. Ceasefire compliance / violations (Apr 8&ndash;21):</strong> UAE and Kuwait already reported violations within hours. If violations escalate into resumed US strikes, Brent snaps back toward $110+. If ceasefire holds and ships begin clearing, Brent slides toward $80&ndash;85. This is now the single highest-impact binary catalyst.<sup class="fn"><a href="#fn115" id="ref115d">[115]</a></sup><sup class="fn"><a href="#fn116" id="ref116d">[116]</a></sup></div>
-
-<div class="watch-item"><strong>2. Islamabad negotiations &mdash; April 10:</strong> First structured US-Iran talks under Pakistani mediation. Iran&rsquo;s 10-point demands are largely incompatible with US red lines (troop withdrawal, full sanctions lift, IRGC fee retention). Watch whether both sides find common ground or talks collapse &mdash; collapse = Trump resumes bombing; progress = mine clearance timeline may emerge.<sup class="fn"><a href="#fn116" id="ref116e">[116]</a></sup></div>
-
-<div class="watch-item"><strong>3. GL 134 expires April 11 &mdash; 3 days away:</strong> No extension announced. With ceasefire in place, Treasury may let lapse (the supply-shock rationale is partially eased). Expiry removes ~2 mb/d from the mitigation stack. At ~$95 Brent, impact is softened vs. $110 &mdash; but still directionally bearish supply signal.<sup class="fn"><a href="#fn3" id="ref3f">[3]</a></sup></div>
-
-<div class="watch-item"><strong>4. Mine removal &mdash; physical reopening prerequisite:</strong> Iran has not announced any mine clearance. Minesweeping by neutral parties adds 7&ndash;14 days minimum after any political deal. Watch for IRGC or Iranian Navy statements on mine removal &mdash; first signal that physical reopening is imminent rather than political.</div>
-
-<div class="watch-item"><strong>5. AIS ship count &mdash; the ground truth signal:</strong> 800+ ships stranded inside Gulf. Daily MarineTraffic/AIS data is the most reliable indicator of whether Hormuz is physically reopening. Steady increase toward 50+/day = reopening signal; staying at 3&ndash;11/day = ceasefire without physical opening.<sup class="fn"><a href="#fn119" id="ref119d">[119]</a></sup><sup class="fn"><a href="#fn123" id="ref123a">[123]</a></sup></div>
+<div class="watch-item"><strong>1. Islamabad talks (Apr 10) + GL 134 expiry (Apr 11):</strong> Two catalysts converge in 72 hours. Deal framework &rarr; Brent toward $80&ndash;85. Talks collapse + GL 134 cliff (&minus;2 mb/d) &rarr; Brent snaps back to $110+.</div>
+<div class="watch-item"><strong>2. Ceasefire durability:</strong> 2-week window expires ~Apr 21. If no permanent deal, US resumes bombing and Brent reprices sharply. Watch for Iran&rsquo;s 10-point demands vs US red lines.</div>
+<div class="watch-item"><strong>3. Mojtaba Khamenei status:</strong> Injury/death rumors (Apr 1) unconfirmed. Resolution either way changes Iran&rsquo;s negotiating posture.<sup class="fn"><a href="#fn112" id="ref112c">[112]</a></sup></div>
+<div class="watch-item"><strong>4. Mine clearance timeline:</strong> ~12 mines (Maham 3/7) confirmed. Even with a deal, physical clearing adds 7&ndash;14 days before commercial traffic resumes.</div>
 
 <h3>Structural Risks (weeks to months)</h3>
+<div class="watch-item"><strong>5. Well damage recovery:</strong> 41+ days idle. Every additional week adds recovery lag. Production recovery extends through July minimum. Futures curve (Dec 2026 ~$82) may be mispricing this.</div>
+<div class="watch-item"><strong>6. SPR exhaustion:</strong> US portion (172M bbl) gone by mid-July at 1.43 mb/d. Post-SPR cliff if crisis extends past summer.</div>
+<div class="watch-item"><strong>7. Ras Laffan LNG:</strong> 12.8M mt/yr offline for 3&ndash;5 years. Structural repricing of LNG futures beyond the crisis window.</div>
+<div class="watch-item"><strong>8. Forward curve repricing:</strong> Back-end Brent at $79&ndash;85 assumes resolution by June. If Islamabad fails, Dec 2026 contracts reprice $10&ndash;15 higher.</div>
+<div class="watch-item"><strong>9. Iraq fiscal crisis:</strong> Highest breakeven ($92), largest production cut (2.9 mb/d), minimal SWF. At sustained $85 post-crisis, Iraq runs deficit &mdash; political instability risk.</div>
 
-<div class="watch-item"><strong>6. Well damage compounding:</strong> Now 41+ days idle (since March 3 shutdowns). Kuwait CEO: &ldquo;3&ndash;4 months post-war to full production.&rdquo; IEA: ~8 mb/d crude + ~2 mb/d condensates curtailed. Even if Hormuz reopens this week, Gulf production recovery takes until June&ndash;July minimum. Futures curve (Jan 2027 Brent ~$70) may be badly underpricing this structural lag.<sup class="fn"><a href="#fn114" id="ref114c">[114]</a></sup></div>
+<h3>Background</h3>
+<div class="watch-item"><strong>10. Iran&rsquo;s Hormuz protocol:</strong> Araghchi&rsquo;s push for permanent IRGC-controlled transit. If institutionalized, structural reordering of energy transit rights.<sup class="fn"><a href="#fn19" id="ref19d">[19]</a></sup></div>
+<div class="watch-item"><strong>11. China&rsquo;s reserve drawdown:</strong> Whether China is drawing or hoarding its ~1,400M bbl strategic stockpile is the most important unknown variable for crisis duration.</div>
 
-<div class="watch-item"><strong>7. SPR exhaustion clock:</strong> US portion (172M bbl) gone by mid-July at 1.43 mb/d. Post-SPR cliff if crisis extends past summer. SPR refill obligation ($17B at $100/bbl) is a structural price floor once crisis passes.<sup class="fn"><a href="#fn1" id="ref1p">[1]</a></sup></div>
-
-<div class="watch-item"><strong>8. Ras Laffan LNG (3&ndash;5 year structural loss):</strong> 12.8M mt/yr offline through 2029&ndash;2031 regardless of ceasefire. LNG futures have NOT priced this &mdash; watch for repricing as markets recognize political resolution and physical rebuild timeline are completely decoupled.<sup class="fn"><a href="#fn60" id="ref60e">[60]</a></sup></div>
-
-<div class="watch-item"><strong>9. Post-ceasefire reopening lag:</strong> Even with political deal + mine clearance, IEA base case = 2&ndash;2.5 months to reach 80% of pre-crisis supply levels (well restarts, pipeline recommissioning, insurance normalization, tanker repositioning). Futures pricing $85 Brent year-end may be roughly correct &mdash; but only if no ceasefire violations restart strikes.</div>
-
-<h3>Background (established dynamics)</h3>
-
-<div class="watch-item"><strong>10. Insurance/shipping normalization:</strong> War risk premiums at 0.5&ndash;1.0% of hull (from 0.02% pre-crisis); US/UK/Israeli-nexus vessels: 2.5&ndash;5.0%. Normalization requires sustained ceasefire + mine clearance + demonstrated safe transits. BWET +7.5% on ceasefire day = market pricing delayed normalization.<sup class="fn"><a href="#fn128" id="ref128a">[128]</a></sup></div>
-
-<div class="watch-item"><strong>11. IRGC Hormuz transit fee:</strong> $2M/vessel fee remains in place under ceasefire terms &mdash; Iran&rsquo;s institutional reordering of energy transit economics. A permanent structural change regardless of formal political resolution. Watch whether international insurers begin pricing this as new baseline cost of Gulf transit.</div>
-
-<div class="watch-item"><strong>12. Refined products crunch:</strong> Bypass pipelines only move crude. Diesel ~$5.81/gal; crack spreads elevated. Valero Port Arthur restarting (minus 47K b/d hydrotreater). Products recovery lags crude by 4&ndash;6 weeks after supply restoration.</div>
-
-<!-- Market Intelligence -->
-<h2 class="break-before">Market &amp; Social Intelligence</h2>
-<p style="color:var(--subtle);font-style:italic;margin-bottom:1rem;">Last social sweep: Mar 24. Prices updated Apr 8, 2026.</p>
-
-<div class="sweep-section">
-  <h3>Key Themes (early April &mdash; ceasefire day)</h3>
-  <ul>
-    <li><strong>Ceasefire selloff &minus;15% Brent in one session.</strong> Market unwinding war premium aggressively. But Hormuz remains physically closed, 800+ ships stranded, mines in water &mdash; price action is pricing in a ceasefire that hasn&rsquo;t physically materialized yet. Classic &ldquo;buy the rumor, sell the news&rdquo; risk if Hormuz doesn&rsquo;t actually reopen.</li>
-    <li><strong>BWET countertrend signal: +7.5% on ceasefire day.</strong> Market correctly pricing that vessel backlog, rerouting, and slow physical reopening sustain elevated freight rates for weeks. &ldquo;Ceasefire &ne; Hormuz open.&rdquo;</li>
-    <li><strong>Futures curve thesis partially validated:</strong> Goldman&rsquo;s $85 April avg was roughly directional. Jan 2027 Brent ~$70 vs. spot ~$95 &mdash; market pricing 6-week disruption + 2-month recovery. Structural losses (Ras Laffan, well damage) not in price.</li>
-    <li><strong>No shale response confirmed at $110 Brent:</strong> Capital discipline held. US rig count did not meaningfully increase. Any sustained $90+ adds pressure on management.</li>
-    <li><strong>Goldman:</strong> Brent $100+ in March, ~$85 April avg (tracking). 2026 avg $85/bbl. UBS: $90 by June, $85 year-end. JPMorgan: $60 avg &mdash; increasingly disconnected from structural facts.</li>
-  </ul>
-</div>
-
-<div class="sweep-section">
-  <h3>Sparta Commodities (Physical Market Intelligence)</h3>
-  <ul>
-    <li><strong>Neil Crosby, Head of Research (Mar 23):</strong> <em>&ldquo;Each passing week simply must see market desperation rise&rdquo;</em>; <em>&ldquo;Physical crude markets still haven&rsquo;t fully reacted to the scale of disruption.&rdquo;</em><sup class="fn"><a href="#fn93" id="ref93b">[93]</a></sup></li>
-    <li><strong>Products more stressed than crude</strong> (Sparta): refined products margins widened far more than crude differentials.</li>
-    <li><strong>Jet fuel at 10-year high</strong>: ~1/5 of global jet exports transited Hormuz pre-war.<sup class="fn"><a href="#fn85" id="ref85b">[85]</a></sup></li>
-  </ul>
-</div>
+<h2 class="break-before">Market Positioning</h2>
+<p style="font-size:0.82rem;color:var(--subtle);margin-bottom:0.3rem;">Consensus as of early April. Social sweep data from Mar 24; sentiment directional, not granular.</p>
+<table>
+  <tr><th>Theme</th><th>Assessment</th></tr>
+  <tr><td>Energy positioning</td><td>Consensus long. BWET +700% from 52-wk low; USO +64%; XLE +27%. Record $211M retail inflows (Mar 12).</td></tr>
+  <tr><td>Forward curve vs consensus</td><td>Dec 2026 Brent ~$82 prices short disruption. Structural risks (well damage, Ras Laffan) suggest back end mispriced if crisis extends.</td></tr>
+  <tr><td>Shale response</td><td>Market not expecting US supply response. Capital discipline thesis intact. &ldquo;Wall Street killed the wildcatters.&rdquo;</td></tr>
+  <tr><td>Ceasefire trades</td><td>Relief rallies treated as &ldquo;sell the rip.&rdquo; BWET rising on ceasefire day (+7.5%) confirms freight is structural, not political.</td></tr>
+  <tr><td>Analyst targets</td><td>Goldman: $85 Brent 2026 avg. UBS: $90 by June, $85 year-end. JPM: $60 (assumes brief disruption &mdash; increasingly disconnected).</td></tr>
+</table>
 
 <h3>Trading Signals</h3>
 <table>
   <tr><th>Signal</th><th>Bull Case</th><th>Bear Case</th></tr>
-  <tr><td>Ceasefire compliance <span class="badge live">LIVE</span></td><td>Holds &rarr; gradual reopening; Brent slides to $80&ndash;85</td><td>Violations &rarr; resumed strikes; Brent snaps back to $110+</td></tr>
-  <tr><td>Islamabad talks (Apr 10) <span class="badge policy">POLICY</span></td><td>Framework agreed &rarr; mine clearance begins, ship release</td><td>Breakdown &rarr; 2-week window expires, US resumes bombing</td></tr>
-  <tr><td>AIS vessel count <span class="badge live">LIVE</span></td><td>Steady ramp to 50+/day = physical reopening confirmed</td><td>Stays at 3&ndash;11/day = ceasefire without physical opening</td></tr>
-  <tr><td>Futures curve <span class="badge live">LIVE</span></td><td>Pricing ~$85 year-end = correct if 6-wk disruption + recovery</td><td>Structural losses (Ras Laffan, well damage) not priced = mispriced</td></tr>
-  <tr><td>Tankers (BWET $148.56; 52-wk high) <span class="badge live">LIVE</span></td><td>Backlog = weeks of elevated freight; +7.5% on ceasefire day = extended trade</td><td>Rapid reopening + backlog clears faster than expected</td></tr>
-  <tr><td>GL 134 (Apr 11 &mdash; 3 days) <span class="badge policy">POLICY</span></td><td>Treasury extends given residual uncertainty</td><td>No extension = &minus;2 mb/d supply cliff; muted at $95 vs. $110</td></tr>
-  <tr><td>SPR drawdown <span class="badge policy">POLICY</span></td><td>Buys to mid-July; $17B refill = structural price floor post-crisis</td><td>Post-SPR cliff if crisis extends past Jul</td></tr>
-  <tr><td>Insurance normalization <span class="badge live">LIVE</span></td><td>Premiums below 0.5% = sustained commercial return signal</td><td>Stays at 1%+ = commercial transit still economically marginal</td></tr>
-  <tr><td>Shale non-response (confirmed)</td><td>Capital discipline held at $110 = structural shortage</td><td>Discipline could break if Brent holds $90+ through Q3</td></tr>
+  <tr><td>Forward curve (steep backwardation)</td><td>Market expects short disruption</td><td>If wrong, violent repricing of back months</td></tr>
+  <tr><td>Crack spreads (3-2-1 ~$42/bbl)</td><td>Refining margin boom for non-Gulf refiners</td><td>Demand destruction narrows cracks if recession hits</td></tr>
+  <tr><td>Freight (BWET $148.56)</td><td>Backlog + rerouting sustains for months</td><td>Ceasefire + Hormuz reopening = sharp reversal</td></tr>
+  <tr><td>Shale non-response</td><td>No new supply = sustained shortage</td><td>Capital discipline could break at $130+</td></tr>
+  <tr><td>GL 134 expiry (Apr 11)</td><td>Extension could add supply</td><td>No extension = &minus;2 mb/d cliff in 3 days</td></tr>
+  <tr><td>SPR drawdown (120-day runway)</td><td>Buys time through July</td><td>Post-SPR cliff if crisis extends past summer</td></tr>
+  <tr><td>China reserves (1,400M bbl)</td><td>Buffer limits price spikes in Asia</td><td>Hoarding behavior tightens global market</td></tr>
 </table>
 
 <!-- ======================== SOURCES ======================== -->

@@ -1,13 +1,29 @@
 # Strait of Hormuz Crisis: Oil Supply Disruption Briefing
 
-**Date:** April 1, 2026
-**Status:** Crisis ongoing — Day 33 of US-Israel strikes on Iran; Strait effectively closed since Mar 5; well-damage threshold CROSSED Mar 28 (wells idle 30+ days); **Trump delivered prime-time address Apr 1: war "nearing completion," promises "extremely hard" strikes in 2-3 weeks, 13 US deaths confirmed; ceasefire only when Hormuz open; Iran FM denies Trump's claim that Iran's president asked for ceasefire; Trump extended deadline twice (Mar 26, then again) — now to ~Apr 6; China-Pakistan peace proposal (ceasefire-for-Hormuz) presented Mar 31; GL 134 Russian oil waiver expires in 10 DAYS (Apr 11); Brent ~$101.97/bbl (range $98.52-$105.93 on Apr 1, "war premium" deflating); WTI ~$102/bbl; AAA gasoline $4.02/gal; diesel $5.49/gal; BWET $116.32 (+~480% YTD)**
+**Date:** April 8, 2026
+**Status:** Day 40 — **Two-week ceasefire in effect as of April 7 (Trump suspended bombing; Iran SNSC accepted). But Hormuz still largely closed — only ~3 ships transited on ceasefire day vs. 135/day normal; 800+ ships stranded inside Gulf; mines uncleared; ceasefire violations reported within hours by UAE and Kuwait. GL 134 expires in 3 DAYS (Apr 11) — no extension announced. Islamabad negotiations (US-Iran, Pakistani mediation) begin Apr 10. Brent ~$95/bbl (ceasefire selloff, -15% from $112+); WTI ~$93/bbl; AAA gasoline $4.12/gal; diesel ~$5.81/gal (regional; national unverified); TTF ~€44/MWh (-20%); JKM ~$19/MMBtu; BWET $148.56 (+7.5% on day — tanker rates still elevated above 52-wk high)**
 
 ---
 
 ## Executive Summary
 
-The US-Israel war on Iran (Feb 28, 2026) triggered the largest oil supply disruption in history. Iran's selective closure of the Strait of Hormuz has taken ~20 million barrels/day (mb/d) of transit offline — roughly 20% of global daily oil supply. Combined mitigating factors (bypass pipelines, SPR releases, GL 134 Russian oil waiver, Iranian own exports) cover only ~8 mb/d, leaving a **net shortage of ~12 mb/d** (IEA now estimates ~8 mb/d of Gulf crude curtailed from wells alone, up from 6.7 mb/d). Brent crude ~$101.97/bbl (Apr 1; intraday range $98.52-$105.93 as "war premium" deflates on ceasefire optimism); WTI ~$102/bbl (unusual premium over Brent; reflects US refinery demand dynamics). **WELL DAMAGE THRESHOLD CROSSED (March 28)** — wells shut since March 3 have now been idle 30+ days; water coning risk now active; Kuwait Petroleum CEO (Mar 28): "3-4 months to return to full production once war ends." Gulf crude capacity permanently impaired for some fields. **Trump delivered prime-time address (Apr 1, ~19 min, White House)**: declared war "nearing completion" and Iran "no longer a threat"; acknowledged 13 US servicemember deaths; promised "extremely hard" strikes in next 2-3 weeks; ceasefire only when Hormuz is "open, free and clear." **Trump claims Iran's President Pezeshkian asked for ceasefire** — Iran FM Araghchi immediately denied; Tehran foreign ministry called the claim "false and baseless." Trump extended Iran deadline **twice** (Mar 26, then again) — current deadline ~April 6, coinciding with GL 134 expiry window. **China-Pakistan peace initiative (Mar 31):** presented joint proposal — immediate ceasefire + Hormuz reopening in exchange for security guarantees and sanctions relief; Iran formally transmitted response to US 15-point plan via Pakistan (Tehran demands: $2M/vessel Hormuz fee collection, reparations, missile program retained, full sanctions lift — terms US rejected). **GL 134 Russian oil waiver expires April 11 — 10 DAYS AWAY.** OFAC issued GL 134A (Mar 19) superseding GL 134 with same Apr 11 expiry and no extension signals. TTF European gas ~€55.80/MWh (Mar 30; down from EUR 61.90 peak but still +75% from pre-crisis). JKM Asian LNG ~mid-$20s/MMBtu (rising on fading ceasefire expectations + Australian cyclone outages). AAA gasoline $4.02/gal (Apr 1); diesel $5.49/gal. BWET tanker ETF $116.32 (Apr 1; ~+480% YTD; intraday range $104-$122). Goldman Sachs: "largest-ever oil supply shock on record," surpassing 1973 OPEC embargo. Mojtaba Khamenei injury/death rumors circulating (Al Jazeera, April 1 — unconfirmed). **Kuwait CEO warning of 3-4 month recovery adds new permanent-damage risk to the "reopening = recovery" scenario.**
+**Day 40. Ceasefire in effect — but Hormuz still closed. Net shortage: ~12 mb/d. Well damage structural. GL 134 expires in 3 days.**
+
+The US-Israel war on Iran (Feb 28) triggered history's largest oil supply disruption. Iran's selective Hormuz closure took ~20 mb/d offline; mitigations cover ~8 mb/d, leaving a **net gap of ~12 mb/d** (IEA: ~8 mb/d crude + ~2 mb/d condensates curtailed).
+
+**Latest developments (Apr 7-8):**
+- **Two-week ceasefire in effect:** Trump suspended US bombing April 7; Iran's SNSC formally accepted. But ceasefire violations reported within hours by UAE and Kuwait; Iran retains operational control of transits ("in coordination with Iranian Armed Forces")
+- **Hormuz still largely closed:** Only ~3 ships transited on ceasefire day vs. 135/day normal; 800+ freighters stranded inside Gulf; only 11 vessels transited April 6
+- **Mines uncleared:** Iran has not announced mine removal — minesweeping is a prerequisite for safe commercial traffic, adding days to weeks beyond any political deal
+- **Russia and China vetoed** April 7 UN Security Council resolution aimed at protecting commercial shipping
+- **Islamabad negotiations begin April 10:** First structured US-Iran talks under Pakistani mediation; Iran's 10-point demands include US troop withdrawal, full sanctions lift, war reparations, and retention of IRGC Hormuz transit fees
+- **GL 134 expires April 11** — 3 days away; no extension announced; ceasefire may lead Treasury to let lapse; -2 mb/d cliff
+
+**Key thresholds (unchanged):**
+- **Well damage (since Mar 28):** Now 41+ days idle; water coning active; Kuwait CEO: "3-4 months to recover post-war" — production loss structural
+- **Ras Laffan LNG:** 12.8M mt/yr offline for 3-5 YEARS (17% of Qatar capacity) regardless of ceasefire
+
+**Prices (Apr 8):** Brent ~$95/bbl (ceasefire selloff, -15% from $112+ prior; intraday range ~$91-$113); WTI ~$93/bbl; gasoline $4.12/gal (+41%); diesel ~$5.81/gal (~+59%, regional; national unverified); TTF ~€44/MWh (-20% on day); JKM ~$19/MMBtu; BWET $148.56 (+7.5% — tanker freight remains near record highs).
 
 ---
 
@@ -27,22 +43,22 @@ The US-Israel war on Iran (Feb 28, 2026) triggered the largest oil supply disrup
 | **Mar 12** | SPR releases begin; OFAC issues GL 134 (30-day Russian oil waiver, expires Apr 11); Brent holds $100+ despite both announcements |
 | **Mar 13** | Turkish vessel granted passage through Hormuz; Bessent confirms US allowing Iranian tankers through strait |
 | **Mar 14** | US strikes 90+ military targets on Kharg Island; oil infrastructure deliberately spared; Fujairah struck again; France pledges 2 frigates to EU NAVFOR Aspides |
-| **Mar 15-16** | Pakistani tanker KARACHI transits with AIS on; Saudi tanker (1M bbl for India) allowed through; Iran resumes loading at Jask terminal; Mojtaba Khamenei issues first public statement: "Strait must continue to be used as leverage"; rejects ceasefire overtures from two intermediary states |
-| **Mar 17** | Ali Larijani and Gholamreza Soleimani killed (40+ officials total); Brent ~$103; Germany, Japan, Italy, Romania, Spain, UK, Australia decline escort coalition |
-| **Mar 18 (morning)** | Iran FM Araghchi proposes new regional Hormuz Strait protocol post-war; France and Italy contact Iran directly about bilateral ship passage; Iran "open to countries who want to talk about safe passage"; vessel traffic through Hormuz nearly doubles (8 non-Iranian vessels detected per Windward) — Iran expanding permission-based transits |
-| **Mar 18 (afternoon)** | Brent spikes 5% to ~$108.78; WTI ~$94.23; **Israel strikes South Pars gas field** (world's largest natural gas reserve, phases 3-6), coordinated with US — first attack on Iran's upstream energy infrastructure since war began; Iran vows to escalate "in new ways"; Qatar condemns as "dangerous and irresponsible"; US drops bunker buster bombs on hardened Iranian missile sites near strait |
-| **Mar 19** | **QatarEnergy CEO confirms Ras Laffan damage = 17% of Qatar's LNG capacity (12.8M mt/yr) offline for 3-5 YEARS** — first engineering assessment; North Field restart requires hostilities to end, then specialized equipment rebuild (not weeks, years); Iran FM warns Iran will show "zero restraint" if energy infrastructure attacked again; **Iran retaliates for South Pars strike: 5 missile salvos at Jerusalem/northern Israel within one hour; Iran strikes Saudi energy sites and Kuwait Gulf infrastructure** — Washington Post: "trust is gone"; NATO members in Europe reject Trump's call for military help; 6 allies (UK, France, Germany, Italy, Japan, Netherlands) say may "contribute" — only after ceasefire; IEA SPR first physical barrels confirmed reaching markets; Brent closes at $112.19/bbl (3-week high) |
-| **Mar 19-20 (overnight)** | **IDF confirms two waves of overnight strikes on Tehran and central Iran** — military infrastructure targeted; Iran fires back toward southern/central Israel; US Pentagon requests additional $200B supplemental; additional Marine Expeditionary Unit and USS Boxer ARG rerouted and accelerated to Middle East |
-| **Mar 20** | **US Treasury Sec. Bessent signals: "In the coming days, we may unsanction the Iranian oil on the water — about 140 million barrels"** — potential new GL expansion beyond GL 134; Brent fell from $110.28 intraday high to $104.96 initially, then recovered; closed ~$108.65 (Mar 20); WTI ~$93.55 intraday; Bloomberg notes Iranian crude relief "not an easy fix" (refinery/logistics constraints); **Mojtaba Khamenei issues Nowruz written message**: declared "enemies are being defeated," promoted "resistance economy under national unity," denied Iran/proxies responsible for attacks on Turkey and Oman — called them "false flag" incidents; has not appeared in person since election; **Trump calls NATO allies "cowards"** for refusing to join Hormuz escort coalition; 7 US allies backing only "preparatory planning" |
-| **Mar 21** | **Iran drones hit Kuwait's Mina Al-Ahmadi refinery overnight — second strike in two days**; fires burning, no injuries reported; facility processes ~730K b/d — second direct blow to Kuwait's refining capacity in 48 hours; **Israel launches fresh strikes on Tehran on Nowruz morning**; **Trump rules out ceasefire** ("you don't do a ceasefire when you're literally obliterating the other side"); Trump brands NATO "a paper tiger" without US involvement and declares Hormuz "should be protected by other nations who use it"; **QatarEnergy CEO warns US officials of "consequences"** for attacking Iranian energy infrastructure; **11th MEU (~2,200 Marines) deploying from San Diego** (accelerated timeline); Sri Lanka denies US request to land two fighter jets (citing war concerns); Switzerland halts weapons exports to US; Brent ~$110/bbl (range $105-$113), WTI ~$94.74/bbl; Al Jazeera analysts: $200/bbl "no longer far-fetched" |
-| **Mar 22-23** | **Trump issues ultimatum**: threatens strikes on Iranian power plants unless Hormuz ultimatum met; then **postpones all planned strikes on Iranian energy infrastructure for 5 days** (Mar 23) — citing "very good and productive conversations" with Iran over prior 48 hours; Trump orders war department to stand down; markets rally on ceasefire optimism; **Brent drops to ~$100/bbl** (from $110); Iran FM denies direct talks; senior Iranian FM official confirms Iran "received points from the US through mediators" — Iran "reviewing" them; Iranian state media: Trump "retreated out of fear"; Pakistan, Oman, Egypt identified as active mediators; Trump hints at possible "joint US-Iran Hormuz management arrangement" post-war |
-| **Mar 24** | **US officials confirm ~12 Iranian mines in Strait of Hormuz** (Maham 3 moored/magnetic-acoustic, Maham 7 seabed limpet; deployed by small craft carrying 2-3 mines each); Hormuz minesweeping now prerequisite for reopening even under ceasefire; **Valero Port Arthur TX refinery explosion** — diesel hydrotreater fire at 380K b/d facility; shelter-in-place issued and lifted; no injuries; refinery shut down; adds domestic refining capacity loss on top of Gulf crisis; Brent recovers to ~$103 on Iran-talk uncertainty and Valero news; WTI ~$91.64; **AAA gasoline $3.95/gal** (+$1.02 over the month); **AAA diesel $5.35/gal** (new high); **TTF EUR 53.82/MWh** (down from EUR 61.90 on ceasefire optimism) |
+| **Mar 15-17** | First non-Iran transits (Pakistan, Saudi, Indian vessels); Mojtaba Khamenei first statement: "Strait must be used as leverage"; Ali Larijani + Soleimani killed (40+ officials total); all major allies decline escort coalition |
+| **Mar 18** | **Israel strikes South Pars gas field** (phases 3-6) — first upstream Iranian energy hit; Iran FM proposes permanent Hormuz protocol; Hormuz vessel traffic nearly doubles; Brent spikes 5% to ~$109 |
+| **Mar 19** | **Ras Laffan damage = 3-5 YEARS** (QatarEnergy CEO: 12.8M mt/yr offline); Iran retaliates for South Pars: 5 missile salvos at Israel + strikes on Saudi/Kuwait energy; IEA SPR first barrels reach market; Brent $112 (3-week high) |
+| **Mar 19-20** | IDF strikes Tehran overnight; Bessent signals ~140M bbl Iranian crude sanctions relief; Khamenei Nowruz message ("enemies defeated"); Trump calls NATO "cowards"; Brent volatile $105-$110 |
+| **Mar 21** | Iran hits Kuwait Mina Al-Ahmadi refinery twice in 48hrs (~730K b/d); Israel strikes Tehran on Nowruz; Trump rules out ceasefire; 11th MEU deploying; Brent ~$110 |
+| **Mar 22-23** | Trump issues ultimatum then **postpones all Iran energy strikes for 5 days** citing "productive conversations"; Brent drops to ~$100; Pakistan/Oman/Egypt mediating |
+| **Mar 24** | **~12 Iranian mines confirmed in Hormuz** (Maham 3/7 types) — minesweeping now prerequisite for reopening; Valero Port Arthur TX refinery explosion (380K b/d shut); diesel $5.35/gal (new high) |
 | **Mar 25** | Brent closes below $100 for first time since war began ($99.61/bbl, -4.67%); WTI $88.37; market pricing in 15-point US ceasefire plan reaching Iran via backchannel mediators; Iran's UN mission states "non-hostile" vessels may transit with Iranian authority coordination — only 5 vessels transited Monday per AIS (vs. 120/day pre-crisis); Iran FM calls Trump's ceasefire claims "fake news"; Iran continues strikes: missiles hit central Israel, Saudi Arabia intercepts drone, fuel tank at Kuwait Airport set ablaze; **Valero Port Arthur begins restart process** (rest of refinery minus damaged 47K b/d diesel hydrotreater unit); potential in-person ceasefire talks in Pakistan mooted for Mar 27 |
 | **Mar 26–27** | **Trump grants FIRST extension of Iran Hormuz deadline** (~10 additional days, to ~April 5-6), reportedly after Tehran requested more time via backchannel; Iran formally submits counter-conditions via Pakistan: demands $2M/vessel Hormuz transit fee, reparations, missile program retained, full sanctions lift; **Iran rejects US 15-point ceasefire plan** — Press TV quotes official: Iran will not allow Trump to end war on his own timeline; ceasefire talks mooted for Pakistan venue; JKM Asian LNG rises to mid-$20s/MMBtu on fading ceasefire optimism + Australian LNG outages from cyclone |
 | **Mar 28** | **WELL DAMAGE THRESHOLD CROSSED** — wells shut since March 3 reach 25+ days idle; water coning risk now active in mature Gulf reservoirs (Iraq Rumaila, Saudi, Kuwait fields); **Kuwait Petroleum CEO**: "It could take 3-4 months to return to full production once the war ends" — permanent capacity loss risk now concrete; IEA raises Gulf production cut estimate to ~8 mb/d (from 6.7 mb/d); Trump's extended pause window ~Mar 28 passes without triggering power plant strikes |
 | **Mar 30** | **Trump threatens desalination plants** — issues new ultimatum: "We will blow up and completely obliterate all of their Electric Generating Plants, Oil Wells and Kharg Island and possibly all desalination plants" unless Hormuz opens; escalation of threat scope from power plants to full energy + water infrastructure; oil prices spike intraday then settle as markets price in continued deadline extension pattern |
 | **Mar 31** | **China-Pakistan peace initiative presented**: joint proposal from Beijing and Islamabad — immediate ceasefire + Hormuz reopening in exchange for security guarantees and phased sanctions relief; Iran receives proposal via Pakistan; Pezeshkian reportedly open to ceasefire framework; markets react positively, Brent dips toward $100 |
-| **Apr 1** | **Trump prime-time address to the nation** (~19 min, White House): declares war "nearing completion" and Iran "no longer a threat"; acknowledges 13 US servicemember deaths; promises "extremely hard" strikes over next 2-3 weeks before any deal; ceasefire only when Hormuz "open, free and clear"; **Trump claims Iran's President Pezeshkian asked for ceasefire** → Iran FM Araghchi immediately denies: "false and baseless"; US and Iran described as "discussing ceasefire for reopening strait" (Axios, US officials); **BWET soars to $116.32** (range $104-$122; ~+480% YTD); Brent intraday range $98.52-$105.93 (~$102 level), "war premium" deflating; **Mojtaba Khamenei injury/death rumors** circulating (Al Jazeera report Apr 1 — unconfirmed by Iranian state media); GL 134 now 10 days from expiry |
+| **Apr 1** | **Trump prime-time address to the nation** (~19 min, White House): declares war "nearing completion" and Iran "no longer a threat"; acknowledges 13 US servicemember deaths; promises "extremely hard" strikes over next 2-3 weeks before any deal; ceasefire only when Hormuz "open, free and clear"; **Trump claims Iran's President Pezeshkian asked for ceasefire** → Iran FM Araghchi immediately denies: "false and baseless"; BWET $116.32 (+~480% YTD); Brent ~$102; GL 134 now 10 days from expiry |
+| **Apr 6** | Iran rejects Trump's 45-day ceasefire proposal; only 11 vessels transited Hormuz (4 inbound, 7 outbound) vs. 135/day normal; Brent ~$113 intraday; BWET $138 range |
+| **Apr 7** | **Trump suspends US bombing for 2 weeks** contingent on Hormuz reopening; Iran's Supreme National Security Council formally accepts ceasefire; **Russia and China veto** UN Security Council resolution aimed at protecting commercial shipping; ceasefire violations reported within hours by UAE and Kuwait; Iran grants transit passage only "in coordination with Iranian Armed Forces"; only ~3 ships cross on ceasefire day |
+| **Apr 8** | Ceasefire technically in effect but Hormuz remains largely closed; **800+ ships stranded inside the Gulf** waiting to exit; mines still in water; Iran has not announced mine removal; Islamabad negotiations (US-Iran, Pakistani mediation) scheduled April 10; Iran's 10-point demands confirmed: US troop withdrawal, full sanctions lift, war reparations, missile program retained, Hormuz fee; **Brent ~$95 (-15% ceasefire selloff)**, WTI ~$93; **BWET $148.56 (+7.5%)** — tanker freight remains elevated as rerouting demand sustains rates despite nominal ceasefire; TTF ~€44/MWh (-20%); GL 134 expires in 3 days with no extension announced |
 
 ---
 
@@ -201,13 +217,13 @@ Gulf producers have been forced to curtail production because tankers can't exit
 
 ## Oil Price Impact
 
-| Metric | Pre-Crisis (Feb 27) | Current (Apr 1) | Change |
+| Metric | Pre-Crisis (Feb 27) | Current (Apr 8) | Change |
 |--------|---------------------|-----------------|--------|
-| Brent Crude | ~$71/bbl | ~$101.97/bbl (Apr 1; intraday range $98.52–$105.93; "war premium" deflating); recent peak $112.19 (Mar 19); crisis intraday high $126/bbl | +43% |
-| WTI | ~$67/bbl | ~$102/bbl (Apr 1; unusual premium over Brent); recent peak $98.75 (Mar 21) | +52% |
+| Brent Crude | ~$71/bbl | ~$95/bbl (ceasefire selloff; intraday range ~$91–$113; prior session ~$112+; crisis intraday high $126/bbl) | +34% |
+| WTI | ~$67/bbl | ~$93/bbl (ceasefire selloff; intraday range $91.11–$109.00; prior close $112.95) | +39% |
 | Brent intraday peak (all-time crisis) | — | $126/bbl | — |
-| US Gasoline (avg) | $2.92/gal | $4.02/gal (AAA, Apr 1) | +38% |
-| US Diesel (avg) | $3.65/gal | $5.49/gal (AAA, Apr 1) | +50% |
+| US Gasoline (avg) | $2.92/gal | $4.12/gal (AAA, Apr 8) | +41% |
+| US Diesel (avg) | $3.65/gal | ~$5.81/gal (AAA, Apr 8; Virginia regional data — national unverified) | ~+59% |
 
 - Diesel hit $5/gal for the first time since 2022 — worse than gasoline but getting less coverage
 - IEA's 400M barrel release failed to bring prices below $100
@@ -227,12 +243,12 @@ Gulf producers have been forced to curtail production because tankers can't exit
 - **North Field expansion pushed to at least 2027** due to drone damage — long-term supply implications
 - Iran warned it will show "zero restraint" if energy infrastructure is attacked again (Mar 19 — direct link to Ras Laffan damage)
 
-### Gas Prices (as of Mar 24; ⚠ JKM/TTF data moves daily)
+### Gas Prices (⚠ JKM/TTF data moves daily)
 
-| Benchmark | Pre-Crisis (Feb 27) | Current (Apr 1) | Change |
+| Benchmark | Pre-Crisis (Feb 27) | Current (Apr 8) | Change |
 |-----------|---------------------|-----------------|--------|
-| JKM (Asian LNG spot) | ~$8/MMBtu | ~$22–25/MMBtu (mid-$20s, Mar 27; rising on fading ceasefire + Australian cyclone outages) | +175–210% |
-| TTF (European gas) | EUR 31.96/MWh | ~EUR 55.80/MWh (Mar 30; down from EUR 61.90 peak on ceasefire optimism) | +75% |
+| JKM (Asian LNG spot) | ~$8/MMBtu | ~$18.75–19.87/MMBtu (LNGPriceIndex Apr 3; futures $19.87; easing from March highs on shoulder season) | +135–148% |
+| TTF (European gas) | EUR 31.96/MWh | ~EUR 44/MWh (ceasefire selloff, -20% on day from ~EUR 55; LNGPriceIndex Apr 3: EUR 50.08/MWh) | +38% |
 | TTF peak | — | EUR 74/MWh (Mar 20 intraday high, after Ras Laffan missile strikes) | +132% |
 
 - European gas prices jumped 45% the day Qatar halted production
@@ -247,8 +263,9 @@ Gulf producers have been forced to curtail production because tankers can't exit
 - **P&I clubs** (Gard, Skuld, NorthStandard, London P&I, American Club) cancelled war risk cover effective Mar 5
 - Hormuz now the "world's most expensive waterway" after 300% premium surge
 - Maersk, CMA CGM, Hapag-Lloyd all suspended Hormuz/Red Sea transits
-- **Tanker stocks surging:** BWET (Breakwave Tanker ETF) **$116.32** (Apr 1; intraday range $104–$122; ~+480% YTD; 52-wk range $9.60–$126.46); DHT +59.1% YTD ($18.97 as of Mar 9; 76% of Q1 spot days booked at $78,900/day); NAT ~65% Q1 days booked at ~$55,000/day; FRO +62.6% YTD ($35.49 as of Mar 9)
-- **VLCC spot rates:** ~$400–424K/day (AG/Far East, Apr 1; slightly off Mar 18 peak of $445K/day; shatters all historical records); spot fixtures range $400–480K/day (peak $480K/day reported) — far above company-reported Q1 averages ($78–107K/day) which reflect pre-crisis time charters still in effect
+- **Tanker stocks:** BWET (Breakwave Tanker ETF) **$148.56** (Apr 8, 3:11 PM EDT; +$10.32 / +7.46% on day; volume 278,679; prior close $138.24; 52-wk range $9.60–$147.40 — **trading above prior 52-week high**); ceasefire announcement failed to suppress tanker rates as rerouting demand and port congestion sustain freight economics; DHT, NAT, FRO remain sharply elevated from pre-crisis levels
+- **BWET counterintuitive:** ETF rose +7.5% on ceasefire day — tanker rates reflect rerouting demand and vessel backlog, not spot oil price. 800+ ships stranded = weeks of elevated freight even as Hormuz gradually reopens
+- **VLCC spot rates:** ~$400–424K/day (AG/Far East; slightly off Mar 18 peak of $445K/day; shatters all historical records); spot fixtures range $400–480K/day — far above company-reported Q1 averages reflecting pre-crisis time charters
 
 ---
 
@@ -267,20 +284,18 @@ Gulf producers have been forced to curtail production because tankers can't exit
 - Demands "immediate cessation" of Iran's attacks — no enforcement mechanism
 - Competing Russian draft resolution failed (4 in favor, 2 against, 9 abstentions)
 
-### Ceasefire Status: Active Negotiations — Deadline Extended Twice; China-Pakistan Deal on Table
+### Ceasefire Status: Two-Week Deal In Effect — But Hormuz Still Largely Closed
 
-- **Apr 1 — Trump prime-time address:** War "nearing completion" and Iran "no longer a threat." Promises "extremely hard" strikes over next 2-3 weeks. **Ceasefire only when Hormuz is "open, free and clear."** Trump claims Iran's President Pezeshkian asked the US for a ceasefire. Iran FM Araghchi immediately denied: "false and baseless." Axios: US and Iran "discussing ceasefire for reopening strait" per officials — but no deal reached.
-- **Mar 31 — China-Pakistan peace initiative:** Beijing and Islamabad jointly presented a new peace framework: immediate ceasefire in exchange for Hormuz reopening, security guarantees for Iran, and phased sanctions relief. Iran received the proposal; framework under review.
-- **Mar 26 — Trump grants FIRST extension (~10 days):** Reportedly after Tehran request via backchannel. Deadline extended from ~Mar 28 to ~Apr 5-6. Trump says talks "going very well."
-- **Second deadline extension:** ABC News confirms Trump extended deadline a second time; current deadline ~April 6.
-- **Iran's formal counter-conditions (via Pakistan):** Iran transmitted response to US 15-point plan: demands include (1) $2M/vessel Hormuz transit fee collected by IRGC, (2) reparations, (3) right to retain missile program, (4) full sanctions lift. US rejected these terms.
-- **Iran's state position:** Iran FM "never asked for a ceasefire" and formally denies direct dialogue. Press TV (Mar 25): Iran "will not allow Trump to end the war on his own timeline."
-- **Mar 23 — INITIAL 5-DAY PAUSE:** Trump first postponed strikes on Iranian power plants citing "very good and productive conversations." Iran FM called it tactical — "buying time."
-- **Active mediators:** Pakistan, Oman, Egypt carrying shuttle diplomacy; China-Pakistan joint initiative (Mar 31) added structural weight.
-- **Iran's leverage:** $2M/vessel Hormuz fee now confirmed implemented (IRGC, per Iranian lawmaker Boroujerdi); countries in direct talks with Iran: India, Pakistan, Iraq, Malaysia, China, Turkey.
-- **Bilateral passage contacts:** France, Italy, Japan in direct talks with Iran for safe passage. Japan formally approved for transit (Mar 21).
-- **Mar 18 — Iran FM proposed new Hormuz Strait protocol:** Araghchi called for permanent post-war institutional framework for Hormuz control — framing it as a structural lever, not a temporary measure.
-- **Oman (early March):** FM Badr Al-Busaidi called for immediate ceasefire; stated "significant progress" had been made before Feb 28 attacks.
+- **Apr 7 — Trump suspends bombing for 2 weeks:** Trump announced a two-week suspension of US strikes on Iran, contingent on Iran reopening Hormuz. Iran's Supreme National Security Council formally accepted. But ceasefire violations were reported within hours by UAE and Kuwait.
+- **Apr 8 — Hormuz still largely closed:** Iran stated passage is possible only "in coordination with Iranian Armed Forces" — Tehran retains operational vetting control. Only ~3 ships crossed on April 8 (vs. 135/day normal). 800+ freighters stranded inside Gulf waiting to exit. As of April 6: only 11 vessels transited.
+- **Apr 10 — Islamabad talks:** First structured US-Iran negotiations scheduled under Pakistani PM Sharif's mediation. Iran's confirmed 10-point demands: US troop withdrawal from regional bases, full sanctions lift, frozen asset release, war damage payments, IRGC-controlled passage protocol for Hormuz, missile program retained.
+- **Apr 7 — Russia/China veto:** Vetoed UN Security Council resolution aimed at protecting commercial shipping. US called veto "a gift to Tehran."
+- **Apr 6 — Iran rejects 45-day ceasefire:** Iran formally rejected Trump's longer-term ceasefire proposal before the 2-week deal was offered.
+- **Apr 1 — Trump prime-time address (background):** War "nearing completion"; threatened "extremely hard" strikes; ceasefire only when Hormuz "open, free and clear"; these strikes are now on hold under the 2-week suspension.
+- **Mar 31 — China-Pakistan peace initiative:** Beijing and Islamabad jointly presented ceasefire-for-Hormuz framework; provided structural diplomatic architecture for the eventual April 7 deal.
+- **Active mediators:** Pakistan (primary), Oman, Egypt. Iran-Oman monitoring protocol for Hormuz traffic under negotiation (reported April 2, CNBC).
+- **Iran's leverage (unchanged):** $2M/vessel IRGC Hormuz transit fee still in place; countries in direct talks for passage rights: India, Pakistan, Iraq, Malaysia, China, Turkey. Asian countries have struck bilateral passage deals.
+- **Iran FM's framing:** Araghchi's permanent post-war Hormuz protocol proposal (Mar 18) is now the structural basis for Iran's position — not temporary military leverage but institutional control of the strait.
 
 ### Hormuz Mines Confirmed
 - **US officials (Mar 23-24):** Confirmed "at least a dozen" Iranian underwater mines deployed in the Strait of Hormuz.
@@ -346,75 +361,53 @@ Gulf producers have been forced to curtail production because tankers can't exit
 
 ## What to Watch
 
-1. **⚠ THRESHOLD CROSSED — permanent well damage now active (as of Mar 28):** Wells shut since March 3 have been idle 30+ days as of April 1. Water coning risk now actively damaging mature Gulf reservoirs. Kuwait Petroleum CEO confirmed 3-4 month recovery timeline post-war — the "reopen Hormuz = instant recovery" scenario is no longer valid. Every additional week of shut-in adds recovery lag. IEA raised total Gulf curtailment estimate to ~8 mb/d crude + ~2 mb/d condensates/NGLs.
-2. **GL 134 expiration (Apr 11) — 10 DAYS AWAY:** -2 mb/d cliff drop from mitigation stack. GL 134A (issued Mar 19) supersedes original GL 134 with same Apr 11 expiry and no extension signals. This is the single most predictable near-term catalyst for price spikes. Trump's extended deadline is also ~April 6 — if no deal, power plant strikes begin and Brent likely spikes above $110.
-3. **Coalition escort formation:** US Navy estimates readiness by end of March but needs 8-10 destroyers per convoy. Most allies declining. If credible escort materializes, partial flow could resume.
-4. **Mojtaba Khamenei's posture:** First statement (Mar 12) confirmed hardline stance — Hormuz as leverage, not bargaining chip. Nowruz message (Mar 20) declared "enemies defeated" and denied Iran's responsibility for Turkey/Oman attacks ("false flag"). His non-appearance in public since election (only state TV audio/photo) suggests IRGC is tightly controlling access. Resistance economy framing signals intent for prolonged conflict.
-5. **SPR drawdown pace:** US portion (172M bbl) is gone by mid-July at 1.43 mb/d. Post-SPR cliff if crisis extends past summer. Announced ≠ delivered — watch for actual flow confirmation.
-6. **Refined products crunch:** Bypass pipelines only move crude. Diesel at $5.04/gal; refinery crack spreads widening. Ras Laffan LNG suspension + North Field expansion delay affects 20% of global LNG supply.
-7. **China/India positioning:** Both receiving Iranian crude. Yuan-denominated Hormuz passage would be a structural shift in petrodollar dynamics.
-8. **Insurance normalization:** War risk at 5% of hull value makes commercial transit economically unviable even if militarily possible.
-9. **Iran's new Hormuz protocol proposal (Mar 18):** Iran FM Araghchi's call for a permanent post-war strait protocol signals Iran intends to institutionalize leverage over Hormuz regardless of how this conflict ends. Watch for whether this gains traction with China or India — it would represent a structural reordering of energy transit rights. France and Italy's bilateral outreach to Iran about passage is a first signal of coalition fracture at the diplomatic level.
-10. **South Pars damage assessment (Mar 18+):** First attack on Iran's upstream energy infrastructure. Phases 3-6 of South Pars hit — these phases supply a significant share of Iran's domestic gas and any residual LNG output. Iran vowed to escalate "in new ways," increasing the probability of counter-strikes on Gulf energy infrastructure (Saudi Ghawar, UAE ADNOC facilities, Qatar Ras Laffan). Watch for: (a) damage assessment of phases 3-6; (b) whether Iran retaliates against Saudi/UAE/Qatar energy assets; (c) Qatar's response given South Pars is jointly operated and directly adjacent to Qatar's North Field.
-11. **Hormuz traffic normalization signals:** Vessel transits nearly doubled (8 non-Iranian vessels on one day per Windward). Iran is expanding permission-based access to "friendly" nations. Watch whether this trend accelerates or is reversed by the South Pars escalation.
-12. **Iranian crude sanctions relief (~140M bbl, Mar 20+):** Bessent signaled the US may issue a new general license covering ~140M bbl of Iranian crude currently at sea — similar in structure to GL 134 but for Iranian (not Russian) oil. This is larger than GL 134's 60-70M bbl near-delivery portion. Key watch: (a) Will this be formalized in coming days? (b) Can sanctioned Iranian crude reach refineries that aren't already barred from buying it? Bloomberg notes logistics/refinery compatibility constraints limit the actual market impact. (c) Political optics — easing sanctions on an enemy mid-war — could fracture US coalition partners.
-13. **Ras Laffan 3-5 year damage (structural LNG supply loss):** QatarEnergy CEO confirmed the Ras Laffan damage is permanent for 3-5 years, not reparable in weeks. This changes the LNG supply outlook structurally: Europe and Asia must plan for ~12.8M mt/yr of Qatar LNG offline through 2029-2031 regardless of when the war ends. Watch LNG futures curves for structural repricing beyond the crisis window.
-14. **Iran-Israel escalation spiral (Mar 19-20):** IDF struck Tehran/central Iran overnight (two waves). Iran fired 5 missile salvos at Israel and struck Saudi and Kuwait energy sites. Iran warned "zero restraint." Watch whether: (a) Ghawar field or ADNOC Abu Dhabi become next targets; (b) Saudi production capacity sustains further blows; (c) this spiral forces ceasefire talks or further US military commitment. Each exchange raises the risk that Gulf export infrastructure is permanently impaired, not merely temporarily disrupted.
-15. **US military reinforcement (Mar 20-21):** 11th MEU (~2,200 Marines) deploying from San Diego; additional USS Boxer ARG rerouted; Pentagon $200B supplemental requested. Signals expectation of sustained engagement but does NOT change Hormuz reopening timeline — a naval corridor requires control of Iranian anti-ship missiles and drone swarms in addition to escort vessels. Watch whether the additional forces enable a credible convoy operation by end of March (US Navy's stated estimate).
-16. **Kuwait Mina Al-Ahmadi escalation (Mar 20-21):** Iran struck Kuwait's main refinery twice in 48 hours. At ~730K b/d, this is not just Gulf infrastructure harassment — it's systematic degradation of refining capacity. Watch whether Kuwait suspends oil exports entirely, and whether Saudi Arabia and UAE facilities become primary targets next. The escalation pattern (South Pars → Ras Laffan → Mina Al-Ahmadi) suggests Iran is deliberately targeting the upstream–downstream energy chain.
-17. **$200/bbl oil scenario:** Al Jazeera analysts (Mar 19) stated $200/bbl is "no longer far-fetched" if the crisis extends beyond the Apr 11 GL 134 cliff and Mar 28 well damage threshold simultaneously. Goldman Sachs' base case assumes recovery begins Mar 21; if that fails, catch-up repricing could be violent. Watch whether Brent consolidates above $110 as a new floor.
-18. **Trump deadline extended to ~April 6 (extended twice):** Original 5-day pause (Mar 23) extended twice — first ~10 days (Mar 26), then again. Current deadline ~April 6 coincides with GL 134 expiry window. If no deal by April 6: Trump threatens power plants, oil wells, Kharg Island, and "possibly all desalination plants." Would be a massive escalation — Iran vowed to completely close Hormuz if power infrastructure attacked.
-19. **Hormuz minesweeping:** US officials confirmed ~12 Iranian mines (Maham 3/7) deployed in the strait. Even a ceasefire agreement does not reopen Hormuz immediately — coordinated minesweeping by US/allied naval forces is required before commercial traffic can resume. This adds a physical reopening lag of days to weeks on top of any political agreement.
-20. **Valero Port Arthur TX refinery (Mar 24-26):** 380K b/d refinery shut down after diesel hydrotreater explosion (47K b/d unit). Valero began restart of main facility by Mar 26; diesel hydrotreater unit remains offline for repairs. Partial capacity restoration reduces immediate domestic refining pressure, but diesel (~$5.49/gal) remains elevated.
-21. **Trump prime-time address (Apr 1) — end-game or escalation?** Trump declared war "nearing completion" but promised "extremely hard" strikes in next 2-3 weeks. This ambiguity — wind-down signal + escalation threat — creates maximum market uncertainty. Watch: (a) Does Trump's claim that Iran's president asked for ceasefire lead to formal talks? (b) Does "extremely hard" strikes materialize before April 6? (c) Does the China-Pakistan framework gain traction? The next 5-6 days are the highest-stakes diplomatic window since Feb 28.
-22. **Mojtaba Khamenei injury/death rumors (Apr 1 — unconfirmed):** Al Jazeera reported April 1 that rumors of Khamenei injury or death are circulating; Iranian state media has not confirmed or denied. If true, this could fundamentally change Iran's negotiating position — the IRGC hardline faction that backed his election might seek a deal to consolidate power, or might escalate to signal strength. Watch for any official Iranian statement.
-23. **Kuwait Petroleum recovery timeline (3-4 months):** CEO statement (Mar 28) that recovery requires 3-4 months post-war fundamentally changes market math for reopening scenarios. The futures curve (Jan 2027 Brent ~$70) may be mispricing the production recovery timeline. Even if Hormuz reopens in April, Gulf output recovery could extend into Q3 2026.
+### Immediate Catalysts (next 10 days)
+
+1. **Ceasefire compliance / violations (April 8-21):** Violations already reported by UAE and Kuwait within hours of the deal. If violations escalate into resumed strikes, Brent snaps back sharply toward $110+. If ceasefire holds and ships begin moving, watch for a sustained relief rally toward $80-85.
+2. **Islamabad negotiations — April 10:** First structured US-Iran talks. Iran's 10-point demands are largely incompatible with US red lines (troop withdrawal, full sanctions lift). Watch whether both sides narrow the gap or talks break down. Breakdown = resumed strikes and Brent rally.
+3. **GL 134 expires April 11 — 3 days away:** No extension announced. With ceasefire in place, Treasury may let it lapse (the supply-shock rationale is partially eased). Expiry removes ~2 mb/d from the mitigation stack. At $95 Brent, the impact is softened vs. $110 Brent — but still directionally bearish for supply.
+4. **Mine removal:** Iran has not announced any mine removal operation. Minesweeping adds 7-14 days minimum after a political deal before commercial traffic can safely resume. Watch for IRGC or Iranian Navy statements on mine clearance — first signal that physical reopening is imminent.
+5. **Ship unblocking — 800+ vessels:** Orderly exit of 800+ stranded ships will take weeks even if Hormuz reopens today. Watch AIS/MarineTraffic for daily vessel count — steady increase toward 50+/day is the clearest reopening signal.
+
+### Structural Risks (weeks to months)
+
+6. **Well damage compounding:** Now 41+ days idle (since March 3 shutdowns). Every additional week adds recovery lag. Kuwait CEO: "3-4 months post-war to full production." Even if Hormuz reopens this week, Gulf production recovery takes until June-July minimum.
+7. **SPR exhaustion clock:** US portion (172M bbl) gone by mid-July at 1.43 mb/d. Post-SPR cliff if crisis extends past summer. Refill obligation ($17B at $100/bbl) is a structural price floor once crisis passes.
+8. **Ras Laffan LNG (3-5 year structural loss):** 12.8M mt/yr offline through 2029-2031 regardless of ceasefire. LNG futures have NOT priced this structural loss — watch for repricing as markets recognize the asymmetry between political resolution and physical rebuild timeline.
+9. **Post-ceasefire reopening lag:** Even with political deal + mine clearance, IEA base case = 2-2.5 months to reach 80% of pre-crisis supply. Futures curve pricing $85 Brent by year-end may be roughly correct — but assumes no violations that restart strikes.
+
+### Background (established dynamics)
+
+10. **Insurance/shipping normalization:** War risk premiums at 0.5-1.0% of hull value (from 0.02% pre-crisis). For US/UK/Israeli-nexus vessels: 2.5-5.0%. Normalization requires sustained ceasefire + mine clearance + demonstrated safe transits. BWET elevated even on ceasefire day = market pricing delayed normalization.
+11. **IRGC Hormuz transit fee:** $2M/vessel fee remains in place under ceasefire terms. This is Iran's institutional reordering of energy transit economics — a permanent change regardless of formal political resolution. Watch whether international insurers price this as new baseline.
+12. **Refined products crunch:** Bypass pipelines only move crude. Diesel ~$5.81/gal; crack spreads elevated. Valero Port Arthur restarting (minus 47K b/d hydrotreater). Products recovery lags crude recovery by 4-6 weeks after supply restoration.
 
 ---
 
-## Market & Social Intelligence (Sweep Findings)
+## Market & Social Intelligence
 
-### Fintwit / X Sentiment
-- **Consensus long energy.** BWET tanker ETF ~+330% YTD ($92.80 Mar 24, up from $79.87 Mar 20). USO +64%. XLE +27%. Record $211M retail inflows into oil ETFs on Mar 12.
-- **Iran's selective blockade widely discussed.** Seen as strategically effective — divides the Western coalition and maintains Iran's revenue. Araghchi's diplomatic framing resonating.
-- **"Stalemate at sea"** framing gaining traction. Scott Ritter analysis (amplified by @MarioNawfal): reopening Hormuz militarily requires ~80,000 marines.
-- **Greek ship defied blockade:** @HomerPavlos reported vessel "Shenlong" (George Procopiou) entered and exited on Mar 4 carrying 1M bbl — viral anecdote.
-- **Relief rallies treated as "sell the rip"** — not seen as genuine de-escalation.
-- **Goldman:** Brent averaging $100+ in March, $85 in April. UBS: $90 by June, $85 year-end.
+*Last social sweep: Mar 24. Prices updated Apr 8, 2026.*
 
-### Reddit Sentiment (r/wallstreetbets, r/investing, r/stocks)
-- **"Oil is the new meme stock."** USO largest single-day inflow since Aug 2020. $211M net retail buying on Mar 12. CNBC labeled it "meme-style" trading.
-- **SPY sentiment still bullish (68/100)** despite $100 oil and VIX spikes — WSB traders shorting VIX, betting crisis is contained.
-- **USO contango warnings** from experienced traders: "Don't confuse an oil trade with an oil investment."
-- **Futures curve disconnect:** Jan 2027 Brent at ~$70 — market pricing short disruption. Reddit retail more bullish than the futures curve implies.
-- **Second-order plays gaining attention:** Defense stocks, tanker companies, Asian refinery stocks — "everyone is already in XLE, the alpha is in second-order effects."
-
-### HackerNews Technical Perspectives
-- **Escort infeasibility:** Iran's asymmetric threats (drones, mines, speedboats in confined waters) make convoy escort untenable without massive amphibious deployment.
-- **Refinery grade mismatch:** Refineries designed for specific crude grades (Brent vs. Arab Light) — can't simply swap supply sources without retooling. Constrains substitution speed.
-- **Water coning risk in shut-in wells:** Bottom water rushes into mature reservoirs during extended shut-ins, trapping oil in pore spaces — potentially irreversible. This is the under-discussed mechanism behind the 4-week threshold.
-- **No US shale supply response at $100:** "Wall Street killed the wildcatters" — capital discipline means buybacks over capex. Structurally different from 2014-era shocks.
-- **Pozsar's Bretton Woods III:** Each geopolitical shock reprices physical commodities ("outside money") vs. financial assets. Hormuz is structural validation.
-- **China's resilience advantages:** 75% of rail electrified, 50% of 2025 semi-tractor sales electric, Russian gas via overland pipelines.
-- **Silicon Valley gasoline at $7+/gal** (reported by @Animats on HN).
-
-### YouTube Coverage
-- **Peter Zeihan** most prolific analyst — rapid-fire series on Patreon/YouTube since Feb 28: "The Iran War: Here We Go," "The Chinese Start to Panic," "Enter Sting Interceptors." Also on Prof G Pod with Galloway (Mar 9).
-- **Al Jazeera Inside Story** (Mar 16): panel discussion on Hormuz as Trump's problem. Military analyst: force-opening would be "almost suicidal."
-- **Key thesis across creators:** US doesn't need Gulf oil (net exporter), but allies do — strait closure accelerates deglobalization.
+### Key Themes (as of early April — ceasefire day)
+- **Ceasefire selloff: -15% Brent in one session.** Market unwinding war premium aggressively. But physical Hormuz remains closed, 800+ ships stranded, mines in water — price action is pricing in a ceasefire that hasn't physically materialized yet.
+- **BWET countertrend signal:** Tanker ETF +7.5% on ceasefire day. Market correctly pricing that vessel backlog, rerouting, and slow physical reopening will sustain elevated freight rates for weeks. "Ceasefire ≠ Hormuz open."
+- **Futures curve thesis partially validated:** Goldman's $85 April avg was roughly directional. Jan 2027 Brent ~$70 vs. spot ~$95 — market pricing 6-week disruption + 2-month recovery. Structural risks (Ras Laffan, well damage) not in price.
+- **No shale response confirmed:** Capital discipline held through $110 Brent peak. US rig count did not meaningfully increase. Any sustained $90+ environment adds pressure on management teams.
+- **Goldman:** Brent $100+ in March, ~$85 in April (so far tracking); 2026 avg $85/bbl. UBS: $90 by June, $85 year-end. JPMorgan: $60 avg 2026 (assumes brief disruption — increasingly disconnected from facts).
 
 ### Key Trading Signals
 
 | Signal | Bull Case | Bear Case |
 |--------|-----------|-----------|
-| Futures curve | Backwardation = market expects short disruption | If wrong, catch-up repricing could be violent |
-| Retail inflows ($211M record) | Momentum-driven, could extend rally | Meme-style trading = fragile, reverses fast |
-| Shale non-response | No new supply at any price = sustained shortage | Capital discipline could break at $130+ |
-| Tanker stocks (BWET ~+330% YTD; $92.80) | Longer routes = higher utilization for months | Snap back hard on any ceasefire signal |
-| SPR drawdown | Buys 120-200 days | Post-SPR cliff if crisis extends past Jul |
-| GL 134 expiration (Apr 11) | Extension could add supply | No extension = -2 mb/d cliff |
-| Clean energy flat | Not pricing structural shift | Could catch bid if crisis crosses 3-month mark |
-| Insurance (5% hull value) | Commercial transit economically dead | Normalization would signal de-escalation |
+| Ceasefire compliance | Holds → gradual reopening, Brent slides to $80-85 | Violations → resumed strikes, Brent snaps back to $110+ |
+| Islamabad talks (Apr 10) | Framework agreed → accelerated mine clearance + ship release | Breakdown → 2-week window expires, US resumes bombing |
+| Hormuz vessel count (AIS) | Steady ramp to 50+/day = reopening signal | Stays at 3-11/day = ceasefire without physical opening |
+| Futures curve | Pricing ~$85 year-end = correct if 6-week disruption | Structural losses (Ras Laffan, well damage) not priced |
+| Tanker stocks (BWET $148.56; +7.5% on ceasefire day) | Backlog = weeks of elevated freight | Spike above 52-wk high on ceasefire = extended repositioning trade |
+| GL 134 expiration (Apr 11) | Treasury extends given residual uncertainty | No extension = -2 mb/d supply cliff; muted at $95 vs. $110 Brent |
+| SPR drawdown | Buys to mid-July; provides price ceiling | Post-SPR cliff if crisis extends past Jul; $17B refill = price floor |
+| Insurance normalization | Premiums below 0.5% = sustained commercial return | Stays at 1%+ = commercial transit still economically marginal |
+| Shale non-response | Confirmed at $110 Brent = structural shortage | Capital discipline could break if Brent holds $90+ through Q3 |
 
 ---
 
@@ -537,3 +530,18 @@ See **`hormuz_supply_chart.html`** for an interactive Plotly visualization showi
 112. [Al Jazeera: Mojtaba Khamenei's rumoured injury or death won't change Iran's trajectory (Apr 1, 2026)](https://www.aljazeera.com/opinions/2026/4/1/mojtaba-khameneis-rumoured-injury-or-death-wont-change-irans-trajectory)
 113. [Canada LNG Group: Natural gas prices weekly update — JKM, TTF and Henry Hub (30 March 2026)](https://www.canadalnggroup.com/natural-gas-prices-weekly-update-jkm-ttf-and-henry-hub-30-march-2026)
 114. [CNBC: Iran war-hit oil prices will soon rise if Hormuz stays shut — IEA raises curtailment estimate to 8 mb/d (Mar 28, 2026)](https://www.cnbc.com/2026/03/28/oil-gas-prices-iran-war-hormuz.html)
+115. [Al Jazeera: Trump suspends Iran bombing for two weeks following dire threats (Apr 7, 2026)](https://www.aljazeera.com/news/2026/4/7/trump-suspends-iran-bombing-for-two-weeks-following-dire-threats)
+116. [Al Jazeera: US-Iran ceasefire deal — what are the terms and what's next? (Apr 8, 2026)](https://www.aljazeera.com/news/2026/4/8/us-iran-ceasefire-deal-what-are-the-terms-and-whats-next)
+117. [CNBC: Trump-Iran ceasefire — Hormuz negotiations (Apr 7, 2026)](https://www.cnbc.com/2026/04/07/trump-iran-ceasefire-hormuz-strait.html)
+118. [PBS NewsHour: Iran's Supreme National Security Council accepts two-week ceasefire (Apr 7, 2026)](https://www.pbs.org/newshour/world/irans-supreme-national-security-council-says-it-has-accepted-two-week-ceasefire-in-the-war)
+119. [Bloomberg: Hormuz stays blocked for now as hundreds of ships seek escape (Apr 8, 2026)](https://www.bloomberg.com/news/articles/2026-04-08/hormuz-stays-blocked-for-now-as-hundreds-of-ships-seek-escape)
+120. [NBC News: Live updates — Iran war, Trump deadline, Hormuz ceasefire (Apr 6-7, 2026)](https://www.nbcnews.com/world/iran/live-blog/live-updates-iran-war-trump-deadline-hormuz-infrastructure-ceasefire-rcna267039)
+121. [UN News: Russia-China veto of UNSC resolution on commercial shipping protection (Apr 7, 2026)](https://news.un.org/en/story/2026/04/1167257)
+122. [Al Jazeera: Iran war liveblog — Day 39, ceasefire in effect (Apr 7, 2026)](https://www.aljazeera.com/news/liveblog/2026/4/6/iran-war-live-tehran-rejects-trumps-tuesday-deadline-on-strait-of-hormuz)
+123. [Gulf News: Hormuz marine traffic starting to move as ceasefire kicks in (Apr 8, 2026)](https://gulfnews.com/business/energy/all-eyes-on-hormuz-strait-marine-traffic-starting-to-move-as-two-week-ceasefire-kicks-in-1.500500150)
+124. [Fortune: Price of oil April 8, 2026 — ceasefire selloff (Apr 8, 2026)](https://fortune.com/article/price-of-oil-04-08-2026/)
+125. [StockAnalysis: BWET ETF — $148.56 +7.46% (Apr 8, 2026)](https://stockanalysis.com/etf/bwet/)
+126. [LNGPriceIndex: JKM $18.75/MMBtu, TTF EUR 50.08/MWh (Apr 3, 2026)](https://lngpriceindex.com/)
+127. [OilPrice.com: European natural gas futures slump 20% on ceasefire relief (Apr 8, 2026)](https://oilprice.com/Latest-Energy-News/World-News/European-Natural-Gas-Futures-Slump-by-20-on-Ceasefire-Relief.html)
+128. [S&P Global: Marine war insurance for Hormuz dries up as war intensifies (Mar 2026)](https://www.spglobal.com/market-intelligence/en/news-insights/articles/2026/3/marine-war-insurance-for-hormuz-dries-up-as-middle-east-war-intensifies-99283143)
+129. [Marine Insight: US doubles insurance for ships through Hormuz to $40 billion (Apr 2026)](https://www.marineinsight.com/u-s-doubles-insurance-for-ships-operating-through-the-strait-of-hormuz-to-40-billion/)
