@@ -1,5 +1,32 @@
 # Changelog
 
+## 2026-04-09 — `report-2026-04-09`
+**Ceasefire teetering: Lebanon dispute; IRGC confirms mines + releases mine map; Iran $1/bbl crypto toll; Islamabad talks tomorrow; BWET $164.24 (new 52-wk high, +10.8%); Brent $95.92; WTI $97.87; gasoline $4.16/gal; GL 134 in 2 days**
+
+- **MAJOR: Ceasefire teetering over Lebanon** — Israel struck 100+ Hezbollah targets (250+ killed, 1,160+ wounded); Iran accused US of ceasefire violations and paused Hormuz reopening; Lebanon the central dispute (Israel/Trump: excluded; Iran/Pakistan: everywhere)
+- **MAJOR: IRGC officially confirms mines, releases navigational mine map** — first formal Iranian admission of mine deployment; alternative shipping corridors published; mines NOT being removed; IRGC: Hormuz "will never return to previous status" for US/Israel-linked vessels
+- **MAJOR: Iran demands $1/barrel crypto toll** — Financial Times reports $1/bbl of cargo per ship in cryptocurrency; Trump warns: "They better not"
+- **Islamabad talks tomorrow (Apr 10)** — US: VP Vance, Witkoff, Kushner; Iran: Parliament Speaker Ghalibaf; ceasefire expires Apr 22; Iran 10-point demands incompatible with US red lines
+- **Goldman Sachs (Apr 9)** — base case $82 Brent Q3 / $80 Q4 if Hormuz opens Apr 11-12; adverse $100+ through 2026 if shut 1 more month; severe $115-120 Q3 if prolonged; trimmed Q2 Brent to $90 / WTI to $87
+- Israel separately agreed to direct talks with Lebanon — oil rally lost steam on the news
+- Brent updated: ~$95 (Apr 8) → $95.92 settle (Apr 9); WTI $97.87 (+3%)
+- Gasoline updated: $4.12/gal → $4.16/gal (AAA, Apr 9; up 8 cents week-over-week); +41% → +43%
+- Diesel updated: ~$5.81/gal (regional) → ~$5.40/gal (EIA Apr 7 national); +59% → +48%
+- TTF updated: ~EUR 44/MWh → EUR 46.64/MWh (Apr 9; partial recovery); +38% → +46%
+- JKM updated: ~$19/MMBtu → ~$17s/MMBtu (Apr 2 weekly; shoulder season softening); +135% → +110-125%
+- BWET updated: $148.56 (Apr 8) → $164.24 (Apr 9; new 52-week high; +10.8%; intraday $161-$180)
+- VLCC: ~$400-424K/day → ~$485K/day (Breakwave Apr 7 report; new record)
+- Day count: 40 → 41; date: April 8 → April 9
+- Well damage: 41+ days → 42 days idle
+- Ceasefire section: added Lebanon dispute details, mine map news, toll demand, Islamabad delegation confirmed
+- Mines section: expanded with IRGC official confirmation and navigational map release
+- What to Watch: updated items 1-5 for Lebanon/mine map/GL 134/Islamabad
+- Trading signals: BWET updated to $164.24 (new 52-wk high)
+- Market Intelligence: updated for Apr 9 themes (Goldman scenarios, toll demand, BWET second leg up)
+- Sources: added fn130-fn141 (ceasefire Lebanon, mine map, Goldman, BWET 52-wk high, Islamabad talks, AAA gasoline, Breakwave VLCC, TTF) — 141 total sources
+
+---
+
 ## 2026-04-08 — `report-2026-04-08`
 **Two-week ceasefire in effect (Apr 7) — but Hormuz still largely closed; 800+ ships stranded; mines uncleared; GL 134 expires in 3 days; Brent ~$95 (-15% selloff); diesel ~$5.81/gal; BWET $148.56 (+7.5% on ceasefire day)**
 
