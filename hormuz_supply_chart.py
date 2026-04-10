@@ -23,6 +23,15 @@ import webbrowser
 def d(s: str) -> datetime:
     return datetime.strptime(s, "%Y-%m-%d")
 
+# Pre-computed critical dates — avoids ~2000 strptime() calls in the main loop
+_D = {s: datetime.strptime(s, "%Y-%m-%d") for s in [
+    "2026-02-28", "2026-03-01", "2026-03-03", "2026-03-04", "2026-03-05",
+    "2026-03-09", "2026-03-10", "2026-03-11", "2026-03-12", "2026-03-20",
+    "2026-04-01", "2026-04-07", "2026-04-08", "2026-04-11", "2026-04-15",
+    "2026-05-01", "2026-05-07", "2026-05-08", "2026-05-15",
+    "2026-06-07",
+]}
+
 _DEFAULT_START = "2026-02-28"
 _DEFAULT_END   = "2026-06-30"
 
@@ -48,11 +57,11 @@ ALL_DATES = date_range(START, END)
 
 def hormuz_closure(dt: datetime) -> float:
     """Strait of Hormuz transit lost. ~20 mb/d pre-crisis transit."""
-    if dt < d("2026-02-28"):
+    if dt < _D["2026-02-28"]:
         return 0.0
-    if dt <= d("2026-03-01"):
+    if dt <= _D["2026-03-01"]:
         return -6.0   # initial 30% still moving
-    if dt <= d("2026-03-04"):
+    if dt <= _D["2026-03-04"]:
         return -14.0  # ~70% blocked
     # Mar 5+: full closure (IRGC announcement)
     # Apr 7: ceasefire in effect, but Hormuz still functionally closed
@@ -64,7 +73,7 @@ def hormuz_closure(dt: datetime) -> float:
     # Phase 1 — Apr 7-14: Ceasefire "freeze" period
     #   ~3 ships/day vs 135 normal; 800+ stranded; mines uncleared
     #   Negligible improvement in transit volume
-    if dt >= d("2026-04-07") and dt < d("2026-04-15"):
+    if dt >= _D["2026-04-07"] and dt < _D["2026-04-15"]:
         return -19.0
     #
     # Phase 2 — Apr 15 - May 7: Tentative reopening (~3 weeks)
@@ -73,8 +82,8 @@ def hormuz_closure(dt: datetime) -> float:
     #   mine risk deters most commercial traffic; ~10-20 ships/day
     #   Restore rate: ~0.12 mb/d per day (~0.84 mb/d per week)
     #   Starts from -19 (Phase 1 level), not -20
-    if dt >= d("2026-04-15") and dt < d("2026-05-08"):
-        days_in = (dt - d("2026-04-15")).days
+    if dt >= _D["2026-04-15"] and dt < _D["2026-05-08"]:
+        days_in = (dt - _D["2026-04-15"]).days
         restored = 1.0 + days_in * 0.12  # 1.0 = the 1 mb/d already restored in Phase 1
         return -(20.0 - restored)
     #
@@ -89,9 +98,9 @@ def hormuz_closure(dt: datetime) -> float:
     #   Cap: 10 of 20 mb/d restored (-10 mb/d residual through end of chart)
     #     Residual = well damage (~4-5) + Ras Laffan (~1.5) + Iran control/fee (~1)
     #               + facility damage (~1.5) + insurance drag (~1)
-    if dt >= d("2026-05-08"):
+    if dt >= _D["2026-05-08"]:
         phase2_restored = 1.0 + 23 * 0.12  # Phase 1 + Phase 2 total
-        days_in_p3 = (dt - d("2026-05-08")).days
+        days_in_p3 = (dt - _D["2026-05-08"]).days
         phase3_restored = days_in_p3 * 0.15
         total_restored = min(phase2_restored + phase3_restored, 10.0)
         return -(20.0 - total_restored)
@@ -101,9 +110,9 @@ def saudi_pipeline(dt: datetime) -> float:
     """Saudi East-West Pipeline (Petroline) net new exports via Yanbu.
     Yanbu loading at ~2.5 mb/d (Sparta, Mar 16) vs 750K pre-crisis.
     Net new export: ~1.75 mb/d. Arab Light only."""
-    if dt < d("2026-03-01"):
+    if dt < _D["2026-03-01"]:
         return 0.0
-    if dt < d("2026-03-11"):
+    if dt < _D["2026-03-11"]:
         return 0.5
     return 1.75
 
@@ -111,9 +120,9 @@ def uae_adcop(dt: datetime) -> float:
     """UAE ADCOP pipeline spare capacity to Fujairah.
     Pipeline at full capacity (~1.8 mb/d, up from ~1.1 pre-crisis); spare = ~0.7 mb/d.
     Fujairah hit 3 times (Mar 9, 14, 16) — loading impaired but not fully halted."""
-    if dt < d("2026-03-01"):
+    if dt < _D["2026-03-01"]:
         return 0.0
-    if dt < d("2026-03-09"):
+    if dt < _D["2026-03-09"]:
         return 0.5
     return 0.7
 
@@ -123,9 +132,9 @@ def iea_spr(dt: datetime) -> float:
     Total ~2.0 mb/d, starting Mar 12. US portion exhausted by ~Jul 10.
     Country reserves committed: Japan 80M bbl, Germany 19.7M bbl,
     UK 13.5M bbl, + 28 other IEA members."""
-    if dt < d("2026-03-12"):
+    if dt < _D["2026-03-12"]:
         return 0.0
-    days_in = (dt - d("2026-03-12")).days
+    days_in = (dt - _D["2026-03-12"]).days
     us = 1.43 if days_in < 120 else 0.0
     # Non-US members exhaust faster (smaller reserves, ~100 days)
     others = 0.57 if days_in < 100 else 0.0
@@ -135,11 +144,11 @@ def gl134_floating_inventory(dt: datetime) -> float:
     """GL 134 one-time release of stranded Russian oil at sea.
     ~186M bbl total on ~238 laden tankers. 60-70M bbl near India/China.
     Waiver: Mar 12 -> Apr 11 (30 days). STOCK, not FLOW — depletes."""
-    if dt < d("2026-03-12"):
+    if dt < _D["2026-03-12"]:
         return 0.0
-    if dt > d("2026-04-11"):
+    if dt > _D["2026-04-11"]:
         return 0.0  # waiver expired, relief gone
-    days_in = (dt - d("2026-03-12")).days
+    days_in = (dt - _D["2026-03-12"]).days
     if days_in <= 20:
         return 2.0
     return max(2.0 - (days_in - 20) * 0.2, 0.0)
@@ -147,7 +156,7 @@ def gl134_floating_inventory(dt: datetime) -> float:
 def russian_production(dt: datetime) -> float:
     """Russian production increase — minimal / near zero.
     Feb 2026 production was FALLING (-56K bpd m/m). ~0.1 mb/d net."""
-    if dt < d("2026-03-03"):
+    if dt < _D["2026-03-03"]:
         return 0.0
     return 0.1
 
@@ -155,7 +164,7 @@ def iranian_exports(dt: datetime) -> float:
     """Iran's own exports through strait it controls.
     ~1.5 mb/d continuing via Iranian-flagged/allied vessels + Jask terminal.
     Almost entirely China-bound (~1.25 mb/d)."""
-    if dt < d("2026-03-01"):
+    if dt < _D["2026-03-01"]:
         return 0.0
     return 1.5
 
@@ -164,21 +173,21 @@ def demand_destruction(dt: datetime) -> float:
     IEA raised estimate from 210K to 640K b/d. Ramps up over time as prices
     stay elevated and behavioral/policy changes take effect.
     India ethanol mandates, Japan conservation orders, China trucking restrictions."""
-    if dt < d("2026-03-10"):
+    if dt < _D["2026-03-10"]:
         return 0.0
-    if dt < d("2026-03-20"):
+    if dt < _D["2026-03-20"]:
         return 0.2  # early price response
-    if dt < d("2026-04-01"):
+    if dt < _D["2026-04-01"]:
         return 0.4  # Asian emergency measures kicking in
-    if dt < d("2026-05-01"):
+    if dt < _D["2026-05-01"]:
         return 0.64  # IEA revised estimate (640K b/d)
     # May: demand destruction peaks as crisis is worst
-    if dt < d("2026-05-15"):
+    if dt < _D["2026-05-15"]:
         return 0.8  # peak behavioral/policy response
     # Late May+: as reopening progresses and prices ease, demand destruction
     # STABILIZES then slowly reverses (people resume driving, factories restart)
     # But structural shifts (India ethanol, China EV adoption) are permanent
-    weeks_past_may15 = (dt - d("2026-05-15")).days / 7
+    weeks_past_may15 = (dt - _D["2026-05-15"]).days / 7
     return max(0.8 - weeks_past_may15 * 0.05, 0.4)  # floors at 0.4 (permanent shifts)
 
 def oecd_commercial_drawdown(dt: datetime) -> float:
@@ -186,11 +195,11 @@ def oecd_commercial_drawdown(dt: datetime) -> float:
     ~2.7B bbl commercial stocks; industry holds min ~60 days of demand.
     Draws at ~1.0 mb/d effectively — this is implicit market supply.
     Not unlimited: accelerates the clock toward rationing."""
-    if dt < d("2026-03-05"):
+    if dt < _D["2026-03-05"]:
         return 0.0
-    if dt < d("2026-04-15"):
+    if dt < _D["2026-04-15"]:
         return 1.0  # comfortable draw rate
-    if dt < d("2026-05-15"):
+    if dt < _D["2026-05-15"]:
         return 0.8  # stocks depleting, draw rate slows
     # Beyond mid-May: approaching minimum operating levels
     return 0.5
@@ -211,25 +220,25 @@ def infrastructure_repair(dt: datetime) -> float:
     Total by Sep 30 (~6 months): ~4-5 mb/d recovered
     Ras Laffan LNG: ~1.5 mb/d equiv — NEVER recovers in 2026 (3-5 year timeline)
     Full pre-crisis levels: NOT before Q4 2026 at earliest (excl Ras Laffan)"""
-    if dt < d("2026-03-20"):
+    if dt < _D["2026-03-20"]:
         return 0.0
     # Pre-ceasefire: minimal repair possible (active conflict zone)
-    if dt < d("2026-04-07"):
+    if dt < _D["2026-04-07"]:
         return 0.3  # only Jask-area + Saudi pipeline-connected fields
     # Month 1 post-ceasefire: access restored but structural damage limits speed
     # Quick wins: Ras Tanura (550K b/d, 2-4 week repair = done by ~May 1)
     # Some shallow wells restarted in Saudi (non-water-coning fields)
-    if dt < d("2026-05-07"):
-        days_in = (dt - d("2026-04-07")).days
+    if dt < _D["2026-05-07"]:
+        days_in = (dt - _D["2026-04-07"]).days
         return 0.3 + days_in * 0.025  # ~0.75 mb/d/month → ~1.05 by May 7
     # Month 2: well reactivation ramp — but water-coned wells are very slow
     # Mina Al-Ahmadi still offline; Iraq Rumaila barely starting
-    if dt < d("2026-06-07"):
-        days_in = (dt - d("2026-05-07")).days
+    if dt < _D["2026-06-07"]:
+        days_in = (dt - _D["2026-05-07"]).days
         return 1.05 + days_in * 0.02  # ~0.6 mb/d/month → ~1.65 by Jun 7
     # Month 3+: decelerating — the easy wells are done, hard ones remain
     # Some Iraq/Kuwait wells permanently impaired (water coning)
-    days_in = (dt - d("2026-06-07")).days
+    days_in = (dt - _D["2026-06-07"]).days
     return min(1.65 + days_in * 0.012, 2.5)  # very slow tail; cap 2.5 by late summer
 
 # ---------------------------------------------------------------------------
