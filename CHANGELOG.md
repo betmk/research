@@ -1,5 +1,25 @@
 # Changelog
 
+## 2026-04-10 — `report-2026-04-10`
+**Islamabad talks IN PROGRESS: Vance/Witkoff/Kushner vs. Ghalibaf; GL 134A expires TONIGHT; Iran GL U expires Apr 19; Brent ~$96.51 early; WTI ~$98.80; JKM ~$19.49/MMBtu; Day 42**
+
+- **MAJOR: Islamabad talks underway** — first structured US-Iran negotiations happening today; Iran's Ghalibaf opened citing 3 ceasefire violations: (1) Israeli Lebanon strikes, (2) US drone overflight of Iranian airspace, (3) Trump denying Iran's enrichment right; Vance leads US delegation with Witkoff, Kushner; Pakistani PM Sharif mediating; no outcome yet
+- **MAJOR: GL 134A expires TONIGHT** — Russian-oil waiver expires 12:01am EDT April 11; no extension announced; removes ~2 mb/d from mitigation stack; dual cliff risk if Hormuz stays closed simultaneously
+- **NEW: Iran GL U expires April 19** — OFAC's Iran-Related General License U (issued Mar 20) authorizes Iranian-origin crude loaded on/before March 20; first time OFAC broadly authorized Iranian crude transactions; expires 9 days after GL 134A
+- Lebanon remains central faultline: Iran/Pakistan say ceasefire covers "everywhere"; Israel/Trump say Lebanon excluded; Netanyahu rejected Pakistan's framing; highest single near-term risk to ceasefire
+- Prices updated: Brent $95.92 (Apr 9 settle) → ~$96.51 (Apr 10 early); WTI $97.87 → ~$98.80; JKM ~$17s → ~$19.49/MMBtu (latest futures); gasoline $4.16/gal unchanged (AAA); diesel ~$5.40/gal (EIA Apr 7; STEO peak $5.80+/gal April)
+- Day count: 41 → 42; date: April 9 → April 10; well damage: 42 days → 43 days idle
+- Executive summary updated: Islamabad talks IN PROGRESS (not tomorrow); GL 134A TONIGHT; Lebanon faultline
+- Timeline: added Apr 10 entry (Islamabad talks underway, Ghalibaf 3 violations, no outcome)
+- What to Watch: reordered — Islamabad talks now item 1 (in progress); GL 134A TONIGHT item 2; Lebanon escalation new item 3
+- GL 134 section: renamed to GL 134A; added expiry warning; added GL U (Iranian crude) as new section 4b
+- Clock cards: updated — ceasefire card → "TALKS UNDERWAY"; GL 134 card → "TONIGHT"
+- Supply balance table: added GL U Iranian inventory row
+- Market Intelligence: updated themes for Apr 10 (Islamabad is the only mechanism that matters; Lebanon deal-killer; BWET structural story)
+- Sources: added fn135-fn149 — Islamabad talks (Axios, AJ, TIME, Tribune), OFAC GL U (Baker McKenzie), oil prices (OilPriceAPI), EIA STEO, JustSecurity — 149 total sources
+
+---
+
 ## 2026-04-09 — `report-2026-04-09`
 **Ceasefire teetering: Lebanon dispute; IRGC confirms mines + releases mine map; Iran $1/bbl crypto toll; Islamabad talks tomorrow; BWET $164.24 (new 52-wk high, +10.8%); Brent $95.92; WTI $97.87; gasoline $4.16/gal; GL 134 in 2 days**
 
