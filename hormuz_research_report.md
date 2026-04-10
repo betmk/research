@@ -1,30 +1,29 @@
 # Strait of Hormuz Crisis: Oil Supply Disruption Briefing
 
-**Date:** April 9, 2026
-**Status:** Day 41 — **Ceasefire teetering: Lebanon dispute threatens deal as Israel struck 100 Hezbollah targets (250+ dead) — Iran accuses US of violations, pauses Hormuz traffic over Lebanon attacks. IRGC officially confirms mines and releases navigational mine map (first formal acknowledgment); mine-safe alternative routes offered but mines NOT removed. Iran says Hormuz "will never return to previous status." Iran demanding $1/bbl crypto toll; Trump warns "better not." ~dozen ships in first 2 ceasefire days vs. 135/day normal. Islamabad talks TOMORROW (Apr 10): Vance, Witkoff, Kushner vs. Ghalibaf; ceasefire expires Apr 22. GL 134 expires in 2 DAYS — no extension. Goldman: base case $82 Brent Q3 if Hormuz reopens Apr 11-12; adverse $100+ through 2026. Brent $95.92; WTI $97.87; gasoline $4.16/gal (AAA); diesel ~$5.40/gal (EIA Apr 7); TTF EUR 46.64/MWh; JKM ~$17s/MMBtu; BWET $164.24 (new 52-wk high, +10.8%)**
+**Date:** April 10, 2026
+**Status:** Day 42 — **Islamabad talks UNDERWAY: Vance/Witkoff/Kushner vs. Ghalibaf — Iran cites 3 ceasefire violations (Lebanon, drone overflight, Trump denying enrichment right); no outcome yet. Lebanon still the central faultline. GL 134A (Russian oil) expires TONIGHT at midnight; no extension announced. Iran GL U (Iranian crude, loaded on/before Mar 20) expires Apr 19. Hormuz still nearly closed: ~9 ships/day vs. 135 normal; 800+ stranded; mines uncleared; IRGC mine corridors not removal. Iran demands $1/bbl crypto toll; Trump warns "better not." Ceasefire expires Apr 22. Goldman: base case $82 Brent Q3 if Hormuz opens; adverse $100+ through 2026. Brent ~$96.51 (Apr 10); WTI ~$98.80; gasoline $4.16/gal (AAA); diesel ~$5.40/gal (EIA Apr 7); TTF EUR 46.64/MWh; JKM ~$19.49/MMBtu; BWET $164.24 (52-wk high, Apr 9 close)**
 
 ---
 
 ## Executive Summary
 
-**Day 41. Ceasefire teetering over Lebanon. IRGC confirms mines. Islamabad talks tomorrow. GL 134 in 2 days. Net shortage: ~12 mb/d. Well damage structural.**
+**Day 42. Islamabad talks IN PROGRESS. Lebanon still the faultline. GL 134A expires TONIGHT. Net shortage: ~12 mb/d. Well damage structural.**
 
 The US-Israel war on Iran (Feb 28) triggered history's largest oil supply disruption. Iran's selective Hormuz closure took ~20 mb/d offline; mitigations cover ~8 mb/d, leaving a **net gap of ~12 mb/d** (IEA: ~8 mb/d crude + ~2 mb/d condensates curtailed).
 
-**Latest developments (Apr 9):**
-- **Ceasefire teetering:** Iran accuses US of violating ceasefire over Israeli attacks in Lebanon — Israel struck 100+ Hezbollah targets in minutes (250+ killed, 1,160+ wounded). Lebanon is the central dispute: Israel/Trump say ceasefire excludes Lebanon; Iran/Pakistan say it covers everywhere. Iran has paused Hormuz reopening pending resolution.
-- **IRGC officially confirms mines — releases navigational map:** Iran's Revolutionary Guard Navy published a formal navigational chart Thursday designating alternative shipping corridors around mines — the first official Iranian acknowledgment that mines were deployed in Hormuz. Mines are NOT being cleared; Iran is managing access around them indefinitely.
-- **Hormuz "will never return to previous status":** IRGC stated definitively that the strait will not revert to pre-war conditions for US/Israel-linked vessels — signaling permanent institutional change, not temporary blockade.
-- **Iran demands $1/barrel crypto toll:** Financial Times reports Iran charging $1/barrel of cargo in cryptocurrency per ship. Trump warns: "They better not be and, if they are, they better stop now!"
-- **Hormuz still nearly closed:** Only ~dozen ships in first two ceasefire days (vs. 135/day normal); Iran offering mine-safe alternative corridors but not removing mines
-- **Islamabad talks tomorrow (Apr 10):** US delegation: VP Vance, Witkoff, Kushner. Iran: Parliament Speaker Ghalibaf. Ceasefire expires April 22. Iran's 10-point demands include Hormuz oversight, US troop withdrawal, full sanctions lift, war reparations, missile program retained.
-- **GL 134 expires April 11** — 2 days away; no extension announced; Goldman base case: flows resume Apr 11-12 → Brent $82 Q3; adverse case if Hormuz stays shut: $100+ through 2026
+**Latest developments (Apr 10):**
+- **Islamabad talks UNDERWAY:** First structured US-Iran negotiations happening today. US: VP Vance, Steve Witkoff, Jared Kushner. Iran: Parliament Speaker Ghalibaf. Mediated by Pakistani PM Sharif. Iran's Ghalibaf opened by citing 3 ceasefire violations: Israeli strikes in Lebanon, a US drone overflight of Iranian territory, and Trump's statement denying Iran's enrichment right. No outcome yet. Ceasefire expires April 22.
+- **Lebanon remains the central faultline:** Iran/Pakistan say ceasefire covers "everywhere"; Israel/Trump say Lebanon excluded. Netanyahu rejected Pakistan's Lebanon framing; Israel opened separate Lebanon direct talks. CNN analysis: Lebanon is the treacherous sticking point that could collapse the talks entirely.
+- **GL 134A expires TONIGHT:** Russian-oil waiver expires 12:01am EDT April 11 (tonight). No extension announced. Removes ~2 mb/d from mitigation stack. Goldman base case (Hormuz opens Apr 11-12) would make lapse moot — but if Hormuz stays closed and GL 134A lapses simultaneously, the market faces a dual supply cliff.
+- **Iran GL U (Iranian crude) — expires April 19:** OFAC's Iran-related General License U (issued Mar 20) authorizes Iranian-origin crude loaded on/before March 20. Expires April 19 — 9 more days of runway beyond GL 134A. First time OFAC broadly authorized Iranian crude transactions.
+- **Hormuz still nearly closed:** ~9 ships/day vs. 135 normal; 800+ ships stranded inside Gulf; mines uncleared; IRGC mine corridors published but NOT removed; minesweeping prerequisite not started.
+- **Iran demands $1/bbl crypto toll:** Financial Times reports Iran charging $1 per barrel of cargo per ship in cryptocurrency. Trump warned: "They better not be and, if they are, they better stop now!"
 
 **Key thresholds (unchanged):**
-- **Well damage (since Mar 28):** Now 41+ days idle; water coning active; Kuwait CEO: "3-4 months to recover post-war" — production loss structural
+- **Well damage (since Mar 28):** Now 42+ days idle; water coning active; Kuwait CEO: "3-4 months to recover post-war" — production loss structural
 - **Ras Laffan LNG:** 12.8M mt/yr offline for 3-5 YEARS (17% of Qatar capacity) regardless of ceasefire
 
-**Prices (Apr 9):** Brent $95.92/bbl (settled; oil rally lost steam after Israel-Lebanon talks emerged); WTI $97.87/bbl (+3% on day); gasoline $4.16/gal (AAA, +43%); diesel ~$5.40/gal (EIA Apr 7, +48%); TTF EUR 46.64/MWh (+46%); JKM ~$17s/MMBtu (+110%); BWET $164.24 (new 52-wk high, +10.8% on day — tanker freight at record despite ceasefire).
+**Prices (Apr 10):** Brent ~$96.51/bbl (Apr 10 early; settled $95.92 Apr 9); WTI ~$98.80/bbl; gasoline $4.16/gal (AAA, +43%); diesel ~$5.40/gal (EIA Apr 7; EIA STEO April forecast: peak $5.80+/gal; next release Apr 14); TTF EUR 46.64/MWh (+46%); JKM ~$19.49/MMBtu (+144%); BWET $164.24 (52-wk high, Apr 9 close).
 
 ---
 
@@ -60,7 +59,8 @@ The US-Israel war on Iran (Feb 28) triggered history's largest oil supply disrup
 | **Apr 6** | Iran rejects Trump's 45-day ceasefire proposal; only 11 vessels transited Hormuz (4 inbound, 7 outbound) vs. 135/day normal; Brent ~$113 intraday; BWET $138 range |
 | **Apr 7** | **Trump suspends US bombing for 2 weeks** contingent on Hormuz reopening; Iran's Supreme National Security Council formally accepts ceasefire; **Russia and China veto** UN Security Council resolution aimed at protecting commercial shipping; ceasefire violations reported within hours by UAE and Kuwait; Iran grants transit passage only "in coordination with Iranian Armed Forces"; only ~3 ships cross on ceasefire day |
 | **Apr 8** | Ceasefire technically in effect but Hormuz remains largely closed; **800+ ships stranded inside the Gulf** waiting to exit; mines still in water; Iran has not announced mine removal; Islamabad negotiations (US-Iran, Pakistani mediation) scheduled April 10; Iran's 10-point demands confirmed: US troop withdrawal, full sanctions lift, war reparations, missile program retained, Hormuz fee; **Brent ~$95 (-15% ceasefire selloff)**, WTI ~$93; **BWET $148.56 (+7.5%)** — tanker freight remains elevated as rerouting demand sustains rates despite nominal ceasefire; TTF ~EUR 44/MWh (-20%); GL 134 expires in 3 days with no extension announced |
-| **Apr 9** | **Ceasefire teetering over Lebanon:** Israel strikes 100+ Hezbollah targets in Lebanon (250+ killed, 1,160+ wounded); Iran accuses US of ceasefire violations and pauses Hormuz reopening in protest; Lebanon is the central dispute — Israel/Trump say ceasefire excludes Lebanon, Iran/Pakistan say it covers everywhere. **IRGC officially confirms mines and releases navigational mine map** — first formal acknowledgment Iran deployed mines; IRGC publishes alternative shipping corridors around mines but does NOT announce removal. **Iran says Hormuz "will never return to previous status"** for US/Israel-linked vessels. **Iran demands $1/barrel crypto toll** for transit; Trump warns: "They better not." Only ~dozen ships in first two ceasefire days; Islamabad talks set for tomorrow (Vance, Witkoff, Kushner vs. Ghalibaf); ceasefire expires April 22. **Goldman Sachs:** base case $82 Brent Q3 if Hormuz opens Apr 11-12; severe scenario $115-120/bbl Q3 if closure extends. **Brent $95.92** (settled), WTI $97.87; gasoline **$4.16/gal** (AAA); TTF EUR 46.64/MWh; **BWET $164.24 (new 52-wk high, +10.8%)** |
+| **Apr 9** | **Ceasefire teetering over Lebanon:** Israel strikes 100+ Hezbollah targets in Lebanon (250+ killed, 1,160+ wounded); Iran accuses US of ceasefire violations and pauses Hormuz reopening in protest; Lebanon is the central dispute — Israel/Trump say ceasefire excludes Lebanon, Iran/Pakistan say it covers everywhere. **IRGC officially confirms mines and releases navigational mine map** — first formal acknowledgment Iran deployed mines; IRGC publishes alternative shipping corridors around mines but does NOT announce removal. **Iran says Hormuz "will never return to previous status"** for US/Israel-linked vessels. **Iran demands $1/barrel crypto toll** for transit; Trump warns: "They better not." Only ~dozen ships in first two ceasefire days; Islamabad talks confirmed for April 10. **Goldman Sachs:** base case $82 Brent Q3 if Hormuz opens Apr 11-12; severe scenario $115-120/bbl Q3 if closure extends. **Brent $95.92** (settled), WTI $97.87; gasoline **$4.16/gal** (AAA); TTF EUR 46.64/MWh; **BWET $164.24 (new 52-wk high, +10.8%)** |
+| **Apr 10** | **Islamabad talks underway** — first structured US-Iran negotiations: Vance, Witkoff, Kushner vs. Ghalibaf; Pakistani PM Sharif mediating. Iran's Ghalibaf opens citing 3 ceasefire violations: (1) Israeli strikes in Lebanon, (2) US drone overflight of Iranian airspace, (3) Trump statement denying Iran's enrichment right. Lebanon remains central faultline; no outcome yet. **GL 134A expires tonight** (12:01am EDT Apr 11) — no extension announced; Iran GL U (Iranian crude) expires Apr 19. Hormuz: ~9 ships/day; 800+ stranded; mines uncleared. **Brent ~$96.51 (Apr 10 early)**; WTI ~$98.80; gasoline $4.16/gal (AAA); diesel ~$5.40/gal; TTF EUR 46.64/MWh; JKM ~$19.49/MMBtu |
 
 ---
 
@@ -175,15 +175,20 @@ Gulf producers have been forced to curtail production because tankers can't exit
 - **Duration:** 120-200 days depending on member
 - **Reality check:** 400M bbl = only ~4 days of global consumption; market reaction was flat — Brent held $100+ on announcement day. **First physical barrels expected to reach market Mar 19** (pipeline lag from Gulf Coast caverns confirmed as of Mar 17 — within 48 hours).
 
-### 4. GL 134: Russian Oil Floating Inventory (One-Time)
-- **OFAC General License 134:** Issued Mar 12, authorizes delivery/sale of Russian crude and petroleum products **already loaded on vessels** as of 12:01am ET Mar 12
-- **Expiration:** April 11, 2026 (30 days)
+### 4. GL 134A: Russian Oil Floating Inventory — **EXPIRES TONIGHT**
+- **OFAC General License 134 (amended to 134A on Mar 19):** Issued Mar 12; authorizes delivery/sale of Russian crude and petroleum products **already loaded on vessels** as of 12:01am ET Mar 12
+- **Expiration:** ⚠️ **April 11, 2026 at 12:01am EDT — TONIGHT.** No extension announced.
 - **Volume:** ~186M bbl on ~238 laden tankers (Sparta Commodities); 60-70M bbl near India/China deliverable within window
 - **Effective flow:** ~2.0 mb/d tapering as nearby inventory depletes
 - **Limitation:** Only covers already-loaded cargoes; does NOT authorize new Russian oil purchases or lift broader sanctions
-- **Extension signals:** None as of Mar 20 — law firm analyses (Baker McKenzie, Thompson Hine) treat this as a one-time, cargo-specific reprieve with no automatic renewal mechanism
-- **New development (Mar 20):** Bessent signaled a potential separate action covering ~140M bbl of **Iranian** (not Russian) crude at sea — this would be a different general license but structurally similar; market reaction suggests it could add ~1-2 mb/d supply for 2-3 weeks if formalized
-- **Political context:** Congressional Democrats call it "inexplicable"; Russia selling Urals at a premium for first time since Ukraine invasion
+- **Cliff risk:** GL 134A lapse removes ~2 mb/d from mitigation stack. Goldman base case (Hormuz opens Apr 11-12) makes lapse moot. If Hormuz stays closed AND GL 134A lapses simultaneously: dual supply cliff in a tight market.
+- **Political context:** Congressional Democrats called it "inexplicable"; Russia selling Urals at a premium for first time since Ukraine invasion
+
+### 4b. GL U: Iranian Oil Floating Inventory — Expires Apr 19
+- **OFAC Iran-Related General License U:** Issued Mar 20, 2026 — **first time OFAC broadly authorized Iranian crude oil transactions**
+- **Scope:** Authorizes sale, delivery, and offloading of Iranian-origin crude/petroleum products loaded on vessels on/before 12:01am EDT Mar 20. Also permits ancillary services (bunkering, crewing, insurance, port services).
+- **Expiration:** **April 19, 2026** — 9 days of runway beyond GL 134A
+- **Significance:** Formalized Bessent's Mar 20 signal about ~140M bbl Iranian crude at sea; ~1-2 mb/d for 2-3 weeks while window is open
 
 ### 5. Russian Production Increase
 - **Incremental supply:** ~0.1 mb/d (minimal)
@@ -219,13 +224,13 @@ Gulf producers have been forced to curtail production because tankers can't exit
 
 ## Oil Price Impact
 
-| Metric | Pre-Crisis (Feb 27) | Current (Apr 9) | Change |
+| Metric | Pre-Crisis (Feb 27) | Current (Apr 10) | Change |
 |--------|---------------------|-----------------|--------|
-| Brent Crude | ~$71/bbl | $95.92/bbl (Apr 9 settle; ceasefire selloff -15% from $112+ prior; crisis intraday high $126/bbl) | +35% |
-| WTI | ~$67/bbl | $97.87/bbl (Apr 9 settle, +3% on day; mine map news pushed oil back toward $100) | +46% |
+| Brent Crude | ~$71/bbl | ~$96.51/bbl (Apr 10 early; settled $95.92 Apr 9; ceasefire selloff -15% from $112+ prior; crisis intraday high $126/bbl) | +36% |
+| WTI | ~$67/bbl | ~$98.80/bbl (Apr 10 early; settled $97.87 Apr 9) | +47% |
 | Brent intraday peak (all-time crisis) | — | $126/bbl | — |
-| US Gasoline (avg) | $2.92/gal | $4.16/gal (AAA, Apr 9; up 8 cents week-over-week) | +43% |
-| US Diesel (avg) | $3.65/gal | ~$5.40/gal (EIA, Apr 7; next release Apr 14) | ~+48% |
+| US Gasoline (avg) | $2.92/gal | $4.16/gal (AAA, Apr 9; first >$4 since Aug 2022) | +43% |
+| US Diesel (avg) | $3.65/gal | ~$5.40/gal (EIA Apr 7; EIA STEO April forecast: peak $5.80+/gal; next EIA release Apr 14) | ~+48% |
 
 - Diesel hit $5/gal for the first time since 2022 — worse than gasoline but getting less coverage
 - IEA's 400M barrel release failed to bring prices below $100
@@ -249,7 +254,7 @@ Gulf producers have been forced to curtail production because tankers can't exit
 
 | Benchmark | Pre-Crisis (Feb 27) | Current (Apr 9) | Change |
 |-----------|---------------------|-----------------|--------|
-| JKM (Asian LNG spot) | ~$8/MMBtu | ~$17s/MMBtu (Apr 2 weekly; shoulder season softening; prev $19/MMBtu Apr 3) | +110-125% |
+| JKM (Asian LNG spot) | ~$8/MMBtu | ~$19.49/MMBtu (Apr 10 futures; LNGPriceIndex Apr 3: $18.75/MMBtu; shoulder season; prior Apr 3 $18.75) | +144% |
 | TTF (European gas) | EUR 31.96/MWh | EUR 46.64/MWh (Apr 9; slight recovery from EUR 44 ceasefire low; LNGPriceIndex Apr 3: EUR 50.08/MWh) | +46% |
 | TTF peak | — | EUR 74/MWh (Mar 20 intraday high, after Ras Laffan missile strikes) | +132% |
 
@@ -368,11 +373,11 @@ Gulf producers have been forced to curtail production because tankers can't exit
 
 ### Immediate Catalysts (next 10 days)
 
-1. **Lebanon ceasefire dispute (critical Apr 9-10):** Iran paused Hormuz reopening pending resolution of Lebanon. If Lebanon dispute is resolved before or during Islamabad talks, ceasefire holds and Brent slides toward $82-85 (Goldman base). If Israel expands Lebanon operations and Iran walks out of Islamabad, 2-week ceasefire collapses and Brent snaps back toward $110+.
-2. **Islamabad negotiations — April 10 (TOMORROW):** US: Vance, Witkoff, Kushner. Iran: Ghalibaf. Iran's 10-point demands largely incompatible with US red lines. Key watch: whether both sides agree a framework for mine clearance and Hormuz reopening timeline — that's the physical unlock signal even before a full deal.
-3. **GL 134 expires April 11 — 2 DAYS:** No extension announced. Goldman base case has supply flows resuming Apr 11-12 as Hormuz gradually reopens — making GL 134 lapse moot in that scenario. But if Hormuz stays closed and GL 134 lapses simultaneously, -2 mb/d supply cliff hits a tight market.
-4. **IRGC mine map — alternative routes, not removal:** Iran published mine-free corridors but is NOT removing mines. Watch for any announcement of minesweeping authorization or IRGC withdrawal from Hormuz — these are the physical prerequisites for commercial reopening. No such signal yet.
-5. **Ship unblocking — 800+ vessels:** Orderly exit of 800+ stranded ships will take weeks even if mines were cleared today. Watch AIS/MarineTraffic for daily vessel count — steady increase toward 50+/day is the clearest reopening signal.
+1. **Islamabad talks — IN PROGRESS TODAY:** Iran cited 3 violations at open; Lebanon is the central faultline. Key watch: whether both sides agree a framework for mine clearance and Hormuz reopening timeline — that's the physical unlock signal even before a full deal. If Ghalibaf/Vance agree even a working group on mines, Brent slides to $85-88. If talks collapse over Lebanon and Iran walks: ceasefire expires Apr 22 with no deal, US resumes bombing, Brent snaps back to $110+.
+2. **GL 134A expires TONIGHT (12:01am EDT Apr 11):** No extension. If Hormuz is trending toward reopening, lapse is moot. If not: -2 mb/d supply cliff. Iran GL U (Iranian crude) gives 9 additional days of runway (expires Apr 19) — watch for Treasury to extend or supersede GL 134A with a broader instrument this weekend.
+3. **IRGC mine map — alternative routes, not removal:** Iran published mine-free corridors but is NOT removing mines. Watch for any minesweeping authorization or IRGC withdrawal from Hormuz — physical prerequisites for commercial reopening. No such signal yet.
+4. **Ship unblocking — 800+ vessels:** Orderly exit of 800+ stranded ships will take weeks even if mines were cleared today. Watch AIS/MarineTraffic for daily vessel count — steady increase toward 50+/day is the clearest reopening signal.
+5. **Lebanon escalation risk:** If Netanyahu expands operations and Iran uses it to walk away from Islamabad, the ceasefire collapses. Watch for any IDF announcement of widened Lebanon ops this weekend — the highest single near-term risk to the ceasefire framework.
 
 ### Structural Risks (weeks to months)
 
@@ -391,13 +396,14 @@ Gulf producers have been forced to curtail production because tankers can't exit
 
 ## Market & Social Intelligence
 
-*Last social sweep: Mar 24. Prices updated Apr 9, 2026.*
+*Last social sweep: Mar 24. Prices updated Apr 10, 2026.*
 
-### Key Themes (Apr 9 — ceasefire day 2)
-- **Lebanon threatens the physical reopening.** Oil rally that started on mine-map news (Brent touched ~$101 intraday) lost steam when Israel agreed to Lebanon talks — market interpreting this as ceasefire stabilization. But the fundamental issue: Hormuz doesn't physically reopen without mine clearance, regardless of Lebanon resolution.
-- **BWET +10.8% — second leg up:** Tanker ETF hit a new 52-week high at $164.24 vs. $148.56 prior. IRGC mine map = weeks more of alternative routing demand even if political deal reached. Freight economics will stay elevated well past any ceasefire extension.
-- **Goldman lays out the scenarios clearly:** Base ($82 Brent Q3): Hormuz opens Apr 11-12, gradual recovery. Adverse ($100+ through 2026): Hormuz stays closed 1 more month. Severe ($115-120 Q3): prolonged closure. Goldman trimmed Q2 forecasts to $90 Brent / $87 WTI — the ceasefire selloff is their floor, not a collapse.
-- **Iran toll demand is a structural issue, not a negotiating chip:** $1/barrel crypto fee + IRGC-controlled alternative corridors = Iran has already converted military leverage into institutional economic control of Hormuz. Even if ceasefire holds, shipping costs through Hormuz are permanently higher.
+### Key Themes (Apr 10 — Day 42, Islamabad talks underway)
+- **Islamabad is the only mechanism that matters right now.** Everything else — mine map, toll demands, stranded ships — is noise until there's a Hormuz reopening framework with a timeline and a minesweeping commitment. Iran's Ghalibaf citing 3 violations at the opening is standard negotiating posture, not a walkout. Watch the language at close of talks.
+- **Lebanon is the real deal-killer.** Iran needs to be able to say ceasefire covers Lebanon to its domestic audience; Trump needs to be able to say it doesn't for his. Pakistan is trying to bridge this — but Netanyahu's veto power is the wild card.
+- **GL 134A lapse is priced in.** Markets have been aware of the April 11 expiry for weeks. Goldman's base case assumes it lapses while Hormuz gradually reopens — making the net effect moot. But if talks collapse today AND GL 134A lapses tonight, that's a compounded supply shock the market hasn't fully priced.
+- **BWET $164.24 — structural story, not momentum.** Mines uncleared + IRGC-controlled corridors + 800+ ship backlog = freight rates stay elevated 4-8 weeks after any political deal. The ceasefire != open-strait thesis is playing out exactly as the ETF priced.
+- **Iran toll demand is institutional, not negotiating posture.** $1/bbl crypto + IRGC mine corridors = permanent managed-access model. Even if ceasefire holds, transit costs through Hormuz are structurally higher forever.
 - **Goldman:** Q2 Brent trimmed to $90; severe Hormuz scenario $115-120 Q3. UBS: $90 by June, $85 year-end. JPMorgan: $60 avg 2026 (increasingly disconnected from structural facts).
 
 ### Key Trading Signals
@@ -405,7 +411,7 @@ Gulf producers have been forced to curtail production because tankers can't exit
 | Signal | Bull Case | Bear Case |
 |--------|-----------|-----------|
 | Ceasefire compliance | Holds → gradual reopening, Brent slides to $80-85 | Violations → resumed strikes, Brent snaps back to $110+ |
-| Islamabad talks (Apr 10) | Framework agreed → accelerated mine clearance + ship release | Breakdown → 2-week window expires, US resumes bombing |
+| Islamabad talks (IN PROGRESS) | Framework agreed → mine clearance timeline + ship release signal | Breakdown over Lebanon → ceasefire expires Apr 22, US resumes bombing |
 | Hormuz vessel count (AIS) | Steady ramp to 50+/day = reopening signal | Stays at 3-11/day = ceasefire without physical opening |
 | Futures curve | Pricing ~$85 year-end = correct if 6-week disruption | Structural losses (Ras Laffan, well damage) not priced |
 | Tanker stocks (BWET $164.24; new 52-wk high; +10.8% on Apr 9) | Backlog + IRGC mine routing = sustained freight premium weeks beyond ceasefire | IRGC mine map confirms extended routing demand; short-term ceiling $179.90 intraday high |
@@ -562,3 +568,11 @@ See **`hormuz_supply_chart.html`** for an interactive Plotly visualization showi
 139. [AAA: National average surpasses $4 — gasoline $4.16/gal national average (Apr 9, 2026)](https://gasprices.aaa.com/for-the-first-time-in-four-years-national-average-exceeds-4-gallon/)
 140. [Breakwave Advisors: Bi-Weekly Tanker Report — VLCC Baltic MEG-Singapore ~$485K/day (Apr 7, 2026)](https://www.breakwaveadvisors.com/insights/tanker4726)
 141. [OilPriceAPI: Dutch TTF gas price EUR 46.64/MWh (Apr 9, 2026)](https://www.oilpriceapi.com/live/dutch-ttf-gas-price)
+142. [Axios: Vance to lead US delegation at Iran peace talks in Islamabad (Apr 8, 2026)](https://www.axios.com/2026/04/08/us-iran-peace-talks-vance-pakistan-saturday)
+143. [Al Jazeera: US-Iran talks in Pakistan — who's attending, what's on the agenda (Apr 9, 2026)](https://www.aljazeera.com/news/2026/4/9/us-iran-talks-in-pakistan-whos-attending-whats-on-the-agenda)
+144. [TIME: What to know about Iran's ceasefire proposal as peace talks approach (Apr 8, 2026)](https://time.com/article/2026/04/08/iran-us-ceasefire-proposal-talks/)
+145. [The Tribune (India): Iran and US delegations to hold talks in Islamabad on April 10 (Apr 9, 2026)](https://www.tribuneindia.com/news/world/iran-and-us-delegations-to-hold-talks-in-islamabad-on-april-10-in-diplomatic-push/)
+146. [Baker McKenzie / Lexology: OFAC issues Iran-Related GL U; amends Russia GL 134 (Mar 20/Apr 2, 2026)](https://sanctionsnews.bakermckenzie.com/ofac-issues-iran-related-general-license-authorizing-delivery-and-sale-of-iranian-origin-crude-oil-and-petroleum-products-and-amends-russia-related-general-license-134/)
+147. [OilPriceAPI: WTI crude ~$99.03/bbl; Brent ~$96.51 (Apr 10, 2026)](https://www.oilpriceapi.com/live/wti-crude-oil-price)
+148. [EIA: Short-Term Energy Outlook April 2026 — diesel peak $5.80+/gal in April (Apr 7, 2026)](https://www.eia.gov/outlooks/steo/)
+149. [JustSecurity: Continuing Crisis in Strait of Hormuz — Iran's tolls crisis and US military force limits (Apr 2026)](https://www.justsecurity.org/135899/strait-hormuz-tolls-crisis/)
