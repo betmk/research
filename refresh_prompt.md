@@ -53,17 +53,18 @@ python3 hormuz_supply_chart.py --no-browser
 ## Step 6: Update CHANGELOG.md
 Add a new entry at the top of CHANGELOG.md summarizing what changed in this refresh.
 
-## Step 7: Generate PDF
-Generate a PDF of the finished report using Chrome headless:
+## Step 7: Generate dated PDF
+Generate a dated PDF of the finished report using Chrome headless. Use today's date in the filename:
 ```
-"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu --no-sandbox --print-to-pdf="/Users/mikemadden/Desktop/Hormuz Research Reports/hormuz_research_report.pdf" --print-to-pdf-no-header "file:///Users/mikemadden/Desktop/Claude%20Projects/research/hormuz_research_report.html"
+PDF_DATE=$(date +%Y-%m-%d)
+mkdir -p "/Users/mikemadden/Desktop/Hormuz Research Reports"
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu --no-sandbox --print-to-pdf="/Users/mikemadden/Desktop/Hormuz Research Reports/Hormuz Crisis Report — $PDF_DATE.pdf" --print-to-pdf-no-header "file:///Users/mikemadden/Desktop/Claude%20Projects/research/hormuz_research_report.html"
 ```
 
 ## Step 8: Open report
-Open both the HTML in browser and the PDF:
+Open only the HTML report in browser (do NOT open the PDF):
 ```
 open hormuz_research_report.html
-open "/Users/mikemadden/Desktop/Hormuz Research Reports/hormuz_research_report.pdf"
 ```
 
 ## Style rules
