@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# claude-research — restricted Claude Code launcher for research sessions.
+#
+# Disables all MCP servers, blocks write-capable tools, and appends a hardened
+# system prompt. Use for any session whose primary activity is fetching untrusted
+# web content (social/demand sweeps, equity research, scraping unfamiliar sites).
+#
+# Canonical location: ~/Desktop/Claude Projects/research/tools/claude-research
+# Symlinked at:       ~/.local/bin/claude-research
+#
+# Usage:
+#   claude-research
+#   claude-research /research-social tesla
+#   claude-research -p "What did Sparta say about Hormuz today?"
+
+# Hardcoded path to the prompt file (stable, lives next to this script).
+PROMPT_FILE="/Users/mikemadden/Desktop/Claude Projects/research/tools/prompts/research-mode.txt"
+
+if [ ! -f "$PROMPT_FILE" ]; then
+  echo "error: research-mode prompt file not found at $PROMPT_FILE" >&2
+  exit 1
+fi
+
+exec claude \
+  --strict-mcp-config \
+  --mcp-config '{}' \
+  --append-system-prompt "$(cat "$PROMPT_FILE")" \
+  --permission-mode default \
+  "$@"
