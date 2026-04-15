@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-04-10 (intraday update) — `report-2026-04-10b`
+**Islamabad proximity talks confirmed (separate rooms); Pakistan's goal modest; Vance warns Iran; ADNOC CEO: "strait not open"; TTF €44.46 (down from €46.64); diesel $5.43; Brent $96.66; WTI $99.03; 6 new sources (fn150–155)**
+
+- **Islamabad talks: proximity format confirmed** — two delegations in separate rooms; Pakistani officials shuttle messages; NOT face-to-face; FM Araghchi also attending alongside Ghalibaf
+- **Pakistan's goal is modest** — "a deal to keep talks going," not a breakthrough; set realistic expectations for outcome
+- **Vance tone firm** — "if they're going to try to play us, the negotiating team is not that receptive"
+- **Lebanon: active escalation during talks** — Israel/Hezbollah trading strikes TODAY while talks are live; highest single risk to ceasefire framework
+- **ADNOC CEO Sultan Al Jaber (Apr 10)** — "The Strait of Hormuz is not open — access is restricted, conditioned and controlled"; most authoritative statement on ceasefire≠open-strait reality
+- **Hormuz transit lower than earlier estimate** — 5 ships Wednesday, 7 Thursday (not ~9/day); stranded vessels: 600+ incl. 325 tankers (Lloyd's List); IMO: 2,000+ ships total
+- **TTF down to €44.46/MWh** — was €46.64 yesterday; easing further on ceasefire relief
+- **Diesel updated to $5.43/gal** (national avg, +50.2% YoY) — was ~$5.40
+- **Brent $96.66** (+0.77% on day); **WTI ~$99.03**; gasoline $4.17/gal (AAA)
+- Updated status line, exec summary, timeline Apr 10 entry, oil/LNG price tables, ceasefire section, What to Watch #1, market intelligence themes
+- Sources: added fn150–fn155 (Al Jazeera standstill shipping, NBC stranded vessels, CNN proximity talks format, Al Jazeera Pakistan modest goal, Fortune oil Apr 10, OilPriceAPI TTF) — 155 total
+
+---
+
 ## 2026-04-10 — `report-2026-04-10`
 **Islamabad talks IN PROGRESS: Vance/Witkoff/Kushner vs. Ghalibaf; GL 134A expires TONIGHT; Iran GL U expires Apr 19; Brent ~$96.51 early; WTI ~$98.80; JKM ~$19.49/MMBtu; Day 42**
 
