@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hormuz Crisis: ICE Gasoil Desk Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     DESIGN TOKENS — dark-mode first, light-mode opt-in
+     Inspired by Bloomberg Terminal + modern financial dashboards:
+     • Every pixel accountable
+     • Color as signal, not decoration (green/red = P&L only)
+     • Tabular nums for all numeric data
+     • Hierarchy earned by importance, not by decoration
+     ============================================================ */
+  :root {
+    /* Dark (default) — data-heavy, long reading sessions */
+    --bg-0: #0b1019;          /* deepest canvas */
+    --bg-1: #111827;          /* elevated surface */
+    --bg-2: #1a2234;          /* card surface */
+    --bg-3: #243049;          /* hover/highlight */
+    --bg-header: rgba(11,16,25,0.92); /* sticky nav */
+
+    --border-1: #2a3549;      /* subtle divider */
+    --border-2: #374a6a;      /* medium divider */
+
+    --text-0: #f8fafc;        /* headings */
+    --text-1: #e4e9f2;        /* body */
+    --text-2: #a5b0c2;        /* secondary */
+    --text-3: #6b7689;        /* muted / captions */
+
+    --accent: #60a5fa;        /* primary accent (links, section bars) */
+    --accent-hover: #93c5fd;
+    --accent-soft: rgba(96,165,250,0.12);
+
+    /* Signals — reserved meaning */
+    --signal-up: #22c55e;
+    --signal-up-bg: rgba(34,197,94,0.12);
+    --signal-up-border: rgba(34,197,94,0.35);
+
+    --signal-down: #ef4444;
+    --signal-down-bg: rgba(239,68,68,0.12);
+    --signal-down-border: rgba(239,68,68,0.35);
+
+    --signal-warn: #f59e0b;
+    --signal-warn-bg: rgba(245,158,11,0.11);
+    --signal-warn-border: rgba(245,158,11,0.35);
+
+    --signal-info: #60a5fa;
+    --signal-info-bg: rgba(96,165,250,0.11);
+    --signal-info-border: rgba(96,165,250,0.35);
+
+    /* Updated/refresh marker — amber, subtle */
+    --updated-bg: rgba(245,158,11,0.08);
+    --updated-bar: #f59e0b;
+
+    /* Typography */
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+    /* Radii / spacing */
+    --r-sm: 4px;
+    --r-md: 8px;
+    --r-lg: 12px;
+
+    /* Shadow — minimal, crisp */
+    --shadow-1: 0 1px 2px rgba(0,0,0,0.25);
+    --shadow-2: 0 4px 12px rgba(0,0,0,0.35);
+  }
+
+  /* Light mode — triggered manually (add `data-theme="light"` to <html>)
+     OR automatically if user's OS is set to light */
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg-0: #f7f8fa;
+      --bg-1: #ffffff;
+      --bg-2: #ffffff;
+      --bg-3: #f1f4f9;
+      --bg-header: rgba(255,255,255,0.92);
+
+      --border-1: #e5e7eb;
+      --border-2: #d1d5db;
+
+      --text-0: #0f172a;
+      --text-1: #1f2937;
+      --text-2: #4b5563;
+      --text-3: #6b7280;
+
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-soft: rgba(37,99,235,0.08);
+
+      --signal-up: #16a34a;
+      --signal-up-bg: rgba(22,163,74,0.08);
+      --signal-up-border: rgba(22,163,74,0.35);
+
+      --signal-down: #dc2626;
+      --signal-down-bg: rgba(220,38,38,0.08);
+      --signal-down-border: rgba(220,38,38,0.35);
+
+      --signal-warn: #d97706;
+      --signal-warn-bg: rgba(217,119,6,0.08);
+      --signal-warn-border: rgba(217,119,6,0.35);
+
+      --signal-info: #2563eb;
+      --signal-info-bg: rgba(37,99,235,0.08);
+      --signal-info-border: rgba(37,99,235,0.35);
+
+      --updated-bg: rgba(217,119,6,0.06);
+      --updated-bar: #d97706;
+
+      --shadow-1: 0 1px 2px rgba(15,23,42,0.06);
+      --shadow-2: 0 4px 12px rgba(15,23,42,0.10);
+    }
+  }
+
+  /* ============================================================
+     RESET + BASE
+     ============================================================ */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv11', 'ss01', 'ss03';
+    background: var(--bg-0);
+    color: var(--text-1);
+    line-height: 1.6;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 1.75rem 4rem;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Tabular numerics anywhere a number lives */
+  td, .num, .mono, code, pre, .price, .ticker,
+  .stat-card .number, .stat-card .unit,
+  .trade-card strong:not(.trade-name strong) { font-variant-numeric: tabular-nums; }
+
+  /* ============================================================
+     TYPOGRAPHY
+     ============================================================ */
+  h1 {
+    font-family: var(--font-sans);
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text-0);
+    margin-bottom: 0.35rem;
+    padding-bottom: 0;
+    border: 0;
+  }
+  h1::before {
+    content: 'DESK ANALYSIS';
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin-bottom: 0.45rem;
+    text-transform: uppercase;
+  }
+
+  .subtitle {
+    color: var(--text-2);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    padding: 0.85rem 1rem;
+    background: var(--bg-1);
+    border: 1px solid var(--border-1);
+    border-radius: var(--r-md);
+    border-left: 3px solid var(--signal-down);
+  }
+  .subtitle span { font-weight: 600; color: var(--text-1); font-family: var(--font-mono); font-size: 0.88em; }
+  .subtitle strong { color: var(--text-0); font-weight: 600; }
+
+  h2 {
+    font-family: var(--font-sans);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--text-0);
+    margin: 2.5rem 0 1rem;
+    padding: 0 0 0.5rem 0;
+    border: 0;
+    border-bottom: 1px solid var(--border-1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  h2::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 1rem;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  h3 {
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--text-0);
+    margin: 1.25rem 0 0.5rem;
+  }
+
+  p, li {
+    margin-bottom: 0.45rem;
+    color: var(--text-1);
+  }
+  ul, ol { padding-left: 1.4rem; }
+  ul li::marker { color: var(--accent); }
+
+  strong { color: var(--text-0); font-weight: 600; }
+  em { color: var(--text-1); font-style: italic; }
+
+  a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dotted transparent;
+    transition: color 0.12s, border-color 0.12s;
+  }
+  a:hover { color: var(--accent-hover); border-bottom-color: var(--accent-hover); }
+
+  code, .mono, .ticker, .price {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+  }
+  .ticker {
+    font-weight: 600;
+    color: var(--text-0);
+    background: var(--bg-3);
+    padding: 1px 6px;
+    border-radius: var(--r-sm);
+    font-size: 0.82em;
+    letter-spacing: 0.02em;
+  }
+
+  /* ============================================================
+     STICKY SECTION NAV
+     ============================================================ */
+  .section-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin: 0 -1.75rem 1.25rem;
+    padding: 0.75rem 1.75rem;
+    background: var(--bg-header);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid var(--border-1);
+  }
+  .section-nav a {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-2);
+    padding: 0.35rem 0.7rem;
+    border-radius: var(--r-sm);
+    background: transparent;
+    border: 1px solid transparent;
+    letter-spacing: 0.01em;
+  }
+  .section-nav a:hover {
+    color: var(--text-0);
+    background: var(--bg-2);
+    border-color: var(--border-1);
+    border-bottom-color: var(--border-1);
+  }
+
+  /* ============================================================
+     EXEC SUMMARY — hero card
+     ============================================================ */
+  .exec-summary {
+    background: var(--bg-1);
+    border: 1px solid var(--border-1);
+    border-radius: var(--r-lg);
+    padding: 1.25rem 1.5rem;
+    margin: 0 0 1rem 0;
+    font-size: 0.94rem;
+    line-height: 1.65;
+    box-shadow: var(--shadow-1);
+  }
+  .exec-summary ul { padding-left: 1.2rem; }
+  .exec-summary li {
+    margin-bottom: 0.7rem;
+    padding-left: 0.25rem;
+  }
+  .exec-summary li::marker {
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .exec-summary .big-number {
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--signal-down);
+    display: inline-block;
+    margin-right: 0.4rem;
+    letter-spacing: -0.01em;
+  }
+
+  /* ============================================================
+     STAT CARDS
+     ============================================================ */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0;
+  }
+  .stat-card {
+    background: var(--bg-1);
+    border: 1px solid var(--border-1);
+    border-radius: var(--r-md);
+    padding: 0.85rem 1rem;
+    text-align: left;
+    box-shadow: var(--shadow-1);
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .stat-card:hover { border-color: var(--border-2); }
+  .stat-card .label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-3);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    margin-bottom: 0.35rem;
+  }
+  .stat-card .number,
+  .stat-card .unit {
+    display: inline;
+    font-family: var(--font-mono);
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--text-0);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .stat-card .price-time {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-3);
+    margin-top: 0.35rem;
+    font-style: normal;
+  }
+  .stat-card.red   .number, .stat-card.red   .unit { color: var(--signal-down); }
+  .stat-card.green .number, .stat-card.green .unit { color: var(--signal-up); }
+  .stat-card.yellow .number, .stat-card.yellow .unit { color: var(--signal-warn); }
+
+  /* ============================================================
+     TABLES — the heart of a financial report
+     ============================================================ */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 0.75rem 0 1rem;
+    font-size: 0.88rem;
+    background: var(--bg-1);
+    border: 1px solid var(--border-1);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-1);
+  }
+  thead tr { background: var(--bg-2); }
+  th {
+    background: transparent;
+    color: var(--text-2);
+    padding: 0.7rem 0.9rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border-bottom: 1px solid var(--border-1);
+  }
+  td {
+    padding: 0.7rem 0.9rem;
+    border-bottom: 1px solid var(--border-1);
+    color: var(--text-1);
+    vertical-align: top;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody tr:nth-child(even) { background: transparent; }
+  tbody tr:hover { background: var(--bg-3); }
+  tr.total-row {
+    background: var(--signal-down-bg);
+    font-weight: 700;
+  }
+  tr.total-row td { color: var(--text-0); }
+
+  /* Column types */
+  td.num, td:first-child + td { /* heuristic: 2nd column usually values */
+    font-family: var(--font-mono);
+  }
+
+  /* ============================================================
+     TRADE CARDS — the hero of this report
+     ============================================================ */
+  .trade-card {
+    background: var(--bg-1);
+    border: 1px solid var(--border-1);
+    border-radius: var(--r-md);
+    padding: 1rem 1.15rem;
+    margin-bottom: 0.85rem;
+    border-left: 3px solid var(--border-2);
+    box-shadow: var(--shadow-1);
+    transition: border-color 0.15s, transform 0.1s;
+  }
+  .trade-card:hover { border-color: var(--border-2); }
+  .trade-card.bullish { border-left-color: var(--signal-up); background: linear-gradient(90deg, var(--signal-up-bg) 0%, var(--bg-1) 12%); }
+  .trade-card.bearish { border-left-color: var(--signal-down); background: linear-gradient(90deg, var(--signal-down-bg) 0%, var(--bg-1) 12%); }
+  .trade-card.neutral { border-left-color: var(--signal-warn); background: linear-gradient(90deg, var(--signal-warn-bg) 0%, var(--bg-1) 12%); }
+  .trade-card .trade-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-0);
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    line-height: 1.35;
+  }
+  .trade-card .trade-status {
+    font-size: 0.88rem;
+    color: var(--text-1);
+    line-height: 1.62;
+  }
+  .trade-card .trade-status ul,
+  .trade-card .trade-status ol { padding-left: 1.2rem; margin: 0.3rem 0; }
+  .trade-card .trade-status li { margin-bottom: 0.25rem; }
+
+  /* Conviction pill */
+  .conviction {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 99px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+  .conviction::before { content: '●'; font-size: 0.7em; line-height: 0; }
+  .conviction.high   { background: var(--signal-up-bg);   color: var(--signal-up);   border-color: var(--signal-up-border); }
+  .conviction.medium { background: var(--signal-warn-bg); color: var(--signal-warn); border-color: var(--signal-warn-border); }
+  .conviction.low    { background: var(--signal-down-bg); color: var(--signal-down); border-color: var(--signal-down-border); }
+
+  /* ============================================================
+     CALLOUTS
+     ============================================================ */
+  .flow-callout {
+    background: var(--bg-1);
+    border: 1px solid var(--border-1);
+    border-left: 3px solid var(--signal-warn);
+    padding: 1rem 1.25rem;
+    border-radius: var(--r-md);
+    margin: 1rem 0;
+    font-size: 0.92rem;
+    line-height: 1.65;
+    box-shadow: var(--shadow-1);
+  }
+  .flow-callout .big-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--signal-warn);
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .blockade-callout {
+    background: var(--bg-1);
+    border: 1px solid var(--border-1);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.25rem;
+    border-radius: var(--r-md);
+    margin: 1rem 0;
+    box-shadow: var(--shadow-1);
+  }
+
+  /* ============================================================
+     WATCH ITEMS
+     ============================================================ */
+  .watch-item {
+    background: var(--bg-1);
+    border: 1px solid var(--border-1);
+    border-left: 3px solid var(--signal-warn);
+    border-radius: var(--r-md);
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    box-shadow: var(--shadow-1);
+    transition: border-color 0.15s;
+  }
+  .watch-item:hover { border-color: var(--border-2); }
+  .watch-item strong { color: var(--text-0); font-weight: 600; }
+
+  /* ============================================================
+     SWEEP / INDUSTRY SECTIONS
+     ============================================================ */
+  .sweep-section {
+    background: var(--bg-1);
+    border: 1px solid var(--border-1);
+    border-radius: var(--r-md);
+    padding: 1rem 1.25rem;
+    margin: 0.75rem 0;
+    box-shadow: var(--shadow-1);
+  }
+  .sweep-section h3 {
+    margin-top: 0;
+    color: var(--text-0);
+    font-size: 1rem;
+    font-weight: 600;
+    border: 0;
+    border-bottom: 1px solid var(--border-1);
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
+  }
+  .sweep-section p { font-size: 0.9rem; line-height: 1.65; }
+
+  /* ============================================================
+     SOURCE CARDS
+     ============================================================ */
+  .source-card {
+    background: var(--bg-1);
+    border: 1px solid var(--border-1);
+    border-radius: var(--r-md);
+    padding: 0.65rem 0.9rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.86rem;
+  }
+  .source-card .source-name { font-weight: 600; color: var(--text-0); }
+  .source-card .source-role { color: var(--text-3); font-size: 0.8rem; }
+
+  /* ============================================================
+     CLOCKS
+     ============================================================ */
+  .clocks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0;
+  }
+  .clock-card {
+    background: var(--bg-1);
+    border: 1px solid var(--signal-down-border);
+    border-radius: var(--r-md);
+    padding: 0.85rem 1rem;
+    text-align: center;
+    box-shadow: var(--shadow-1);
+  }
+  .clock-card .date {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--signal-down);
+    letter-spacing: -0.01em;
+  }
+  .clock-card .desc {
+    font-size: 0.78rem;
+    color: var(--text-3);
+    margin-top: 0.25rem;
+  }
+
+  /* ============================================================
+     TIMELINE
+     ============================================================ */
+  .timeline {
+    position: relative;
+    padding-left: 1.75rem;
+    margin: 1rem 0 1.5rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0.3rem;
+    bottom: 0.3rem;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--accent), var(--border-2));
+    border-radius: 1px;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 0.55rem;
+    padding-left: 0.5rem;
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -1.4rem;
+    top: 0.5rem;
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px var(--bg-0);
+  }
+  .timeline-date {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 0.8rem;
+    min-width: 55px;
+  }
+
+  .timeline-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1.5rem; margin: 0.75rem 0 1rem; }
+  .timeline-grid .timeline-col h3 {
+    margin: 0 0 0.5rem 0;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border-1);
+    font-size: 0.9rem;
+    color: var(--text-0);
+  }
+  .timeline-col.policy h3 { color: var(--accent); }
+  .timeline-col.structural h3 { color: var(--signal-down); }
+  .timeline-col .timeline { margin: 0; padding-left: 1.4rem; }
+  .timeline-col .timeline-item { font-size: 0.82rem; margin-bottom: 0.35rem; line-height: 1.45; }
+  .timeline-col .timeline-item::before { width: 7px; height: 7px; left: -1.3rem; top: 0.4rem; }
+  .timeline-col.policy .timeline::before { background: var(--accent); }
+  .timeline-col.structural .timeline::before { background: var(--signal-down); }
+  .timeline-col.structural .timeline-item::before { background: var(--signal-down); }
+  .timeline-col.policy .timeline-item::before { background: var(--accent); }
+
+  /* ============================================================
+     CHART CONTAINER
+     ============================================================ */
+  .chart-container {
+    width: 100%;
+    border: 1px solid var(--border-1);
+    border-radius: var(--r-md);
+    overflow: hidden;
+    margin: 1.5rem 0;
+    background: var(--bg-1);
+    box-shadow: var(--shadow-1);
+  }
+  .chart-container iframe { width: 100%; height: 820px; border: none; }
+
+  /* ============================================================
+     VULN / HEAT MAP
+     ============================================================ */
+  .vuln-critical  td:first-child { border-left: 3px solid var(--signal-down); }
+  .vuln-high      td:first-child { border-left: 3px solid var(--signal-warn); }
+  .vuln-moderate  td:first-child { border-left: 3px solid var(--accent); }
+  .vuln-low       td:first-child { border-left: 3px solid var(--signal-up); }
+  .vuln-legend {
+    display: flex; flex-wrap: wrap; gap: 1.25rem; margin: 0.5rem 0 1rem;
+    font-size: 0.8rem; color: var(--text-2);
+    padding: 0.6rem 0.9rem;
+    background: var(--bg-1);
+    border: 1px solid var(--border-1);
+    border-radius: var(--r-sm);
+  }
+  .vuln-legend span::before {
+    content: ''; display: inline-block; width: 10px; height: 10px;
+    border-radius: 2px; margin-right: 6px; vertical-align: middle;
+  }
+  .vuln-legend .leg-critical::before { background: var(--signal-down); }
+  .vuln-legend .leg-high::before     { background: var(--signal-warn); }
+  .vuln-legend .leg-moderate::before { background: var(--accent); }
+  .vuln-legend .leg-low::before      { background: var(--signal-up); }
+
+  /* ============================================================
+     BADGES
+     ============================================================ */
+  .badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-left: 4px;
+    line-height: 1.6;
+    border: 1px solid;
+  }
+  .badge.live       { background: var(--signal-down-bg); color: var(--signal-down); border-color: var(--signal-down-border); }
+  .badge.policy     { background: var(--signal-warn-bg); color: var(--signal-warn); border-color: var(--signal-warn-border); }
+  .badge.structural { background: var(--signal-info-bg); color: var(--signal-info); border-color: var(--signal-info-border); }
+
+  /* ============================================================
+     FOOTNOTES
+     ============================================================ */
+  sup.fn { line-height: 0; }
+  sup.fn a {
+    font-family: var(--font-mono);
+    font-size: 0.68em;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0 2px;
+    border-bottom: 0;
+  }
+  sup.fn a:hover { color: var(--accent-hover); }
+  .fn-back { color: var(--text-3); text-decoration: none; font-size: 0.9em; margin-right: 0.4rem; flex-shrink: 0; }
+  .fn-back:hover { color: var(--accent); }
+
+  /* ============================================================
+     SOURCES SECTION
+     ============================================================ */
+  .sources {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-top: 2rem;
+    border-top: 1px solid var(--border-1);
+    padding-top: 1.25rem;
+  }
+  .sources h2 { font-size: 1.25rem; }
+  .sources h3 { font-size: 0.95rem; margin-top: 1.25rem; margin-bottom: 0.4rem; color: var(--text-0); }
+  .sources a { color: var(--accent); }
+  .sources a:hover { color: var(--accent-hover); }
+
+  .fn-list { list-style: none; padding-left: 0; margin: 0.4rem 0 1rem; }
+  .fn-list li {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    margin-bottom: 0.4rem;
+    padding: 0.3rem 0.5rem;
+    border-radius: var(--r-sm);
+    font-size: 0.85rem;
+  }
+  .fn-list li:target { background: var(--signal-warn-bg); border-left: 3px solid var(--signal-warn); }
+  .fn-num {
+    min-width: 2.2em;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--text-3);
+    font-size: 0.82em;
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  /* ============================================================
+     PART DIVIDERS
+     ============================================================ */
+  .part-divider {
+    background: var(--bg-2);
+    color: var(--text-0);
+    padding: 0.7rem 1.25rem;
+    margin: 2rem 0 1rem;
+    border-radius: var(--r-md);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    border-left: 4px solid var(--accent);
+    page-break-before: always;
+  }
+  .part-divider.gas { border-left-color: var(--accent); }
+  .part-divider.oil { border-left-color: var(--signal-down); }
+  .part-divider .part-sub {
+    font-size: 0.82rem;
+    font-weight: 400;
+    opacity: 0.8;
+    display: block;
+    margin-top: 0.2rem;
+    color: var(--text-2);
+  }
+
+  /* ============================================================
+     TIMELINE COLUMNS (country / infra)
+     ============================================================ */
+  .timeline-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
+  .timeline-col-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--r-sm);
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    border: 1px solid;
+  }
+  .timeline-col-label.infra { background: var(--signal-down-bg); color: var(--signal-down); border-color: var(--signal-down-border); }
+  .timeline-col-label.other { background: var(--signal-info-bg); color: var(--signal-info); border-color: var(--signal-info-border); }
+
+  /* ============================================================
+     FRESHNESS LEGEND
+     ============================================================ */
+  .freshness-legend {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    font-size: 0.8rem;
+    color: var(--text-2);
+    margin: 0.5rem 0 1.5rem;
+    padding: 0.6rem 0.9rem;
+    background: var(--bg-1);
+    border-radius: var(--r-sm);
+    border: 1px solid var(--border-1);
+  }
+  .freshness-legend span { display: flex; align-items: center; gap: 0.4rem; }
+
+  .sources-note { font-size: 0.82rem; color: var(--text-3); font-style: italic; margin-bottom: 0.9rem; }
+
+  .leadership-table td:nth-child(2) { color: var(--accent); font-weight: 500; }
+
+  /* ============================================================
+     UPDATED HIGHLIGHT — refined, amber, subtle left-bar
+     ============================================================ */
+  .updated {
+    background: var(--updated-bg);
+    border-left: 3px solid var(--updated-bar);
+    padding-left: 0.85rem !important;
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+    border-radius: 0 var(--r-sm) var(--r-sm) 0;
+    margin-left: -0.75rem;
+  }
+  /* For table rows and trade cards, restore normal padding */
+  tr.updated { background: var(--updated-bg); margin: 0; padding: 0 !important; border-left: 0; }
+  tr.updated td:first-child { border-left: 3px solid var(--updated-bar); }
+  .trade-card.updated { margin-left: 0; border-left-width: 3px; }
+  .watch-item.updated { margin-left: 0; padding-left: 1rem !important; }
+
+  /* Inline :target flash */
+  @keyframes fn-flash {
+    0%   { background-color: var(--signal-warn-bg); }
+    30%  { background-color: var(--signal-warn-bg); }
+    100% { background-color: transparent; }
+  }
+  :target { animation: fn-flash 2.8s ease-out; border-radius: var(--r-sm); }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 768px) {
+    body { padding: 0.75rem 1rem 3rem; font-size: 14px; }
+    h1 { font-size: 1.55rem; }
+    h2 { font-size: 1.15rem; }
+    .section-nav { margin: 0 -1rem 1rem; padding: 0.6rem 1rem; }
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .clocks { grid-template-columns: 1fr; }
+    .timeline-columns, .timeline-grid { grid-template-columns: 1fr; }
+    .exec-summary { padding: 1rem; }
+    table { font-size: 0.82rem; }
+    th, td { padding: 0.55rem 0.6rem; }
+  }
+
+  /* ============================================================
+     PRINT — preserve for PDF export
+     ============================================================ */
+  @media print {
+    :root {
+      --bg-0: #fff; --bg-1: #fff; --bg-2: #f6f7f9; --bg-3: #f1f4f9;
+      --border-1: #d1d5db; --border-2: #9ca3af;
+      --text-0: #000; --text-1: #111; --text-2: #374151; --text-3: #6b7280;
+    }
+    body { max-width: 100%; padding: 0.5rem 0.75rem; font-size: 0.88rem; }
+    .section-nav { display: none; }
+    h2, h3 { page-break-after: avoid; }
+    .exec-summary, .stat-row, .stat-card, .clocks, .clock-card,
+    .blockade-callout, .flow-callout, .trade-card, .watch-item,
+    .sweep-section, .source-card, .timeline-item, table, li {
+      page-break-inside: avoid;
+    }
+    .break-before { page-break-before: always; }
+    .vuln-table { font-size: 0.72rem; margin: 0.25rem 0 0; page-break-inside: auto; }
+    .vuln-table th { padding: 0.25rem 0.4rem; font-size: 0.65rem; }
+    .vuln-table td { padding: 0.2rem 0.4rem; line-height: 1.3; }
+    .vuln-table tr { page-break-inside: avoid; }
+  }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  footer, body > p:last-of-type {
+    margin-top: 3rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-1);
+    font-size: 0.8rem;
+    color: var(--text-3);
+    text-align: center;
+  }
+
+  /* ============================================================
+     LEGACY ALIASES — keeps inline styles working across the content
+     The old token names (--subtle, --border, --accent, --accent2,
+     --green, --yellow, --card-bg, --bg, --text) are still referenced
+     in a lot of inline styles throughout the body. Map them to the
+     new design tokens to avoid a 400-line find-and-replace.
+     ============================================================ */
+  :root {
+    --subtle: var(--text-3);
+    --border: var(--border-1);
+    --bg: var(--bg-0);
+    --text: var(--text-1);
+    --card-bg: var(--bg-1);
+    --green: var(--signal-up);
+    --yellow: var(--signal-warn);
+    /* --accent and --accent2 get overridden below via attribute selectors
+       so that old red/navy semantics map to red/blue in new design */
+  }
+
+  /* Any inline style that reads var(--accent) (old = red) → new signal-down (red) */
+  [style*="color:var(--accent)"]:not([style*="--accent2"]) { color: var(--signal-down) !important; }
+  [style*="color: var(--accent)"]:not([style*="--accent2"]) { color: var(--signal-down) !important; }
+  /* Any inline style that reads var(--accent2) (old = navy) → new accent (blue) */
+  [style*="color:var(--accent2)"] { color: var(--accent) !important; }
+  [style*="color: var(--accent2)"] { color: var(--accent) !important; }
+  /* Inline border-bottom using --accent2 (link underlines) → blue */
+  [style*="border-bottom:1px dotted var(--accent2)"],
+  [style*="border-bottom: 1px dotted var(--accent2)"] {
+    border-bottom-color: var(--accent) !important;
+  }
+  /* Any inline background using --accent or --accent2 for pink/navy backgrounds → neutral */
+  [style*="background:#fdf2f2"], [style*="background: #fdf2f2"] { background: var(--signal-down-bg) !important; }
+
+  /* NEW IDEAS heading — informational accent (blue) not P&L-down (red) */
+  h3.new-ideas-heading {
+    margin-top: 2rem !important;
+    color: var(--accent) !important;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.5rem 0.85rem;
+    background: var(--signal-info-bg);
+    border: 1px solid var(--signal-info-border);
+    border-radius: var(--r-sm);
+  }
+  h3.new-ideas-heading::before {
+    content: '+';
+    font-size: 1.1rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  /* Footer paragraph normalization */
+  body > p[style*="text-align:center"]:last-of-type {
+    margin-top: 3rem;
+    padding: 1.5rem 0 0 !important;
+    border-top: 1px solid var(--border-1) !important;
+    color: var(--text-3) !important;
+    font-size: 0.78rem !important;
+    text-align: center;
+  }
+  body > p[style*="text-align:center"]:last-of-type code {
+    background: var(--bg-2);
+    color: var(--text-1);
+    padding: 2px 6px;
+    border-radius: var(--r-sm);
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================== TITLE ======================== -->
+<h1>Hormuz Crisis: ICE Gasoil Desk Analysis</h1>
+<p class="subtitle"><span>April 19, 2026 &middot; Day 51 &middot; Weekend</span> &middot; Last refresh <span>2026-04-18 00:44 MDT</span> &middot; Anchored on Sparta Commodities &middot; HFI Research &middot; Oil Not Dead &middot; X/Twitter Oil List</p>
+
+<!-- ======================== HERO METRICS ======================== -->
+<div class="stat-row">
+  <div class="stat-card red">
+    <span class="label">Brent (CBM26)</span>
+    <span class="unit">$</span><span class="number">88.73</span>
+    <span class="price-time">&minus;10.73% &middot; Apr 17 close &middot; 6-wk low</span>
+  </div>
+  <div class="stat-card red">
+    <span class="label">WTI (May)</span>
+    <span class="unit">$</span><span class="number">84.44</span>
+    <span class="price-time">&minus;10.82% &middot; Apr 17 close</span>
+  </div>
+  <div class="stat-card yellow">
+    <span class="label">Days to Apr 22</span>
+    <span class="number">3</span>
+    <span class="price-time">Ceasefire expiry &middot; Trump wobbling</span>
+  </div>
+  <div class="stat-card">
+    <span class="label">Hormuz transits/wk</span>
+    <span class="number">3</span>
+    <span class="price-time">Iranian tankers &middot; vs ~30/day normal</span>
+  </div>
+  <div class="stat-card green">
+    <span class="label">Core allocation</span>
+    <span class="number">50</span><span class="unit">%</span>
+    <span class="price-time">Q3 LSFO/Brent crack &middot; KEEP</span>
+  </div>
+  <div class="stat-card">
+    <span class="label">HFI inv loss end-Jun</span>
+    <span class="unit">$</span><span class="number">1.8</span><span class="unit">B</span>
+    <span class="price-time">bbl cumulative &middot; unaffected</span>
+  </div>
+</div>
+
+<!-- ======================== TOP-LINE CALL ======================== -->
+<div class="blockade-callout updated">
+  <strong style="font-size:0.75rem;font-family:var(--font-mono);letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);">REGIME CHANGE &middot; APR 17</strong>
+  <p style="margin-top:0.4rem;line-height:1.65;">Iran FM Araghchi declared Strait of Hormuz <strong>&ldquo;completely open.&rdquo;</strong> Trump confirmed Hormuz reopening on Truth Social but US naval blockade of Iran stays in force until <em>&ldquo;transaction 100% complete.&rdquo;</em> Brent -10.73%, WTI -10.82% &mdash; biggest single-session drop in 6 weeks. <strong>Pure risk-premium unwind, not supply normalization:</strong> only 3 Iranian tankers (~5M bbl) actually transited this week per Kpler vs ~30/day normal. Trump publicly wobbling on Apr 22 ceasefire extension (<em>&ldquo;maybe I won&rsquo;t extend&rdquo;</em>); Iran conditions Hormuz opening on US blockade removal. <strong>Product export ban OFF the table</strong> (Vance/Burgum/Wright to oil execs). Distillate prints pending Monday open.</p>
+</div>
+
+<!-- ======================== SECTION NAV ======================== -->
+<div class="section-nav">
+  <a href="#exec-summary">Executive Summary</a>
+  <a href="#market-snapshot">Market Snapshot</a>
+  <a href="#trade-ideas">Trade Ideas</a>
+  <a href="#sparta-framework">Sparta Framework</a>
+  <a href="#industry-views">Industry Views</a>
+  <a href="#other-sources">Other Sources (X/Twitter)</a>
+  <a href="#infrastructure">Infrastructure &amp; Supply</a>
+  <a href="#sources">Sources</a>
+  <a href="#watch">What to Watch</a>
+</div>
+
+<!-- ======================== EXECUTIVE SUMMARY ======================== -->
+<h2 id="exec-summary">Executive Summary</h2>
+<div class="exec-summary">
+  <ul>
+    <li class="updated"><strong>REGIME CHANGE APR 17 &mdash; IRAN DECLARES HORMUZ &ldquo;COMPLETELY OPEN.&rdquo;</strong> Iran FM Abbas Araghchi said passage &ldquo;completely open for the remaining period of the ceasefire.&rdquo; <a href="https://www.opb.org/article/2026/04/17/iran-says-strait-of-hormuz-is-open-trump-says-u-s-blockade-continues/" style="color:var(--accent2);">Trump confirmed on Truth Social</a> but said the <strong>US naval blockade of Iran specifically stays in force until &ldquo;transaction 100% complete.&rdquo;</strong> Parliament speaker Ghalibaf: Iran will re-close Hormuz if US blockade continues &mdash; the &ldquo;open&rdquo; declaration is conditional.</li>
+    <li class="updated"><strong>OIL CRASHED.</strong> Brent <strong style="color:var(--accent)">-10.73% to $88.73</strong>; WTI <strong style="color:var(--accent)">-10.82% to $84.44</strong>. <a href="https://www.newsx.com/world/brent-crude-oil-price-today-april-17-2026-why-traders-are-suddenly-turning-cautious-heres-how-how-global-crude-oil-prices-are-impacting-market-sentiments-200769/" style="color:var(--accent2);">Largest single-session drop in 6 weeks.</a> Pure risk-premium unwind, not supply normalization: per <a href="https://www.yahoo.com/news/articles/first-loaded-iranian-oil-tankers-120456631.html" style="color:var(--accent2);">Kpler</a>, only <strong>3 Iranian tankers (~5M bbl total) actually transited this week</strong> &mdash; the first loaded Iranian vessels since blockade start. Apr 16 saw just 2 ships transit total. &ldquo;Extremely high risk&rdquo; environment (Kpler&rsquo;s Ana Subasic). This is nowhere near a return to ~30/day normal flow.</li>
+    <li class="updated"><strong>TRUMP WOBBLING ON APR 22 CEASEFIRE EXTENSION.</strong> Said &ldquo;maybe I won&rsquo;t extend it&rdquo; and warned <strong>&ldquo;we&rsquo;ll have to start dropping bombs again.&rdquo;</strong> <a href="https://www.cbsnews.com/live-updates/iran-war-trump-israel-lebanon-ceasefire-hezbollah-strait-hormuz/" style="color:var(--accent2);">CBS live updates</a> | <a href="https://www.nbcnews.com/world/iran/live-blog/live-updates-us-blockade-iran-hormuz-trump-peace-talks-rcna331890" style="color:var(--accent2);">NBC live</a>. Apr 22 decision is now genuinely binary, not a formality. <strong>4 days out.</strong></li>
+    <li class="updated"><strong>PRODUCT EXPORT BAN &mdash; OFF THE TABLE.</strong> Vance, Burgum, and Wright told oil execs: &ldquo;oil and gas export restrictions are not under consideration.&rdquo; <a href="https://www.supplychainbrain.com/articles/43695-white-house-takes-crude-oil-export-ban-off-the-table" style="color:var(--accent2);">Bloomberg via SupplyChainBrain</a> | <a href="https://www.axios.com/2026/04/12/trump-blockade-us-oil-exports-strait-hormuz-iran" style="color:var(--accent2);">Axios</a>. Material update to HOGO short thesis &mdash; the tail risk that justified the downgrade is no longer imminent.</li>
+    <li><strong>Structural thesis intact despite price crash.</strong> HFI&rsquo;s cumulative inventory math unaffected by 3 tankers transiting: still <strong>1.2B bbl loss end-Apr / 1.5B end-May / 1.8B end-Jun</strong>. Sparta Ep 89 logistics-rebuild thesis (3&ndash;6 months even with peace deal) unchanged. Japan at 68% refinery utilization. IEA OMR: global supply -10.1M b/d in March to 97M b/d &mdash; &ldquo;the largest disruption in history.&rdquo; 2026 demand forecast still &minus;80 kb/d (Q2 &minus;1.5M bpd = sharpest since COVID).</li>
+    <li><strong>Distillates decoupling thesis.</strong> If Apr 17&rsquo;s risk-unwind sold crude while refined products held (physical LSFO tightness, Japan 68% util, secondary unit squeeze), cracks should have <strong>EXPANDED</strong>. <strong>Distillate prints not fully captured in press &mdash; confirm LFK26 / LFM26 / IGOM26 / LSFO Q3 on Monday open.</strong> If cracks widened under pressure, the thesis is validating under maximum stress.</li>
+    <li><strong>New post at <a href="https://theoilbandit.substack.com/archive?sort=new" style="color:var(--accent2);">Oil Not Dead: &ldquo;Decompression&rdquo; (Apr 17)</a></strong> &mdash; behind paywall, title suggests risk-premium unwind commentary. <strong>Read manually Monday before repositioning.</strong></li>
+    <li><strong>Sparta Ep 90 not yet released</strong> &mdash; Ep 89 &ldquo;The blockade is here. Now what?&rdquo; (Apr 16) remains latest. Expect Ep 90 Mon Apr 20 or Tue Apr 21 &mdash; the Apr 17 price crash + Hormuz &ldquo;open&rdquo; declaration is too fat a pitch for Crosby/Goh to skip.</li>
+    <li><strong>Israel-Lebanon:</strong> 10-day ceasefire in effect Apr 17 (separate track from US-Iran). Netanyahu insisting on 10km buffer zone.</li>
+  </ul>
+</div>
+
+<!-- ======================== MARKET SNAPSHOT ======================== -->
+<h2 id="market-snapshot">Market Snapshot</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Instrument</th>
+      <th>Value</th>
+      <th>Change</th>
+      <th>Source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="updated">
+      <td><strong>Brent futures (June, CBM26)</strong></td>
+      <td class="updated"><strong style="color:var(--accent)">$88.73/bbl</strong></td>
+      <td><strong>-10.73% Apr 17</strong> on Hormuz "open" declaration. Biggest single-session drop in 6 weeks.</td>
+      <td><a href="https://www.newsx.com/world/brent-crude-oil-price-today-april-17-2026-why-traders-are-suddenly-turning-cautious-heres-how-how-global-crude-oil-prices-are-impacting-market-sentiments-200769/">NewsX</a></td>
+    </tr>
+    <tr class="updated">
+      <td><strong>WTI (May)</strong></td>
+      <td class="updated"><strong style="color:var(--accent)">$84.44/bbl</strong></td>
+      <td><strong>-10.82% Apr 17.</strong> Parallel risk-premium unwind with Brent.</td>
+      <td><a href="https://www.newsx.com/world/brent-crude-oil-price-today-april-17-2026-why-traders-are-suddenly-turning-cautious-heres-how-how-global-crude-oil-prices-are-impacting-market-sentiments-200769/">NewsX</a></td>
+    </tr>
+    <tr class="updated">
+      <td><strong>Hormuz transits (this week)</strong></td>
+      <td><strong>3 Iranian tankers (~5M bbl)</strong></td>
+      <td>First loaded Iranian vessels since blockade start. Apr 16 = 2 ships total. Normal ~30/day. &ldquo;Extremely high risk&rdquo; (Subasic).</td>
+      <td><a href="https://www.yahoo.com/news/articles/first-loaded-iranian-oil-tankers-120456631.html">Kpler via Yahoo</a></td>
+    </tr>
+    <tr>
+      <td>ICE Low Sulphur Gasoil (May, LFK26)</td>
+      <td>~$1,156/t last observed Apr 16</td>
+      <td>Apr 17 close PENDING (press coverage incomplete). May contract expires May 12 (ICE rule: 2 bd before 14th).</td>
+      <td><a href="https://www.barchart.com/futures/quotes/LFK26">Barchart LFK26</a></td>
+    </tr>
+    <tr>
+      <td>ICE Low Sulphur Gasoil (June, LFM26)</td>
+      <td>~$1,083.50/t implied Apr 16</td>
+      <td>Apr 17 close PENDING. June contract expires June 10.</td>
+      <td><a href="https://www.barchart.com/futures/quotes/LFM26">Barchart LFM26</a></td>
+    </tr>
+    <tr>
+      <td>ICE GO/Brent crack (IGOM26 June)</td>
+      <td>~$46/bbl (Apr 16 basis)</td>
+      <td><strong>Apr 17 PENDING</strong> &mdash; if distillates held while Brent crashed, crack should EXPAND toward $55-70. IGOJ26 (April, $67.42) settling this week &mdash; no longer actionable.</td>
+      <td><a href="https://www.barchart.com/futures/quotes/IGO*1">Barchart IGO</a></td>
+    </tr>
+    <tr>
+      <td>NYMEX Heating Oil (HOK26 May)</td>
+      <td>~$3.81/gal (Apr 16)</td>
+      <td>Apr 17 close PENDING. HO rule: expires last bd of prior month &rarr; May contract expires Apr 30.</td>
+      <td><a href="https://www.tradingview.com/symbols/NYMEX-HO1!/">TradingView</a></td>
+    </tr>
+    <tr>
+      <td>Singapore Gasoil (Platts swap)</td>
+      <td>$206.48/bbl (Apr 16)</td>
+      <td>Apr 17 close PENDING.</td>
+      <td><a href="https://www.investing.com/commodities/nymex-singapore-gasoil-platts-c1-futures">Investing.com</a></td>
+    </tr>
+    <tr>
+      <td>Q3 SING LSFO 0.5%/Brent</td>
+      <td>~$25-30/bbl (Apr 16)</td>
+      <td><strong>Apr 17 PENDING</strong> &mdash; the canary. If Brent crashed -10% but physical LSFO held, Q3 crack should have widened further. 3-4x historical mean $6-8.</td>
+      <td><a href="https://www.spartacommodities.com/insights/markets/distillate/">June Goh / Sparta</a></td>
+    </tr>
+    <tr>
+      <td>NWE Jet CIF crack</td>
+      <td>$104.95/bbl (Apr 16)</td>
+      <td>Apr 17 PENDING. Leads gasoil by $30+/bbl (Kumar canary).</td>
+      <td><a href="https://www.spartacommodities.com/insights/markets/distillate/">Kumar / Sparta</a></td>
+    </tr>
+    <tr>
+      <td>MR tanker TC2 / TC14</td>
+      <td>&gt;$100k/day</td>
+      <td>Newbuilds being fixed straight from shipyard. Rates already stretched.</td>
+      <td><a href="https://www.tradewindsnews.com/tankers/newbuildings-fixed-straight-from-shipyard-as-mr-tanker-rates-surge-past-100-000/2-1-1973640">Tradewinds</a></td>
+    </tr>
+    <tr>
+      <td>Dated Brent (physical) &mdash; Apr 16</td>
+      <td>$144/bbl ATH</td>
+      <td>+$49 premium to paper. Apr 17 physical re-mark PENDING &mdash; paper crash may or may not have translated.</td>
+      <td><a href="https://www.aljazeera.com/economy/2026/4/13/why-oil-prices-arent-what-you-think-and-what-it-means-for-global-supply">Al Jazeera</a></td>
+    </tr>
+    <tr>
+      <td>US diesel retail</td>
+      <td>$5.40&ndash;5.80/gal</td>
+      <td>+50% YoY (structural, retail lags)</td>
+      <td><a href="https://www.eia.gov/todayinenergy/detail.php?id=67424">EIA</a></td>
+    </tr>
+    <tr>
+      <td>Global supply loss (March, IEA OMR)</td>
+      <td><strong>-10.1M b/d</strong> to 97M b/d</td>
+      <td>&ldquo;Largest disruption in history.&rdquo; Hormuz loadings 3.8M bpd (vs 20M Feb, -81%).</td>
+      <td><a href="https://www.iea.org/reports/oil-market-report-april-2026">IEA OMR (Apr 14)</a></td>
+    </tr>
+    <tr>
+      <td>2026 global demand forecast</td>
+      <td><strong>-80 kb/d (decline)</strong></td>
+      <td>Revised from +730 kb/d growth. Q2 -1.5M bpd = sharpest since COVID.</td>
+      <td><a href="https://www.iea.org/reports/oil-market-report-april-2026">IEA OMR</a></td>
+    </tr>
+    <tr class="total-row">
+      <td>Global daily shortfall</td>
+      <td>8M bbl/d</td>
+      <td>&mdash;</td>
+      <td>Kpler</td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="font-size:0.85rem;color:var(--subtle);margin-top:0.5rem;font-style:italic;"><strong>PENDING flags:</strong> Apr 17 was a -10% crude day but distillate/LSFO/jet close prints not fully captured in press coverage. First action Monday open: pull <strong>LFK26, LFM26, IGOM26, HOK26, LSFO Q3</strong> live on IB/Barchart. <strong>If cracks expanded Apr 17 while Brent crashed, the distillate decoupling thesis is validating under maximum stress.</strong> If cracks compressed in sympathy, reassess but do not exit on a single session.</p>
+
+<!-- ======================== TRADE IDEAS ======================== -->
+<h2 id="trade-ideas">Trade Ideas</h2>
+
+<p style="font-size:0.85rem;color:var(--subtle);margin-bottom:0.75rem;font-style:italic;"><strong>FIRST-PRINCIPLES RE-WORK (Apr 18).</strong> Apr 17 was the biggest single-session risk-premium unwind of this cycle (Brent -10.73%, WTI -10.82%). <strong>Structural thesis (distillate tightness, inventory draws, refinery rebuild) intact</strong>; crude flat-price anchor broke. Every trade re-evaluated against: can the REFINED-PRODUCT physical story survive a false peace narrative? Key near-term binary: Apr 22 ceasefire expiry (4 days).</p>
+
+<!-- TRADE 1 -->
+<div class="trade-card bullish updated">
+  <div class="trade-name">1. CORE: Long Q3 Singapore LSFO 0.5%/Brent crack <span class="conviction high">HIGH CONVICTION &mdash; KEEP, consider ADDING</span></div>
+  <div class="trade-status">
+    <strong>~50% allocation (hold; add if Q3 widened on Apr 17).</strong>
+    <br><br>
+    <strong>IB symbols:</strong> CME <strong>MF0</strong> = Singapore Marine Fuel 0.5% FOB outright leg. CME <strong>MFB</strong> = Singapore Marine Fuel 0.5%/Brent crack swap (cleanest single-ticker expression). For Q3, structure as equal-weight strip: MFQ26 (Aug), MFU26 (Sep). If broker only lists outright LSFO, pair against Brent (CB) using 6.35 bbl/tonne.
+    <br><br>
+    <strong>Thesis post-Apr 17:</strong> If Brent crashed -10% on sentiment while physical LSFO tightness (Japan 68% utilization, secondary unit squeeze, Hoa Nguyen targeting Jun/Jul $18-20) is structural, crack should have <em>widened</em> Apr 17, not compressed. <strong>If Q3 LSFO/Brent prints $30+/bbl Monday, thesis is validating under maximum stress &mdash; add.</strong> If compressed in sympathy, reassess but don&rsquo;t exit on a single session.
+    <br><br>
+    <strong>Risks:</strong> (1) Apr 22 ceasefire extension + Hormuz flows scaling back up faster than Sparta&rsquo;s 3-6 month rebuild estimate. (2) Asian refinery runs snap back on sub-$95 Brent. Sparta Ep 89 framing still holds in both cases.
+  </div>
+</div>
+
+<!-- TRADE 2 -->
+<div class="trade-card bullish updated">
+  <div class="trade-name">2. SATELLITE: Long ICE Gasoil time spread (LFM26/LFN26, Jun/Jul) <span class="conviction high">HIGH CONVICTION &mdash; KEEP</span></div>
+  <div class="trade-status">
+    <strong>~25% allocation.</strong>
+    <br><br>
+    <strong>IB symbols:</strong> Long leg <strong>LFM26</strong> (ICE LSGO June, expires Jun 10). Short leg <strong>LFN26</strong> (July, expires ~Jul 10). Direct calendar spread order on IB preferred over separate legs for execution tightness.
+    <br><br>
+    <strong>Contract expiry rule (don&rsquo;t conflate with HO/Brent):</strong> ICE LSGO expires 2 business days before the 14th of delivery month. LFK26 (May) expires May 12 &mdash; too close to use as long leg. Jun/Jul gives ~55 days of runway &mdash; best matches Sparta&rsquo;s 3-6 month thesis.
+    <br><br>
+    <strong>Logic post-Apr 17:</strong> Peace declaration doesn&rsquo;t re-route tankers or rebuild inventory overnight. Prompt-month tightness still supports backwardation. <strong>Tactical:</strong> Apr 22 decision is binary &mdash; defensible to size down into it OR buy a cheap protective OTM put on LFM26 as insurance.
+  </div>
+</div>
+
+<!-- TRADE 3 -->
+<div class="trade-card bullish updated">
+  <div class="trade-name">3. Long ICE GO/Brent crack (IGOM26 June) <span class="conviction high">HIGH CONVICTION &mdash; KEEP, elevate if prints confirm</span></div>
+  <div class="trade-status">
+    <strong>~15-20% allocation.</strong> If Apr 17 Brent crash opened a crack widening, this is the cleanest direct expression of &ldquo;distillate decoupling from crude.&rdquo;
+    <br><br>
+    <strong>IB symbol:</strong> <strong>IGOM26</strong> (ICE Gasoil Crack Spread Swap, June basis). IGOJ26 (April) settling now &mdash; not forward-looking. IGOK26 (May) tradeable but thinner liquidity.
+    <br><br>
+    <strong>Synthetic alternative</strong> for tighter execution: long <strong>LFM26</strong> vs short <strong>CBM26</strong> as legged pair. Conversion: 1 LFM = 100 tonnes &asymp; 745 bbl; 1 CBM = 1,000 bbl. Size ~1.34 LFM per CBM to match barrel exposure.
+    <br><br>
+    <strong>Logic:</strong> Sparta Ep 89 &mdash; &ldquo;diesel and gasoline pricing pressure most acute heading into May&rdquo; &mdash; driving season + refinery maintenance exits + Asian run cuts. Jet leads gasoil by $30+/bbl (Kumar canary). <strong>If IGOM26 prints $55-70 Monday (vs $46 basis Apr 16), thesis playing out. If it holds $45+, KEEP. If it prints &gt;$60, add.</strong>
+  </div>
+</div>
+
+<!-- TRADE 4 -->
+<div class="trade-card neutral updated">
+  <div class="trade-name">4. Long MR/LR tanker freight (TC2, TC14) <span class="conviction medium">MEDIUM &mdash; TRIM to 5%</span></div>
+  <div class="trade-status">
+    <strong>~5% allocation (trimmed from 10%).</strong>
+    <br><br>
+    <strong>Rationale for trim:</strong> This trade partly expressed &ldquo;Hormuz reopens &rarr; tanker repositioning scramble.&rdquo; Iran&rsquo;s Apr 17 &ldquo;open&rdquo; declaration + 3 actual tanker transits is the leading edge of that scramble. But: (a) flows remain tiny (2-3 vessels/day vs ~30 normal), (b) real repositioning demand is still weeks out, (c) TC2 already &gt;$100k/day with newbuilds fixed straight from shipyard &mdash; limited upside. <strong>Trim to 5%. Re-enter on pullback or if genuine Hormuz normalization develops.</strong>
+    <br><br>
+    <strong>IB note:</strong> TC2/TC14 freight futures listed on Baltic Exchange / EEX; IB retail access limited. <a href="https://www.tradewindsnews.com/tankers/newbuildings-fixed-straight-from-shipyard-as-mr-tanker-rates-surge-past-100-000/2-1-1973640">Tradewinds on MR rates</a>.
+  </div>
+</div>
+
+<!-- TRADE 5 -->
+<div class="trade-card neutral updated">
+  <div class="trade-name">5. HEDGE: Long Brent puts &mdash; MONETIZE HALF, ROLL DOWN <span class="conviction medium">ACTIVE HEDGE MGMT</span></div>
+  <div class="trade-status">
+    <strong>The hedge just did its job in a single session.</strong>
+    <br><br>
+    <strong>Apr 17 outcome:</strong> Brent -10.73% means the 3-mo 10%-OTM put (roughly $88 strike vs Apr 16 close near $98-99) is now ~ATM at $88.73, delta ~0.50. Puts worth 2-3x entry.
+    <br><br>
+    <strong>Action (3 steps):</strong>
+    <ol style="margin:0.25rem 0 0.5rem 1.25rem;">
+      <li><strong>Take profit on half.</strong> Lock in the gain.</li>
+      <li><strong>Roll the other half down to ~$80 strike, out 3 months</strong> (Jul 2026 expiry). Re-establishes the hedge cheaper.</li>
+      <li><strong>Do NOT kill the full hedge.</strong> Apr 22 ceasefire decision is 4 days out, Trump wobbling publicly, Iran could re-close Hormuz if blockade continues.</li>
+    </ol>
+    <strong>IB symbols:</strong> Options on <strong>CBM26</strong> (Brent June, LCEN26 / ~Jul expiry monthly option chain). Strike $80, ~3-mo expiry.
+  </div>
+</div>
+
+<!-- TRADE 6 -->
+<div class="trade-card bearish updated">
+  <div class="trade-name">6. Short HOGO <span class="conviction low">CLOSED / STAY FLAT</span></div>
+  <div class="trade-status">
+    <strong>Stay flat. Active case for re-entering weakened.</strong>
+    <br><br>
+    <strong>Material update Apr 17:</strong> Vance, Burgum, and Wright explicitly told oil execs: &ldquo;oil and gas export restrictions are not under consideration.&rdquo; <a href="https://www.supplychainbrain.com/articles/43695-white-house-takes-crude-oil-export-ban-off-the-table">Bloomberg via SupplyChainBrain</a> | <a href="https://www.axios.com/2026/04/12/trump-blockade-us-oil-exports-strait-hormuz-iran">Axios</a>. The tail risk that justified the short&rsquo;s downgrade (White House product export ban) is explicitly off the table.
+    <br><br>
+    But: <a href="https://sherman.house.gov/media-center/press-releases/congressman-brad-sherman-will-soon-introduce-bill-halt-us-oil-exports">Sherman&rsquo;s bill</a> is still in circulation. No congressional action imminent but don&rsquo;t re-short assuming the risk is permanently gone. <strong>Stay flat.</strong>
+  </div>
+</div>
+
+<h3 class="new-ideas-heading">NEW IDEAS (Apr 18)</h3>
+
+<!-- TRADE 7 (NEW) -->
+<div class="trade-card bullish updated">
+  <div class="trade-name">7. NEW: Long Vol &mdash; CBM26 straddle into Apr 22 ceasefire decision <span class="conviction medium">TACTICAL, small size</span></div>
+  <div class="trade-status">
+    <strong>~2% allocation (tactical binary).</strong>
+    <br><br>
+    <strong>Logic:</strong> Apr 17 proved vol is mispriced for headline risk &mdash; one Iran FM sentence drove a -10% Brent move. Apr 22 ceasefire expiry is 4 days out with Trump wobbling (&ldquo;maybe I won&rsquo;t extend&rdquo; / &ldquo;dropping bombs&rdquo;). Binary is under-hedged at post-crash implieds.
+    <br><br>
+    <strong>Structure:</strong> Long straddle on CBM26 around $89 strike, May 2026 expiry (post Apr-22 binary). Owns both tails &mdash; extension &rarr; risk-off continues below $80; collapse &rarr; snap-back $100+.
+    <br><br>
+    <strong>IB symbols:</strong> Long <strong>CBM26 C89</strong> + long <strong>CBM26 P89</strong>, ~May 2026 expiry (LO monthly option chain on Brent).
+    <br><br>
+    <strong>Alt (directional downside only):</strong> 1x2 put spread <strong>CBM26 P85 / 2&times; P75</strong>. Limited premium, captures continued risk-off without paying for upside tail.
+    <br><br>
+    <strong>Risk:</strong> Straddle decays fast if market grinds sideways into Apr 22. Size small. Exit by Apr 21 EOD if no headline movement.
+  </div>
+</div>
+
+<!-- TRADE 8 (NEW) -->
+<div class="trade-card bullish updated">
+  <div class="trade-name">8. NEW: Crack-expansion pair clip &mdash; long LFM26 / short CBM26 (overlay on #3) <span class="conviction medium">MEDIUM</span></div>
+  <div class="trade-status">
+    <strong>~5% allocation, pair trade layered on Trade #3.</strong>
+    <br><br>
+    <strong>Logic:</strong> Apr 17 price action bifurcated crude from refined products. Cleanest expression is a direct Gasoil/Brent crack pair rather than exclusive IGOM26 swap exposure. Sparta Ep 89 mechanism (3-6 months logistics; secondary unit squeeze) is the fundamental basis. Adds a second clip without concentrating on swap liquidity.
+    <br><br>
+    <strong>IB structure:</strong>
+    <ul style="margin-top:0.25rem;">
+      <li>Long <strong>LFM26</strong> (ICE LSGO June, 100 tonnes/contract = 745 bbl)</li>
+      <li>Short <strong>CBM26</strong> (Brent June, 1,000 bbl/contract)</li>
+      <li>Ratio: ~1.34 LFM per CBM for barrel-equivalent exposure</li>
+    </ul>
+    <strong>Exit:</strong> scale out if crack prints &gt;$65; cut if it compresses below $35 (thesis wound).
+  </div>
+</div>
+
+<!-- TRADE 9 (WATCH) -->
+<div class="trade-card neutral updated">
+  <div class="trade-name">9. WATCH (not sized): Iran-relisting trade &mdash; forward Brent structure <span class="conviction low">TRIGGER ON APR 22</span></div>
+  <div class="trade-status">
+    <strong>Not sized. Trigger-based.</strong>
+    <br><br>
+    <strong>Trigger:</strong> If US-Iran deal on/after Apr 22 resembles 2015 JCPOA framework (Iran uranium concessions for sanctions relief), SDR-flag Iranian crude re-enters global market &mdash; compresses Middle East crude diffs and Brent timespread. Dated Brent $144 vs paper $89 is where relief would start.
+    <br><br>
+    <strong>Structure if triggered:</strong> Call spread on CBM26 (long ATM, short OTM) expresses compression on good news without direct short risk. Or: short physical-paper basis (dated vs futures) if counterparty available for OTC.
+    <br><br>
+    <strong>Don&rsquo;t anticipate &mdash; wait for Apr 22 signal.</strong>
+  </div>
+</div>
+
+<div class="flow-callout">
+  <span class="big-label">ALLOCATION SUMMARY (post Apr-17 rework)</span>
+  <strong>Core (50%):</strong> Q3 LSFO/Brent crack (MF0/MFB) &mdash; KEEP, ADD if Q3 widened on Apr 17.<br>
+  <strong>Distillate structure (45%):</strong> 25% GO Jun/Jul time spread + 15-20% IGOM26 crack + 5% new LFM/CBM pair clip.<br>
+  <strong>Tactical (2%):</strong> CBM26 straddle into Apr 22 binary.<br>
+  <strong>Hedge (active):</strong> Monetize half of Brent puts; roll remainder to $80 3-mo.<br>
+  <strong>Freight (5%):</strong> Trimmed from 10%; TC2/TC14 already stretched.<br>
+  <strong>Flat:</strong> HOGO (export ban explicitly off the table; thesis gone).<br>
+  <strong>Watch:</strong> Iran relisting &mdash; trigger on Apr 22 signal only.<br>
+  <strong>Dry powder:</strong> Put-monetization cash + any remainder. Keep capacity for Ep 90 (Mon/Tue) and Apr 22 binary.
+</div>
+
+<!-- ======================== SPARTA FRAMEWORK ======================== -->
+<h2 id="sparta-framework">Sparta Framework: 6-Part Thesis</h2>
+
+<h3>1. Demand destruction is the only fix</h3>
+<p>~10M bbl/d lost through Hormuz closure, only 3&ndash;4M offset by SPR releases + voluntary production reduction, leaving a 6&ndash;7M bbl/d unresolved gap. OPEC spare capacity of 3.5M bbl/d is insufficient to bridge the deficit even if fully mobilized. IEA forecasts 1.5M bbl/d of Q2 demand destruction as the market's self-correction mechanism.</p>
+
+<h3>2. Demand destruction is bifurcated</h3>
+<ul>
+  <li><strong>Asia &mdash; price-led:</strong> Singapore premiums forcing rationing, airline cancellations accelerating, 2 of 3 Singapore refineries on bitumen force majeure.</li>
+  <li><strong>Europe &mdash; policy-led:</strong> Slovenia imposed 50L/day fuel purchase limit. Italian airports restricting operations. EU activated 90-day strategic reserves. Grangemouth + Prax Lindsey closures reducing domestic refining capacity.</li>
+  <li><strong>US &mdash; structural safe haven:</strong> Refinery runs +900K bbl/d YoY, stocks building. Domestic production insulates from worst of physical tightness.</li>
+</ul>
+
+<h3>3. Forward curve complacency</h3>
+<p>Dated Brent at $144/bbl vs futures at $95 &mdash; a $49 physical-paper disconnect at historic extremes. Physical WTI trading at a +$20 premium to financial. HFI Research (Apr 14) calls this "the biggest disconnect I've ever seen in the oil market." Goldman notes the 1.4B bbl cushion estimated at start of 2026 is now "a mirage." 230 loaded tankers stranded in the Persian Gulf represent both trapped supply and a ceasefire tail risk.</p>
+
+<h3>4. Freight is the binding constraint</h3>
+<p>NWE MR vessel availability at 6 ships (7-day window) vs 90-day average of 15 &mdash; a 60% collapse. TC2 at WS 312. Marine insurance premiums at 10x pre-war levels. Over 34,000 ships have diverted from the Strait. Even with arbitrage economics open, physical vessels cannot move the diesel.</p>
+
+<h3>5. Refinery cycling constraint</h3>
+<p>June Goh: refinery startup takes 4&ndash;7 days, shutdown only 1&ndash;2 days. Asian refiners cannot restart capacity even if Hormuz reopens partially &mdash; the asymmetric restart timeline means production recovery lags any political resolution by weeks. 2 of 3 Singapore refineries already on bitumen force majeure.</p>
+
+<h3>6. Fuel oil to gasoil feedback loop</h3>
+<p>Full chain: Hormuz blocks AG crude &rarr; lower VGO/straight-run supply &rarr; VGO diverted to hydrocrackers (maximize diesel) &rarr; straight-run to distillate units &rarr; less fuel oil blending feedstock &rarr; LSFO cracks rally &rarr; refiners blend gasoil DOWN into fuel oil to capture spread &rarr; gasoil supply tightens further &rarr; self-reinforcing loop.</p>
+<p>Q3 LSFO 0.5%/Brent at $25&ndash;30/bbl vs historical mean $6&ndash;8. Hoa Nguyen (Apr 15): hedging flow caused pullback from $20 to $11&ndash;12 on prompt, but "this is not the kind of conflict that will conclude anytime soon" &mdash; expects rebound to $18&ndash;20/bbl for June/July.</p>
+
+<div class="exec-summary" style="margin:1rem 0;">
+  <strong>EPISODE 89 (Apr 16) &mdash; &ldquo;The blockade is here. Now what?&rdquo;</strong><br>
+  Hosts: Neil Crosby, June Goh, Michael Ryan (32 min). Key findings:
+  <ul style="margin-top:0.5rem;">
+    <li><strong>Even a peace deal wouldn&rsquo;t fix markets overnight &mdash; 3 to 6 months to rebuild logistics.</strong> The forward curve pricing quick normalization is therefore mispriced.</li>
+    <li><strong>Japan at 68% refinery utilization rate.</strong> Singapore also cutting runs. Accelerating refinery capacity reductions across Asia.</li>
+    <li><strong>Secondary unit squeeze confirmed:</strong> cascading effects through VGO, hydrocrackers, and FCCs &mdash; validates June Goh&rsquo;s April 11 fuel oil routing analysis exactly.</li>
+    <li><strong>Freight rate spikes ahead</strong> if tankers cannot reposition in time for the resumption of normal flows.</li>
+    <li><strong>Diesel and gasoline pricing pressure most acute heading into May</strong> &mdash; driving season + refinery maintenance exits = demand surge into tight supply.</li>
+    <li>Conflicting reports about Iranian vessel movements &mdash; blockade enforcement is contested.</li>
+  </ul>
+  <strong>Implication for trades:</strong> The 3&ndash;6 month logistics rebuild thesis directly supports the long Q3 LSFO crack (core position) and the long ICE GO time spread. Even in the bull case for peace, these trades have months of structural support.
+</div>
+
+<!-- ======================== INDUSTRY VIEWS ======================== -->
+<h2 id="industry-views">Industry Views</h2>
+
+<h3><a href="https://www.hfir.com/archive" style="color:var(--accent2);text-decoration:none;border-bottom:1px dotted var(--accent2);">HFI Research (hfir.com)</a></h3>
+<div class="sweep-section">
+  <p><strong>Key thesis:</strong> "All specialists agree, generalists disagree." Biggest physical-paper disconnect ever observed. Cumulative storage lost will exceed 1B bbl even if Hormuz reopens. OECD effective cushion ~178M bbl. US SPR insulates until late May, then visible draws begin. May WTI expiry will force short covering. "You don't just have the largest oil supply outage by a magnitude of 4x only to have prices stay below $100/bbl." Positions: long USO, UCO.</p>
+  <p class="updated" style="margin-top:0.5rem;"><strong>NEW Apr 16 piece: "Oil Storage Math &mdash; The Draws Are Underway."</strong> Inventory math: if conflict ends <strong>end-April &rarr; 1.2B bbl total inventory loss</strong>; <strong>end-May &rarr; 1.5B bbl</strong>; <strong>end-June &rarr; 1.8B bbl</strong>. Commercially operable storage is ~3.7B bbl. US crude exports ramping, imports falling &mdash; sizable commercial crude storage draws starting now. Hard numbers supporting the structural thesis.</p>
+</div>
+
+<h3><a href="https://theoilbandit.substack.com/archive?sort=new" style="color:var(--accent2);text-decoration:none;border-bottom:1px dotted var(--accent2);">Oil Not Dead (theoilbandit.substack.com)</a></h3>
+<div class="sweep-section">
+  <p><strong>Key thesis:</strong> Physical barrels missing in the West. North Sea CFDs hit circuit-breaker at +$30 (Dated Brent). 3M fewer barrels for May North Sea system. Main North Sea grades dropping to ~1.8M bbl/d in May. US crude exports expected 5M+ bbl/d for April. "Long oil trade offers diminished downside risk every day the Strait remains closed." Reprice will come "from the back of the curve to the front."</p>
+  <p class="updated" style="margin-top:0.5rem;"><strong>NEW Apr 17: &ldquo;Decompression&rdquo;</strong> &mdash; paywalled; title suggests risk-premium unwind commentary aligned with the Apr 17 -10% Brent move. Likely covers how much of the physical tightness narrative survives the Hormuz &ldquo;open&rdquo; declaration. <strong>Action: read manually Monday before repositioning</strong> &mdash; this author&rsquo;s read on whether the reprice is structural or noise will inform sizing on Trades #1, #3, #8.</p>
+</div>
+
+<h3>Pierre Andurand (@AndurandPierre)</h3>
+<div class="sweep-section">
+  <p><strong>Performance:</strong> Andurand Commodities Discretionary Enhanced Fund <strong>+31.1% in Q1 2026</strong>, capitalizing on a precise bet regarding Middle East supply disruptions. One of the most successful energy hedge fund managers of the crisis. On the X/Twitter Oil list.</p>
+</div>
+
+<h3>Sell-Side Consensus</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Bank</th>
+      <th>Base Case</th>
+      <th>Upside / Extended Scenario</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="font-weight:600;background:#fdf2f2;">
+      <td><a href="https://www.rigzone.com/news/eia_boosts_2026_brent_oil_price_projection_to_96-15-apr-2026-183451-article/">EIA (Apr 15)</a></td>
+      <td>$96 avg &mdash; Q2: $114.60, Q3: $99.80, Q4: $88</td>
+      <td>Revised UP from $78.84</td>
+    </tr>
+    <tr>
+      <td>UBS</td>
+      <td>$100 end-June, $95 Sept, $90 Dec</td>
+      <td>&gt;$150 if persists</td>
+    </tr>
+    <tr>
+      <td>Goldman Sachs</td>
+      <td>$83 (trimmed Apr 9)</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td>Macquarie</td>
+      <td>$89 avg</td>
+      <td>$200 if through June</td>
+    </tr>
+    <tr>
+      <td>J.P. Morgan</td>
+      <td>Q2 $100, Q3 $90, Q4 $80</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td>Morgan Stanley</td>
+      <td>&gt;$80 all year</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td>ANZ</td>
+      <td>&gt;$90, ending $88</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td>Barclays</td>
+      <td>$85</td>
+      <td>$100 if 4&ndash;6 wk normalization</td>
+    </tr>
+    <tr>
+      <td>BofA</td>
+      <td>$77.50 avg</td>
+      <td>&mdash;</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ======================== OTHER SOURCES (X/TWITTER) ======================== -->
+<h2 id="other-sources">Other Sources (X/Twitter Oil List)</h2>
+<p style="font-size:0.85rem;color:var(--subtle);margin-bottom:0.75rem;">From <a href="https://x.com/i/lists/2041702948712149021" style="color:var(--accent2);">@m7madden/Oil</a> (16 members). <strong>Apr 18 refresh note:</strong> X/Twitter requires auth (HTTP 402 on unauthenticated fetches), so a fresh scan couldn&rsquo;t be pulled this refresh. Content below is carried over from the Apr 16 scan and remains contextually relevant (the 6-month deal timeline, interim vs final deal split, and dark-fleet tracking are all still in play). <strong>The Apr 17 &ldquo;Hormuz open&rdquo; reaction from these voices is captured in the Executive Summary</strong> &mdash; Andurand, Blas, Kpler, Goh, and Crosby will have posted heavily on the -10% day. <strong>Action item: open @m7madden/Oil list manually Monday AM before sizing anything new.</strong></p>
+
+<div class="trade-card bullish updated">
+  <div class="trade-name"><a href="https://x.com/Rory_Johnston" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--accent2);">Rory Johnston (@Rory_Johnston)</a> &mdash; 38 min ago (quoting First Squawk)</div>
+  <div class="trade-status"><strong>&ldquo;GULF AND EUROPEAN OFFICIALS SAY THE U.S. NEEDS ABOUT SIX MONTHS TO REACH AN IRAN DEAL.&rdquo;</strong> Johnston&rsquo;s reaction: &ldquo;Guys.&rdquo; <strong>This directly aligns with Sparta Ep 89&rsquo;s 3-6 months logistics rebuild thesis.</strong> 6 months to deal + 3-6 months to rebuild = <strong>9-12 months of structural support for long cracks.</strong> Biggest confirmation of the thesis today.</div>
+</div>
+
+<div class="trade-card bullish updated">
+  <div class="trade-name"><a href="https://x.com/gbrew24" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--accent2);">Gregory Brew (@gbrew24, Eurasia Group)</a> &mdash; 14 min ago</div>
+  <div class="trade-status">&ldquo;There&rsquo;s a pretty big difference between a deal to de-escalate over the strait and a deal that installs a durable inspection/enforcement regime over Iran&rsquo;s enrichment program and stockpile of HEU. <strong>Current talks are aiming at the first while teeing up the second.</strong>&rdquo; Translation: even if a Hormuz deal lands, the harder negotiation on nuclear comes after &mdash; extending crisis duration.</div>
+</div>
+
+<div class="trade-card neutral updated">
+  <div class="trade-name"><a href="https://x.com/JavierBlas" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--accent2);">Javier Blas (@JavierBlas)</a> &mdash; 53 min ago (retweet)</div>
+  <div class="trade-status">Reuters via Gregg Carlstrom: <strong>&ldquo;Iran-US talks turn to interim deal amid rifts over nuclear work.&rdquo;</strong> &ldquo;An interim agreement was always the likeliest outcome. Dilemma is how to prevent talks over a final deal from becoming an endless negotiation.&rdquo; Suggests the market's path is: interim deal on Hormuz &rarr; extended diplomatic stalemate on nuclear &rarr; prolonged elevated product cracks.</div>
+</div>
+
+<div class="trade-card bullish updated">
+  <div class="trade-name"><a href="https://x.com/Rory_Johnston" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--accent2);">Rory Johnston (@Rory_Johnston)</a> &mdash; 14 min ago</div>
+  <div class="trade-status">Sharing Lloyd&rsquo;s List chart: <strong>breakdown of visible vs. dark fleet ship transits through Hormuz in deadweight tonnage.</strong> &ldquo;Even better that it&rsquo;s in DWT rather than a simple ship count.&rdquo; Dark fleet activity reveals the real picture of what&rsquo;s moving despite the blockade.</div>
+</div>
+
+<div class="trade-card neutral updated">
+  <div class="trade-name"><a href="https://x.com/Rory_Johnston" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--accent2);">Rory Johnston (@Rory_Johnston)</a> &mdash; 52 min ago</div>
+  <div class="trade-status">On today&rsquo;s Israel-Lebanon ceasefire announcement: <strong>&ldquo;Crude far less moved by this latest ceasefire announcement.&rdquo;</strong> The market is starting to fatigue on ceasefire headlines &mdash; exactly Sparta Ep 85&rsquo;s &ldquo;the trade is in the spreads, not the headline.&rdquo;</div>
+</div>
+
+<div class="trade-card neutral updated">
+  <div class="trade-name"><a href="https://www.bloomberg.com/news/articles/2026-04-15/us-and-iran-weigh-truce-extension-with-hormuz-still-shuttered" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--accent2);">Bloomberg</a> &mdash; Apr 16 AM</div>
+  <div class="trade-status"><strong>US and Iran weighing 2-week ceasefire extension.</strong> Mediators seeking technical talks on Hormuz reopening and nuclear program. Extension removes near-term escalation risk &mdash; but Sparta&rsquo;s 3-6 month logistics rebuild thesis is unchanged.</div>
+</div>
+
+<div class="trade-card bullish updated">
+  <div class="trade-name">Gen. Dan Caine (Joint Chiefs) &mdash; Apr 16 Pentagon briefing</div>
+  <div class="trade-status">&ldquo;The United States Joint Force remains postured and ready to resume major combat operations at literally a moment&rsquo;s notice.&rdquo; 13 ships total turned around by blockade.</div>
+</div>
+
+<div class="trade-card neutral updated">
+  <div class="trade-name"><a href="https://x.com/HFI_Research" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--accent2);">HFI Research (@HFI_Research)</a> &mdash; Apr 16 (RESOLVED Apr 17)</div>
+  <div class="trade-status">HFI flagged White House oil exec call: &ldquo;They are probably discussing banning petroleum product exports. Not crude exports &mdash; big ass difference.&rdquo; <strong>RESOLVED Apr 17:</strong> <a href="https://www.supplychainbrain.com/articles/43695-white-house-takes-crude-oil-export-ban-off-the-table">Vance, Burgum, and Wright confirmed to oil execs: &ldquo;oil and gas export restrictions are not under consideration.&rdquo;</a> HOGO short thesis killed; ICE GO E/W ban-bullish catalyst off the table. Watch Sherman bill for residual political risk.</div>
+</div>
+
+<div class="trade-card bullish updated">
+  <div class="trade-name"><a href="https://x.com/HFI_Research" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--accent2);">HFI Research (@HFI_Research)</a> &mdash; overnight</div>
+  <div class="trade-status"><strong>Global crude exports down 9.115M b/d YoY.</strong> Hard data confirming the supply gap. Veteran trader quote: &ldquo;Death by a thousand headlines.&rdquo; Also: &ldquo;Nikkei hits all-time high. Japan stopped publishing oil inventory figures...&rdquo; &mdash; equity markets completely disconnected from physical energy reality.</div>
+</div>
+
+<div class="trade-card neutral updated">
+  <div class="trade-name"><a href="https://x.com/JavierBlas" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--accent2);">Javier Blas (@JavierBlas)</a> &mdash; overnight</div>
+  <div class="trade-status"><strong>Pakistan FM: no dates set for next talks.</strong> Also: China posted 4.4% YoY increase in coal-fired generation in March (record). &ldquo;China can &mdash; and is &mdash; doing an enormous flex in energy markets.&rdquo; Substitution away from oil = demand destruction channel.</div>
+</div>
+
+<div class="trade-card bullish updated">
+  <div class="trade-name"><a href="https://x.com/gbrew24" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--accent2);">Gregory Brew (@gbrew24, Eurasia Group)</a> &mdash; overnight</div>
+  <div class="trade-status">On regime change thesis: killing Khamenei cleared the way for a more aggressive, IRGC-dominated regime &mdash; &ldquo;that is exactly what happened.&rdquo; Links to <a href="https://www.wsj.com/world/middle-east/iran-radical-regime-change-a42d96ea" style="color:var(--accent2);">WSJ</a>. On blockade: more tankers getting in on satellite imagery; &ldquo;this is a weird way to run a blockade.&rdquo;</div>
+</div>
+
+<div class="trade-card bullish">
+  <div class="trade-name"><a href="https://x.com/JuneGoh_Sparta" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--accent2);">June Goh (@JuneGoh_Sparta)</a> &mdash; Apr 15</div>
+  <div class="trade-status">Corio refinery fire (Australia): <strong>&ldquo;The unit affected was a mogas unit&rdquo;</strong> &mdash; gasoline, not diesel. Also co-hosted <strong>Episode 89 today</strong> confirming the secondary unit squeeze and Singapore run cuts.</div>
+</div>
+
+<!-- ======================== INFRASTRUCTURE & SUPPLY ======================== -->
+<h2 id="infrastructure">Infrastructure &amp; Supply</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Country</th>
+      <th>Facility</th>
+      <th>Status</th>
+      <th>Recovery Timeline</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Saudi Arabia</td>
+      <td>Ras Tanura</td>
+      <td>Operational (restarted Mar 13)</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr>
+      <td>Saudi Arabia</td>
+      <td>East-West Pipeline</td>
+      <td>Operational (drone hit Apr 8, damage limited)</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr class="vuln-critical">
+      <td>Qatar</td>
+      <td>Ras Laffan LNG</td>
+      <td>SHUT &mdash; work beginning. Trains 4+6 destroyed (12.8M mt/yr)</td>
+      <td>3&ndash;5 YEARS. $25B+ repair.</td>
+    </tr>
+    <tr>
+      <td>Qatar</td>
+      <td>Mesaieed</td>
+      <td>No confirmed restart</td>
+      <td>Unknown</td>
+    </tr>
+    <tr class="vuln-high">
+      <td>UAE</td>
+      <td>Habshan Gas</td>
+      <td>Operations suspended (hit Apr 3 + Apr 8)</td>
+      <td>Unknown</td>
+    </tr>
+    <tr>
+      <td>UAE</td>
+      <td>Fujairah</td>
+      <td>Mostly operational. Mena terminal still offline.</td>
+      <td>&mdash;</td>
+    </tr>
+    <tr class="vuln-critical">
+      <td>Iran</td>
+      <td>South Pars</td>
+      <td>Severely damaged (struck twice: Mar 18 + Apr 6). ~85% petrochemical capacity offline.</td>
+      <td>Years</td>
+    </tr>
+    <tr class="vuln-high">
+      <td>Kuwait</td>
+      <td>Mina Al-Ahmadi</td>
+      <td>Hit 4+ times. Below capacity.</td>
+      <td>Unknown</td>
+    </tr>
+    <tr class="vuln-high">
+      <td>Kuwait</td>
+      <td>Power + desalination</td>
+      <td>"Severe" damage</td>
+      <td>Unknown</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="blockade-callout">
+  <strong>Well damage threshold crossed Mar 28</strong> (25+ days idle). Water coning active across shut-in Gulf fields. Kuwait CEO: "3&ndash;4 months to recover post-war."
+</div>
+
+<!-- ======================== SOURCES ======================== -->
+<h2 id="sources">Sources</h2>
+
+<h3><a href="https://spartacommodities.podbean.com/" style="color:var(--accent2);text-decoration:none;border-bottom:1px dotted var(--accent2);">Sparta Commodities</a> Team (<a href="https://www.spartacommodities.com/insights/" style="color:var(--accent2);font-size:0.85rem;">insights</a> &middot; <a href="https://x.com/JuneGoh_Sparta" style="color:var(--accent2);font-size:0.85rem;">June Goh Twitter</a> &middot; <a href="https://x.com/SpartaCommo" style="color:var(--accent2);font-size:0.85rem;">@SpartaCommo</a>)</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Coverage</th>
+      <th>Key Recent Output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Felipe Elink Schuurman</td>
+      <td>CEO</td>
+      <td>Strategic analysis</td>
+      <td>Hormuz Question (Mar 30)</td>
+    </tr>
+    <tr>
+      <td>June Goh</td>
+      <td>Commodity Owner, Singapore</td>
+      <td>Asia, fuel oil, E/W</td>
+      <td>Fuel oil routings (Apr 11)</td>
+    </tr>
+    <tr>
+      <td>Neil Crosby</td>
+      <td>AVP Oil Analytics</td>
+      <td>ICE GO, signal briefs</td>
+      <td>Iran Update (Apr 15)</td>
+    </tr>
+    <tr>
+      <td>James Noel-Beswick</td>
+      <td>Commodity Owner</td>
+      <td>HOGO, European spreads</td>
+      <td>Peace hopes fade (Apr 13)</td>
+    </tr>
+    <tr>
+      <td>Abhishek Kumar</td>
+      <td>Commodity Owner</td>
+      <td>European jet / distillates</td>
+      <td>Europe jet tight (Apr 13)</td>
+    </tr>
+    <tr>
+      <td>Hoa Nguyen</td>
+      <td>Commodity Owner</td>
+      <td>Fuel oil deep dives</td>
+      <td>LSFO crack analysis (Apr 15)</td>
+    </tr>
+    <tr>
+      <td>Carrie Ho</td>
+      <td>Commodity Owner, APAC</td>
+      <td>Weekly gasoil / jet</td>
+      <td>APAC Gasoil Wk15 (Apr 9)</td>
+    </tr>
+    <tr>
+      <td>Phil Jones-Lux</td>
+      <td>Senior Analyst</td>
+      <td>Gasoline / diesel</td>
+      <td>Podcast Ep 87&ndash;88</td>
+    </tr>
+    <tr>
+      <td>Michael Ryan</td>
+      <td>Commodity Owner, Freight</td>
+      <td>NWE CPP, USGC MR</td>
+      <td>Freight reports (Apr 13)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Independent Sources</h3>
+<div class="source-card">
+  <span class="source-name"><a href="https://www.hfir.com/archive" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--accent2);">HFI Research</a></span> &mdash; <span class="source-role"><a href="https://www.hfir.com/archive" style="color:var(--subtle);">hfir.com</a> &mdash; Contrarian energy research</span>
+</div>
+<div class="source-card">
+  <span class="source-name"><a href="https://theoilbandit.substack.com/archive?sort=new" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--accent2);">Oil Not Dead</a></span> &mdash; <span class="source-role"><a href="https://theoilbandit.substack.com/archive?sort=new" style="color:var(--subtle);">theoilbandit.substack.com</a> &mdash; Physical oil analytics</span>
+</div>
+<div class="source-card">
+  <span class="source-name"><a href="https://x.com/i/lists/2041702948712149021" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--accent2);">X/Twitter Oil List</a></span> &mdash; <span class="source-role"><a href="https://x.com/i/lists/2041702948712149021" style="color:var(--subtle);">@m7madden/Oil</a> (16 members including <a href="https://x.com/AndurandPierre" style="color:var(--subtle);">@AndurandPierre</a>, <a href="https://x.com/JavierBlas" style="color:var(--subtle);">@JavierBlas</a>, <a href="https://x.com/gbrew24" style="color:var(--subtle);">@gbrew24</a>, <a href="https://x.com/ed_fin" style="color:var(--subtle);">@ed_fin</a>)</span>
+</div>
+
+<!-- ======================== WHAT TO WATCH ======================== -->
+<h2 id="watch">What to Watch</h2>
+
+<div class="watch-item updated">
+  <strong>1. APR 22 CEASEFIRE EXPIRY (4 DAYS) &mdash; THE BINARY.</strong> Trump publicly wobbling: &ldquo;maybe I won&rsquo;t extend&rdquo; / &ldquo;we&rsquo;ll have to start dropping bombs again.&rdquo; <a href="https://www.cbsnews.com/live-updates/iran-war-trump-israel-lebanon-ceasefire-hezbollah-strait-hormuz/">CBS</a> | <a href="https://www.nbcnews.com/world/iran/live-blog/live-updates-us-blockade-iran-hormuz-trump-peace-talks-rcna331890">NBC</a>. Extension &rarr; further risk-premium unwind likely (Brent sub-$80 scenario). Collapse &rarr; Hegseth says US &ldquo;locked and loaded&rdquo; on Iranian energy infra. Sized trade: CBM26 straddle (Trade #7).
+</div>
+<div class="watch-item updated">
+  <strong>2. Monday open (Apr 20) distillate prints.</strong> LFK26, LFM26, IGOM26, HOK26, Singapore LSFO Q3, Jet CIF. If Apr 17 was pure crude risk-unwind, cracks should have <strong>expanded</strong>. If yes, distillate decoupling thesis validating under max stress &mdash; add to Trades #1 and #3. If cracks compressed in sympathy, reassess trades #1-3 but don&rsquo;t exit on a single session.
+</div>
+<div class="watch-item updated">
+  <strong>3. Sparta Episode 90 (expected Mon Apr 20 / Tue Apr 21).</strong> Ep 89 was Apr 16 &ldquo;The blockade is here. Now what?&rdquo; With Apr 17 &ldquo;open&rdquo; declaration + -10% Brent move, Crosby/Goh/Ryan won&rsquo;t skip a reaction episode. Key question: does Sparta soften the 3-6 month logistics rebuild thesis or harden it?
+</div>
+<div class="watch-item updated">
+  <strong>4. Hormuz transit count.</strong> This week: 3 Iranian tankers + ~2-3/day non-Iranian per Kpler. Normal: ~30/day. <strong>Trigger for peace normalization:</strong> &gt;15/day sustained for a week. Apr 17 &ldquo;open&rdquo; declaration meaningless without flow confirmation.
+</div>
+<div class="watch-item updated">
+  <strong>5. Iran counter-moves.</strong> Parliament speaker Ghalibaf already said Iran will re-close Hormuz if US blockade continues. Watch for: (a) IRGC harassment of transiting vessels, (b) Israeli strike retaliation, (c) any Strait mining/attack event &rarr; immediate snap-back.
+</div>
+<div class="watch-item updated">
+  <strong>6. US visible inventory draws.</strong> HFI cumulative loss forecast: 1.2B end-Apr / 1.5B end-May / 1.8B end-Jun. Satellite data this week, US stock data first week of May. Draws confirming = structural thesis intact regardless of flat price.
+</div>
+<div class="watch-item updated">
+  <strong>7. Oil Not Dead &ldquo;Decompression&rdquo; (Apr 17, paywall).</strong> Read Monday before repositioning &mdash; title suggests risk-premium unwind commentary; may inform sizing on the structural vs tactical split.
+</div>
+<div class="watch-item">
+  <strong>8. HFI Research next post.</strong> Apr 16 &ldquo;Oil Storage Math&rdquo; was the latest. HFI&rsquo;s storage-draws thesis unaffected by Apr 17 price move &mdash; 3 tankers don&rsquo;t rebuild 1.2B bbl. Expect weekend or Monday post referencing the Apr 17 crash.
+</div>
+<div class="watch-item">
+  <strong>9. Q3 LSFO/Brent crack.</strong> Canary: if Q3 held or widened Apr 17, core trade (50%) validates. If it compressed on sympathy, structural thesis is being rejected by the market (not just crude).
+</div>
+<div class="watch-item">
+  <strong>10. Andurand / Blas / Kpler / Goh / Crosby X posts.</strong> -10% day will have generated heavy reaction posting. Open @m7madden/Oil list manually Monday AM.
+</div>
+
+<!-- ======================== FOOTER ======================== -->
+<p style="text-align:center;color:var(--subtle);font-size:0.75rem;margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);">
+  Analysis anchored on Sparta Commodities research. Independent views from HFI Research and Oil Not Dead. Sell-side data from public sources.<br>
+  This is analytical research, not financial advice. All positions require independent verification and risk assessment.<br>
+  Built with Claude Code &mdash; methodology documented in <code>analysis_sparta_ice_gasoil.md</code>
+</p>
+
+</body>
+</html>
