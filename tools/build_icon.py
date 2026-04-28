@@ -13,7 +13,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-EMOJI = "📊"
+EMOJI = "🚢"
 HERE = Path(__file__).parent.resolve()
 ICONSET = Path("/tmp/research-dashboard.iconset")
 MASTER_PNG = Path("/tmp/research-dashboard-master.png")
@@ -21,7 +21,7 @@ ICNS = HERE / "research-dashboard.icns"
 
 TARGET_FILES = [
     HERE / "research-dashboard.command",
-    Path.home() / "Desktop" / "📊 Research Dashboard.command",
+    Path.home() / "Desktop" / "🚢 Research Dashboard.command",
 ]
 
 
