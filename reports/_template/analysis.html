@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>&lt;Topic&gt; Analysis</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --fg: #1a1a1a;
+  --bg: #ffffff;
+  --muted: #6c6c6c;
+  --accent: #0066cc;
+  --border: #e3e3e3;
+  --subtle: #888;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #e8e8e8;
+    --bg: #1a1a1a;
+    --muted: #999;
+    --accent: #66b3ff;
+    --border: #333;
+    --subtle: #777;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 2em 1.5em 4em;
+}
+h1 { font-size: 1.7em; font-weight: 600; margin: 0 0 .15em; letter-spacing: -.01em; }
+h2 { font-size: 1.15em; font-weight: 600; margin: 2em 0 .6em; }
+.subtitle { color: var(--muted); margin: 0 0 1.5em; }
+table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: .92em; }
+th, td { padding: .55em .75em; border-bottom: 1px solid var(--border); text-align: left; }
+th { font-weight: 600; color: var(--muted); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<h1>&lt;Topic&gt;</h1>
+<p class="subtitle">[Lede / current status — one sentence]</p>
+
+<h2>Latest update</h2>
+<p>[Date and what changed since last refresh]</p>
+
+<h2>Trade ideas</h2>
+<table>
+  <tr><th>Trade</th><th>Direction</th><th>Current state</th></tr>
+  <tr><td></td><td></td><td></td></tr>
+</table>
+
+<h2>Core thesis</h2>
+<p>[Load-bearing claim]</p>
+
+<p style="text-align:center;color:var(--subtle);font-size:.75rem;margin-top:3rem;padding-top:1rem;border-top:1px solid var(--border);">
+  Built with Claude Code &mdash; methodology documented in <code>methodology.md</code>
+</p>
+
+</body>
+</html>
