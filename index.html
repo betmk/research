@@ -2,11 +2,102 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="0; url=hormuz_analysis.html">
-<title>Redirecting to Hormuz Analysis...</title>
-<script>window.location.replace('hormuz_analysis.html');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research Dashboard</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --fg: #1a1a1a;
+  --bg: #ffffff;
+  --muted: #6c6c6c;
+  --accent: #0066cc;
+  --border: #e3e3e3;
+  --card-bg: #fafafa;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #e8e8e8;
+    --bg: #1a1a1a;
+    --muted: #999;
+    --accent: #66b3ff;
+    --border: #333;
+    --card-bg: #252525;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 2.5em 1.5em 4em;
+}
+h1 { font-size: 1.8em; font-weight: 600; margin: 0 0 .15em; letter-spacing: -.01em; }
+h2 { font-size: .8em; font-weight: 600; margin: 2.2em 0 .8em; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.subtitle { color: var(--muted); margin: 0 0 .5em; font-size: .95em; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+code { font-size: .9em; background: var(--card-bg); padding: .1em .35em; border-radius: 3px; }
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1em 1.25em;
+  margin-bottom: .7em;
+  background: var(--card-bg);
+}
+.card-title { font-weight: 600; margin: 0 0 .25em; }
+.card-meta { color: var(--muted); font-size: .9em; margin: 0 0 .55em; line-height: 1.45; }
+.card-actions { font-size: .9em; margin: 0; }
+.card-actions a { margin-right: 1.2em; }
+
+.empty { color: var(--muted); font-style: italic; padding: .25em 0; font-size: .92em; }
+
+footer {
+  margin-top: 3em;
+  padding-top: 1.2em;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: .82em;
+  line-height: 1.6;
+}
+</style>
 </head>
 <body>
-<p>Redirecting to <a href="hormuz_analysis.html">hormuz_analysis.html</a>...</p>
+
+<h1>Research Dashboard</h1>
+<p class="subtitle">Equity research reports and tracked topics</p>
+
+<h2>Tracked topics</h2>
+
+<div class="card">
+  <p class="card-title">Hormuz</p>
+  <p class="card-meta">ICE Gasoil + Sparta-anchored. Trader desk view of the Hormuz crisis: cracks, spreads, freight, fuel oil routing loop.</p>
+  <p class="card-actions">
+    <a href="reports/hormuz/analysis.html">Open analysis &rarr;</a>
+    <a href="reports/hormuz/methodology.md">Methodology</a>
+    <a href="reports/hormuz/CHANGELOG.md">Changelog</a>
+  </p>
+</div>
+
+<h2>Sweeps</h2>
+<p class="empty">No saved sweeps yet. <code>/research-social</code> and <code>/research-demand</code> default to chat; ask Claude to save to <code>sweeps/</code> for persistence.</p>
+
+<h2>Tools</h2>
+
+<div class="card">
+  <p class="card-title">claude-research launcher</p>
+  <p class="card-meta">Restricted-mode wrapper for high-fetch sessions. MCPs disabled, write tools blocked, hardened prompt appended.</p>
+  <p class="card-actions">
+    <a href="tools/README.md">Docs</a>
+  </p>
+</div>
+
+<footer>
+  Served on <code>localhost:8530</code> via <code>python3 -m http.server</code>.
+  Restart the dashboard via the desktop shortcut.
+</footer>
+
 </body>
 </html>
