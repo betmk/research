@@ -1,16 +1,24 @@
 # research/tools/
 
-Tooling for restricted "research mode" Claude Code sessions.
+Tooling for the research project.
 
 ## Contents
 
-- `claude-research` — wrapper script that launches Claude Code with all MCP servers
+- `claude-research` — wrapper that launches Claude Code with all MCP servers
   disabled, write-capable tools blocked, and a hardened system prompt appended. Use
   this for any session whose primary activity is fetching untrusted web content
   (social/demand sweeps, equity research on unfamiliar sites, scraping).
 - `prompts/research-mode.txt` — the system prompt appended to research-mode sessions.
   Documents the detection rules for forged `<system-reminder>` injection. Edit this
   file to tune the rules — changes take effect on the next `claude-research` launch.
+- `research-dashboard.command` — Mac launcher that starts `python3 -m http.server`
+  on port 8530 (idempotent) and opens the Research Dashboard in the default browser.
+  Source-of-truth for the `📊 Research Dashboard.command` shortcut on the Desktop.
+- `research-dashboard.icns` — custom icon (📊 emoji rendered to a multi-resolution
+  Mac icon set) for the launcher.
+- `build_icon.py` — regenerates `research-dashboard.icns` from the emoji and applies
+  it to the launcher files. Re-run after any reinstall (icons live in macOS extended
+  attributes, which do not survive `git`, `cp`, or `mv`).
 
 ## Usage (Mac)
 
@@ -65,3 +73,17 @@ To add a new permanent rule to research mode, edit `prompts/research-mode.txt`.
 To tune injection detection patterns, edit `~/.claude/hooks/scan-tool-result.sh`.
 To change MCP availability in research mode, edit the launcher directly and add
 specific servers to the `--mcp-config` argument.
+
+## Dashboard launcher
+
+The `📊 Research Dashboard.command` Desktop shortcut is a copy of
+`research-dashboard.command` with a custom icon applied via macOS extended
+attributes. To reinstall:
+
+```bash
+cp tools/research-dashboard.command "$HOME/Desktop/📊 Research Dashboard.command"
+chmod +x "$HOME/Desktop/📊 Research Dashboard.command"
+python3 tools/build_icon.py   # re-applies the icon to both files
+```
+
+To change the emoji, edit `EMOJI` at the top of `build_icon.py` and re-run.
