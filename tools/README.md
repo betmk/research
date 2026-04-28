@@ -13,8 +13,8 @@ Tooling for the research project.
   file to tune the rules — changes take effect on the next `claude-research` launch.
 - `research-dashboard.command` — Mac launcher that starts `python3 -m http.server`
   on port 8530 (idempotent) and opens the Research Dashboard in the default browser.
-  Source-of-truth for the `🚢 Research Dashboard.command` shortcut on the Desktop.
-- `research-dashboard.icns` — custom icon (🚢 emoji rendered to a multi-resolution
+  Source-of-truth for the `🔎 Research Dashboard.command` shortcut on the Desktop.
+- `research-dashboard.icns` — custom icon (🔎 emoji rendered to a multi-resolution
   Mac icon set) for the launcher.
 - `build_icon.py` — regenerates `research-dashboard.icns` from the emoji and applies
   it to the launcher files. Re-run after any reinstall (icons live in macOS extended
@@ -76,13 +76,13 @@ specific servers to the `--mcp-config` argument.
 
 ## Dashboard launcher
 
-The `🚢 Research Dashboard.command` Desktop shortcut is a copy of
+The `🔎 Research Dashboard.command` Desktop shortcut is a copy of
 `research-dashboard.command` with a custom icon applied via macOS extended
 attributes. To reinstall:
 
 ```bash
-cp tools/research-dashboard.command "$HOME/Desktop/🚢 Research Dashboard.command"
-chmod +x "$HOME/Desktop/🚢 Research Dashboard.command"
+cp tools/research-dashboard.command "$HOME/Desktop/🔎 Research Dashboard.command"
+chmod +x "$HOME/Desktop/🔎 Research Dashboard.command"
 python3 tools/build_icon.py   # re-applies the icon to both files
 ```
 
