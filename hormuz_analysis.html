@@ -938,10 +938,12 @@
   /* Any inline background using --accent or --accent2 for pink/navy backgrounds → neutral */
   [style*="background:#fdf2f2"], [style*="background: #fdf2f2"] { background: var(--signal-down-bg) !important; }
 
-  /* NEW IDEAS heading — informational accent (blue) not P&L-down (red) */
-  h3.new-ideas-heading {
+  /* Trade-block sub-headings — color-coded by source provenance */
+  h3.new-ideas-heading,
+  h3.sparta-block-heading,
+  h3.adjacent-block-heading,
+  h3.operational-block-heading {
     margin-top: 2rem !important;
-    color: var(--accent) !important;
     display: flex;
     align-items: center;
     gap: 0.6rem;
@@ -951,16 +953,46 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     padding: 0.5rem 0.85rem;
-    background: var(--signal-info-bg);
-    border: 1px solid var(--signal-info-border);
     border-radius: var(--r-sm);
+    border: 1px solid;
   }
-  h3.new-ideas-heading::before {
-    content: '+';
-    font-size: 1.1rem;
-    font-weight: 900;
+  h3.new-ideas-heading::before,
+  h3.sparta-block-heading::before,
+  h3.adjacent-block-heading::before,
+  h3.operational-block-heading::before {
+    font-size: 1rem;
+    font-weight: 700;
     line-height: 1;
   }
+  /* Sparta-anchored = green (primary trusted source) */
+  h3.sparta-block-heading {
+    color: var(--signal-up) !important;
+    background: var(--signal-up-bg);
+    border-color: var(--signal-up-border);
+    margin-top: 1.25rem !important;
+  }
+  h3.sparta-block-heading::before { content: '\2713'; /* check mark */ }
+  /* Adjacent = amber (useful but secondary, NOT Sparta) */
+  h3.adjacent-block-heading {
+    color: var(--signal-warn) !important;
+    background: var(--signal-warn-bg);
+    border-color: var(--signal-warn-border);
+  }
+  h3.adjacent-block-heading::before { content: '\25CB'; /* circle = caveat */ }
+  /* Operational = neutral (housekeeping, not a trade idea) */
+  h3.operational-block-heading {
+    color: var(--text-2) !important;
+    background: var(--bg-3);
+    border-color: var(--border-1);
+  }
+  h3.operational-block-heading::before { content: '\26A1'; /* lightning bolt */ }
+  /* Legacy "NEW IDEAS" — informational accent (blue) */
+  h3.new-ideas-heading {
+    color: var(--accent) !important;
+    background: var(--signal-info-bg);
+    border-color: var(--signal-info-border);
+  }
+  h3.new-ideas-heading::before { content: '+'; }
 
   /* Footer paragraph normalization */
   body > p[style*="text-align:center"]:last-of-type {
@@ -1207,7 +1239,9 @@
 <!-- ======================== TRADE IDEAS ======================== -->
 <h2 id="trade-ideas">Trade Ideas</h2>
 
-<p style="font-size:0.85rem;color:var(--subtle);margin-bottom:0.75rem;font-style:italic;"><strong>RE-WORK (Apr 27 &mdash; post Apr 22 binary).</strong> Trump extended ceasefire indefinitely Apr 21 but kept the blockade live; Iran seized two ships Apr 22; Brent ripped +$16.60 to $105.33 in 5 sessions. <strong>Andurand fund &minus;52% Apr 1H = the crowded long is OUT.</strong> Sparta Ep 90: <em>"the market is exhausted, the crisis is not."</em> June Goh now publicly long Q3 VLSFO cracks at $11. Oil Not Dead "Frozen": <strong>M6&ndash;M12 underprices the rebuild requirement.</strong> Drives one new trade and one expiry roll this week.</p>
+<p style="font-size:0.85rem;color:var(--subtle);margin-bottom:0.75rem;font-style:italic;"><strong>Source attribution:</strong> trades are organized by provenance. The <strong>Sparta-anchored book</strong> (#1&ndash;9) is what the desk runs by default &mdash; every trade traces directly to a Sparta call (June Goh, Crosby, Felipe Elink-Schuurman, podcast or insights). <strong>Adjacent ideas</strong> (#10, #12) come from Oil Not Dead and Rory Johnston respectively &mdash; useful signal but not Sparta. <strong>Operational housekeeping</strong> (#11) is contract-roll mechanics, not a trade call.</p>
+
+<h3 class="sparta-block-heading">Sparta-anchored book</h3>
 
 <!-- TRADE 1 -->
 <div class="trade-card bullish updated">
@@ -1327,17 +1361,37 @@
   </div>
 </div>
 
-<h3 class="new-ideas-heading">NEW IDEAS (Apr 27)</h3>
+<h3 class="operational-block-heading">Operational housekeeping &mdash; not a Sparta call</h3>
 
-<!-- TRADE 10 (NEW) -->
+<!-- TRADE 11 -->
+<div class="trade-card neutral updated">
+  <div class="trade-name">11. EXPIRY ROLL: CBM26 &rarr; CBN26 + HOK26 &rarr; HOM26 by Thu Apr 30 <span class="conviction high">MANDATORY HOUSEKEEPING</span></div>
+  <div class="trade-status">
+    <strong>Not a trade &mdash; a contract roll.</strong> Pure mechanics, applies to BOTH the Sparta-anchored block (CBM-based legs in Trades #3 synthetic + #8) and the adjacent CBV/CBN spread (Trade #10).
+    <br><br>
+    <strong>CBM26 (Brent June) expires Thu Apr 30</strong> per ICE rule (last business day of 2nd prior month). Roll outright Brent length to <strong>CBN26</strong> (July, expires May 29) by Wed Apr 29.
+    <br><br>
+    <strong>HOK26 (NYMEX HO May) also expires Apr 30</strong> (last business day of prior month). Roll any HO length to HOM26 (June, expires May 29).
+    <br><br>
+    <strong>IB execution:</strong> Use spread-roll orders rather than legged executions to avoid slippage in the +18.7% rip environment.
+  </div>
+</div>
+
+<h3 class="adjacent-block-heading">Adjacent ideas &mdash; non-Sparta sources</h3>
+
+<p style="font-size:0.82rem;color:var(--text-3);margin-top:0.25rem;margin-bottom:0.6rem;font-style:italic;">These are useful trades from sources we follow but they are <strong>not</strong> Sparta calls. Sized smaller; not part of the core book. Source author cited in each card.</p>
+
+<!-- TRADE 10 -->
 <div class="trade-card bullish updated">
-  <div class="trade-name">10. M6&ndash;M12 back-end length on Brent (Long CBV26 / Short CBN26) <span class="conviction high">HIGH &mdash; REINFORCED by Apr 27 talks collapse</span></div>
+  <div class="trade-name">10. M6&ndash;M12 back-end length on Brent (Long CBV26 / Short CBN26) &mdash; <em>source: Oil Not Dead</em> <span class="conviction high">HIGH &mdash; REINFORCED by Apr 27 talks collapse</span></div>
   <div class="trade-status">
     <strong>~10% allocation, consider scaling.</strong>
     <br><br>
+    <strong>Source:</strong> <a href="https://theoilbandit.substack.com/archive?sort=new">Oil Not Dead "Frozen &mdash; Should I stay or should I go?" (Apr 24)</a>. <em>Not a Sparta call</em> &mdash; Sparta&rsquo;s Ep 90 supports the &ldquo;Strait stays closed through summer&rdquo; framing that makes this trade work, but the explicit M6&ndash;M12 mispricing thesis is OND&rsquo;s.
+    <br><br>
     <strong>Apr 28 update:</strong> Brent Dec26 still ~$79.70 vs front $106.73 = M1&ndash;M12 spread ~$27 (steep backwardation). <strong>Trump&rsquo;s Apr 27 rejection of Iran&rsquo;s strait-for-blockade-lift offer extends the crisis-duration tail.</strong> Failed diplomatic off-ramp argues for back-end widening (M12 should catch bid as the &ldquo;this resolves&rdquo; price gets pushed out). Stay 10%, consider scaling.
     <br><br>
-    <strong>Thesis (Oil Not Dead Apr 24 "Frozen"):</strong> Front 3 months are priced for crisis &mdash; missing barrels, blockade, ship seizures. <strong>But M6&ndash;M12 segment underprices the inventory rebuild requirement.</strong> Atlantic Council math: post-reopening replenishment alone needs <strong>+1.8M b/d incremental demand for a year.</strong> If Strait stays closed through summer (Sparta Ep 90 explicit), Rory Johnston frames potential <strong>$200 Brent by end-June</strong>; the back-end has to grind higher even without that tail.
+    <strong>Thesis (OND "Frozen"):</strong> Front 3 months are priced for crisis &mdash; missing barrels, blockade, ship seizures. <strong>But M6&ndash;M12 segment underprices the inventory rebuild requirement.</strong> Atlantic Council math: post-reopening replenishment alone needs <strong>+1.8M b/d incremental demand for a year.</strong> Rory Johnston: potential <strong>$200 Brent by end-June</strong> if Strait stays closed.
     <br><br>
     <strong>IB structure:</strong>
     <ul style="margin-top:0.25rem;">
@@ -1351,48 +1405,38 @@
   </div>
 </div>
 
-<!-- TRADE 11 (NEW) -->
-<div class="trade-card neutral updated">
-  <div class="trade-name">11. EXPIRY ROLL: CBM26 &rarr; CBN26 by Thu Apr 30 <span class="conviction high">MANDATORY HOUSEKEEPING</span></div>
-  <div class="trade-status">
-    <strong>Not a new trade &mdash; a contract roll.</strong>
-    <br><br>
-    <strong>CBM26 (Brent June) expires Thu Apr 30.</strong> Per ICE rule (last business day of 2nd prior month). Any outright Brent length needs to roll to <strong>CBN26</strong> (July, expires May 29) before then. Same for any CBM-based crack/pair structures (Trade #3 synthetic, Trade #8).
-    <br><br>
-    <strong>HOK26 (NYMEX HO May) also expires Apr 30</strong> (last business day of prior month). Roll any HO length to HOM26 (June, expires May 29).
-    <br><br>
-    <strong>IB execution:</strong> Use spread-roll orders rather than legged executions to avoid slippage on the rip-back environment.
-  </div>
-</div>
-
-<!-- TRADE 12 (WATCH) -->
+<!-- TRADE 12 -->
 <div class="trade-card bullish updated">
-  <div class="trade-name">12. Brent $120 calls CBQ26 (Aug) &mdash; convex tail bet <span class="conviction medium">REINFORCED &mdash; consider initiating</span></div>
+  <div class="trade-name">12. Brent $120 calls CBQ26 (Aug) &mdash; convex tail bet &mdash; <em>source: Rory Johnston / Commodity Context</em> <span class="conviction medium">REINFORCED &mdash; consider initiating</span></div>
   <div class="trade-status">
     <strong>0.5&ndash;1% allocation. Consider initiating if unfilled.</strong>
     <br><br>
+    <strong>Source:</strong> <a href="https://www.commoditycontext.com/p/sanguine-strait-stoppage">Rory Johnston, Commodity Context "Sanguine Strait Stoppage"</a> &mdash; <strong>prompt Brent could approach $200/bbl by end-June</strong> if Hormuz stays closed. <em>Not a Sparta call</em> &mdash; Sparta&rsquo;s 3-6 month logistics-rebuild thesis is consistent with the upside but doesn&rsquo;t put a number on it.
+    <br><br>
     <strong>Apr 28 update:</strong> Trump&rsquo;s Apr 27 rejection of Iran&rsquo;s offer + Apr 27 transit data &ldquo;false dawn&rdquo; (only 7 vessels, mostly dry bulk) make the &ldquo;Hormuz stays closed&rdquo; tail less remote. The $200 framing was already on the table; talks collapse pushes probability up.
     <br><br>
-    <strong>Logic:</strong> Rory Johnston (Commodity Context) flags <strong>prompt Brent could approach $200/bbl by end-June</strong> if Hormuz stays closed. $120 calls CBQ26 are still deep OTM at $106.73 spot &mdash; convex payoff if closure extends + supply math gets ugly.
+    <strong>Logic:</strong> $120 calls CBQ26 are still deep OTM at $106.73 spot &mdash; convex payoff if closure extends + supply math gets ugly.
     <br><br>
     <strong>IB symbols:</strong> Long <strong>CBQ26 C120</strong> (August Brent calls, ~Jun 30 expiry on the option side). Or stagger across CBN26/CBQ26/CBU26 strikes.
     <br><br>
-    <strong>This is a "size small or pass" idea</strong> &mdash; not core thesis, just convex insurance against the upside tail. Treat like buying lottery tickets with risk capital.
+    <strong>"Size small or pass"</strong> &mdash; not core thesis, just convex insurance against the upside tail. Treat like buying lottery tickets with risk capital.
   </div>
 </div>
 
 <div class="flow-callout">
-  <span class="big-label">ALLOCATION SUMMARY (post Apr 22 resolution)</span>
-  <strong>Core (50%):</strong> Q3 Sing LSFO/Brent crack &mdash; June Goh public-aligned at $11.<br>
-  <strong>Distillate structure (45%):</strong> 25% GO Jun/Jul time spread + 15-20% IGOM26 crack + 5% LFM/CB pair (roll to CBN).<br>
-  <strong>NEW Back-end length (10%):</strong> CBV26 long / CBN26 short &mdash; Oil Not Dead "Frozen" thesis.<br>
-  <strong>Hedge (active):</strong> Roll Brent puts up from $80 to $90 strike on CBN26.<br>
-  <strong>Freight (5%):</strong> Hold; ship seizures + mine-laying response strengthens thesis.<br>
-  <strong>Tail bet (0.5-1% optional):</strong> CBQ26 $120 calls if you want $200-Brent convexity.<br>
-  <strong>Flat:</strong> HOGO (squeeze ongoing per Sparta Ep 90).<br>
-  <strong>Closed/winner:</strong> CBM26 $89 straddle &mdash; call leg $16+ ITM at $105 Brent.<br>
-  <strong>Killed:</strong> Iran-relisting watch &mdash; no relisting pathway in "sloppy peace."<br>
-  <strong>Mandatory this week:</strong> Roll CBM26&rarr;CBN26 and HOK26&rarr;HOM26 by Thu Apr 30.
+  <span class="big-label">ALLOCATION SUMMARY (post Apr 27 talks rejection)</span>
+  <strong style="color:var(--signal-up);">SPARTA-ANCHORED (~85% of book):</strong><br>
+  &nbsp;&nbsp;&bull; Core (50%): Q3 Sing LSFO/Brent crack &mdash; June Goh public-aligned at $11<br>
+  &nbsp;&nbsp;&bull; Distillate structure (45%): 25% GO Jun/Jul + 15-20% IGOM26 crack + 5% LFM/CB pair (roll short to CBN)<br>
+  &nbsp;&nbsp;&bull; Freight (5%): MR TC2/TC14 &mdash; Sparta Ep 89 explicit<br>
+  &nbsp;&nbsp;&bull; Hedge: Brent puts roll $80&rarr;$90 strike on CBN26 (risk overlay, not a Sparta call)<br>
+  &nbsp;&nbsp;&bull; Flat: HOGO (Sparta Ep 90 confirms squeeze ongoing)<br>
+  <strong style="color:var(--signal-warn);">ADJACENT &mdash; non-Sparta sources (~10-11%):</strong><br>
+  &nbsp;&nbsp;&bull; M6&ndash;M12 back-end length (10%): CBV26 long / CBN26 short &mdash; <em>Oil Not Dead "Frozen"</em><br>
+  &nbsp;&nbsp;&bull; Tail bet (0.5-1% optional): CBQ26 $120 calls &mdash; <em>Rory Johnston $200 framing</em><br>
+  <strong style="color:var(--text-2);">OPERATIONAL (this week):</strong><br>
+  &nbsp;&nbsp;&bull; Roll CBM26&rarr;CBN26 and HOK26&rarr;HOM26 by Wed Apr 29 (Thu expiry)<br>
+  <strong>Closed/winner:</strong> CBM26 $89 straddle &mdash; call leg $16+ ITM at $106.73 Brent. <strong>Killed:</strong> Iran-relisting watch &mdash; no relisting pathway in "sloppy peace."
 </div>
 
 <!-- ======================== SPARTA FRAMEWORK ======================== -->
