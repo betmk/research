@@ -30,6 +30,9 @@ When the user says "refresh", "update", or "what's new":
 4. **X/Twitter Oil List** — @m7madden/Oil (Andurand, Blas, Brew, Ed Fin, Kpler, etc.)
 5. **EIA, Kpler, CNBC, Al Jazeera** — Corroboration and live quotes only
 
+## Research Standards
+- For material claims about a company, go to primary documents directly (10-K, 10-Q, DEF 14A, earnings transcripts) rather than summaries. Footnotes are where earnings quality issues hide.
+
 ## Error Handling
 - All web fetches (APIs, scrapers) must have try/except with meaningful messages.
 - Graceful degradation: if a data source fails, note it in the report rather than crashing.
@@ -39,6 +42,16 @@ When the user says "refresh", "update", or "what's new":
 - Python 3.12+, Plotly (interactive charts)
 - Output: self-contained HTML files (embedded CSS/JS, no external dependencies)
 - Preview: Claude Preview side panel (port 8530) OR `python3 -m http.server 8530`
+
+## Available Tools
+- **Chrome DevTools** — primary tool for pulling content from logged-in sources (HFI Research, Oil Not Dead).
+- **Serena** — symbol search for HTML generators and analysis scripts.
+- **Exa** — alternate web search backend.
+- **Context7** — Plotly docs.
+- **Sequential Thinking** — multi-source analytical reasoning during refreshes.
+
+## API & Scraping
+- Reduce web fetch volume: rely on the 15-min WebFetch cache, don't re-fetch sources you already pulled this session, batch related queries, randomize timing on repeated source polls.
 
 ## Key Conventions
 - Reports are generated as styled HTML with embedded CSS (dark/light compatible).

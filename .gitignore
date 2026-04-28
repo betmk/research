@@ -18,7 +18,6 @@ venv/
 
 # Claude Code
 .claude/settings.local.json
-.claude/settings.json
 
 # Streamlit
 .streamlit_server.log
