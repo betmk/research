@@ -13,8 +13,16 @@
 #   claude-research /research-social tesla
 #   claude-research -p "What did Sparta say about Hormuz today?"
 
-# Hardcoded path to the prompt file (stable, lives next to this script).
-PROMPT_FILE="/Users/mikemadden/Desktop/Claude Projects/research/tools/prompts/research-mode.txt"
+# Resolve script directory, following symlinks (this script is symlinked at ~/.local/bin/claude-research).
+SOURCE="${BASH_SOURCE[0]}"
+while [ -L "$SOURCE" ]; do
+  DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+SCRIPT_DIR="$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )"
+
+PROMPT_FILE="$SCRIPT_DIR/prompts/research-mode.txt"
 
 if [ ! -f "$PROMPT_FILE" ]; then
   echo "error: research-mode prompt file not found at $PROMPT_FILE" >&2
