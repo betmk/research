@@ -29,6 +29,12 @@ if [ ! -f "$PROMPT_FILE" ]; then
   exit 1
 fi
 
+if [ ! -s "$PROMPT_FILE" ]; then
+  echo "error: research-mode prompt file is empty: $PROMPT_FILE" >&2
+  echo "the hardened system prompt is required for restricted research mode." >&2
+  exit 1
+fi
+
 exec claude \
   --strict-mcp-config \
   --mcp-config '{}' \

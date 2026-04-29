@@ -21,3 +21,6 @@ venv/
 
 # Streamlit
 .streamlit_server.log
+
+# Dashboard launcher log (research-dashboard.command)
+.research-server.log

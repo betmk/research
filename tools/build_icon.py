@@ -117,4 +117,20 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except FileNotFoundError as exc:
+        # `sips` or `iconutil` not on PATH — usually means non-macOS or stripped /usr/bin.
+        print(f"error: required tool not found ({exc.filename or exc}). "
+              "build_icon.py needs sips and iconutil from macOS.", file=sys.stderr)
+        sys.exit(2)
+    except subprocess.CalledProcessError as exc:
+        cmd = " ".join(str(a) for a in exc.cmd)
+        print(f"error: `{cmd}` exited {exc.returncode}", file=sys.stderr)
+        if exc.stderr:
+            print(exc.stderr.decode(errors="replace"), file=sys.stderr)
+        sys.exit(exc.returncode)
+    except ImportError as exc:
+        print(f"error: PyObjC not available ({exc}). "
+              "Run with system Python or `pip install pyobjc-framework-AppKit`.", file=sys.stderr)
+        sys.exit(2)

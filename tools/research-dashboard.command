@@ -33,8 +33,16 @@ if ! command -v python3 > /dev/null 2>&1; then
 fi
 
 if ! lsof -i ":${PORT}" -sTCP:LISTEN > /dev/null 2>&1; then
-  nohup python3 -m http.server "$PORT" > /dev/null 2>&1 &
+  LOG="$REPO/.research-server.log"
+  nohup python3 -m http.server "$PORT" >> "$LOG" 2>&1 &
   sleep 0.5
+  # If the port still isn't listening, the server failed — show the tail.
+  if ! lsof -i ":${PORT}" -sTCP:LISTEN > /dev/null 2>&1; then
+    echo "Failed to start http.server on port ${PORT}. Last 20 lines of $LOG:"
+    tail -20 "$LOG" 2>/dev/null || echo "(log file empty or unreadable)"
+    read -p "Press Enter to close..."
+    exit 1
+  fi
 fi
 
 open "$URL"
