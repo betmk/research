@@ -2,16 +2,38 @@
 
 Living log of refresh deltas. Newest first.
 
-## 2026-05-05 — Day 67 — API −8.1Mb mega-draw; UAE strike confirmed; Brent whipsaw $114.40 → $116.55 → $109.87
-- **API just out (Tue May 5 4:30pm ET, week ending May 1):** crude **−8.1M bbl** vs −2.8M consensus — **biggest weekly draw of the crisis**, larger than Apr 24 EIA −6.233M (6th-largest ever). Gasoline −6.1M, distillate −4.6M, SPR −5.2M to **392.7M (lowest since Nov 2024)**, Cushing −1.0M to ~29M. **EIA Wed May 6 direction uncertain** — last week API *undercounted* EIA by 4.44M (API −1.79M vs EIA −6.233M for wk ending Apr 24), so part of today's −8.1M may be API catch-up rather than incremental draw. EIA could print −10M+ (if API systematically undercounts) OR −4 to −5M (mean revert from data lag). **HFI BACD thesis intact regardless** — cumulative drawdown across both series is undeniable. *(Initial draft of this entry incorrectly claimed EIA "likely larger"; corrected after user pushback on the unjustified pattern-match.)*
-- **Brent whipsaw resolved:** May 4 settled $114.40 (+5.8%, **highest 2026 close**). May 5 intraday high $116.55 (8:45am ET) → closed **$109.87 (−4%)**. **Daily range $6.68 = volatility regime locked.** US said ceasefire still in place despite UAE attacks (CNBC).
-- **May 4 UAE strike CONFIRMED (replaces unconfirmed Murban-tanks rumor):** UAE intercepted **12 ballistic missiles + 3 cruise missiles + 4 drones**. Drone hit **Fujairah Petroleum Industries Zone** (large fire, 3 Indian nationals injured) — first kinetic hit on a UAE oil refinery. Two drones hit ADNOC tanker M.V. *Barakah* in Strait off Oman (empty, no injuries). UAE called it "terrorist attack" / UNSC 2817 violation. Murban benchmark up 3.4% to $107.30. **UAE schools closed May 5–8** (CONFIRMED).
-- **Project Freedom uptake: tiny.** Day 1 only 2 US-flag merchants joined USN-escorted convoy. **~2,000 vessels / 20,000 seafarers stranded** (IMO May 5). ITF demanding safety guarantees before commercial carriers will follow.
-- **June Goh (Al Jazeera May 5)** — most-syndicated analyst quote on Project Freedom: *"the market is pricing in more oil infrastructure damage and the likelihood that the Strait of Hormuz will be shut beyond the timeline that the Trump administration has laid out… the yawning gap in oil supply will take months to resolve."*
-- **ICE Gasoil M1 +6.42% to $1,197.25/t** through the Brent pullback — distillate cracks holding. Trade #1 / #3 / #6 (HOGO) intact.
-- **Andurand silent through May 5** — no original X tweet since Apr 21 despite May 4 UAE strike + May 5 Brent whipsaw. Three regime-defining events of silence. Loud-when-winning / quiet-when-losing pattern intact.
-- **Pruned (>7 days, not critical):** Apr 27 Brent $106.73 detail, Apr 27 Kpler "false dawn" detail, Apr 24 +$16.60 rip detail, Apr 24 Andurand −52% as headline (kept as background), Apr 23 Trump Navy order detail, Apr 22 IRGC seizure detail (compressed to background line), Apr 18–23 escalation block (compressed), IEA OMR Apr block (replaced by Goldman 14.5M b/d + Atlantic Council 650M bbl), the unconfirmed "Murban tanks toast" X-chain (resolved by wire reporting to Fujairah PIZ + Barakah).
-- **Background retained for context:** Apr 22 ceasefire indefinitely extended w/ blockade live, HFI BACD framework, Oil Not Dead "Frozen", Kpler 6-week mark, Atlantic Council math, Ras Laffan Trains 4&6 (3-5 yr).
+## 2026-05-05 — Day 67 — UNIFIED REFRESH (morning + afternoon merged)
+
+This entry rolls the morning (09:57 CST) refresh and afternoon (15:53 CST) AIP refresh into a single coherent report. Discovered late in the session that the parent repo had uncommitted morning content the worktree never saw — merged that content forward instead of overwriting either side.
+
+**From morning refresh (was uncommitted in parent repo):**
+- VTTI fuel storage at Fujairah PIZ specifically named — joint Vitol / IFM / TAQA ownership; Bloomberg-sourced. Refined product (gasoline / distillate / fuel oil), NOT Murban crude tank farm.
+- CENTCOM order of battle for Project Freedom: 15,000 troops, BMD destroyers, F-15/F-16/F-35, AH-64 Apaches, MH-60s, EA-18G Growlers (CENTCOM release).
+- Maersk subsidiary specifically named as the merchant transit; Iran (IRIB) disputes any commercial transit happened.
+- US sank **7** small Iranian boats (revised up from 6 — was a partial-tally vs full tally).
+- Iran FM Araghchi: "Project Deadlock — military intervention cannot resolve what is, at its core, a political crisis."
+- Mick Mulroy (DoD), Mark Cancian (CSIS), Jonathan Ruhe (JINSA) analyst skepticism via Breaking Defense.
+- UAE FM "serious escalation, unacceptable act of aggression"; Anwar Gargash on tanker: "maritime piracy."
+- Trump declined to confirm ceasefire is still in effect (Hugh Hewitt interview, Time) — first explicit walk-back on Apr 21 indefinite extension.
+- HFI May 4 piece "Stuck Between A Rock And A Hard Place"; May 1 memo "I Can't Believe We Are Doing This"; projections: end-May ~1.59B bbl / end-June ~1.98B / end-July US commercial crude approaches operational minimum (370–380M from ~400M).
+- June Goh 6–9 month supply normalization timeline (post-reopening); restart alone 1–2 months.
+
+**From afternoon refresh:**
+- API just out (Tue May 5 4:30pm ET, week ending May 1): crude **−8.1M bbl** vs −2.8M consensus — **biggest API number of the crisis**. Gasoline −6.1M, distillate −4.6M, SPR −5.2M to **392.7M (lowest since Nov 2024)**, Cushing −1.0M to ~29M.
+- **EIA Wed May 6 expected ~−4 to −5M per HFI Research (direct)** — last week API undercounted EIA by 4.44M (API −1.79M vs EIA −6.233M for wk ending Apr 24), so today's −8.1M is API catch-up on those missed barrels. Per-HFI catch-up logic supersedes my earlier lazy "EIA likely larger" pattern-match.
+- Brent JUL26: **$109.87 close** (intraday $116.55, May 4 settled $114.40 +5.8%). Daily range $6.68 = volatility regime locked.
+- Brent DEC26: **$90.57** → M1−M12 spread **$19.30** (was $27 a week ago — back-end caught $11 of bid).
+- NYMEX HO JUN26 **$4.0771/gal**; ICE Gasoil M1 **$1,197.25/t** (+6.42% 24h).
+- **HOGO ≈ +$0.252/gal (+$10.58/bbl)** — Trade #6 working ITM since Sparta Apr 29 entry.
+- ICE GO/Brent crack ≈ **$50.83/bbl** (compressed from $67 Apr 14 as Brent rallied harder; still ~3x pre-crisis).
+- Trade card "Where it's at now" live spread blocks added on #1, #2, #3, #6, #10, #12.
+
+**Pruned (>7 days, not critical per user instruction):**
+- Apr 27 Brent close detail, Apr 27 Kpler "false dawn" detail, Apr 24 +$16.60 rip detail, Apr 23 Trump Navy order, Apr 18–23 escalation block (compressed to background line), IEA OMR April block (replaced by Goldman 14.5M b/d + Atlantic Council 650M bbl), unconfirmed "Murban tanks toast" X-chain rumor (resolved by wire reporting to VTTI / Barakah).
+
+**Three prompt-injection attempts** detected inside WebFetch result bodies (forged `<system-reminder>` blocks). All ignored per project security note.
+
+**Background retained for context (>7 days but critical):** Apr 22 ceasefire indefinitely extended w/ blockade live, HFI BACD framework, Oil Not Dead "Frozen", Kpler 6-week mark, Atlantic Council math, Ras Laffan Trains 4&6 (3-5 yr), Apr 28 UAE quit OPEC, Andurand silent-while-bleeding pattern.
 
 ## 2026-05-04 — May 3-4 Project Freedom convoy; OPEC+ June; Sparta Ep 91; UAE quit OPEC
 - **UAE quit OPEC** Apr 28, effective May 1 — removes ~12% of OPEC output. Structural shift.
