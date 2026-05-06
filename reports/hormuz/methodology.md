@@ -8,16 +8,22 @@
 
 When the user asks for an update, follow this exact workflow:
 
-1. **Pull the latest Sparta podcast episodes** from https://spartacommodities.podbean.com/ — look for new episodes in the "Trade with Conviction" series (currently at Ep. 88 as of Apr 9, 2026)
+1. **Pull the latest Sparta podcast episodes** from https://spartacommodities.podbean.com/ — "Trade with Conviction" series (currently at Ep. 91 from ~Apr 29, 2026; Ep. 92 expected May 6–10)
 2. **Check Sparta's insights page** for new written content: https://www.spartacommodities.com/insights/markets/distillate/
-3. **Check June Goh's X/Twitter** for real-time market color: https://x.com/JuneGoh_Sparta
-4. **Pull live ICE Gasoil prices** from Barchart (https://www.barchart.com/futures/quotes/IGO*1) or TradingView (https://www.tradingview.com/symbols/ICEEUR-ULS1!/)
-5. **Cross-reference with Brent and refined product live prices** — Fortune/CNBC for daily Brent, EIA for US distillate data
-6. **Update the trajectory table** with any new spread/crack data points
-7. **Restate the thesis** — has anything changed structurally? Demand destruction, forward curve complacency, freight bottleneck?
-8. **Update the four trade ideas** with current status
+3. **Check June Goh's X/Twitter** for real-time market color: https://x.com/JuneGoh_Sparta — also wire syndication (Reuters / Al Jazeera / ANI / Bloomberg / CNBC Africa)
+4. **HFI Research** (user has direct line to the analyst — treat as primary source). Public archive: https://www.hfir.com/archive
+5. **Oil Not Dead** (Substack): https://theoilbandit.substack.com/archive?sort=new — drives Trade #10 (M6–M12 length)
+6. **Pull live levels:**
+   - ICE Gasoil M1 — Barchart (https://www.barchart.com/futures/quotes/IGO*1) or TradingView (https://www.tradingview.com/symbols/ICEEUR-ULS1!/)
+   - Brent JUL26 / DEC26 — Barchart (CBN26 / CBZ26)
+   - NYMEX HO JUN26 — Investing.com
+   - Murban — Al Jazeera / OilPrice
+7. **Inventory data:** API release Tue 4:30pm ET; EIA Wed 10:30am ET. **When API and EIA diverge significantly in one week, the next week is typically catch-up not continuation** (per HFI direct, May 5 2026). Don't pattern-match "EIA was bigger last week → EIA will be bigger this week."
+8. **Update the trade card "Where it's at now" blocks** in `analysis.html` with current spreads vs Sparta entry levels. The trade book is 12 active + 2 in Appendix.
+9. **Restate the thesis** — has anything changed structurally? Demand destruction (Spirit Airlines validated May 2), forward curve (M6–M12 catching bid), freight bottleneck (Project Freedom uptake near zero).
+10. **Append a CHANGELOG entry** in `reports/hormuz/CHANGELOG.md`.
 
-The output should be structured like Response #5 (deep methodology + historical) for a fresh take, or Response #6 (delta-only update) when there's new news to react to.
+**Chronology rule:** Everything in `analysis.html` (exec summary, X scrape, infra, trades, watch) should be sorted strictly newest-first. Pruning rule: anything older than 7 days gets removed unless critical/structural or relates to future news.
 
 ---
 
@@ -80,6 +86,32 @@ ICE Gasoil is the denominator in every spread. When it moves, everything reprice
 | Apr 9 | **Ep. 88: Ceasefire Changed Nothing** | Crosby + Jones-Lux + Molinero | **Hormuz still <50% flows**; naphtha E/W largest single-day move ever; physical premiums at records |
 | Apr 12 | **Ceasefire COLLAPSED** | Vance announces talks failed | — |
 | Apr 13 | **US blockade in effect (10am ET)** | **Sparta "Signal Brief: Peace hopes fade, diesel soars"** + Michael Ryan NWE CPP & USGC MR reports | **ICE GO Apr/May spread approaching $170/mt**; May ICE GO +$20/mt single day on blockade; Houston-Rotterdam diesel arb provisionally reopening; EC Canada MR arbs workable; NWE MR vessels 6 vs 90-day avg 15; TC2 spot WS 312 |
+| Apr 17 | **Ceasefire spike-down → $88.73 Brent low** | Andurand &minus;52% Apr 1H | Crowded long oil wiped out; positioning cleanup |
+| Apr 21 | **Ceasefire extended indefinitely** | Trump (per Pakistan request) | Blockade kept live; talks continue |
+| Apr 22 | **IRGC seized MSC Francesca + Epaminondas** | Times of Israel | First commercial seizures since ceasefire |
+| Apr 23 | **Trump ordered Navy to eliminate Iranian mine-layers** | PBS NewsHour | Kinetic posture re-engaged |
+| Apr 24 | **Sparta Ep 90 + Goh public Q3 VLSFO crack at $11/bbl** | Felipe + Goh | Russian supply constraints cited; matches CORE 50% allocation |
+| Apr 24 | Oil Not Dead "Frozen — Should I stay or should I go?" | OND Substack | M6&ndash;M12 segment underprices rebuild → drives Trade #10 |
+| Apr 26 | **HFI: "BACD Is Coming To An Oil Storage Hub Near You"** | HFIR | Onshore inventories breaking records to the downside |
+| Apr 27 | **Apr 22 talks rejection** | Trump rejected Iran proposal | "Sloppy peace" framing (Jared Cohen, Goldman) |
+| Apr 28 | **UAE QUIT OPEC** (effective May 1) | Al Jazeera + Fortune (Hanke) | ~12% of OPEC output gone; structural shift |
+| Apr 29 | **Sparta Ep 91 — "Asia absorbed initial shock; now US is running dry"** | Felipe + Crosby + Molinero | Crosby flagged 3 distillate trades: HOGO long, regrade, diesel cracks. Molinero: ARA-to-PAD1 gasoline arb opening. |
+| Apr 29 | **EIA: crude &minus;6.233M b/d (wk Apr 24, 6th-largest weekly draw ever)** | EIA | HFI BACD thesis printing |
+| Apr 30 | **Brent touched $126 intraday** (4-yr high) | MercoPress | On Trump "short and powerful" strike rhetoric; pulled back to $108. BRN JUN26 settled, JUL26 now front. |
+| May 1 | **Barclays raised 2026 Brent forecast to $100** (from $85) | Investing.com | First major bank to mark to spot |
+| May 1 | **HFI: "Memo — I Can&rsquo;t Believe We Are Doing This"** | HFIR | "The most VISIBLE oil inventories are about to plummet" |
+| May 2 | **Spirit Airlines went under — first US airline casualty** | Goh X / Sparta | Concrete validation of Sparta Framework #1 (demand destruction); Goh's Mar 10 Bloomberg call vindicated |
+| May 3 | **Iran 14-point counter via Pakistan; Trump rejected** | Al Jazeera + CNBC | Nuclear-deferred package: 30-day end-of-war + Hormuz reopen + sanctions lift. Trump: *"not yet paid a big enough price."* |
+| May 3 | **OPEC+ +188K b/d for June** (G-of-7) | CNBC + OPEC | Saudi & Russia +62K each; below May +206K. "Symbolic given Hormuz still choked." |
+| May 4 | **Iran→UAE barrage (12 ballistic + 3 cruise + 4 drones)** | Gulf News + Bloomberg + Al Jazeera | **VTTI fuel storage @ Fujairah PIZ struck (Vitol/IFM/TAQA, refined product NOT Murban crude); ADNOC tanker M.V. Barakah hit (empty)**; 3 Indian nationals injured. UAE schools closed May 5–8. Murban +3.4% to $107.30. **First kinetic strike on UAE oil infrastructure of the war.** |
+| May 4 | **Project Freedom launched (kinetic)** | CENTCOM + CNN + Breaking Defense | 15K troops, BMD destroyers, F-15/16/35, AH-64 Apaches, MH-60s, EA-18Gs. Only **2 US-flag merchants transited Day 1** (Maersk subsidiary). US sank 7 small Iranian boats. Iran FM Araghchi: *"Project Deadlock."* Mulroy/Cancian/Ruhe analyst skepticism. |
+| May 4 | **HFI: "Stuck Between A Rock And A Hard Place"** | HFIR | *"The global markets are not prepared for what's coming."* Projection: end-May ~1.59B bbl loss / end-June ~1.98B / end-July US commercial crude approaches operational minimum (370–380M from ~400M) |
+| May 4 | Brent +5.8% Mon settle $114.40 | (highest 2026 close) | First close above $114 |
+| May 5 | **Brent intraday $116.55 → close $109.87 (&minus;4%)** | Fortune + CNN | Daily range $6.68 = volatility regime locked. ICE Gasoil M1 +6.42% to $1,197.25/t. |
+| May 5 | **Goh on Al Jazeera: 6–9 month supply normalization timeline** | Al Jazeera | *"Global observable inventories falling sharply… Strait of Hormuz will be shut beyond the timeline the Trump administration has laid out."* Most-syndicated analyst quote on the convoy. |
+| May 5 | **Trump declined to confirm ceasefire** (Hugh Hewitt interview) | Time | First explicit walk-back on Apr 21 indefinite extension |
+| May 5 PM | **API: crude &minus;8.1M bbl** (week May 1) vs &minus;2.8M cons | OilPrice / API | Biggest API number of the crisis. Gasoline &minus;6.1M, distillate &minus;4.6M, SPR &minus;5.2M to **392.7M (lowest since Nov 2024)**. **Per HFI direct: EIA Wed expected ~&minus;4 to &minus;5M (today's API is catch-up on 4.44M API undercounted EIA last week, not incremental).** |
+| May 6 (next) | **EIA Wed 10:30 AM ET** | EIA | HFI direct: ~&minus;4 to &minus;5M expected. Watch for SPR draw size. |
 
 ---
 
@@ -155,49 +187,60 @@ The complete chain, from June Goh's "Hard choices for fuel oil routings" (April 
 
 ---
 
-## The four trade ideas (Sparta-anchored)
+## The trade book (anchored summary; live state lives in `analysis.html`)
 
-| Trade | Direction | Current State (Apr 14) | Sparta Anchor |
-|---|---|---|---|
-| **1. ICE Gasoil/Brent crack** | Long | $67/bbl front-month (vs $15-20 pre-crisis, ~3.5-4.5x normal) | Singapore complex margins $30/bbl, Asia 10ppm crack >$76/bbl |
-| **2. Gasoil E/W (long Singapore)** | Long Singapore − Short ARA | Spiked $100→$400/t on Apr 2; estimated ~$291/t now | Bifurcated demand destruction risk both sides |
-| **3. HOGO** | Short (HO − Gasoil) | Currently ~ -$0.18/gal (Europe tighter) — but **compression now in motion** as USG arbs reopen | Crosby: "ICE GO spreads need to open up US Gulf barrels toward Europe" |
-| **4. Gasoil time spread (M1-M2)** | Long prompt | **~$170/mt as of Apr 13** (vs $0.50/t in Jan, $120/mt on Mar 18) | Crosby's "deferred is undervalued" call has been validated |
-| **5. Singapore fuel oil cracks (Q3)** | Long LSFO 0.5%/HSFO 180/HSFO 380 vs Brent | LSFO 0.5% ~$25-30/bbl (vs mean $6-8); HSFO 180/380 inverted to positive | June Goh (Apr 11): "Q3 cracks are undervalued" — refinery routing decisions structurally tighten supply |
+The active trade book has 12 ideas plus operational housekeeping plus 2 closed/killed in Appendix. Live levels and "Where it's at now" blocks are maintained in `analysis.html` — this section captures the structural framework only.
 
-**Notes on each:**
-- The **gasoil crack** is the cleanest expression — captures relative scarcity without directional Brent view
-- **Short HOGO** is now actively working as USG arbs reopen — taken on Apr 10, this is in the money
-- **Long E/W** has a complication: with US barrels heading to Europe (not Asia), Atlantic gets relief while Asia stays starved, so E/W could WIDEN further before compressing
-- **Long time spread** is the standout — ceasefire risk resolved against bears, $170/mt and climbing
+| # | Trade | Direction | Source / Sparta anchor | Status (May 5) |
+|---|---|---|---|---|
+| 1 | **CORE: Q3 Singapore Marine Fuel 0.5% / Brent crack** | Long | Goh Ep 90 (Apr 24) entry $11/bbl | Working — spot $22.86 (Apr 27 last); 35% allocation (trimmed from 50%) |
+| 2 | **ICE Gasoil time spread (Jun/Jul)** | Long prompt | Ep 89 framework | 15% (down from 25%); M1 +6.42% to $1,197.25/t |
+| 3 | **ICE Gasoil/Brent crack (June basis)** | Long | Ep 89/90/91 framework + Crosby Ep 91 "diesel cracks" | 15%; ~$50.83/bbl (down from $67 Apr 14 as Brent rallied harder) |
+| 4 | **MR/LR tanker freight (TC2/TC14)** | Long | Apr 22 ship-seizure / mine response | 5%; rates >$100k/day; not retail-IB tradable |
+| 5 | **HEDGE: Brent $90 puts on SEP26 futures** | Long puts | Convex protection vs Apr 17-style spike-down | 2-3% premium spend; ~3-mo theta |
+| 6 | **LONG HOGO (HO − Gasoil)** | Long | Crosby Ep 91 (Apr 29) explicit | **Working** — current ~+$0.252/gal; entered near zero. 15% (up from 5-10%) |
+| 8 | Second clip on #3 crack | Long | Same as #3 | 5%; mechanically identical to #3 |
+| 10 | **M6–M12 Brent back-end length** | Long OCT26 / Short JUL26 | Oil Not Dead "Frozen" (Apr 24) | **Working** — M1-M12 spread $19.30 (was $27 last week); 10% |
+| 11 | Expiry rolls | Operational | — | Apr 30 BRN/HO rolls done; next deadline GAS MAY26 May 12 |
+| 12 | **Brent $120 calls on AUG26** | Long calls | Rory Johnston "Sanguine Strait Stoppage" — $200 by end-June if Strait closed | 1% premium; touched ITM Apr 30 ($126) and within $4 May 5 ($116.55) |
+| 13 | **Singapore Regrade (Jet vs Sing Gasoil)** | Long jet/short gasoil | Crosby Ep 91 (Apr 29) | 8% (up from 5%); limited retail IB access |
+| 14 | **ARA → PAD1 gasoline arb (Eurobob vs RBOB)** | Long Eurobob/short RBOB | Molinero Ep 91 (Apr 29) | 8% (up from 5%); Eurobob leg not on retail IB |
+
+**Closed/killed (Appendix):**
+- #7 — ICE Brent $89 straddle into Apr 22 binary — CLOSED WINNER (call leg $16.33+ ITM at intrinsic)
+- #9 — Iran-relisting trade — KILLED (no JCPOA-style framework emerged)
+
+**Recency-weighting principle:** Sparta Ep 91 trades (#6, #13, #14) collectively ~31% of book; older Ep 89/90 framework trades (#1, #2, #3, #4) trimmed proportionally on May 4 rebalance.
 
 ---
 
-## Current live snapshot (April 14, 2026)
+## Current live snapshot (May 5, 2026 PM — post-API)
 
 | Instrument | Value | Source |
 |---|---|---|
-| Brent futures | $102-104/bbl | Al Jazeera Apr 13 |
-| WTI | $104/bbl (+50% pre-war) | CNBC Apr 13 |
-| Dated Brent (last week peak) | **$144/bbl all-time high** | Al Jazeera |
-| Physical-futures gap | ~$40-50/bbl | Derived |
-| ICE Low Sulphur Gasoil (M1) | ~$1,247/t (~$167/bbl) | TradingView |
-| **ICE Gasoil Apr/May spread** | **~$170/mt** (vs $120/mt on Mar 18) | Sparta USGC MR Apr 13 |
-| **May ICE GO spread move on blockade** | **+$20/mt single day** | Sparta NWE CPP Apr 13 |
-| ICE GO/Brent crack | $67/bbl | Barchart |
-| Asia 10ppm diesel crack | >$76/bbl (record) | Hydrocarbon Processing |
-| NYMEX Heating Oil (M1) | ~$3.81/gal | TradingView |
-| Singapore Gasoil (Platts swap) | $206.48/bbl | Investing.com |
-| US diesel retail | $5.40/gal Mar 30 → forecast >$5.80 in Apr | EIA |
-| US gasoline national avg (March) | $4.11/gal (+$0.86 in one month) | BTS |
-| US diesel national avg (March) | $5.61/gal (+$1.45 in one month) | BTS |
-| Hormuz transits (Saturday) | 17 vessels (vs 130 pre-war) | CNBC |
-| Hormuz transits (post-blockade) | Near-zero / "ground to a halt" | Al Jazeera |
-| Global daily shortfall | 8M bbl/d | Kpler |
-| NWE MR vessel availability (7-day) | 6 vs 90-day avg 15 | Sparta NWE CPP |
-| TC2 freight spot | WS 312 | Sparta |
-| VLSFO Singapore | $1,085.50/t | Ship & Bunker |
-| Goldman Sachs forecast | Brent >$100 throughout 2026 if Hormuz stays shut | OilPrice.com |
+| **API crude (wk ending May 1)** | **&minus;8.1M bbl** vs &minus;2.8M cons | OilPrice / API May 5 |
+| **API gasoline / distillate** | &minus;6.1M / &minus;4.6M | OilPrice / API May 5 |
+| **SPR** | 392.7M (lowest since Nov 2024) | API release |
+| **EIA Wed May 6 expected** (per HFI direct) | ~&minus;4 to &minus;5M crude | HFI Research |
+| **Brent JUL26 (front)** | **$109.87 close** May 5 | Fortune |
+| **Brent intraday May 5 high** | **$116.55** (8:45 AM ET) | CNN |
+| **Brent May 4 close** | **$114.40** (+5.8%, highest 2026 close) | Al Jazeera |
+| **Brent DEC26 (M12)** | **$90.57** | Barchart CBZ26 |
+| **M1–M12 spread** | **$19.30** (was $27 a week ago — back-end caught $11 of bid) | Calc |
+| **Murban benchmark** | **$107.30** (+3.4% on UAE strike) | Al Jazeera |
+| **NYMEX HO JUN26** | **$4.0771/gal** | Investing.com |
+| **ICE Low Sulphur Gasoil M1** | **$1,197.25/t** (+6.42% 24h) ≈ $160.70/bbl ≈ $3.825/gal | TradingView ULS1! |
+| **HOGO (HO − Gasoil)** | **+$0.252/gal (+$10.58/bbl)** — working ITM since Sparta Apr 29 entry near zero | Calc |
+| **ICE GO/Brent crack (front)** | **~$50.83/bbl** (was $67 Apr 14; still ~3x pre-crisis $15-20) | Calc |
+| **Sing VLSFO/Dubai crack (front)** | $22.86/bbl (Apr 27 last confirmed) | Splash247 — needs May 11 refresh |
+| **Q3 Sing LSFO 0.5%/Brent** | ~$11/bbl entry (Goh Ep 90); spot $22.86 | Sparta Ep 90 |
+| **Hormuz transits (Project Freedom Day 1)** | 2 US-flag merchants (Maersk subsidiary) | CNN / CENTCOM |
+| **Stranded vessels** | ~2,000 / 20,000 seafarers | IMO May 5 |
+| **Goldman production reduction est** | 14.5M b/d total | Goldman May |
+| **HFI projection** | end-May ~1.59B bbl loss / end-June ~1.98B / end-July US commercial crude approaches operational minimum (370–380M) | HFI May 4 |
+| **Andurand YTD** | &minus;37% (recovered from &minus;52% Apr 1H); RADIO SILENT Apr 21→May 5 | Bloomberg + X scrape |
+| **Barclays 2026 Brent forecast** | $100 (raised from $85, May 1) | Investing.com |
+| **OPEC+ June adjustment** | +188K b/d | CNBC May 3 |
 
 ---
 
