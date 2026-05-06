@@ -2,6 +2,45 @@
 
 Living log of refresh deltas. Newest first.
 
+## 2026-05-06 — Day 68 — peace-deal crash, full Sparta + IB live data, framework rebuilt by upside (not stress)
+
+**Major framework rebuild based on:**
+- Authenticated Sparta live curves pulled directly from sparta.app (Diesel, Jet, Naphtha, Crude, LSFO, HSFO, Freight tabs)
+- IB Gateway live NYMEX (BZ, HO, RB, CL, BB, LT) — confirmed working tickers + IB symbology rounds for ICE Endex (COIL/IPE for Brent, GOIL/IPE for Gasoil — qualify but no live mkt data sub)
+- Crosby Apr 29 "Surely we need to be long, but when?" full text
+- Kumar Apr 28 "Hormuz scenarios: Brent pricing flow confidence" 4-scenario framework
+- Today's peace-deal "near" reports (Bloomberg + Reuters; **Axios excluded per user — banned source**)
+
+**Peace-deal macro shift overnight:** Bloomberg + Reuters reporting US-Iran framework deal: Iran nuclear-enrichment moratorium for sanctions ease + frozen-asset release. Oil crashed ~6%. Brent Swap JUL26 $94.17 (vs $108 prior). HO −5.4% to $3.80, RB −4% to $3.47, CL −5.9% to $92.29. Freight crashed (TC2 218, TC14 366→179 May→Jul). Bitcoin $82K. Dollar lowest since war started.
+
+**Live Sparta data captured (May 6 03:30 UTC):**
+- Brent Swap curve: JUL26 $94.17 / OCT26 $85.72 / DEC26 $82.25 / JUN27 $77.27 / DEC27 $77.78. M1−M18 spread $28.10 (back-end resilient).
+- HOGO Swap: front 12.80¢, Q3 22.70¢, Q4 30.20¢, Dec 32.50¢, Cal 26 23.05¢. Curve overshot on front; Crosby Apr 29: "weakness not justified".
+- ICE GO Swap May $1,145.58/mt (down $51.67 from yesterday). GO/Brent crack Jun $49.50, Q3 $43.82.
+- NWE Jet/Brent crack Jun $61.35 — widest distillate crack. Singapore Regrade only $5-6 front (Q3 strip $12.38, Cal 26 $24.49).
+- Naphtha cracks DEEPLY NEGATIVE: NWE Nap/Brent −$4.25 Jun → −$5.70 Q3. MOPJ +$0.25 → −$1.65 Q3. Off-radar dislocation.
+- LSFO: **Q3 Sing 0.5%/Brent crack $11.20 vs Goh $11 entry = essentially FLAT**. Trade #1 was incorrectly claimed +$11 ITM previously (conflated with VLSFO/Dubai SPOT $22.86 Splash247). 0.5% EW (Asia LSFO over Eur LSFO) at $67-80 = real dislocation.
+- HSFO: Q3 cracks back to NEGATIVE (180/Brent −$0.75, 380/Brent −$2.60). Goh "inverted to positive" rally faded except front. Visco 180-380 spread Q3 $11.50.
+- Freight: TC2 218→183 May→Jul (was 312 Apr 13 peak). TC14 366→179. Trade #4 underwater. Sparta news 03:13: "USGC MR Jet arbs now open into Rotterdam +$8.5/+$11.25/mt; TC14 freight drop helped reopen flow."
+
+**Trade book reorganized by ASYMMETRIC UPSIDE TIERS (per user explicit guidance):**
+- T1 Highest: Naphtha cracks (mean-rev), HOGO mean-rev (Crosby explicit), back-end Brent #10 (working), Brent calls $100-110 strike on dip
+- T2 Working but consensus catching up: NWE Jet/Brent crack outright, 0.5% EW LSFO, Visco 180-380, Sing Regrade #13 (Crosby "buy dips")
+- T3 Compressed but holding: ICE GO/Brent #3, GO time spread #2, gasoline arb #14 (pending Eurobob print)
+- T4 Reduce: Q3 Sing 0.5%/Brent #1 (essentially flat to entry), $120 calls #12 (far OTM at $94 spot)
+- T5 Cut: Trade #4 freight (binding-constraint thesis faded)
+- Hedge: #5 Brent puts now ~ATM after $94 print — monetize/roll
+
+**Macro Framework rewritten** with 6 drivers + Trade Implications per driver. Driver 5 (Freight) now flagged FADING. Driver 2 (Cross-product hierarchy) NEW — jet > diesel > fuel oil > gasoline > naphtha. Driver 6 (Refinery cycling) now subsumes the fuel-oil-loop sub-mechanic.
+
+**Industry Views**: Kumar Apr 28 "Hormuz Scenarios" 4-scenario framework added. Crosby Apr 29 quoted at length on HOGO mean-reversion + "June story globally".
+
+**What to Watch**: Reframed around peace-deal commercial test + EIA Wed binary catalyst + Sparta Kumar Scenario 2 ($95-105) snap-back probability. Replaced "Andurand reload" / "Russian backing" items with active scenario-bifurcation framework.
+
+**Source rules saved to memory**: Axios banned permanently; HFI direct contact treated as primary source; API/EIA divergence catch-up logic.
+
+**Schedule note**: 10 AM CST Wed May 6 remote refresh routine `trig_017HmY6mTLEidV7TeEexyW8n` will pull EIA print + verify peace-deal status + re-rank trade priority.
+
 ## 2026-05-05 — Day 67 — UNIFIED REFRESH (morning + afternoon merged)
 
 This entry rolls the morning (09:57 CST) refresh and afternoon (15:53 CST) AIP refresh into a single coherent report. Discovered late in the session that the parent repo had uncommitted morning content the worktree never saw — merged that content forward instead of overwriting either side.
