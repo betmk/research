@@ -2,6 +2,41 @@
 
 Living log of refresh deltas. Newest first.
 
+## 2026-05-06 10:00 CST — Day 68 — EIA print + peace-deal status check + Brent recovery update
+
+**EIA actual (wk ending May 1, released 9:30 CST):**
+- Crude: **−2.3M bbl** (vs HFI expected −4 to −5M; vs API −8.1M)
+- Gasoline: −2.5M bbl (vs API −6.1M)
+- Distillates: −1.3M bbl (vs API −4.6M)
+- Verdict: HFI catch-up logic directionally correct (EIA < API) but overstated magnitude by ~2M. API/EIA divergence 5.8M = noise. BACD thesis intact — still drawing, slightly below HFI's implied pace.
+
+**Brent at 10 AM CST:**
+- Overnight low: $94.17 (Sparta 03:30 UTC, on peace-deal headlines)
+- 10 AM CST: ~$101–103 (partial recovery as "deal not signed, shipping still frozen" set in)
+- HO: $3.76/gal (−6.6% on day). HOGO: ~12¢ (consistent with overnight Sparta read).
+
+**Peace deal status:**
+- Trump paused Project Freedom escort mission but kept blockade of Iranian ports live
+- Said "Great Progress" toward deal; Iran "evaluating"; will only accept "fair" deal
+- Both sides working on a one-page memo; deal NOT signed
+- Commercial shipping still frozen: 5–6 Hormuz transits/day vs 138 historical; war-risk premiums ~8x pre-war (AlbanyAntree May 6)
+- Exactly Kumar Scenario 2 ("Managed Stalemate") territory; Brent at $101–103 is squarely in $95–105 range
+
+**Trade tiers: no change from 03:40 CST framework** — EIA miss doesn't alter structural call.
+
+**Ep 92: not yet released as of 10 AM CST** (expected May 6–10).
+
+**Report updates:**
+- Subtitle: "pre-EIA" → "post-EIA 10:00 CST"
+- Top callout: added 10 AM update block with EIA result + Brent recovery + peace deal status
+- Brent stat card: $94.17 → $101–103 recovery
+- HOGO stat card: added HO $3.76/gal context
+- Market snapshot: EIA/API row updated to actual print; Brent row updated to 10 AM CST; HO row updated to $3.76
+- EIA watch paragraph: "Watch" → "PRINTED"
+- What to Watch #1: scenario → actual result
+- What to Watch #7: added EIA actual to BACD validation track
+- Driver 4: added EIA actual vs HFI expected
+
 ## 2026-05-06 — Day 68 — peace-deal crash, full Sparta + IB live data, framework rebuilt by upside (not stress)
 
 **Major framework rebuild based on:**
