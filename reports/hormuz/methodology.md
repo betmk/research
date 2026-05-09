@@ -1,6 +1,10 @@
-# Sparta Commodities × ICE Gasoil — Living Hormuz Crisis Analysis
+# Sparta Commodities × Hormuz Crisis: Multi-Product Desk Analysis
 
-**Purpose:** This file contains the methodology, framework, and current state of the Sparta-anchored ICE Gasoil analysis. When the user asks to "refresh", "update", or "redo" the Hormuz/diesel/gasoil analysis, use this file as the template. The user prefers Sparta as the primary source — not Gemini, not generic news. Other sources (EIA, Kpler, CNBC, Al Jazeera) are only used to corroborate Sparta or pull live quotes.
+**Purpose:** This file contains the methodology, framework, and current state of the Sparta-anchored multi-product desk analysis. When the user asks to "refresh", "update", or "redo" the Hormuz analysis, use this file as the template. The user prefers Sparta as the primary source — not Gemini, not generic news. Other sources (EIA, Kpler, CNBC, Al Jazeera, HFI Research, Oil Not Dead, Rory Johnston / Commodity Context) are used to corroborate Sparta or pull live quotes.
+
+**Trade book is product-agnostic.** Coverage spans crude (Brent, WTI, Murban, calendar spreads), distillates (gasoil/diesel/jet), gasoline (Eurobob, RBOB), fuel oil (LSFO, HSFO), naphtha, freight (TC2/TC14), and options (Brent puts/calls). The anchor instrument rotates with the dominant supply/demand imbalance — currently distillate-led with jet rotating to lead per Goh's May framing; was crude-led pre-blockade; may rotate to gasoline as US summer driving season starts.
+
+**Goh's spread definitional framework still anchors the cross-spread analytical principle.** ICE GO/Brent crack, HOGO, Gasoil E/W are all defined relative to ICE Gasoil. The same principle applies to other denominators (Singapore Regrade vs Gasoil; Naphtha E/W vs MOPJ; Eurobob vs RBOB).
 
 ---
 

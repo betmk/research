@@ -4,6 +4,9 @@
 # Generated data
 data/
 
+# IB discovery / quote tool outputs (working JSON)
+tools/ib_results*.json
+
 # Python
 __pycache__/
 *.pyc
