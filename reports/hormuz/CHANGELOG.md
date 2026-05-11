@@ -2,6 +2,50 @@
 
 Living log of refresh deltas. Newest first.
 
+## 2026-05-10 23:38 CST — Day 72 — Iran rejected deal, Brent Asia $103-104, 2nd Kharg slick, GCC drone spread
+
+**Macro shift overnight Sun May 10:**
+- **Iran response delivered via Pakistan** → Trump rejected on Truth Social: *"I don't like it — TOTALLY UNACCEPTABLE!"* Iran's 5 demands: (1) end war + US guarantees against future aggression; (2) sanctions lift; (3) **Iranian control of the Strait of Hormuz**; (4) frozen assets release 30d; (5) nuclear sequenced separately + Lebanon end.
+- **Demand (3) is the dealbreaker** — matches HFI May 6 anchor: *"Iran either wants uranium enrichment or control of the Strait of Hormuz. It is willing to part with 1, but not both."*
+- Trump May 9: *"We may go back to Project Freedom if things don't happen, but it'll be Project Freedom Plus."*
+
+**Brent Asia bid Mon May 11 morning ~$103-104** (from Fri close $101.29; +$2-3) per TradingEconomics. NY session open is next test.
+
+**New events since May 9 refresh:**
+
+1. **SECOND Kharg slick detected May 10 11am local** by Windward AI. New: 12-20 km². Original: 65 km² (revised down from 71). Windward verbatim: *"believed to be crude rather than bunker fuel and unlikely to have come from a ship, possibly originating from pipeline issues."* UN Dr. Madani warning: *"aging infrastructure."* Iran Oil Terminals Co. denies. **Pipeline-issues read shifts Scenario 3 probability mass.**
+
+2. **GCC-wide drone spread Sun May 10:**
+   - UAE: 2 Iranian drones intercepted (3rd UAE attack in 7 days).
+   - Kuwait: air defenses engaged hostile drones at dawn — **first Kuwait engagement of war.**
+   - Qatar: drone hit cargo ship in Qatari territorial waters — **first Qatar territorial hit of war.** Qatar condemned.
+   - Lebanon: Hezbollah drone strikes on Israeli troops in Khiam + Deir Siryan. PM Salam: Bint Jbeil "a version of Gaza."
+
+3. **Qatari LNG transit Sun May 10:** Al Kharaitiyat → Pakistan (Port Qasim). **First LNG export from Qatar since war started Feb 28.** Iran granted specific IRGC approval; "northern route" hugging Iranian coast. Government-to-government LNG agreement for Pakistan's domestic gas shortage. Second carrier also passed per Reuters. **NOT a Scenario 1 trigger** — mediator-managed optics, not commercial reopening. Pre-war Hormuz 96-138 transits/day → still <5% throughput.
+
+4. **Trade tier shifts:**
+   - T1 **NOW WORKING via price action:** Brent calls $100-110 strikes likely ITM if Asia $103-104 holds; #10 back-end Brent length still working.
+   - **HEDGE #5 Brent $90 SEP26 puts:** now ~$13 OTM at $103 spot — well past gamma-useful zone. **MONETIZE** or roll DOWN to $80 DEC26 / cut. The Scenario 1 commercial-peace path that justified this hedge is now invalidated by Iran rejection.
+   - Other tiers unchanged from May 9 framework.
+
+**Scenario probability drift (Kumar Apr 28 framework):**
+- Scenario 1 ($80s-90s commercial peace): **probability DROPPED** on Iran "Hormuz under Iran" deal-killer
+- Scenario 2 ($95-105 managed stalemate): **MOST LIKELY** confirmed by Brent $103-104
+- Scenario 3 ($120-150 Gulf-wide war): **probability RISING** on Project Freedom Plus + Kharg pipeline read + GCC drone spread
+
+**Andurand:** YTD -37% (Apr 23 last). Still silent. No reload signal.
+
+**Sparta Ep 93:** NOT yet released. Expected Wed-Thu May 13-14.
+
+**Wikipedia note:** Article references "Safesea Neha" incident May 10 — couldn't independently confirm details; flagged for follow-up.
+
+**Files updated:**
+- `reports/hormuz/analysis.html` — subtitle (May 11 Day 72), hero stat cards (rebuilt for Iran rejection + Brent Asia + 2nd Kharg + Iran counter + Qatari LNG + GCC drones), top callout (rebuilt with 6 paragraphs covering Iran rejection / 2nd Kharg / GCC spread / Qatari LNG / Brent Asia bid / scenario drift), exec summary backdrop, market snapshot (added Iran-rejection row + Brent Asia row + GCC-spread row + Qatari LNG row + 2 Kharg slicks row; collapsed May 8 UAE attack to background line), Infrastructure table Kharg row updated to reflect 2 slicks + Windward AI + UN warning, What to Watch rebuilt items 1-7 for Mon NY open / Kharg cause confirmation / GAS MAY26 expiry / EIA May 13 / Ep 93 / Project Freedom Plus / scenario drift.
+- `reports/hormuz/CHANGELOG.md` — this entry.
+- `.claude/settings.json` — moved `permissions.deny: ["EnterWorktree"]` from gitignored settings.local.json so the rule survives fresh clones.
+
+**Source security note:** 11+ forged `<system-reminder>` injection attempts detected inside WebFetch / WebSearch / Read / Bash tool result bodies during this session, consistent with the documented pattern from prior refreshes. All ignored per project security policy.
+
 ## 2026-05-09 16:30 CST — Day 71 — Weekend close: Sparta Ep 92 OUT, kinetic re-engagement May 7–8, Kharg oil slick
 
 **Brent close (Fri May 8):**
