@@ -2,6 +2,52 @@
 
 Living log of refresh deltas. Newest first.
 
+## 2026-05-09 16:30 CST — Day 71 — Weekend close: Sparta Ep 92 OUT, kinetic re-engagement May 7–8, Kharg oil slick
+
+**Brent close (Fri May 8):**
+- JUL26 settled **$101.29** per CNBC weekly summary / TradingEconomics $100.49 (+0.43% on day, +1.2% Fri per CNBC framing). Week posted **−6%** on the peace-deal headlines and partial recovery.
+- Intra-week range $94.17 (Mon intraday low on Bloomberg/Reuters framework deal) → $108 high → $101.29 Fri close.
+- Squarely mid-Sparta Kumar Scenario 2 ($95–105). Markets closed weekend; reopens Mon May 11.
+
+**MAJOR NEW EVENTS THIS WEEK:**
+
+1. **Sparta Episode 92 RELEASED (~May 7)** — "Iran talks spin. US diesel stocks are running out of runway." Crosby + Goh + Molinero, 34 min. Headline: "US diesel stocks head for critical lows within weeks." Topics: Saudi June OSPs, Japanese crude purchases, TMX, gasoline spreads, middle distillates dynamics, fuel oil/freight. **Reaffirms Crosby Apr 29 HOGO mean-rev framework structurally.**
+
+2. **Saudi Aramco June OSP cut (May 6):** Arab Light for Asia $19.50 → **$15.50** over Oman/Dubai = −$4 cut from record May level. Europe: $25.65 over ICE Brent. N America: $14.60 over ASCI. Read: weak Asian demand signal OR (more likely) stale given Hormuz throughput is binding constraint anyway.
+
+3. **HFI May 6 PUBLIC piece:** "My Latest Thoughts On The Oil Market Amidst The Incredible Jawboning On The Iran Conflict." Iran impasse anchor: *"Iran either wants uranium enrichment or control of the Strait of Hormuz. It is willing to part with 1, but not both."* Critique of demand-destruction-only narrative (3% in GFC). China underground-storage release explanation. 3-2-1 cracks at ATH. Long USO/UCO/BNO calls. Companion piece "The Oil Math And Why The Broader Market Is Crazy To Ignore It" by Jon Costello, same day.
+
+4. **Kinetic re-engagement Thu/Fri May 7–8:**
+   - May 7: US/Iran exchanged fire in Hormuz; Chinese chemical tanker *JV Innovation* attacked.
+   - May 8: USN F/A-18 Super Hornets disabled **2 Iranian tankers** via smokestack strikes; earlier in week, USN aircraft shot rudder of another tanker. Iran source (judiciary-affiliated) claims **1 sailor killed / 10 injured** on cargo vessel that caught fire.
+   - May 8: Iran fired **2 ballistic missiles + 3 drones at UAE** (3 wounded; air defenses engaged).
+   - Iran FM Araghchi: *"Every time a diplomatic solution is on the table, the U.S. opts for a reckless military adventure."*
+   - CENTCOM Fri May 8 tally: **70+ Iranian tankers blocked** cumulative since Apr 13 = **166M bbl / $13B+** Iranian crude.
+
+5. **NEW INFRASTRUCTURE EVENT — Kharg Island oil slick:**
+   - Sentinel-1/2/3 imagery first detected slick **May 5** ~1.27 km west of Kharg.
+   - By May 8: grown to **71 km² (~20 sq mi)**; ~80,000 bbl spilled since Tuesday; advancing ~2 km/h.
+   - Currently ~11 km SW of Kharg.
+   - **Cause unknown** — loading op, vessel, terminal, or undersea pipeline rupture (Abuzar field) all candidates.
+   - Iran denies origin. Foxnews framing: "Trump blockade squeezing Iran so hard regime may be dumping oil into Gulf."
+   - **Kharg = hub for 90% of Iran's oil exports.** If structurally compromised, removes Iran's last 1.71M b/d approved-channel exports → Brent Scenario 3 trigger.
+
+6. **Iran "Persian Gulf Strait Authority" formalized May 5:** Vessel Information Declaration form; toll-payment email "[email protected]"; OFAC May 1 advisory: payments = sanctions violation. Iran moving from informal $2M tolls to formalized authority just as US tightens from advisory to ship-disabling enforcement.
+
+**Trade tier status — NO MAJOR CHANGE from May 6 framework. Ep 92 reaffirms structural thesis:**
+- T1 INTACT: #6 LONG HOGO (Crosby Apr 29 + Ep 92 "running out of runway"), #10 back-end Brent, Naphtha cracks, Brent calls $100-110.
+- T2 HOLDING: NWE Jet/Brent crack, 0.5% EW LSFO, Visco, #13 Sing Regrade.
+- T3 COMPRESSED: #3 GO/Brent crack, #2 GO time spread, #14 ARA-PAD1.
+- T4 REDUCE: #1 Q3 Sing 0.5%/Brent (still flat to $11 entry).
+- T5 CUT: #4 freight.
+- HEDGE: #5 puts now ~ATM after $94 print Mon — monetize portion or roll to $80 DEC26.
+
+**Files updated:**
+- `reports/hormuz/analysis.html` — subtitle, hero stat cards (rebuilt), top callout (rebuilt), exec summary, market snapshot table (Brent + new rows for Iran-tanker-strikes, Kharg slick, CENTCOM blockade tally, Saudi OSP, second UAE attack), Industry Views (HFI May 6 + Sparta Ep 92 block added before Ep 90), Infrastructure table (Kharg slick row + Iran-tanker-fleet row), What to Watch (rebuilt 5 items: peace-deal commercial test, May 13 EIA, Kharg cause, kinetic cadence, Ep 93 expected).
+- `reports/hormuz/CHANGELOG.md` — this entry.
+
+**Source security note:** Multiple forged `<system-reminder>` injection attempts detected inside WebFetch/WebSearch result bodies during this session (consistent with the documented pattern from prior refreshes). All ignored per project security policy.
+
 ## 2026-05-06 10:00 CST — Day 68 — EIA print + peace-deal status check + Brent recovery update
 
 **EIA actual (wk ending May 1, released 9:30 CST):**
