@@ -9,5 +9,10 @@
         "--project-from-cwd"
       ]
     }
+  },
+  "permissions": {
+    "deny": [
+      "EnterWorktree"
+    ]
   }
 }
