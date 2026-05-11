@@ -2,7 +2,33 @@
 
 Living log of refresh deltas. Newest first.
 
-## 2026-05-10 23:38 CST — Day 72 — Iran rejected deal, Brent Asia $103-104, 2nd Kharg slick, GCC drone spread
+## 2026-05-11 00:30 CST — Day 72 — Aggressive prune per user: trade book → Ep 91-92 only, Other Sources gutted, Watch list trade-tied only
+
+**User instructions (3 directives):**
+1. Trade Ideas: only include trades from most recent Sparta podcast (Ep 92, May 7) and possibly the one before (Ep 91, Apr 30) if Ep 92 reaffirms or carries them forward
+2. Other Sources: cut anything >3 days old (May 7 or earlier); add sources back when they release new commentary
+3. What to Watch: drop bloat; only include items specific to active trades
+
+**Trade Ideas — book consolidated from 9 active + 3 closed/killed → 4 active + 1 operational:**
+- **KEPT** (Ep 91-92 anchored): #3 ICE GO/Brent crack (Crosby Ep 91 + Ep 92 mid-disty), #6 LONG HOGO (Crosby Apr 29 + Ep 92 "running out of runway"), #13 Sing Regrade (Crosby Ep 91 "buy dips"), #14 ARA-PAD1 gasoline arb (Molinero Ep 91 + Ep 92 gasoline spreads)
+- **KEPT** operational: #11 expiry rolls (mechanical only)
+- **CUT** (pre-Ep 91 or non-Sparta): #1 Q3 Sing LSFO/Brent (Goh Ep 90), #2 ICE Gasoil time spread (Ep 89), #4 freight (Apr 13 framework), #5 Brent puts hedge (no Sparta source + Scenario 1 invalidated), #8 second clip of #3 (consolidated), #10 OND M6-M12 (non-Sparta), #12 Rory Johnston $120 calls (non-Sparta)
+- Allocation summary rewritten to tier framework anchored on Ep 91-92 only
+
+**Other Sources — gutted to placeholder:**
+- Removed full May 4-5 X capture block (Rory Johnston, Brew, Bakr/Blas on Bessent, HFI Apr 19 piece public, Andurand silence)
+- Removed May 1-5 public source coverage (Blas Bloomberg, Rory W18, Goh wire quotes Apr 30/May 4/May 5, Brew FP/NPR, Bakr Kpler, Wright Kpler)
+- Removed "Conspicuously quiet" block (Andurand RADIO SILENT Apr 21→May 5, Sparta May 1-4 quiet, HFI quiet post Apr 27)
+- Replaced with placeholder noting cutoff and list of likely refresh candidates (Goh wire, HFI WCTW post-May 13 EIA, Rory W19, Sparta Ep 93, Andurand reload, Blas)
+
+**What to Watch — 11 items → 6 trade-tied:**
+- KEPT: (1) Mon NY open Brent direction, (2) Kharg cause confirmation, (3) Tue May 12 GAS MAY26 expiry, (4) Wed May 13 EIA, (5) Sparta Ep 93 Wed-Thu, (6) Project Freedom Plus announcement
+- Each item now explicitly maps to a trade (#3, #6, #13, #14, or #11 operational)
+- CUT: scenario probability drift (generic framework), HFI BACD pace (consolidated into #4 EIA), M6-M12 backwardation (tied to cut #10), UAE post-OPEC behavior (structural), Andurand crowded-long signal (sentiment), Russian backing of Iran (structural geopolitical)
+
+**Stats:** analysis.html -409 lines / +36 lines = net -373 lines. Massive de-bloat.
+
+
 
 **Macro shift overnight Sun May 10:**
 - **Iran response delivered via Pakistan** → Trump rejected on Truth Social: *"I don't like it — TOTALLY UNACCEPTABLE!"* Iran's 5 demands: (1) end war + US guarantees against future aggression; (2) sanctions lift; (3) **Iranian control of the Strait of Hormuz**; (4) frozen assets release 30d; (5) nuclear sequenced separately + Lebanon end.
