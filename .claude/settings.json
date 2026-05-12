@@ -1,4 +1,5 @@
 {
+  "_note_worktree": "permissions.deny.EnterWorktree below is retained as a marker but does NOT prevent Claude Desktop / Cowork from spawning sessions in .claude/worktrees/. That creation happens before settings load — no tool call to deny. The real safeguard is the hooks.SessionStart entry below, which warns when cwd lands under .claude/worktrees/. To stop the auto-worktree behavior permanently, disable Cowork's worktree-isolation for this project in the Claude Desktop app. See memory/feedback_no_auto_worktree.md.",
   "mcpServers": {
     "serena": {
       "command": "uvx",
@@ -13,6 +14,19 @@
   "permissions": {
     "deny": [
       "EnterWorktree"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/warn-if-worktree.sh"
+          }
+        ]
+      }
     ]
   }
 }
