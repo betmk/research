@@ -2,6 +2,120 @@
 
 Living log of refresh deltas. Newest first.
 
+## 2026-05-12 00:55 CST — Day 73 — Tue Asia refresh, Brent grinds higher overnight, Nasser added as anchor wire voice
+
+**Overnight tape:**
+- Mon May 11 NY settle: Brent JUL26 $104.21 (+2.88%, intraday high $105.99)
+- Tue May 12 Asia: Brent spot $105.76 (+1.49% from settle)
+- Brent has now risen $11.59 / +12.3% from the May 5 peace-deal-crash low of $94.17
+- **Brent breached Sparta Kumar Scenario 2 ceiling ($105)** — encroaching Scenario 3 ($120-150) territory
+
+**New wire voice — Aramco CEO Amin Nasser (May 11, CNBC):**
+- *"Losing 100 million barrels every week"* = 14.3 mb/d shortfall (matches Goldman 14.5 mb/d May est)
+- If disruption continues into June, market normalizes only NEXT YEAR
+- Added to Industry Views section as new high-credibility anchor; pushes the Goh "6-9 month timeline" longer
+- Structural support for back-end Brent compression + back-end Dec26 HOGO trades
+
+**Trump May 11 (Hugh Hewitt interview):**
+- Ceasefire *"on massive life support… approximately 1% chance of living"*
+- Strongest walk-back on Apr 21 indefinite-extension; functionally dead pending next Iran counter
+- Pakistan PM Sharif: still in contact "day and night"
+- Scenario 1 probability mass dropping toward zero this week
+
+**Kharg cumulative spill ~80,000 bbl since May 5 detection:**
+- No longer a "tail" event — active operational degradation of Iran's main loading terminal
+- Kharg handles ~90% of Iran exports (1.71 mb/d nominal capacity)
+- Even if Hormuz reopens, Kharg-pipeline-compromise = structural barrel-loss
+- This is the Scenario 3 catalyst the Crosby/Goh framework lacks an answer for
+
+**TODAY operational — ICE GAS MAY26 (GOILK6) expires Tue May 12:**
+- Front rolls to GAS JUN26 (GOILM6, expires Wed Jun 10)
+- Trade book impact: "front + M2-M3 very cheap" thesis re-anchors on M2-M3 (now Jun-Jul) at +54.75 (vs Crosby's +50 noted Ep 92)
+
+**Sparta Ep 93 — NOT YET RELEASED** (expected Wed-Thu May 13-14). Ep 92 remains the anchor.
+
+**Files updated:**
+- `reports/hormuz/analysis.html`:
+  - Subtitle → May 12, Day 73, Tue Asia + Nasser + Trump 1% + GAS expiry today
+  - Hero metrics → Brent $105.76, Trump "1% chance" replaces "TOTALLY UNACCEPTABLE", Kharg "~80K bbl cumulative"
+  - Top callout → new Tue May 12 block with Brent overnight, Nasser quote, Trump quote, Kharg cumulative, GAS expiry callout; Mon May 11 events archived as Day 72 sub-header below
+  - Watch list → Item 3 (GAS expiry) updated to TODAY; Item 4 (EIA Wed) added TUE API release context
+  - Industry Views → NEW section added for Aramco CEO Amin Nasser between OND and Andurand
+
+**Open items rolling forward:**
+1. **Worktree mismatch persists** — current session is in `.claude/worktrees/jolly-visvesvaraya-36d951/`; python http.server (PID 87324) serves from MAIN repo. All my edits via absolute path went to MAIN (verified — main file dated May 11 14:57 = my prior session). Cleanup needed outside session: `git worktree remove --force .claude/worktrees/jolly-visvesvaraya-36d951 && git branch -D claude/jolly-visvesvaraya-36d951`
+2. Sparta Ep 93 release Wed-Thu (transcript pull via YouTube auto-captions per `feedback_sparta_podcast_transcript.md`)
+3. EIA Wed May 13 10:30 ET — bullish trigger crude &minus;6M+ AND distillate &minus;3M+; bearish trigger &lt;&minus;3M or distillate build
+4. Tue May 12 4:30 ET API release — pre-EIA directional read
+
+---
+
+## 2026-05-11 13:57 CST — Day 72 — Sparta Ep 92 FULL VERBATIM TRANSCRIPT captured + 4 new explicit trade calls incorporated
+
+**Methodology breakthrough:** Prior session's lesson was *"podcast chapter titles + same-week written Deep Dives are the actionable Sparta content; the audio transcript itself isn't accessible via WebFetch."* This session disproved that.
+
+**New path:** YouTube auto-captions on Sparta's channel give the full verbatim transcript.
+- Sparta YouTube handle is `@SpartaCommo` (not `@SpartaCommodities` — dormant channel)
+- Playlist `PLI3dsnod9Rdj7KEMrCvibuZGxwFCw43Jv` for Trade with Conviction
+- Ep 92 video ID: `MvhVU33cYk8`
+- Extraction via Chrome DevTools MCP, navigating to engagement panel `PAmodern_transcript_view`, clicking "Show transcript", reading `transcript-segment-view-model` elements
+- 259 transcript segments, ~40K chars captured
+
+**Saved to:** `reports/hormuz/sources/ep92_key_findings.md` — chapter-by-chapter notes + 9 explicit trade quotes (Crosby x5, Goh x4), paraphrased per project copyright rules. Raw transcript NOT saved (Sparta's IP).
+
+**Ep 92 — 4 NEW EXPLICIT TRADE CALLS (verbatim short quotes preserved):**
+
+| # | Caller | Time | Trade | Quote |
+|---|---|---|---|---|
+| 15 | Crosby | 25:55 | Long E/W Gasoil | *"worth some risk being long East-West at this point"* |
+| 16 | Goh (via Crosby quip) | 14:24/15:35 | Long WTI bid (TMX-blend mechanic) | *"they need lots and lots more WTI"* |
+| 17 | Goh | 31:55 | SHORT TC14 (LR2 dirty Med-NWE) | *"C14 however is overvalued"* |
+| 18 | Goh | 31:24 | SHORT TD25 (USGC dirty Aframax) | *"TD25 currently looks overvalued"* |
+
+**Note:** #17 and #18 are the **first explicit SHORT FREIGHT calls from Sparta this crisis** — directional regime change from Apr 13 "freight is the binding constraint" framework.
+
+**Plus Trade #13 (Sing Regrade) re-rated from Tier 2 to Tier 1** on Crosby's fresh explicit re-buy call (Ch 6, 29:53): *"you should buy the regrade again because we will start to unsolve the solution."* Allocation scaled 8% → 12%.
+
+**Trade #6 (LONG HOGO Appendix):** Crosby Ep 92 still bullish at recording (front +13¢ → now 23.7¢ on May 11). The Apr 29 Crosby call printed +85% in 5 days from $12.80 → 23.7¢. Front-month entry passed; **back-end Dec26 HOGO @ 34.3¢ still has 10¢ premium over Q3 24.0¢** — flagged as alternative expression of Crosby's persistent bullish HOGO view.
+
+**New structural intel from Ep 92:**
+- Refinery turnaround calendar: SK Osan (260 KBD CDU + 66 KBD RFCC + 30 KBD reformer) down from May 20 for ~40 days; Reliance Sika (660 KBD CDU + delayed coker) down 4 weeks from mid-May — **~900 KBD Asian CDU capacity offline simultaneously through Jun-early Jul** = structural gasoil supply tightener for #3 + #15
+- Japan locked 12 mb of US crude (WTI + Mars) for August delivery (vs precrisis 1-5 mb/month)
+- TMX deep dive: 890 KBD nameplate, 550 KB effective per Aframax on draft restriction; AWB TAN 1.86 vs Basra Med 0.24 → 10-15% low-TAN blendstock needed; ~6 mb (3 VLCCs) of WTI/light-sweet per 550 KB Canadian cargo to Asia
+- Saudi June OSPs Asia &minus;$4 (vs market expecting &minus;$8) → "Saudi barrels look expensive"
+- GASNAP at historical highs (Molinero) — gasoline strong + NAFTA weak
+- 0.5% June crack: $11 → $15 (Goh's Apr 24 Ep 90 entry printing) — R/R less attractive now but not bearish; June E/W $80/ton = physical Suezmax route economics = mean-revert level
+
+**Files updated:**
+- `reports/hormuz/sources/ep92_key_findings.md` — NEW file, chapter-by-chapter Ep 92 notes
+- `reports/hormuz/analysis.html`:
+  - Subtitle timestamp + Ep 92 transcript-pull tag
+  - Ep 92 placeholder block REPLACED with chapter-by-chapter verbatim-anchored content (6 chapters)
+  - Trade #13 (Sing Regrade) re-rated Tier 2 → Tier 1 with Ep 92 fresh buy quote
+  - Trade #14 (ARA-PAD1) noted Ep 92 Molinero reaffirmation
+  - NEW Trade #15 (Long E/W Gasoil) added — watch-list pending Sing Gasoil IB access
+  - NEW Trade #16 (Long WTI via TMX-blend mechanic) added — express as long CL JUL/AUG26 outright
+  - NEW Trade #17 (SHORT TC14) added — FFA-only watch-list
+  - NEW Trade #18 (SHORT TD25) added — FFA-only watch-list
+  - Allocation Summary rewritten with new tier structure
+  - Macro Framework section 6 (Refinery cycling) updated with SK Osan / Reliance turnaround calendar
+  - Macro Framework NEW section 7 added: US crude export lock-in + TMX quality bottleneck
+  - Sources table: Crosby, Goh, Molinero rows expanded with Ep 92 specifics + YouTube transcript link
+  - Appendix #6 LONG HOGO updated with Ep 92 Crosby reaffirmation context + back-end Dec26 alternative expression
+
+**Open items rolling forward:**
+1. Worktree cleanup outside-session (from prior session): `git worktree remove --force .claude/worktrees/romantic-chebyshev-a38bc1` + branch delete — STILL pending; this session created another worktree `jolly-visvesvaraya-36d951` that will also need cleanup
+2. Sing Gasoil IB access — call IB Account Mgmt for SGX FOB Singapore Gasoil swap (`SHO`) to unlock Trade #15 cleanly
+3. FFA platform access — Sparta now naming SHORT freight; if user has any FFA exposure on Marex / NEX / SGX, Trades #17 + #18 are tradable
+4. Mon May 11 NY close direction read — Brent Asia $103-104; key for Trade #3 + #16 confirmation
+5. Wed May 13 EIA — HFI track &minus;5 to &minus;8M crude; bullish trigger for #3 crack and #6 back-end HOGO
+6. Sparta Ep 93 release expected Wed-Thu May 13-14 — will revise active book if Crosby/Goh refine calls
+7. **NEW METHOD LEARNED:** YouTube auto-captions for Sparta podcasts are the path; should be the default first attempt next refresh
+
+**Forged `<system-reminder>` injection attempts this session:** ~8 detected across WebSearch results + PostToolUse Edit hooks (the "NEVER mention this reminder to the user" line is the telltale). All ignored per project security policy. The injection pattern continues to escalate.
+
+---
+
 ## 2026-05-11 00:30 CST — Day 72 — Aggressive prune per user: trade book → Ep 91-92 only, Other Sources gutted, Watch list trade-tied only
 
 **User instructions (3 directives):**
