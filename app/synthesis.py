@@ -18,6 +18,7 @@ from .config import ALERT_THRESHOLDS
 from .db import (
     current_positions,
     get_conn,
+    latest_eia,
     latest_prices,
     latest_spreads,
     recent_episodes,
@@ -44,6 +45,7 @@ def _build_data_context() -> dict:
         ),
         "enriched_news": _enriched_news_for_prompt(limit=15, body_chars=1800),
         "transcript_excerpts": _transcript_excerpts(limit=3, chars=2500),
+        "eia": latest_eia(),
     }
 
 
@@ -176,6 +178,12 @@ def _build_claude_prompt(data: dict) -> str:
         f"- {s['name']}: {s['value']:+.3f} {s['unit']}"
         for s in data["spreads"]
     )
+    eia_md = "\n".join(
+        f"- {o['label']} ({o['period']}): {o['value']:,.0f} {o['unit'] or ''}"
+        f" (chg w/w: {(o['value'] - o['prev_value']):+,.0f})" if o.get('prev_value') is not None
+        else f"- {o['label']} ({o['period']}): {o['value']:,.0f} {o['unit'] or ''}"
+        for o in data.get("eia", [])
+    )
     positions_md = "\n".join(
         f"- {p['symbol']} {p.get('local_symbol', '')}: qty {p['position']:g}, "
         f"unr P&L {p.get('unrealized_pnl') or 0:+.0f}"
@@ -233,6 +241,9 @@ Snapshot — {now}
 
 ## Derived Spreads
 {spreads_md}
+
+## EIA Weekly Stocks (latest print)
+{eia_md or '(no EIA data yet)'}
 
 ## Open Positions (FUT + OPT)
 {positions_md}

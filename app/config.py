@@ -39,6 +39,7 @@ INTERVALS = {
     "x_twitter": 15,       # Goh + HFI
     "enrich_articles": 15, # full article body extraction (after scrapes)
     "sparta_transcripts": 120,  # YouTube auto-captions for new episodes
+    "eia_weekly": 15,      # EIA weekly stocks; idempotent on Wed/Thu print
 }
 
 # Synthesis run interval (hours) — generates the AI analysis layer.

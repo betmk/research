@@ -56,6 +56,23 @@
 
     <div class="panel">
       <div class="panel-header">
+        <h2>EIA Weekly Stocks</h2>
+        <div class="actions">
+          <button hx-post="/api/scrape/eia_weekly" hx-swap="none"
+                  hx-trigger="click"
+                  hx-on::after-request="htmx.trigger('#eia-panel', 'refresh')">Refresh</button>
+        </div>
+      </div>
+      <div id="eia-panel"
+           hx-get="/fragments/eia"
+           hx-trigger="load, refresh, every 60s"
+           hx-swap="innerHTML">
+        <div class="empty">Loading EIA&hellip;</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
         <h2>Scrape Status</h2>
       </div>
       <div id="scrape-status-panel"

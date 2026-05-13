@@ -18,7 +18,9 @@ from fastapi.templating import Jinja2Templates
 from .config import HOST, PORT, STATIC_DIR, TEMPLATES_DIR
 from .db import (
     current_positions,
+    eia_history,
     init_db,
+    latest_eia,
     latest_prices,
     latest_scrape_runs,
     latest_spreads,
@@ -121,6 +123,15 @@ async def fragment_analysis(request: Request):
         request,
         "partials/analysis.html",
         {"analysis": latest_analysis()},
+    )
+
+
+@app.get("/fragments/eia", response_class=HTMLResponse)
+async def fragment_eia(request: Request):
+    return templates.TemplateResponse(
+        request,
+        "partials/eia.html",
+        {"observations": latest_eia()},
     )
 
 

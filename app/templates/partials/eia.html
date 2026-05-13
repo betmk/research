@@ -1,0 +1,32 @@
+{% if observations %}
+<table>
+  <thead>
+    <tr>
+      <th>Series</th>
+      <th>Period</th>
+      <th>Value</th>
+      <th>Unit</th>
+      <th>Prior</th>
+      <th>Δ wk/wk</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for o in observations %}
+    <tr>
+      <td>{{ o.label }}</td>
+      <td style="color:var(--text-2);font-size:0.78rem;">{{ o.period.strftime('%Y-%m-%d') }}</td>
+      <td>{{ "{:,.0f}".format(o.value) }}</td>
+      <td style="color:var(--text-3);">{{ o.unit }}</td>
+      <td style="color:var(--text-3);">
+        {% if o.prev_value is not none %}{{ "{:,.0f}".format(o.prev_value) }}{% else %}&mdash;{% endif %}
+      </td>
+      <td class="{% if o.prev_value is not none and (o.value - o.prev_value) > 0 %}up{% elif o.prev_value is not none and (o.value - o.prev_value) < 0 %}down{% endif %}">
+        {% if o.prev_value is not none %}{{ "{:+,.0f}".format(o.value - o.prev_value) }}{% else %}&mdash;{% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="empty">No EIA data yet &mdash; first scrape on next scheduler tick.</div>
+{% endif %}

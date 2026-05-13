@@ -109,6 +109,18 @@ CREATE TABLE IF NOT EXISTS analysis_runs (
     model VARCHAR
 );
 
+CREATE SEQUENCE IF NOT EXISTS eia_obs_seq START 1;
+CREATE TABLE IF NOT EXISTS eia_observations (
+    id BIGINT PRIMARY KEY DEFAULT nextval('eia_obs_seq'),
+    series VARCHAR NOT NULL,
+    label VARCHAR NOT NULL,
+    period DATE NOT NULL,
+    value DOUBLE NOT NULL,
+    unit VARCHAR,
+    fetched_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(series, period)
+);
+
 -- Current IBKR account positions snapshot. Truncated + repopulated each tick.
 CREATE TABLE IF NOT EXISTS positions (
     symbol VARCHAR NOT NULL,
@@ -419,6 +431,63 @@ def set_news_body(news_id: int, body: str, summary: str | None = None) -> None:
             )
         else:
             conn.execute("UPDATE news SET body = ? WHERE id = ?", [body, news_id])
+
+
+def upsert_eia_observation(series: str, label: str, period, value: float,
+                           unit: str | None = None) -> bool:
+    """Insert one EIA weekly observation. Returns True if new row inserted."""
+    with get_conn() as conn:
+        try:
+            conn.execute(
+                """
+                INSERT INTO eia_observations (series, label, period, value, unit)
+                VALUES (?, ?, ?, ?, ?)
+                """,
+                [series, label, period, value, unit],
+            )
+            return True
+        except duckdb.ConstraintException:
+            return False
+
+
+def latest_eia() -> list[dict]:
+    """Most recent observation per EIA series, plus prior-period value for chg calc."""
+    with get_conn() as conn:
+        rows = conn.execute(
+            """
+            WITH ranked AS (
+                SELECT series, label, period, value, unit,
+                       ROW_NUMBER() OVER (PARTITION BY series ORDER BY period DESC) AS rn
+                FROM eia_observations
+            )
+            SELECT
+                c.series, c.label, c.period, c.value, c.unit,
+                p.value AS prev_value, p.period AS prev_period
+            FROM ranked c
+            LEFT JOIN ranked p ON p.series = c.series AND p.rn = 2
+            WHERE c.rn = 1
+            ORDER BY c.series
+            """
+        ).fetchall()
+        cols = ["series", "label", "period", "value", "unit",
+                "prev_value", "prev_period"]
+        return [dict(zip(cols, r)) for r in rows]
+
+
+def eia_history(series: str, limit: int = 52) -> list[dict]:
+    """Time series of observations for a single EIA series (newest first)."""
+    with get_conn() as conn:
+        rows = conn.execute(
+            """
+            SELECT period, value
+            FROM eia_observations
+            WHERE series = ?
+            ORDER BY period DESC
+            LIMIT ?
+            """,
+            [series, limit],
+        ).fetchall()
+        return [{"period": r[0], "value": r[1]} for r in rows]
 
 
 def episodes_without_transcripts(limit: int = 10) -> list[dict]:

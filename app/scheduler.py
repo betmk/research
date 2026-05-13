@@ -13,6 +13,7 @@ from apscheduler.triggers.interval import IntervalTrigger
 from .config import INTERVALS, SYNTHESIS_INTERVAL_HOURS
 from .scrapers.article_enricher import ArticleEnricher
 from .scrapers.bloomberg import BloombergEnergy
+from .scrapers.eia import EIAWeekly
 from .scrapers.hfi_public import HFIPublic
 from .scrapers.hfi_subscriber import HFISubscriber
 from .scrapers.ibkr_positions import IBKRPositions
@@ -40,6 +41,7 @@ SCRAPERS = {
     "sparta_knowledge": SpartaKnowledge,
     "enrich_articles": ArticleEnricher,
     "sparta_transcripts": SpartaTranscripts,
+    "eia_weekly": EIAWeekly,
 }
 
 

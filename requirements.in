@@ -30,3 +30,11 @@ playwright
 # Article body extraction + podcast transcript captioning
 trafilatura
 yt-dlp
+
+# Anti-bot for Bloomberg
+playwright-stealth
+
+# EIA weekly petroleum status report (XLS download + parse)
+pandas
+openpyxl
+xlrd>=2.0.1
