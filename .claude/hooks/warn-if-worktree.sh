@@ -19,6 +19,12 @@ case "$CWD" in
     WORKTREE_NAME="${CWD#*/.claude/worktrees/}"
     WORKTREE_NAME="${WORKTREE_NAME%%/*}"
 
+    # macOS notification — visible regardless of whether stderr is captured
+    # by the harness. Fires asynchronously so it doesn't delay session start.
+    if command -v osascript >/dev/null 2>&1; then
+      osascript -e "display notification \"Session launched in worktree $WORKTREE_NAME. Switch to Code mode (not Cowork) for clean sessions.\" with title \"Claude Code — Worktree Detected\" sound name \"Sosumi\"" >/dev/null 2>&1 &
+    fi
+
     # Visible warning to the user (stderr is shown in Claude Code transcripts
     # for many hook events; harmless if not).
     cat <<EOF >&2
