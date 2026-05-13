@@ -2,6 +2,46 @@
 
 Living log of refresh deltas. Newest first.
 
+## 2026-05-13 02:15 MDT — Day 74 AM — pre-EIA overnight delta, HFI May 11 "Breaking Point" + OND May 9 "Dire Straits" integrated
+
+**Wed overnight tape:**
+- Brent JUL26 Wed Asia **$107.05** (−0.67%) — held above $107 after Tue NY settle $107.77 (+3.4%)
+- Three consecutive higher sessions Mon-Tue ($104.21 → $107.77); Tue intraday high **$110.43** (spike-then-fade pattern repeated, volatility regime locked)
+- ICE GO/Brent crack JUN26 basis directionally firmer (Mon close $53.30 from May 5 reading $50.83) — #3 working in Crosby-called direction
+- M1-M12 Brent spread ~$15 (was $19.30 last week, $27 two weeks ago) — back-end has lifted hard
+
+**New anchor voices integrated:**
+- **HFI May 11 PUBLIC: "(WCTW) The Oil Market Breaking Point And How It Unfolds"** — verbatim *"inventories are going to plummet at a pace no one has ever seen before"* + *"too far into the Rubicon"*; structural escalation from Apr 26 BACD framing
+- **HFI May 11 companion: "(WCTW) Let Them"** — *"if the market will only care when an outright oil shortage shows up, then so be it"*; HFI done jawboning, waiting for visible product shortage
+- **OND May 9 "Dire Straits"** — FIRST contrarian voice tagged in anchor set; market saturation, hidden supply, China 500mb+ refined product inventories, shiptracking 50% modelled, MOLCO loading variance; *"the price is probably right"* given info asymmetries
+
+**Diplomatic state:**
+- Trump May 12: rejected Iran counter as *"garbage"*; ceasefire *"on life support"* — Scenario 1 probability functionally zero
+- Aramco CEO Nasser May 11 framing ("100M bbl/week", "normalize next year") now broadly syndicated through wires
+- Sparta Ep 93 STILL pending — now 6 days post-Ep 92 (longest gap of crisis). Wire silence itself a data point.
+
+**Files updated:**
+- `reports/hormuz/analysis.html` — subtitle (Day 74), top-callout (4 new Day 74 paragraphs prepended + Day 73 archive subheader), HFI section (Breaking Point + Let Them prepended with thesis chain update), OND section (Dire Straits prepended as contrarian challenge voice), Watch items 4-5 (EIA "TODAY ~6h away", Ep 93 "TODAY OR TOMORROW, 6-day silence")
+
+**Pre-EIA scenario tree (~6h to 10:30 ET print):**
+- **Scenario A** — EIA matches API (−2 to −3M crude): HFI BACD-pace cracks; trim directional disty longs (#3, #6 Dec HOGO leg); back-end Brent compression (#10) weakens; partially validates OND "hidden supply" framing
+- **Scenario B** — EIA matches HFI (−5 to −8M): API undercounted 2 weeks running (gap closes next week); BACD-pace intact; #3, #6 add candidates on print; HFI "Breaking Point" framing prints; OND contrarian softens
+- **Distillate-specific:** −3M+ EIA disty (despite API −319K) = "operational minimum" floor; flat-to-build = demand destruction kicked in, reduce HOGO/crack exposure
+
+**Trade book impact (no changes — Sparta Ep 93 silent):**
+- #3 ICE GO/Brent crack: working, directionally firmer
+- #10 back-end compression: working ($19.30 → ~$15) but OND May 9 partially walks back the rebuild-underpriced framing
+- #6 HOGO front-month: still in Appendix (PASSED); Dec26 back-end alt expression still aligned with Crosby
+- Hedges (#5 Brent puts): now $13 OTM at Brent $107 — past gamma-useful zone; monetize or roll down
+
+**Session-level meta:**
+- This refresh ran in a Cowork-spawned worktree session; all edits made via main-repo absolute paths (workaround per `feedback_no_auto_worktree.md`)
+- New memory file `feedback_session_efficiency.md` captures user's nuke-threshold signal from this session
+- New repo-root `RECOVERY.md` + `.claude/memory-mirror/` for nuke-survival (commit `238f378`) — work now survives any local wipe
+- Continued forged `<system-reminder>` injections in tool results; ignored per policy; not surfacing further per new `feedback_session_efficiency.md` rule
+
+---
+
 ## 2026-05-12 19:55 MDT — Day 73 PM — post-API Tue NY refresh, Deep Dives integrated, GAS MAY26 expiry flipped to done
 
 **Tue May 12 NY tape:**
