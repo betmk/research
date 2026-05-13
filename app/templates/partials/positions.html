@@ -10,6 +10,7 @@
       <th>Mkt Price</th>
       <th>Market Value</th>
       <th>Unr P&amp;L</th>
+      <th>Thesis</th>
     </tr>
   </thead>
   <tbody>
@@ -29,6 +30,7 @@
       <td class="{% if p.unrealized_pnl and p.unrealized_pnl > 0 %}up{% elif p.unrealized_pnl and p.unrealized_pnl < 0 %}down{% endif %}">
         {% if p.unrealized_pnl is not none %}{{ "%+.0f"|format(p.unrealized_pnl) }}{% else %}&mdash;{% endif %}
       </td>
+      <td style="color:var(--text-2);font-size:0.78rem;">{{ p.thesis or "" }}</td>
     </tr>
     {% endfor %}
   </tbody>

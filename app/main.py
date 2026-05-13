@@ -105,11 +105,13 @@ async def fragment_scrape_status(request: Request):
 @app.get("/fragments/positions", response_class=HTMLResponse)
 async def fragment_positions(request: Request, sec_type: str | None = None):
     """Account positions. ?sec_type=FUT,OPT to filter."""
+    from .trades import annotate_positions
     types = tuple(sec_type.split(",")) if sec_type else None
+    positions = annotate_positions(current_positions(sec_types=types))
     return templates.TemplateResponse(
         request,
         "partials/positions.html",
-        {"positions": current_positions(sec_types=types)},
+        {"positions": positions},
     )
 
 

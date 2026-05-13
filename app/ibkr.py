@@ -23,12 +23,16 @@ IBKR_CLIENT_ID = 17        # avoids conflict with investing-dash (1, 2)
 IBKR_TIMEOUT = 10
 
 # Market data type:
-#   1 = live (requires subscription)
-#   2 = frozen (last known)
-#   3 = delayed (free, ~15-20 min lag)
+#   1 = live (requires subscription, errors if not)
+#   2 = frozen (last known live)
+#   3 = delayed (free, ~15-20 min lag, works for everything)
 #   4 = delayed frozen
-# We set to 1 and IB auto-falls-back to 3 if not subscribed.
-MARKET_DATA_TYPE = 1
+# We use 3 (delayed) globally because the watchlist includes ICE Europe
+# contracts (GOIL, COIL) where the user doesn't have live subscriptions.
+# Type 1 errors silently on those; type 3 gives delayed for everything,
+# including BZ/CL/HO where it's the same quote stream with a small lag.
+# The dashboard is for analysis, not execution — execution happens in TWS.
+MARKET_DATA_TYPE = 3
 
 # === Contract registry — internal label -> IB Contract spec ===
 # All resolved against live Gateway. Update lastTradeDateOrContractMonth
