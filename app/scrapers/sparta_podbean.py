@@ -13,7 +13,8 @@ import feedparser
 import httpx
 
 from ..config import SOURCES
-from ..db import upsert_episodes
+from ..db import get_conn, upsert_episodes
+from ..notifications import notify
 from .base import BaseScraper
 
 
@@ -59,9 +60,30 @@ class SpartaPodbean(BaseScraper):
                 "published_at": published,
             })
 
+        # Pre-snapshot: highest episode # already in DB
+        prior_max = 0
+        with get_conn() as conn:
+            row = conn.execute(
+                "SELECT COALESCE(MAX(number), 0) FROM episodes "
+                "WHERE series = 'sparta_trade_with_conviction'"
+            ).fetchone()
+            prior_max = (row[0] or 0) if row else 0
+
         new_count = upsert_episodes(items)
+
+        # If a new highest-numbered episode just landed, fire alert
+        if items:
+            new_max = max((i["number"] or 0) for i in items)
+            if new_max > prior_max:
+                latest = next((i for i in items if i["number"] == new_max), items[0])
+                await notify(
+                    f"Sparta Ep {new_max} dropped",
+                    latest["title"][:80],
+                )
+
         return {
             "items_found": len(items),
             "items_new": new_count,
             "latest": items[0]["title"] if items else None,
+            "max_episode": max((i["number"] or 0) for i in items) if items else None,
         }

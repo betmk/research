@@ -135,6 +135,12 @@ async def fragment_eia(request: Request):
     )
 
 
+@app.get("/fragments/charts", response_class=HTMLResponse)
+async def fragment_charts(request: Request):
+    from .charts import all_charts_html
+    return HTMLResponse(all_charts_html())
+
+
 @app.post("/api/synthesis/run")
 async def api_run_synthesis():
     result = await run_synthesis()

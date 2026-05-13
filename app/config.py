@@ -29,7 +29,7 @@ PORT = 8530
 INTERVALS = {
     "ibkr_prices": 1,      # IBKR Gateway snapshot — fast, no scrape cost
     "ibkr_positions": 5,   # account positions
-    "sparta_podbean": 30,  # podcast episodes
+    "sparta_podbean": 10,  # podcast episodes — tight poll for Ep 93 drop
     "sparta_insights": 30, # written Deep Dives
     "hfi_public": 30,
     "hfi_paid": 60,        # subscriber content, slower

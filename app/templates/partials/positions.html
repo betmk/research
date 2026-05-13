@@ -1,40 +1,53 @@
 {% if positions %}
-<table>
-  <thead>
-    <tr>
-      <th>Symbol</th>
-      <th>Contract</th>
-      <th>Type</th>
-      <th>Qty</th>
-      <th>Avg Cost</th>
-      <th>Mkt Price</th>
-      <th>Market Value</th>
-      <th>Unr P&amp;L</th>
-      <th>Thesis</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for p in positions %}
-    <tr>
-      <td>{{ p.symbol }}</td>
-      <td style="color:var(--text-2);">{{ p.local_symbol or "" }}</td>
-      <td>
-        <span style="font-family:var(--font-mono);font-size:0.66rem;background:var(--bg-3);
-                     padding:1px 6px;border-radius:3px;color:var(--text-2);
-                     letter-spacing:0.05em;">{{ p.sec_type }}</span>
-      </td>
-      <td class="{% if p.position < 0 %}down{% endif %}">{{ "%g"|format(p.position) }}</td>
-      <td>{{ "%.2f"|format(p.avg_cost) if p.avg_cost else "&mdash;" }}</td>
-      <td>{{ "%.2f"|format(p.market_price) if p.market_price else "&mdash;" }}</td>
-      <td>{{ "%.0f"|format(p.market_value) if p.market_value else "&mdash;" }}</td>
-      <td class="{% if p.unrealized_pnl and p.unrealized_pnl > 0 %}up{% elif p.unrealized_pnl and p.unrealized_pnl < 0 %}down{% endif %}">
-        {% if p.unrealized_pnl is not none %}{{ "%+.0f"|format(p.unrealized_pnl) }}{% else %}&mdash;{% endif %}
-      </td>
-      <td style="color:var(--text-2);font-size:0.78rem;">{{ p.thesis or "" }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+{# Group positions by thesis tag for trade-book view #}
+{% set thesis_groups = positions|groupby('thesis') %}
+{% for thesis, group in thesis_groups %}
+  {% set total_pnl = group|sum(attribute='unrealized_pnl', start=0) %}
+  {% set total_mkt = group|map(attribute='market_value')|select|sum %}
+  <div style="margin-top:0.75rem;padding:0.5rem 0.75rem;background:var(--bg-2);border-left:3px solid {% if total_pnl > 0 %}var(--signal-up){% elif total_pnl < 0 %}var(--signal-down){% else %}var(--accent){% endif %};border-radius:var(--r-sm);">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;font-family:var(--font-mono);font-size:0.78rem;">
+      <strong style="color:var(--text-0);">{{ thesis or "Other / untagged" }}</strong>
+      <span class="{% if total_pnl > 0 %}up{% elif total_pnl < 0 %}down{% endif %}">
+        unr P&L {{ "{:+,.0f}".format(total_pnl) }}
+        {% if total_mkt %} &middot; mkt val {{ "{:,.0f}".format(total_mkt) }}{% endif %}
+      </span>
+    </div>
+  </div>
+  <table style="margin-bottom:0.25rem;">
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Contract</th>
+        <th>Type</th>
+        <th>Qty</th>
+        <th>Avg Cost</th>
+        <th>Mkt Px</th>
+        <th>Mkt Val</th>
+        <th>Unr P&amp;L</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for p in group %}
+      <tr>
+        <td>{{ p.symbol }}</td>
+        <td style="color:var(--text-2);">{{ p.local_symbol or "" }}</td>
+        <td>
+          <span style="font-family:var(--font-mono);font-size:0.66rem;background:var(--bg-3);
+                       padding:1px 6px;border-radius:3px;color:var(--text-2);
+                       letter-spacing:0.05em;">{{ p.sec_type }}</span>
+        </td>
+        <td class="{% if p.position < 0 %}down{% endif %}">{{ "%g"|format(p.position) }}</td>
+        <td>{{ "%.2f"|format(p.avg_cost) if p.avg_cost else "&mdash;" }}</td>
+        <td>{{ "%.2f"|format(p.market_price) if p.market_price else "&mdash;" }}</td>
+        <td>{{ "%.0f"|format(p.market_value) if p.market_value else "&mdash;" }}</td>
+        <td class="{% if p.unrealized_pnl and p.unrealized_pnl > 0 %}up{% elif p.unrealized_pnl and p.unrealized_pnl < 0 %}down{% endif %}">
+          {% if p.unrealized_pnl is not none %}{{ "%+.0f"|format(p.unrealized_pnl) }}{% else %}&mdash;{% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endfor %}
 {% else %}
 <div class="empty">No positions yet &mdash; IBKR scraper fetching on first scheduler tick.</div>
 {% endif %}

@@ -56,6 +56,18 @@
 
     <div class="panel">
       <div class="panel-header">
+        <h2>Charts &mdash; Forward curves + spreads</h2>
+      </div>
+      <div id="charts-panel"
+           hx-get="/fragments/charts"
+           hx-trigger="load, every 120s"
+           hx-swap="innerHTML">
+        <div class="empty">Loading charts&hellip;</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
         <h2>EIA Weekly Stocks</h2>
         <div class="actions">
           <button hx-post="/api/scrape/eia_weekly" hx-swap="none"
