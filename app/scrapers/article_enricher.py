@@ -10,6 +10,8 @@ from __future__ import annotations
 import asyncio
 from typing import Any
 
+from urllib.parse import urlparse
+
 import httpx
 import trafilatura
 
@@ -17,8 +19,24 @@ from ..db import set_news_body, unenriched_news
 from .base import BaseScraper
 from .premium_base import PROFILE_DIR, _profile_lock, profile_ready
 
-PREMIUM_SOURCES = {"wsj", "bloomberg", "hfi_subscriber"}
+# Domain-based routing — any URL on these domains goes through the auth'd
+# Chrome profile (paywall-protected bodies). Everything else uses httpx.
+PREMIUM_DOMAINS = {
+    "wsj.com", "www.wsj.com",
+    "bloomberg.com", "www.bloomberg.com",
+    "hfir.com", "www.hfir.com",
+    "hfir-ideas.com", "www.hfir-ideas.com",
+    "spartacommodities.com", "www.spartacommodities.com",
+}
 MAX_BODY_CHARS = 12_000  # keep tokens bounded for synthesis
+
+
+def _is_premium_url(url: str) -> bool:
+    try:
+        host = urlparse(url).netloc.lower()
+    except Exception:  # noqa: BLE001
+        return False
+    return host in PREMIUM_DOMAINS
 
 USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -122,9 +140,9 @@ class ArticleEnricher(BaseScraper):
     name = "enrich_articles"
 
     async def fetch(self) -> dict[str, Any]:
-        rows = unenriched_news(limit=30)
-        free = [r for r in rows if r["source"] not in PREMIUM_SOURCES]
-        premium = [r for r in rows if r["source"] in PREMIUM_SOURCES]
+        rows = unenriched_news(limit=40)
+        free = [r for r in rows if not _is_premium_url(r["url"])]
+        premium = [r for r in rows if _is_premium_url(r["url"])]
 
         # Free first (fast), premium second (single browser launch)
         free_count = await _enrich_free(free)
