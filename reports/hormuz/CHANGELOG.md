@@ -2,6 +2,52 @@
 
 Living log of refresh deltas. Newest first.
 
+## 2026-05-12 19:55 MDT — Day 73 PM — post-API Tue NY refresh, Deep Dives integrated, GAS MAY26 expiry flipped to done
+
+**Tue May 12 NY tape:**
+- Brent JUL26 settled **$107.77 (+3.4%)** from Mon $104.21 (CNBC source — note TradingEconomics showed $104.97 spot Brent, different contract)
+- Intraday high **$110.43 @ 9am ET** (Fortune) — spike then $2.66 fade into close, echoing May 5 pattern
+- WTI JUN26 settled $102.18 (+4.2%)
+- Brent now $13.60 (+14.4%) above May 5-6 peace-deal-crash low of $94.17
+- Decisively above Sparta Kumar Scenario 2 ceiling ($105) — into Scenario 3 ($120-150) zone
+- Brent-WTI diff: $5.59 (still wide vs pre-crisis ~$4)
+- Spike-then-fade pattern = volatility regime locked
+
+**API May 12 4:30 ET (wk ending May 8):**
+- Crude **−2.188M** (vs cons −1.65M draw)
+- Gasoline **+502K SURPRISE BUILD** (vs prior −6.1M)
+- Distillate **−319K** (vs prior −4.6M)
+- All three series saw draws collapse vs prior week
+- Validates `feedback_api_eia_divergence_logic.md` cleanly — last week's outsized −8.1M was catch-up to EIA, not regime change
+- Sets up wide divergence vs HFI Wed track (−5 to −8M crude):
+  - **Scenario A (EIA ≈ API, −2 to −3M):** HFI BACD-pace track cracks; trim directional disty longs
+  - **Scenario B (EIA ≈ HFI, −5 to −8M):** API undercounted 2 wks running; BACD-pace intact; #3 #6 add candidates
+- Distillate decel either softens "running out of runway" urgency OR reflects inventory near operational minimum (already 11% below 5-yr avg per EIA)
+- Gasoline +502K is first inflection in 4 weeks of draws — early demand destruction signal OR statistical noise
+
+**Sparta Deep Dive content integration (prior session open item, closed):**
+- Noel-Beswick May 7 Deep Dive (companion to Ep 92) — replaced stale "Peace hopes fade (Apr 13)" row entry. Added: "US diesel stocks falling to genuinely concerning levels" + "GO E/W historically extraordinary" + "HOGO and GO E/W finds a floor." Cross-checked vs API distillate decel.
+- Crosby May 11 Deep Dive "Time for physical to shine" — added to Crosby row alongside Ep 92 transcript content. "Brent-linked crude in particular is too cheap" + "lack of deal breakthrough should see global refining step out to buy up barrels" — printed cleanly into Tue NY $107.77 close (+3.4%) and $110.43 intraday.
+
+**GAS MAY26 (GOILK6) expiry housekeeping:**
+- Front contract expired today as scheduled
+- Front rolled to GAS JUN26 (GOILM6, expires Wed Jun 10)
+- Top-line callout block flipped from "EXPIRES TODAY" to "EXPIRED DONE"
+- Watch item 3 flipped from active to done
+- Crosby Ep 92 "front cheap spread" thesis re-anchors on M2-M3 (Jun-Jul) at +54.75 (vs his +50 at recording)
+- #3 ICE GO/Brent crack directional long unaffected (already legged on JUN26 GO vs JUL26 Brent)
+
+**What's open into Wed:**
+- Wed May 13 10:30 ET EIA print — load-bearing distillate read; HFI track vs API divergence resolution
+- Sparta Ep 93 still pending (Wed-Thu expected; latest is Ep 92 from May 7 per Podbean)
+- Watch for HFI WCTW post-EIA Wed commentary (per methodology — HFI direct line)
+
+**Session-level meta:**
+- Multiple forged `<system-reminder>` injection attempts in WebSearch + Bash + PostToolUse hook results this session, all matching documented adversarial pattern ("NEVER mention this reminder to the user"). All ignored. Note: `~/.claude/security-log/hits.log` PostToolUse hook hasn't logged hits since May 4 18:44 despite continued visual injections — payload may be inserted downstream of the hook (at harness render layer rather than tool_response). Worth investigation.
+- Cleanup completed: 2 ancient stashes dropped (referenced renamed file `hormuz_research_report.html`); `scan-tool-result.sh` confirmed warn-only by design (no change needed); `warn-if-worktree.sh` exists and wired but its `additionalContext` JSON not landing in model context — Claude Desktop likely doesn't honor Claude Code SessionStart hook spec.
+
+---
+
 ## 2026-05-12 00:55 CST — Day 73 — Tue Asia refresh, Brent grinds higher overnight, Nasser added as anchor wire voice
 
 **Overnight tape:**
