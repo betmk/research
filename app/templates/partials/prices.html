@@ -3,26 +3,52 @@
   <thead>
     <tr>
       <th>Instrument</th>
+      <th>Contract</th>
       <th>Last</th>
+      <th>Bid</th>
+      <th>Ask</th>
+      <th>Close</th>
       <th>Chg %</th>
-      <th>Source</th>
       <th>Updated</th>
     </tr>
   </thead>
   <tbody>
     {% for p in prices %}
     <tr>
-      <td>{{ p.instrument }}{% if p.contract %} ({{ p.contract }}){% endif %}</td>
-      <td>{{ "%.2f"|format(p.price) }}</td>
+      <td>{{ p.instrument }}</td>
+      <td style="color:var(--text-2);">{{ p.contract or "" }}</td>
+      <td>{{ "%.4f"|format(p.price) if p.price else "&mdash;" }}</td>
+      <td style="color:var(--text-2);">{{ "%.4f"|format(p.bid) if p.bid else "&mdash;" }}</td>
+      <td style="color:var(--text-2);">{{ "%.4f"|format(p.ask) if p.ask else "&mdash;" }}</td>
+      <td style="color:var(--text-3);">{{ "%.4f"|format(p.prev_close) if p.prev_close else "&mdash;" }}</td>
       <td class="{% if p.change_pct and p.change_pct > 0 %}up{% elif p.change_pct and p.change_pct < 0 %}down{% endif %}">
         {% if p.change_pct is not none %}{{ "%+.2f"|format(p.change_pct) }}%{% else %}&mdash;{% endif %}
       </td>
-      <td>{{ p.source }}</td>
-      <td>{{ p.fetched_at.strftime("%H:%M:%S") if p.fetched_at else "" }}</td>
+      <td style="color:var(--text-3);font-size:0.78rem;">{{ p.fetched_at.strftime("%H:%M:%S") if p.fetched_at else "" }}</td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
+{% if spreads %}
+<div style="margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--border-1);">
+  <h2 style="margin-bottom:0.5rem;">Derived Spreads</h2>
+  <table>
+    <thead>
+      <tr><th>Spread</th><th>Value</th><th>Unit</th><th>Note</th></tr>
+    </thead>
+    <tbody>
+      {% for s in spreads %}
+      <tr>
+        <td>{{ s.name }}</td>
+        <td>{{ "%+.3f"|format(s.value) }}</td>
+        <td style="color:var(--text-3);">{{ s.unit }}</td>
+        <td style="color:var(--text-2);font-size:0.78rem;">{{ s.note }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
 {% else %}
-<div class="empty">No price data yet &mdash; scheduler is fetching on first run.</div>
+<div class="empty">No price data yet &mdash; IBKR scheduler is fetching on first run.</div>
 {% endif %}

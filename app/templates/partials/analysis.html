@@ -1,0 +1,21 @@
+{% if analysis %}
+<div style="margin-bottom:0.75rem;padding:0.5rem 0.75rem;
+            background:{% if analysis.triggered_alert %}var(--signal-down-bg){% else %}var(--signal-up-bg){% endif %};
+            border-left:3px solid {% if analysis.triggered_alert %}var(--signal-down){% else %}var(--signal-up){% endif %};
+            border-radius:var(--r-sm);">
+  <div style="font-family:var(--font-mono);font-size:0.78rem;color:var(--text-2);
+              letter-spacing:0.05em;">
+    {{ analysis.run_at.strftime("%Y-%m-%d %H:%M UTC") }} &middot; {{ analysis.model }}
+    {% if analysis.triggered_alert %} &middot; <strong style="color:var(--signal-down);">ALERT FIRED</strong>{% endif %}
+  </div>
+  <div style="margin-top:0.25rem;font-weight:600;color:var(--text-0);">
+    {{ analysis.summary }}
+  </div>
+</div>
+<pre style="white-space:pre-wrap;font-family:var(--font-mono);font-size:0.78rem;
+            line-height:1.55;color:var(--text-1);background:var(--bg-0);
+            padding:0.75rem;border-radius:var(--r-sm);
+            max-height:540px;overflow-y:auto;">{{ analysis.body }}</pre>
+{% else %}
+<div class="empty">No synthesis runs yet &mdash; first pass fires within the next scheduler tick.</div>
+{% endif %}

@@ -26,6 +26,8 @@ CREATE TABLE IF NOT EXISTS prices (
     instrument VARCHAR NOT NULL,
     contract VARCHAR,
     price DOUBLE NOT NULL,
+    bid DOUBLE,
+    ask DOUBLE,
     change DOUBLE,
     change_pct DOUBLE,
     prev_close DOUBLE,
@@ -129,11 +131,19 @@ CREATE INDEX IF NOT EXISTS idx_episodes_series ON episodes(series, published_at 
 
 
 def init_db() -> None:
-    """Create the database file + schema if missing. Idempotent."""
+    """Create the database file + schema if missing. Idempotent.
+    Also runs lightweight migrations for new columns added after v1."""
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     conn = duckdb.connect(str(DB_PATH))
     try:
         conn.execute(SCHEMA)
+        # Migration: bid/ask columns added post-v1.
+        # Just attempt the ALTER and swallow the "already exists" error.
+        for col in ("bid", "ask"):
+            try:
+                conn.execute(f"ALTER TABLE prices ADD COLUMN {col} DOUBLE")
+            except duckdb.CatalogException:
+                pass
     finally:
         conn.close()
 
@@ -217,14 +227,16 @@ def insert_price(quote: dict) -> None:
     with get_conn() as conn:
         conn.execute(
             """
-            INSERT INTO prices (instrument, contract, price, change, change_pct,
-                                prev_close, day_high, day_low, source)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO prices (instrument, contract, price, bid, ask, change,
+                                change_pct, prev_close, day_high, day_low, source)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
             [
                 quote.get("instrument"),
                 quote.get("contract"),
                 quote.get("price"),
+                quote.get("bid"),
+                quote.get("ask"),
                 quote.get("change"),
                 quote.get("change_pct"),
                 quote.get("prev_close"),
@@ -240,15 +252,71 @@ def latest_prices() -> list[dict]:
     with get_conn() as conn:
         result = conn.execute(
             """
-            SELECT DISTINCT ON (instrument) instrument, contract, price, change,
-                   change_pct, prev_close, day_high, day_low, source, fetched_at
+            SELECT DISTINCT ON (instrument) instrument, contract, price, bid, ask,
+                   change, change_pct, prev_close, day_high, day_low, source,
+                   fetched_at
             FROM prices
             ORDER BY instrument, fetched_at DESC
             """
         ).fetchall()
-        cols = ["instrument", "contract", "price", "change", "change_pct",
-                "prev_close", "day_high", "day_low", "source", "fetched_at"]
+        cols = ["instrument", "contract", "price", "bid", "ask", "change",
+                "change_pct", "prev_close", "day_high", "day_low", "source",
+                "fetched_at"]
         return [dict(zip(cols, row)) for row in result]
+
+
+def latest_spreads() -> list[dict]:
+    """Derived spreads from latest prices. M1-M12 Brent compression etc."""
+    prices = {p["instrument"]: p for p in latest_prices()}
+
+    def diff(a: str, b: str) -> float | None:
+        pa, pb = prices.get(a), prices.get(b)
+        if not pa or not pb or pa["price"] is None or pb["price"] is None:
+            return None
+        return round(pa["price"] - pb["price"], 3)
+
+    spreads = []
+    # Brent (NYMEX BZ) M1–M12 compression
+    s = diff("BRENT_JUL26", "BRENT_DEC26")
+    if s is not None:
+        spreads.append({"name": "Brent M1–M12 (BZ Jul–Dec)", "value": s,
+                         "unit": "$/bbl", "note": "OND Frozen anchor; back-end has lifted"})
+    # ICE Brent (COIL) M1–M12
+    s = diff("ICE_BRENT_JUL26", "ICE_BRENT_DEC26")
+    if s is not None:
+        spreads.append({"name": "ICE Brent M1–M12 (COIL Jul–Dec)", "value": s,
+                         "unit": "$/bbl", "note": "matches user positions in COIL"})
+    # Brent-WTI Jul
+    s = diff("BRENT_JUL26", "WTI_JUL26")
+    if s is not None:
+        spreads.append({"name": "Brent-WTI (Jul)", "value": s, "unit": "$/bbl",
+                         "note": "WTI geopolitical discount"})
+    # ICE Gasoil time spread Jun-Jul
+    s = diff("ICE_GASOIL_JUN26", "ICE_GASOIL_JUL26")
+    if s is not None:
+        spreads.append({"name": "ICE Gasoil M1–M2 (GOIL Jun–Jul)",
+                         "value": s, "unit": "$/MT",
+                         "note": "Crosby Ep 92 'front spread very cheap' thesis"})
+    # HO time spread Jun-Dec
+    s = diff("NYMEX_HO_JUN26", "NYMEX_HO_DEC26")
+    if s is not None:
+        spreads.append({"name": "NYMEX HO M1–M7 (Jun–Dec)", "value": s,
+                         "unit": "$/gal",
+                         "note": "Dec premium = back-end HOGO support"})
+    # HOGO front (HO − Gasoil, normalized to $/bbl via *42 and /7.45)
+    ho = prices.get("NYMEX_HO_JUN26")
+    go = prices.get("ICE_GASOIL_JUN26")
+    if ho and go and ho["price"] and go["price"]:
+        # HO in $/gal × 42 = $/bbl. Gasoil in $/MT, ÷ 7.45 ≈ $/bbl.
+        ho_bbl = ho["price"] * 42
+        go_bbl = go["price"] / 7.45
+        spreads.append({
+            "name": "HOGO (HO–Gasoil, $/bbl)",
+            "value": round(ho_bbl - go_bbl, 2),
+            "unit": "$/bbl",
+            "note": "Crosby Ep 91 trade #6 anchor",
+        })
+    return spreads
 
 
 def recent_news(limit: int = 20, source: str | None = None) -> list[dict]:

@@ -10,12 +10,13 @@ import logging
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.interval import IntervalTrigger
 
-from .config import INTERVALS
+from .config import INTERVALS, SYNTHESIS_INTERVAL_HOURS
 from .scrapers.hfi_public import HFIPublic
 from .scrapers.ibkr_positions import IBKRPositions
 from .scrapers.ibkr_prices import IBKRPrices
 from .scrapers.oil_not_dead import OilNotDead
 from .scrapers.sparta_podbean import SpartaPodbean
+from .synthesis import run_synthesis
 
 logger = logging.getLogger(__name__)
 
@@ -59,8 +60,18 @@ def start_scheduler() -> AsyncIOScheduler:
             max_instances=1,
             misfire_grace_time=300,
         )
+    # Synthesis pass on its own cadence (hours)
+    _scheduler.add_job(
+        run_synthesis,
+        trigger=IntervalTrigger(hours=SYNTHESIS_INTERVAL_HOURS),
+        id="synthesis",
+        replace_existing=True,
+        max_instances=1,
+        misfire_grace_time=600,
+    )
     _scheduler.start()
-    logger.info("scheduler started with %d jobs", len(SCRAPERS))
+    logger.info("scheduler started with %d scrapers + synthesis every %dh",
+                 len(SCRAPERS), SYNTHESIS_INTERVAL_HOURS)
     return _scheduler
 
 

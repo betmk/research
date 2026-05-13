@@ -24,6 +24,8 @@ class IBKRPrices(BaseScraper):
                 "instrument": label,
                 "contract": q.get("contract"),
                 "price": q.get("price"),
+                "bid": q.get("bid"),
+                "ask": q.get("ask"),
                 "change": q.get("change"),
                 "change_pct": q.get("change_pct"),
                 "prev_close": q.get("prev_close"),

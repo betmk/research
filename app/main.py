@@ -21,10 +21,12 @@ from .db import (
     init_db,
     latest_prices,
     latest_scrape_runs,
+    latest_spreads,
     recent_episodes,
     recent_news,
 )
 from .scheduler import run_all_once, run_one, start_scheduler, stop_scheduler
+from .synthesis import latest_analysis, run_synthesis
 
 
 @asynccontextmanager
@@ -64,7 +66,11 @@ async def fragment_prices(request: Request):
     return templates.TemplateResponse(
         request,
         "partials/prices.html",
-        {"prices": latest_prices(), "now": datetime.utcnow()},
+        {
+            "prices": latest_prices(),
+            "spreads": latest_spreads(),
+            "now": datetime.utcnow(),
+        },
     )
 
 
@@ -105,6 +111,21 @@ async def fragment_positions(request: Request, sec_type: str | None = None):
         "partials/positions.html",
         {"positions": current_positions(sec_types=types)},
     )
+
+
+@app.get("/fragments/analysis", response_class=HTMLResponse)
+async def fragment_analysis(request: Request):
+    return templates.TemplateResponse(
+        request,
+        "partials/analysis.html",
+        {"analysis": latest_analysis()},
+    )
+
+
+@app.post("/api/synthesis/run")
+async def api_run_synthesis():
+    result = await run_synthesis()
+    return JSONResponse(result)
 
 
 # ===== JSON API =====

@@ -70,6 +70,23 @@
   <div>
     <div class="panel">
       <div class="panel-header">
+        <h2>Analysis &mdash; Latest Synthesis</h2>
+        <div class="actions">
+          <button hx-post="/api/synthesis/run" hx-swap="none"
+                  hx-trigger="click"
+                  hx-on::after-request="htmx.trigger('#analysis-panel', 'refresh')">Run Now</button>
+        </div>
+      </div>
+      <div id="analysis-panel"
+           hx-get="/fragments/analysis"
+           hx-trigger="load, refresh, every 60s"
+           hx-swap="innerHTML">
+        <div class="empty">Loading analysis&hellip;</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
         <h2>News &mdash; All Sources</h2>
         <div class="actions">
           <button hx-post="/api/scrape/all" hx-swap="none"
