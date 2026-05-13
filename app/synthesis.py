@@ -29,7 +29,7 @@ from .trades import annotate_positions
 logger = logging.getLogger(__name__)
 
 CLAUDE_CLI = shutil.which("claude") or "/opt/homebrew/bin/claude"
-CLAUDE_TIMEOUT_SECONDS = 120
+CLAUDE_TIMEOUT_SECONDS = 240
 
 
 def _build_data_context() -> dict:
@@ -42,7 +42,56 @@ def _build_data_context() -> dict:
         "positions": annotate_positions(
             current_positions(sec_types=("FUT", "OPT"))
         ),
+        "enriched_news": _enriched_news_for_prompt(limit=15, body_chars=1800),
+        "transcript_excerpts": _transcript_excerpts(limit=3, chars=2500),
     }
+
+
+def _enriched_news_for_prompt(limit: int, body_chars: int) -> list[dict]:
+    """Pull the most recent news rows that have body text. Truncated to fit
+    in the prompt token budget."""
+    with get_conn() as conn:
+        rows = conn.execute(
+            """
+            SELECT title, source, url, body, published_at, fetched_at
+            FROM news
+            WHERE body IS NOT NULL AND LENGTH(body) > 300
+            ORDER BY COALESCE(published_at, fetched_at) DESC
+            LIMIT ?
+            """,
+            [limit],
+        ).fetchall()
+    return [
+        {
+            "title": r[0], "source": r[1], "url": r[2],
+            "body": (r[3] or "")[:body_chars],
+            "published_at": r[4], "fetched_at": r[5],
+        }
+        for r in rows
+    ]
+
+
+def _transcript_excerpts(limit: int, chars: int) -> list[dict]:
+    """Newest podcast transcripts truncated per-episode."""
+    with get_conn() as conn:
+        rows = conn.execute(
+            """
+            SELECT number, title, transcript, published_at
+            FROM episodes
+            WHERE transcript IS NOT NULL AND LENGTH(transcript) > 500
+            ORDER BY COALESCE(published_at, fetched_at) DESC
+            LIMIT ?
+            """,
+            [limit],
+        ).fetchall()
+    return [
+        {
+            "number": r[0], "title": r[1],
+            "transcript": (r[2] or "")[:chars],
+            "published_at": r[3],
+        }
+        for r in rows
+    ]
 
 
 def _compute_headline_and_alert(data: dict) -> tuple[str, bool]:
@@ -133,13 +182,30 @@ def _build_claude_prompt(data: dict) -> str:
         f"{' — ' + p['thesis'] if p.get('thesis') else ''}"
         for p in data["positions"][:15]
     )
+    # Headlines-only feed (for breadth)
     news_md = "\n".join(
-        f"- [{n['source']}] {n['title']}" for n in data["news"][:10]
+        f"- [{n['source']}] {n['title']}" for n in data["news"][:15]
     )
-    episodes_md = "\n".join(
-        f"- Ep {e.get('number', '?')}: {e['title']}"
-        for e in data["episodes"][:3]
-    )
+
+    # Enriched articles — title + body excerpt — only the ones we actually
+    # have full text for. This is the meaningful content.
+    enriched_blocks = []
+    for n in data.get("enriched_news", []):
+        body = n["body"].replace("\n\n", "\n").strip()
+        enriched_blocks.append(
+            f"### [{n['source']}] {n['title']}\n{body}\n"
+        )
+    enriched_md = "\n".join(enriched_blocks) if enriched_blocks else "(no enriched articles yet)"
+
+    # Podcast transcripts
+    transcript_blocks = []
+    for e in data.get("transcript_excerpts", []):
+        excerpt = e["transcript"].replace("\n", " ")
+        transcript_blocks.append(
+            f"### Sparta Ep {e['number']}: {e['title']}\n{excerpt}\n"
+        )
+    transcripts_md = "\n".join(transcript_blocks) if transcript_blocks else "(no transcripts yet)"
+
     now = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
 
     return f"""You are a commodity research analyst summarizing the live state of an
@@ -147,14 +213,17 @@ oil/distillate trade book. Write a concise markdown digest covering:
 
 1. **What materially changed** in prices/spreads vs prior session
 2. **Implications for the active trade book** (#3 GO/Brent crack, #6 HOGO,
-   #10 back-end Brent compression, #14 ARA-PAD1 gasoline arb)
+   #10 back-end Brent compression, #14 ARA-PAD1 gasoline arb), referencing
+   specific points from the enriched article + transcript content below
 3. **What to watch** in the next session (specific levels, releases, events)
 
 Constraints (do not violate):
 - No allocation percentages — directional conviction only
 - No Singapore-only trade recommendations
 - Cite specific instruments and price levels
-- 250 words maximum
+- Where you cite a view, attribute the source ([wsj], [hfi_subscriber],
+  Sparta Ep N transcript, etc.)
+- 350 words maximum
 - Output pure markdown, no preamble or signoff
 
 Snapshot — {now}
@@ -168,11 +237,14 @@ Snapshot — {now}
 ## Open Positions (FUT + OPT)
 {positions_md}
 
-## Recent News
+## Headline Feed (titles only)
 {news_md}
 
-## Latest Podcast Episodes
-{episodes_md}
+## Enriched articles (full text — read these closely)
+{enriched_md}
+
+## Podcast transcripts (read these closely)
+{transcripts_md}
 """
 
 

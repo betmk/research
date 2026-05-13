@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS episodes (
     url VARCHAR NOT NULL UNIQUE,
     chapter_titles VARCHAR[],
     description VARCHAR,
+    transcript VARCHAR,
     published_at TIMESTAMP,
     fetched_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -144,6 +145,11 @@ def init_db() -> None:
                 conn.execute(f"ALTER TABLE prices ADD COLUMN {col} DOUBLE")
             except duckdb.CatalogException:
                 pass
+        # Migration: transcript column on episodes (post-v1 enrichment)
+        try:
+            conn.execute("ALTER TABLE episodes ADD COLUMN transcript VARCHAR")
+        except duckdb.CatalogException:
+            pass
     finally:
         conn.close()
 
@@ -382,6 +388,61 @@ def latest_scrape_runs(limit: int = 50) -> list[dict]:
         cols = ["scraper", "started_at", "finished_at", "items_found",
                 "items_new", "error", "success"]
         return [dict(zip(cols, row)) for row in result]
+
+
+def unenriched_news(limit: int = 30, sources: tuple[str, ...] | None = None) -> list[dict]:
+    """News rows that don't yet have body text. Used by ArticleEnricher."""
+    sql = """
+        SELECT id, title, url, source
+        FROM news
+        WHERE (body IS NULL OR LENGTH(body) < 200)
+    """
+    params: list = []
+    if sources:
+        placeholders = ",".join("?" for _ in sources)
+        sql += f" AND source IN ({placeholders})"
+        params.extend(sources)
+    sql += " ORDER BY COALESCE(published_at, fetched_at) DESC LIMIT ?"
+    params.append(limit)
+    with get_conn() as conn:
+        rows = conn.execute(sql, params).fetchall()
+        return [{"id": r[0], "title": r[1], "url": r[2], "source": r[3]} for r in rows]
+
+
+def set_news_body(news_id: int, body: str, summary: str | None = None) -> None:
+    """Persist extracted article body (and optional summary) on a news row."""
+    with get_conn() as conn:
+        if summary is not None:
+            conn.execute(
+                "UPDATE news SET body = ?, summary = ? WHERE id = ?",
+                [body, summary, news_id],
+            )
+        else:
+            conn.execute("UPDATE news SET body = ? WHERE id = ?", [body, news_id])
+
+
+def episodes_without_transcripts(limit: int = 10) -> list[dict]:
+    with get_conn() as conn:
+        rows = conn.execute(
+            """
+            SELECT id, series, number, title, url
+            FROM episodes
+            WHERE transcript IS NULL OR LENGTH(transcript) < 500
+            ORDER BY COALESCE(published_at, fetched_at) DESC
+            LIMIT ?
+            """,
+            [limit],
+        ).fetchall()
+        return [{"id": r[0], "series": r[1], "number": r[2],
+                 "title": r[3], "url": r[4]} for r in rows]
+
+
+def set_episode_transcript(episode_id: int, transcript: str) -> None:
+    with get_conn() as conn:
+        conn.execute(
+            "UPDATE episodes SET transcript = ? WHERE id = ?",
+            [transcript, episode_id],
+        )
 
 
 def current_positions(sec_types: tuple[str, ...] | None = None) -> list[dict]:

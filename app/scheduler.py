@@ -11,6 +11,7 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.interval import IntervalTrigger
 
 from .config import INTERVALS, SYNTHESIS_INTERVAL_HOURS
+from .scrapers.article_enricher import ArticleEnricher
 from .scrapers.bloomberg import BloombergEnergy
 from .scrapers.hfi_public import HFIPublic
 from .scrapers.hfi_subscriber import HFISubscriber
@@ -19,6 +20,7 @@ from .scrapers.ibkr_prices import IBKRPrices
 from .scrapers.oil_not_dead import OilNotDead
 from .scrapers.sparta_knowledge import SpartaKnowledge
 from .scrapers.sparta_podbean import SpartaPodbean
+from .scrapers.sparta_transcripts import SpartaTranscripts
 from .scrapers.wsj import WSJOil
 from .synthesis import run_synthesis
 
@@ -36,6 +38,8 @@ SCRAPERS = {
     "bloomberg_oil": BloombergEnergy,
     "hfi_paid": HFISubscriber,
     "sparta_knowledge": SpartaKnowledge,
+    "enrich_articles": ArticleEnricher,
+    "sparta_transcripts": SpartaTranscripts,
 }
 
 

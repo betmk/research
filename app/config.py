@@ -37,6 +37,8 @@ INTERVALS = {
     "wsj_oil": 30,         # WSJ oil section, subscriber
     "bloomberg_oil": 30,   # Bloomberg energy
     "x_twitter": 15,       # Goh + HFI
+    "enrich_articles": 15, # full article body extraction (after scrapes)
+    "sparta_transcripts": 120,  # YouTube auto-captions for new episodes
 }
 
 # Synthesis run interval (hours) — generates the AI analysis layer.

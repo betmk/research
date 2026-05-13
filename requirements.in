@@ -24,5 +24,9 @@ python-dateutil
 # IBKR Gateway integration (live prices + positions)
 ib_async
 
-# Premium-source scraping (added when creds wired)
-# playwright
+# Premium-source scraping
+playwright
+
+# Article body extraction + podcast transcript captioning
+trafilatura
+yt-dlp
