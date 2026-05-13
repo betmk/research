@@ -21,5 +21,8 @@ beautifulsoup4
 feedparser
 python-dateutil
 
+# IBKR Gateway integration (live prices + positions)
+ib_async
+
 # Premium-source scraping (added when creds wired)
 # playwright

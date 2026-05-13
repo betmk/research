@@ -12,8 +12,9 @@ from apscheduler.triggers.interval import IntervalTrigger
 
 from .config import INTERVALS
 from .scrapers.hfi_public import HFIPublic
+from .scrapers.ibkr_positions import IBKRPositions
+from .scrapers.ibkr_prices import IBKRPrices
 from .scrapers.oil_not_dead import OilNotDead
-from .scrapers.prices import Prices
 from .scrapers.sparta_podbean import SpartaPodbean
 
 logger = logging.getLogger(__name__)
@@ -23,7 +24,8 @@ SCRAPERS = {
     "sparta_podbean": SpartaPodbean,
     "hfi_public": HFIPublic,
     "oil_not_dead": OilNotDead,
-    "prices": Prices,
+    "ibkr_prices": IBKRPrices,
+    "ibkr_positions": IBKRPositions,
 }
 
 

@@ -17,6 +17,7 @@ from fastapi.templating import Jinja2Templates
 
 from .config import HOST, PORT, STATIC_DIR, TEMPLATES_DIR
 from .db import (
+    current_positions,
     init_db,
     latest_prices,
     latest_scrape_runs,
@@ -92,6 +93,17 @@ async def fragment_scrape_status(request: Request):
         request,
         "partials/scrape_status.html",
         {"runs": latest_scrape_runs(limit=20)},
+    )
+
+
+@app.get("/fragments/positions", response_class=HTMLResponse)
+async def fragment_positions(request: Request, sec_type: str | None = None):
+    """Account positions. ?sec_type=FUT,OPT to filter."""
+    types = tuple(sec_type.split(",")) if sec_type else None
+    return templates.TemplateResponse(
+        request,
+        "partials/positions.html",
+        {"positions": current_positions(sec_types=types)},
     )
 
 

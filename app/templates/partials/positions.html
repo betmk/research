@@ -1,0 +1,38 @@
+{% if positions %}
+<table>
+  <thead>
+    <tr>
+      <th>Symbol</th>
+      <th>Contract</th>
+      <th>Type</th>
+      <th>Qty</th>
+      <th>Avg Cost</th>
+      <th>Mkt Price</th>
+      <th>Market Value</th>
+      <th>Unr P&amp;L</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for p in positions %}
+    <tr>
+      <td>{{ p.symbol }}</td>
+      <td style="color:var(--text-2);">{{ p.local_symbol or "" }}</td>
+      <td>
+        <span style="font-family:var(--font-mono);font-size:0.66rem;background:var(--bg-3);
+                     padding:1px 6px;border-radius:3px;color:var(--text-2);
+                     letter-spacing:0.05em;">{{ p.sec_type }}</span>
+      </td>
+      <td class="{% if p.position < 0 %}down{% endif %}">{{ "%g"|format(p.position) }}</td>
+      <td>{{ "%.2f"|format(p.avg_cost) if p.avg_cost else "&mdash;" }}</td>
+      <td>{{ "%.2f"|format(p.market_price) if p.market_price else "&mdash;" }}</td>
+      <td>{{ "%.0f"|format(p.market_value) if p.market_value else "&mdash;" }}</td>
+      <td class="{% if p.unrealized_pnl and p.unrealized_pnl > 0 %}up{% elif p.unrealized_pnl and p.unrealized_pnl < 0 %}down{% endif %}">
+        {% if p.unrealized_pnl is not none %}{{ "%+.0f"|format(p.unrealized_pnl) }}{% else %}&mdash;{% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="empty">No positions yet &mdash; IBKR scraper fetching on first scheduler tick.</div>
+{% endif %}

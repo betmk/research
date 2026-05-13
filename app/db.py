@@ -106,6 +106,22 @@ CREATE TABLE IF NOT EXISTS analysis_runs (
     model VARCHAR
 );
 
+-- Current IBKR account positions snapshot. Truncated + repopulated each tick.
+CREATE TABLE IF NOT EXISTS positions (
+    symbol VARCHAR NOT NULL,
+    local_symbol VARCHAR,
+    sec_type VARCHAR NOT NULL,
+    exchange VARCHAR,
+    currency VARCHAR,
+    position DOUBLE NOT NULL,
+    avg_cost DOUBLE,
+    market_price DOUBLE,
+    market_value DOUBLE,
+    unrealized_pnl DOUBLE,
+    account VARCHAR,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 CREATE INDEX IF NOT EXISTS idx_prices_instrument_time ON prices(instrument, fetched_at DESC);
 CREATE INDEX IF NOT EXISTS idx_news_source_time ON news(source, published_at DESC);
 CREATE INDEX IF NOT EXISTS idx_episodes_series ON episodes(series, published_at DESC);
@@ -298,3 +314,25 @@ def latest_scrape_runs(limit: int = 50) -> list[dict]:
         cols = ["scraper", "started_at", "finished_at", "items_found",
                 "items_new", "error", "success"]
         return [dict(zip(cols, row)) for row in result]
+
+
+def current_positions(sec_types: tuple[str, ...] | None = None) -> list[dict]:
+    """Latest positions snapshot. Optionally filter by sec_type."""
+    sql = """
+        SELECT symbol, local_symbol, sec_type, exchange, currency, position,
+               avg_cost, market_price, market_value, unrealized_pnl, account,
+               updated_at
+        FROM positions
+    """
+    params: list = []
+    if sec_types:
+        placeholders = ",".join("?" for _ in sec_types)
+        sql += f" WHERE sec_type IN ({placeholders})"
+        params.extend(sec_types)
+    sql += " ORDER BY ABS(market_value) DESC NULLS LAST"
+    with get_conn() as conn:
+        rows = conn.execute(sql, params).fetchall()
+        cols = ["symbol", "local_symbol", "sec_type", "exchange", "currency",
+                "position", "avg_cost", "market_price", "market_value",
+                "unrealized_pnl", "account", "updated_at"]
+        return [dict(zip(cols, row)) for row in rows]

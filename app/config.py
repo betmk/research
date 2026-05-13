@@ -27,7 +27,8 @@ PORT = 8530
 
 # Scrape intervals (minutes). Premium sources slower to respect rate limits.
 INTERVALS = {
-    "prices": 5,           # Brent, ICE GO, HO, Murban — fast
+    "ibkr_prices": 1,      # IBKR Gateway snapshot — fast, no scrape cost
+    "ibkr_positions": 5,   # account positions
     "sparta_podbean": 30,  # podcast episodes
     "sparta_insights": 30, # written Deep Dives
     "hfi_public": 30,

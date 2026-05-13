@@ -5,9 +5,9 @@
   <div>
     <div class="panel">
       <div class="panel-header">
-        <h2>Live Prices</h2>
+        <h2>Live Prices &mdash; IBKR</h2>
         <div class="actions">
-          <button hx-post="/api/scrape/prices" hx-swap="none"
+          <button hx-post="/api/scrape/ibkr_prices" hx-swap="none"
                   hx-trigger="click"
                   hx-on::after-request="htmx.trigger('#prices-panel', 'refresh')">Refresh</button>
         </div>
@@ -17,6 +17,23 @@
            hx-trigger="load, refresh, every 30s"
            hx-swap="innerHTML">
         <div class="empty">Loading prices&hellip;</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Positions &mdash; Futures + Options</h2>
+        <div class="actions">
+          <button hx-post="/api/scrape/ibkr_positions" hx-swap="none"
+                  hx-trigger="click"
+                  hx-on::after-request="htmx.trigger('#positions-panel', 'refresh')">Refresh</button>
+        </div>
+      </div>
+      <div id="positions-panel"
+           hx-get="/fragments/positions?sec_type=FUT,OPT"
+           hx-trigger="load, refresh, every 30s"
+           hx-swap="innerHTML">
+        <div class="empty">Loading positions&hellip;</div>
       </div>
     </div>
 
