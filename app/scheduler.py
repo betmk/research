@@ -11,22 +11,31 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.interval import IntervalTrigger
 
 from .config import INTERVALS, SYNTHESIS_INTERVAL_HOURS
+from .scrapers.bloomberg import BloombergEnergy
 from .scrapers.hfi_public import HFIPublic
+from .scrapers.hfi_subscriber import HFISubscriber
 from .scrapers.ibkr_positions import IBKRPositions
 from .scrapers.ibkr_prices import IBKRPrices
 from .scrapers.oil_not_dead import OilNotDead
+from .scrapers.sparta_knowledge import SpartaKnowledge
 from .scrapers.sparta_podbean import SpartaPodbean
+from .scrapers.wsj import WSJOil
 from .synthesis import run_synthesis
 
 logger = logging.getLogger(__name__)
 
 # Scraper registry — keys must match INTERVALS keys in config.py.
+# Premium scrapers gracefully skip when auth_state.json is missing.
 SCRAPERS = {
     "sparta_podbean": SpartaPodbean,
     "hfi_public": HFIPublic,
     "oil_not_dead": OilNotDead,
     "ibkr_prices": IBKRPrices,
     "ibkr_positions": IBKRPositions,
+    "wsj_oil": WSJOil,
+    "bloomberg_oil": BloombergEnergy,
+    "hfi_paid": HFISubscriber,
+    "sparta_knowledge": SpartaKnowledge,
 }
 
 
