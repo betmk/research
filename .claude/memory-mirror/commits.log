@@ -1,0 +1,2 @@
+[2026-05-13 01:19] research | 386d294 | update: Day 73 PM post-API refresh + Deep Dive integration | files: reports/hormuz/CHANGELOG.md,reports/hormuz/analysis.html,
+[2026-05-13 01:28] research | 58f4a85 | chore(deps): pin requirements.txt with transitive lock + hashes | files: requirements.in,requirements.txt,
