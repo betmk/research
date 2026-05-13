@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Research &mdash; Live Desk{% endblock %}
+{% block content %}
+<div class="grid">
+  <div>
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Live Prices</h2>
+        <div class="actions">
+          <button hx-post="/api/scrape/prices" hx-swap="none"
+                  hx-trigger="click"
+                  hx-on::after-request="htmx.trigger('#prices-panel', 'refresh')">Refresh</button>
+        </div>
+      </div>
+      <div id="prices-panel"
+           hx-get="/fragments/prices"
+           hx-trigger="load, refresh, every 30s"
+           hx-swap="innerHTML">
+        <div class="empty">Loading prices&hellip;</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Sparta Episodes</h2>
+        <div class="actions">
+          <button hx-post="/api/scrape/sparta_podbean" hx-swap="none"
+                  hx-trigger="click"
+                  hx-on::after-request="htmx.trigger('#episodes-panel', 'refresh')">Refresh</button>
+        </div>
+      </div>
+      <div id="episodes-panel"
+           hx-get="/fragments/episodes"
+           hx-trigger="load, refresh, every 60s"
+           hx-swap="innerHTML">
+        <div class="empty">Loading episodes&hellip;</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Scrape Status</h2>
+      </div>
+      <div id="scrape-status-panel"
+           hx-get="/fragments/scrape-status"
+           hx-trigger="load, every 30s"
+           hx-swap="innerHTML">
+        <div class="empty">Loading status&hellip;</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="panel">
+      <div class="panel-header">
+        <h2>News &mdash; All Sources</h2>
+        <div class="actions">
+          <button hx-post="/api/scrape/all" hx-swap="none"
+                  hx-trigger="click"
+                  hx-on::after-request="htmx.trigger('#news-panel', 'refresh')">Pull All</button>
+        </div>
+      </div>
+      <div id="news-panel"
+           hx-get="/fragments/news?limit=30"
+           hx-trigger="load, refresh, every 60s"
+           hx-swap="innerHTML">
+        <div class="empty">Loading news&hellip;</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% if episodes %}
+  {% for e in episodes %}
+  <div class="news-item">
+    <span class="source">{{ e.series }}</span>
+    {% if e.number %}<span style="font-family:var(--font-mono);color:var(--accent);font-weight:600;">Ep {{ e.number }}</span>&middot; {% endif %}
+    <a href="{{ e.url }}" target="_blank" rel="noopener">{{ e.title }}</a>
+    {% if e.published_at %}<span class="time">{{ e.published_at.strftime("%Y-%m-%d") }}</span>{% endif %}
+    {% if e.description %}
+    <div style="margin-top:0.25rem;color:var(--text-2);font-size:0.78rem;line-height:1.4;">
+      {{ e.description[:300] }}{% if e.description|length > 300 %}&hellip;{% endif %}
+    </div>
+    {% endif %}
+  </div>
+  {% endfor %}
+{% else %}
+<div class="empty">No episodes yet.</div>
+{% endif %}

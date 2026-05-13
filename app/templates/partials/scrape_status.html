@@ -1,0 +1,28 @@
+{% if runs %}
+<table>
+  <thead>
+    <tr>
+      <th>Scraper</th>
+      <th>Status</th>
+      <th>Found</th>
+      <th>New</th>
+      <th>Run time</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in runs %}
+    <tr>
+      <td>{{ r.scraper }}</td>
+      <td class="{% if r.success %}status-ok{% else %}status-fail{% endif %}">
+        {{ "OK" if r.success else "FAIL" }}
+      </td>
+      <td>{{ r.items_found }}</td>
+      <td>{{ r.items_new }}</td>
+      <td>{{ r.started_at.strftime("%H:%M:%S") if r.started_at else "" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="empty">No scrape runs yet.</div>
+{% endif %}

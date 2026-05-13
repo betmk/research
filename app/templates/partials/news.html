@@ -1,0 +1,16 @@
+{% if news %}
+  {% for n in news %}
+  <div class="news-item">
+    <span class="source">{{ n.source }}</span>
+    <a href="{{ n.url }}" target="_blank" rel="noopener">{{ n.title }}</a>
+    {% if n.published_at %}<span class="time">{{ n.published_at.strftime("%m-%d %H:%M") }}</span>
+    {% elif n.fetched_at %}<span class="time">fetched {{ n.fetched_at.strftime("%m-%d %H:%M") }}</span>
+    {% endif %}
+    {% if n.summary %}
+    <div style="margin-top:0.25rem;color:var(--text-2);font-size:0.8rem;line-height:1.4;">{{ n.summary }}</div>
+    {% endif %}
+  </div>
+  {% endfor %}
+{% else %}
+<div class="empty">No news yet &mdash; first scrape pass running.</div>
+{% endif %}

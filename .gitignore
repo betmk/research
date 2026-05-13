@@ -1,8 +1,19 @@
 # Credentials
 .env
+.creds
+*.creds.json
 
 # Generated data
 data/
+*.duckdb
+*.duckdb.wal
+
+# launchd logs
+launchd/*.log
+
+# Uvicorn / service runtime logs
+.uvicorn.log
+nohup.out
 
 # IB discovery / quote tool outputs (working JSON)
 tools/ib_results*.json
