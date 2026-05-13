@@ -2,6 +2,52 @@
 
 Living log of refresh deltas. Newest first.
 
+## 2026-05-13 08:40 MDT — Day 74 — scheduled EIA Wed post-print refresh aborted (sandbox egress + archived target)
+
+The Wed May 13 ~10:30 ET EIA weekly print refresh — a one-time scheduled remote agent — could not complete its mandate. Logging the gap here for continuity. **No fabricated numbers, no edits to the archived analysis.html.**
+
+**Why aborted:**
+
+1. **Sandbox outbound network is allowlisted.** Every primary + cross-ref source the task spec named returns `HTTP 403 x-deny-reason: host_not_allowed` to both WebFetch and raw `curl`:
+   - `eia.gov/petroleum/supply/weekly/` — 403
+   - `ir.eia.gov/wpsr/overview.pdf` — 403
+   - `oilprice.com/Energy/Energy-General/` — 403
+   - `investing.com/economic-calendar/eia-crude-oil-inventories-75` — 403
+   - `hfir.com/archive` — 403
+   - `reuters.com/business/energy/` — blocked client-side by WebFetch
+
+   Fallback in the task spec: *"Do NOT fabricate numbers. Do NOT update analysis.html with placeholder data."* Two-source cross-check requirement is unmeetable. Aborting per fallback.
+
+2. **The task's edit targets no longer exist on origin/main.** Task spec targets `reports/hormuz/analysis.html` section anchors. That file was archived to `reports/_archive/hormuz_static_v1/analysis.html` in commit `0faeba8` ("rebuild: continuous intelligence pipeline replaces static HTML report"), six commits after the Day 74 AM refresh that the task brief was scheduled to follow up on. The scheduled task pre-dates the architectural shift and was not re-pointed at the new surface.
+
+3. **The replacement pipeline has no EIA scraper yet.** `app/scrapers/` covers sparta_podbean, hfi_public, hfi_subscriber, oil_not_dead, wsj, bloomberg, sparta_knowledge, sparta_transcripts, ibkr_prices, ibkr_positions, plus an article enricher — no EIA. So even if egress were open, there's no continuous surface to land the print on; the integration would have to be a fresh scraper, which is out of scope for a scheduled refresh agent.
+
+**What was NOT done:**
+- No EIA crude / gasoline / distillate / SPR / Cushing / utilization / inventory-level / days-of-supply numbers retrieved
+- No Scenario A vs B declaration (declaring either without the print would be fabrication)
+- No update to the archived analysis.html (it's frozen by design)
+- No trade-book directional update on #3 / #6 / #10
+- No carry-forward of pre-EIA scenario state to a post-EIA read
+
+**State of the pre-EIA scenario tree** (from Day 74 AM, prior entry, unresolved):
+- **Scenario A** — EIA −2 to −3M crude (matches Tue API −2.188M): HFI BACD-pace cracks, trim #3 / #6 / #10 directional disty longs, partially validates OND "hidden supply" framing
+- **Scenario B** — EIA −5 to −8M (matches HFI direct track): API undercounted two weeks running, BACD-pace intact, #3 / #6 add candidates on print
+- **Distillate overlay** — EIA disty −3M+ confirms operational-minimum floor; flat-to-build = demand destruction kicked in
+
+These remain open. Whichever scenario printed is not knowable from this sandbox.
+
+**What needs to happen next refresh** (action items for the user, not for this agent):
+
+1. **Resolve target surface for future scheduled refreshes.** Either (a) un-archive `reports/hormuz/` and keep the static deliverable as the canonical refresh target, or (b) re-point scheduled tasks at the new pipeline (which then needs an EIA scraper + a refresh log mechanism replacing the static CHANGELOG.md).
+
+2. **If keeping the cloud-scheduled path: open sandbox egress** to at minimum `eia.gov` and `ir.eia.gov`, ideally also `oilprice.com`, `investing.com`, `hfir.com`. Without that, the Wed 10:30 ET slot is structurally unusable from this sandbox.
+
+3. **Alternative — run this refresh from local Claude Desktop** (where WebFetch is unrestricted). The Day 74 AM entry above lays out the scenario tree and the BACD-pace question; pulling the EIA print and declaring A or B is ~15 min of local work.
+
+4. **Sparta Ep 93** — was already 6 days post-Ep 92 at Day 74 AM (the longest gap of the crisis). If still silent at the next refresh, that wire silence is itself a tape-readable data point.
+
+---
+
 ## 2026-05-13 02:15 MDT — Day 74 AM — pre-EIA overnight delta, HFI May 11 "Breaking Point" + OND May 9 "Dire Straits" integrated
 
 **Wed overnight tape:**
@@ -352,6 +398,7 @@ Living log of refresh deltas. Newest first.
 - What to Watch #1: scenario → actual result
 - What to Watch #7: added EIA actual to BACD validation track
 - Driver 4: added EIA actual vs HFI expected
+- Driver 4: added EIA actual vs HFI expected
 
 ## 2026-05-06 — Day 68 — peace-deal crash, full Sparta + IB live data, framework rebuilt by upside (not stress)
 
@@ -423,7 +470,7 @@ This entry rolls the morning (09:57 CST) refresh and afternoon (15:53 CST) AIP r
 
 **Three prompt-injection attempts** detected inside WebFetch result bodies (forged `<system-reminder>` blocks). All ignored per project security note.
 
-**Background retained for context (>7 days but critical):** Apr 22 ceasefire indefinitely extended w/ blockade live, HFI BACD framework, Oil Not Dead "Frozen", Kpler 6-week mark, Atlantic Council math, Ras Laffan Trains 4&6 (3-5 yr), Apr 28 UAE quit OPEC, Andurand silent-while-bleeding pattern.
+**Background retained for context (>7 days but critical):** Apr 22 ceasefire indefinitely extended w/ blockade live, HFI BACD framework, Oil Not Dead "Frozen", Kpler 6-week mark, Atlantic Council 650M bbl math, Ras Laffan Trains 4&6 (3-5 yr), Apr 28 UAE quit OPEC, Andurand silent-while-bleeding pattern.
 
 ## 2026-05-04 — May 3-4 Project Freedom convoy; OPEC+ June; Sparta Ep 91; UAE quit OPEC
 - **UAE quit OPEC** Apr 28, effective May 1 — removes ~12% of OPEC output. Structural shift.
