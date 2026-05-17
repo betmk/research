@@ -78,9 +78,36 @@ class SpartaWhisper(BaseScraper):
 
     async def fetch(self) -> dict[str, Any]:
         async with _whisper_lock:
+            # Primary: episodes with no transcript at all
             episodes = episodes_without_transcripts(limit=self.episodes_per_run)
-            # Only episodes that have an audio_url (need the MP3 to transcribe)
             episodes = [e for e in episodes if e.get("audio_url")]
+
+            # Secondary: also upgrade non-Whisper transcripts on recent eps
+            # (YouTube auto-captions are noisier and truncated at 30K chars;
+            # Whisper produces ~50K cleaner chars for a 48-min episode).
+            if len(episodes) < self.episodes_per_run:
+                from ..db import get_conn
+                slots = self.episodes_per_run - len(episodes)
+                seen_ids = {e["id"] for e in episodes}
+                with get_conn() as conn:
+                    rows = conn.execute(
+                        """
+                        SELECT id, series, number, title, url, audio_url, duration_seconds
+                        FROM episodes
+                        WHERE audio_url IS NOT NULL
+                          AND (transcript_source IS NULL
+                               OR transcript_source NOT LIKE 'whisper%')
+                        ORDER BY COALESCE(published_at, fetched_at) DESC
+                        LIMIT ?
+                        """,
+                        [slots * 3],
+                    ).fetchall()
+                    for r in rows:
+                        if r[0] in seen_ids or len(episodes) >= self.episodes_per_run:
+                            continue
+                        episodes.append({"id": r[0], "series": r[1], "number": r[2],
+                                          "title": r[3], "url": r[4],
+                                          "audio_url": r[5], "duration_seconds": r[6]})
 
             if not episodes:
                 return {"items_found": 0, "items_new": 0,
