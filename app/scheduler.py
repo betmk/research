@@ -22,6 +22,7 @@ from .scrapers.oil_not_dead import OilNotDead
 from .scrapers.sparta_knowledge import SpartaKnowledge
 from .scrapers.sparta_podbean import SpartaPodbean
 from .scrapers.sparta_transcripts import SpartaTranscripts
+from .scrapers.sparta_whisper import SpartaWhisper
 from .scrapers.wsj import WSJOil
 from .synthesis import run_synthesis
 
@@ -40,7 +41,8 @@ SCRAPERS = {
     "hfi_paid": HFISubscriber,
     "sparta_knowledge": SpartaKnowledge,
     "enrich_articles": ArticleEnricher,
-    "sparta_transcripts": SpartaTranscripts,
+    "sparta_whisper": SpartaWhisper,         # primary — local Whisper, fast
+    "sparta_transcripts": SpartaTranscripts, # fallback — YouTube auto-captions
     "eia_weekly": EIAWeekly,
 }
 

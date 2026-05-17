@@ -56,9 +56,12 @@ CREATE TABLE IF NOT EXISTS episodes (
     number INTEGER,
     title VARCHAR NOT NULL,
     url VARCHAR NOT NULL UNIQUE,
+    audio_url VARCHAR,
+    duration_seconds INTEGER,
     chapter_titles VARCHAR[],
     description VARCHAR,
     transcript VARCHAR,
+    transcript_source VARCHAR,
     published_at TIMESTAMP,
     fetched_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -158,10 +161,14 @@ def init_db() -> None:
             except duckdb.CatalogException:
                 pass
         # Migration: transcript column on episodes (post-v1 enrichment)
-        try:
-            conn.execute("ALTER TABLE episodes ADD COLUMN transcript VARCHAR")
-        except duckdb.CatalogException:
-            pass
+        for col, typ in (("transcript", "VARCHAR"),
+                          ("audio_url", "VARCHAR"),
+                          ("duration_seconds", "INTEGER"),
+                          ("transcript_source", "VARCHAR")):
+            try:
+                conn.execute(f"ALTER TABLE episodes ADD COLUMN {col} {typ}")
+            except duckdb.CatalogException:
+                pass
     finally:
         conn.close()
 
@@ -219,16 +226,18 @@ def upsert_episodes(items: list[dict]) -> int:
             try:
                 conn.execute(
                     """
-                    INSERT INTO episodes (series, number, title, url,
-                                          chapter_titles, description,
-                                          published_at)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                    INSERT INTO episodes (series, number, title, url, audio_url,
+                                          duration_seconds, chapter_titles,
+                                          description, published_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     [
                         item.get("series"),
                         item.get("number"),
                         item.get("title"),
                         item.get("url"),
+                        item.get("audio_url"),
+                        item.get("duration_seconds"),
                         item.get("chapter_titles") or [],
                         item.get("description"),
                         item.get("published_at"),
@@ -236,7 +245,18 @@ def upsert_episodes(items: list[dict]) -> int:
                 )
                 new_count += 1
             except duckdb.ConstraintException:
-                pass
+                # Already exists — try to backfill audio_url if missing
+                if item.get("audio_url"):
+                    conn.execute(
+                        """
+                        UPDATE episodes
+                        SET audio_url = COALESCE(audio_url, ?),
+                            duration_seconds = COALESCE(duration_seconds, ?)
+                        WHERE url = ?
+                        """,
+                        [item.get("audio_url"), item.get("duration_seconds"),
+                         item.get("url")],
+                    )
     return new_count
 
 
@@ -494,7 +514,7 @@ def episodes_without_transcripts(limit: int = 10) -> list[dict]:
     with get_conn() as conn:
         rows = conn.execute(
             """
-            SELECT id, series, number, title, url
+            SELECT id, series, number, title, url, audio_url, duration_seconds
             FROM episodes
             WHERE transcript IS NULL OR LENGTH(transcript) < 500
             ORDER BY COALESCE(published_at, fetched_at) DESC
@@ -503,14 +523,16 @@ def episodes_without_transcripts(limit: int = 10) -> list[dict]:
             [limit],
         ).fetchall()
         return [{"id": r[0], "series": r[1], "number": r[2],
-                 "title": r[3], "url": r[4]} for r in rows]
+                 "title": r[3], "url": r[4], "audio_url": r[5],
+                 "duration_seconds": r[6]} for r in rows]
 
 
-def set_episode_transcript(episode_id: int, transcript: str) -> None:
+def set_episode_transcript(episode_id: int, transcript: str,
+                           source: str = "whisper") -> None:
     with get_conn() as conn:
         conn.execute(
-            "UPDATE episodes SET transcript = ? WHERE id = ?",
-            [transcript, episode_id],
+            "UPDATE episodes SET transcript = ?, transcript_source = ? WHERE id = ?",
+            [transcript, source, episode_id],
         )
 
 

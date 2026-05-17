@@ -30,6 +30,7 @@ playwright
 # Article body extraction + podcast transcript captioning
 trafilatura
 yt-dlp
+faster-whisper
 
 # Anti-bot for Bloomberg
 playwright-stealth

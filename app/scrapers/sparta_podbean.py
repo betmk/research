@@ -50,11 +50,29 @@ class SpartaPodbean(BaseScraper):
                     number = int(match.group(1))
                     break
 
+            # MP3 enclosure for local Whisper transcription
+            audio_url = None
+            for enc in entry.get("enclosures", []):
+                if (enc.get("type") or "").startswith("audio"):
+                    audio_url = enc.get("href")
+                    break
+
+            # itunes:duration is in seconds
+            duration = None
+            duration_raw = entry.get("itunes_duration")
+            if duration_raw:
+                try:
+                    duration = int(duration_raw)
+                except (ValueError, TypeError):
+                    pass
+
             items.append({
                 "series": "sparta_trade_with_conviction",
                 "number": number,
                 "title": title,
                 "url": link,
+                "audio_url": audio_url,
+                "duration_seconds": duration,
                 "chapter_titles": [],  # not in RSS; pulled separately from page
                 "description": description[:2000] if description else None,
                 "published_at": published,
