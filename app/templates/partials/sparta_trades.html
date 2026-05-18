@@ -65,6 +65,24 @@
             ▸ {{ t.ibkr_expression }}
           </div>
           {% endif %}
+          {% if t.relation_to_prior and t.relation_to_prior != 'new' %}
+          {% set rel = t.relation_to_prior|lower %}
+          <div style="font-family:var(--font-mono);font-size:0.7rem;margin-bottom:0.2rem;
+                      padding:2px 6px;border-radius:3px;display:inline-block;
+                      background:{% if rel in ['reverses','offsets','parks'] %}var(--signal-down-bg);color:var(--signal-down){% elif rel in ['elevates'] %}var(--signal-up-bg);color:var(--signal-up){% else %}var(--bg-3);color:var(--text-2){% endif %};">
+            {% if rel == 'reverses' %}↔ REVERSES PRIOR
+            {% elif rel == 'offsets' %}↘ OFFSETS PRIOR
+            {% elif rel == 'parks' %}⏸ PARKS PRIOR
+            {% elif rel == 'reiterates' %}↻ REITERATES
+            {% elif rel == 'elevates' %}↑ ELEVATES
+            {% else %}{{ rel|upper }}{% endif %}
+          </div>
+          {% if t.relation_to_prior_note %}
+          <div style="color:var(--text-2);font-size:0.74rem;margin-bottom:0.15rem;">
+            {{ t.relation_to_prior_note }}
+          </div>
+          {% endif %}
+          {% endif %}
           <div style="color:var(--text-1);">{{ t.rationale or "" }}</div>
           {% if t.quote %}<div style="color:var(--text-3);font-style:italic;margin-top:0.15rem;">&ldquo;{{ t.quote }}&rdquo;</div>{% endif %}
         </td>

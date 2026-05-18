@@ -16,7 +16,7 @@ import re
 import shutil
 from typing import Any
 
-from ..db import episodes_needing_extraction, insert_trade_ideas
+from ..db import episodes_needing_extraction, insert_trade_ideas, prior_episode_trade_ideas
 from .base import BaseScraper
 
 logger = logging.getLogger(__name__)
@@ -75,9 +75,12 @@ def _strip_code_fences(s: str) -> str:
     return s.strip()
 
 
-async def _extract_via_claude(transcript: str) -> list[dict]:
+async def _extract_via_claude(transcript: str, prior_ideas: list[dict]) -> list[dict]:
     """Run Claude CLI, parse JSON, return list of trade dicts."""
-    prompt = _PROMPT_TEMPLATE.format(transcript=transcript[:MAX_TRANSCRIPT_CHARS])
+    prompt = _PROMPT_TEMPLATE.format(
+        transcript=transcript[:MAX_TRANSCRIPT_CHARS],
+        prior_context=_format_prior_context(prior_ideas),
+    )
     proc = await asyncio.create_subprocess_exec(
         CLAUDE_CLI, "-p", prompt, "--output-format", "text",
         stdout=asyncio.subprocess.PIPE,
@@ -136,7 +139,11 @@ class SpartaTradeExtractor(BaseScraper):
             total_ideas = 0
             for ep in episodes:
                 try:
-                    ideas = await _extract_via_claude(ep["transcript"])
+                    # Pull prior 2 episodes' ideas as context for reversal detection
+                    prior = prior_episode_trade_ideas(
+                        before_episode=ep["number"], lookback=2,
+                    )
+                    ideas = await _extract_via_claude(ep["transcript"], prior)
                     n = insert_trade_ideas(
                         episode_id=ep["id"],
                         episode_number=ep["number"],

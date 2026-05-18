@@ -127,6 +127,8 @@ CREATE TABLE IF NOT EXISTS trade_ideas (
     quote VARCHAR,
     executable_on_ibkr BOOLEAN,
     ibkr_expression VARCHAR,
+    relation_to_prior VARCHAR,
+    relation_to_prior_note VARCHAR,
     extracted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     model VARCHAR
 );
@@ -189,11 +191,14 @@ def init_db() -> None:
                 conn.execute(f"ALTER TABLE episodes ADD COLUMN {col} {typ}")
             except duckdb.CatalogException:
                 pass
-        # Migration: ibkr_expression on trade_ideas
-        try:
-            conn.execute("ALTER TABLE trade_ideas ADD COLUMN ibkr_expression VARCHAR")
-        except duckdb.CatalogException:
-            pass
+        # Migration: ibkr_expression + reversal tracking on trade_ideas
+        for col, typ in (("ibkr_expression", "VARCHAR"),
+                          ("relation_to_prior", "VARCHAR"),
+                          ("relation_to_prior_note", "VARCHAR")):
+            try:
+                conn.execute(f"ALTER TABLE trade_ideas ADD COLUMN {col} {typ}")
+            except duckdb.CatalogException:
+                pass
     finally:
         conn.close()
 
@@ -638,20 +643,46 @@ def insert_trade_ideas(episode_id: int, episode_number: int, episode_title: str,
                       (episode_id, episode_number, episode_title,
                        episode_published_at, person, direction, instrument,
                        conviction, rationale, quote, executable_on_ibkr,
-                       ibkr_expression, model)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                       ibkr_expression, relation_to_prior, relation_to_prior_note,
+                       model)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     [episode_id, episode_number, episode_title,
                      episode_published_at,
                      t.get("person"), t.get("direction"), t.get("instrument"),
                      t.get("conviction"), t.get("rationale"), t.get("quote"),
                      t.get("executable_on_ibkr"), t.get("ibkr_expression"),
+                     t.get("relation_to_prior"), t.get("relation_to_prior_note"),
                      model],
                 )
                 n += 1
             except Exception:  # noqa: BLE001
                 pass
     return n
+
+
+def prior_episode_trade_ideas(before_episode: int, lookback: int = 2) -> list[dict]:
+    """For extracting Ep N: return Ep (N-1) and Ep (N-2) extracted ideas
+    so the LLM can detect reversals/reiterations/offsets."""
+    with get_conn() as conn:
+        rows = conn.execute(
+            """
+            SELECT episode_number, person, direction, instrument, conviction,
+                   rationale, quote
+            FROM trade_ideas
+            WHERE episode_number < ? AND episode_number IS NOT NULL
+            ORDER BY episode_number DESC, id
+            LIMIT (SELECT COUNT(*) FROM trade_ideas
+                   WHERE episode_number IN (
+                       SELECT DISTINCT episode_number FROM trade_ideas
+                       WHERE episode_number < ?
+                       ORDER BY episode_number DESC LIMIT ?))
+            """,
+            [before_episode, before_episode, lookback],
+        ).fetchall()
+        cols = ["episode_number", "person", "direction", "instrument",
+                "conviction", "rationale", "quote"]
+        return [dict(zip(cols, r)) for r in rows]
 
 
 def episodes_needing_extraction(limit: int = 3) -> list[dict]:
@@ -707,7 +738,8 @@ def trade_ideas_chronological(limit: int = 200,
     sql = f"""
         SELECT episode_number, episode_title, episode_published_at,
                person, direction, instrument, conviction, rationale,
-               quote, executable_on_ibkr, ibkr_expression, extracted_at
+               quote, executable_on_ibkr, ibkr_expression,
+               relation_to_prior, relation_to_prior_note, extracted_at
         FROM trade_ideas
         {where_sql}
         ORDER BY episode_number DESC NULLS LAST,
@@ -726,7 +758,8 @@ def trade_ideas_chronological(limit: int = 200,
         rows = conn.execute(sql, params).fetchall()
         cols = ["episode_number", "episode_title", "episode_published_at",
                 "person", "direction", "instrument", "conviction", "rationale",
-                "quote", "executable_on_ibkr", "ibkr_expression", "extracted_at"]
+                "quote", "executable_on_ibkr", "ibkr_expression",
+                "relation_to_prior", "relation_to_prior_note", "extracted_at"]
         return [dict(zip(cols, r)) for r in rows]
 
 

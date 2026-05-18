@@ -261,14 +261,18 @@ Specific moves in prices/spreads vs prior session, cite levels.
 by episode (newest first). Place PRIMARY EMPHASIS on the most-recent episode —
 treat it as the live framework; the prior episode is supporting context.
 
-For each: direction, instrument, conviction, person, IBKR-tradable flag, AND
-the specific IBKR contract expression (or reason it's framework-only). Do NOT
-skip ideas just because they aren't in the user's positions. Do NOT skip
-framework-only ideas — mark them with their non-IBKR reason. Include contrary
-views explicitly (e.g. someone saying long X while another host says short X).
+For each: direction, instrument, conviction, person, IBKR-tradable flag, the
+IBKR contract expression (or framework reason), AND any relation_to_prior tag
+(reverses / offsets / parks / reiterates / elevates) with the relation note.
 
 Format each as:
-`- [CONV] DIR Instrument (Person) [IBKR/framework] — Expression: X — Rationale`
+`- [CONV] DIR Instrument (Person) [IBKR/framework] — Expression: X — Rel: TAG (note) — Rationale`
+
+## Reversals & shifts
+After the trade-book enumeration, add a dedicated **Reversals & shifts** sub-
+section listing every idea in the most recent episode where `relation_to_prior`
+is one of `reverses`, `offsets`, or `parks`. This is the change-vs-prior view —
+critical for spotting when Sparta backs away from a call.
 
 ## Position alignment
 For each of the user's current positions (in the Open Positions section
