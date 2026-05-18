@@ -46,7 +46,38 @@ def _build_data_context() -> dict:
         "enriched_news": _enriched_news_for_prompt(limit=15, body_chars=1800),
         "transcript_excerpts": _transcript_excerpts(limit=3, chars=2500),
         "eia": latest_eia(),
+        "sparta_trades": _sparta_trade_ideas_for_prompt(episode_limit=4),
     }
+
+
+def _sparta_trade_ideas_for_prompt(episode_limit: int = 4) -> list[dict]:
+    """All extracted Sparta trade ideas from the last N episodes, newest first."""
+    with get_conn() as conn:
+        rows = conn.execute(
+            """
+            WITH recent_eps AS (
+                SELECT DISTINCT episode_number
+                FROM trade_ideas
+                ORDER BY episode_number DESC NULLS LAST
+                LIMIT ?
+            )
+            SELECT episode_number, episode_title, person, direction,
+                   instrument, conviction, rationale, quote, executable_on_ibkr
+            FROM trade_ideas
+            WHERE episode_number IN (SELECT episode_number FROM recent_eps)
+            ORDER BY episode_number DESC,
+                     CASE conviction
+                       WHEN 'high' THEN 1
+                       WHEN 'medium' THEN 2
+                       WHEN 'low' THEN 3
+                       ELSE 4 END
+            """,
+            [episode_limit],
+        ).fetchall()
+    cols = ["episode_number", "episode_title", "person", "direction",
+            "instrument", "conviction", "rationale", "quote",
+            "executable_on_ibkr"]
+    return [dict(zip(cols, r)) for r in rows]
 
 
 def _enriched_news_for_prompt(limit: int, body_chars: int) -> list[dict]:
@@ -184,6 +215,22 @@ def _build_claude_prompt(data: dict) -> str:
         else f"- {o['label']} ({o['period']}): {o['value']:,.0f} {o['unit'] or ''}"
         for o in data.get("eia", [])
     )
+
+    # Sparta trade ideas — group by episode, then sort by conviction
+    sparta_lines: list[str] = []
+    current_ep: int | None = None
+    for t in data.get("sparta_trades", []):
+        ep = t.get("episode_number")
+        if ep != current_ep:
+            sparta_lines.append(f"\n### Ep {ep}: {t.get('episode_title','')[:70]}")
+            current_ep = ep
+        flag = "IBKR" if t.get("executable_on_ibkr") else "framework"
+        sparta_lines.append(
+            f"- [{(t.get('conviction') or '?').upper()}] "
+            f"{(t.get('direction') or '?').upper()} {t.get('instrument','?')} "
+            f"({t.get('person','?')}) [{flag}] — {t.get('rationale','')}"
+        )
+    sparta_md = "\n".join(sparta_lines) if sparta_lines else "(no Sparta trades extracted)"
     positions_md = "\n".join(
         f"- {p['symbol']} {p.get('local_symbol', '')}: qty {p['position']:g}, "
         f"unr P&L {p.get('unrealized_pnl') or 0:+.0f}"
@@ -217,21 +264,37 @@ def _build_claude_prompt(data: dict) -> str:
     now = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
 
     return f"""You are a commodity research analyst summarizing the live state of an
-oil/distillate trade book. Write a concise markdown digest covering:
+oil/distillate trade book. Write a markdown digest with these EXACT sections in order:
 
-1. **What materially changed** in prices/spreads vs prior session
-2. **Implications for the active trade book** (#3 GO/Brent crack, #6 HOGO,
-   #10 back-end Brent compression, #14 ARA-PAD1 gasoline arb), referencing
-   specific points from the enriched article + transcript content below
-3. **What to watch** in the next session (specific levels, releases, events)
+## What materially changed
+Specific moves in prices/spreads vs prior session, cite levels.
+
+## Active Sparta trade book — last 4 episodes
+**Enumerate EVERY Sparta trade idea in the input below**, grouped by episode
+(newest first). For each: direction, instrument, conviction, person, IBKR-
+tradable flag. Do NOT skip ideas just because they aren't in the user's
+positions. Do NOT skip framework-only ideas (mark them as such). Include
+contrary views (e.g. someone saying long X while another host says short X).
+
+Format each as:
+`- [CONV] DIR Instrument (Person) [IBKR/framework] — one-sentence rationale`
+
+## Position alignment
+For each of the user's current positions (in the Open Positions section
+below), state whether today's Sparta calls support, contradict, or are
+silent. Reference the trade-book IDs (#3 GO/Brent crack, #6 HOGO, #10
+back-end Brent, #14 ARA-PAD1) only where you have direct mapping.
+
+## What to watch
+Specific levels, releases, events with cited triggers.
 
 Constraints (do not violate):
-- No allocation percentages — directional conviction only
-- No Singapore-only trade recommendations
+- No allocation percentages — directional only
+- Note Singapore-only / freight / physical OTC as framework-only but
+  still enumerate them
 - Cite specific instruments and price levels
-- Where you cite a view, attribute the source ([wsj], [hfi_subscriber],
-  Sparta Ep N transcript, etc.)
-- 350 words maximum
+- Source attribution inline ([wsj], [hfi_subscriber], Sparta Ep N transcript)
+- 600 words maximum
 - Output pure markdown, no preamble or signoff
 
 Snapshot — {now}
@@ -247,6 +310,9 @@ Snapshot — {now}
 
 ## Open Positions (FUT + OPT)
 {positions_md}
+
+## Sparta trade ideas (last 4 episodes, from transcripts)
+{sparta_md}
 
 ## Headline Feed (titles only)
 {news_md}
