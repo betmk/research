@@ -38,10 +38,21 @@ For each trade call (a long/short call on a specific instrument or spread that l
 - "person": who said it (e.g. "Neil Crosby", "James Noel-Beswick", "June Goh", "Felipe Schuurman", "Jorge Molinero")
 - "direction": one of "long", "short", "spread", "avoid", "exit", "watch"
 - "instrument": the underlying or spread (e.g. "HOGO", "Long ICE Gasoil time spread Jun-Jul", "Short TC14 freight", "Long Brent Murban physical diff", "Long Singapore Regrade")
-- "conviction": "high", "medium", or "low" — based on language strength
+- "conviction": one of "high", "medium-high", "medium", "low". Use this scale:
+    - "high"        = explicit "highest conviction" / "this is THE call" / "strong long"
+    - "medium-high" = clear directional call with rationale + a few caveats
+    - "medium"      = tilt or "cautiously bullish" / "I lean long"
+    - "low"         = passing comment, vague, or hedged with "but I don't have high conviction"
 - "rationale": one concise sentence on why
 - "quote": short verbatim quote from the transcript (under 25 words)
 - "executable_on_ibkr": true if tradable via standard IB futures/options (NYMEX, ICE, CME). false if it's a Singapore-only product (Sing Gasoil swap, Sing LSFO, Sing Jet, Sing Regrade), a physical OTC differential, or freight (TC2/TC14/TD).
+- "ibkr_expression": A SHORT phrase naming the specific IBKR-tradable contract pair or spread that expresses this idea, IF executable. Examples:
+    - LONG HOGO → "Long HOQ6/HOU6 vs short GOILQ6/GOILU6 — see 'HOGO Q3' spread"
+    - LONG ICE Gasoil M1-M2 → "Long GOILM6 vs short GOILN6 — see 'ICE Gasoil M1-M2' spread"
+    - LONG WTI-Brent → "Long CLN6 vs short BZN6 — see 'Brent-WTI front' spread"
+    - LONG RBOB cracks → "Long RBN6 vs short BZN6 — see 'RBOB/Brent crack' spread"
+    - LONG Brent flat price → "Long BZN6 outright (or COILN6 for ICE basis)"
+   If NOT executable on IBKR, instead give a one-phrase REASON (e.g. "physical OTC diff", "Singapore-only product", "freight FFA", "OTC swap").
 
 Rules:
 - Only extract actual trade calls, not macro observations

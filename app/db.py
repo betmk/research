@@ -126,6 +126,7 @@ CREATE TABLE IF NOT EXISTS trade_ideas (
     rationale VARCHAR,
     quote VARCHAR,
     executable_on_ibkr BOOLEAN,
+    ibkr_expression VARCHAR,
     extracted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     model VARCHAR
 );
@@ -188,6 +189,11 @@ def init_db() -> None:
                 conn.execute(f"ALTER TABLE episodes ADD COLUMN {col} {typ}")
             except duckdb.CatalogException:
                 pass
+        # Migration: ibkr_expression on trade_ideas
+        try:
+            conn.execute("ALTER TABLE trade_ideas ADD COLUMN ibkr_expression VARCHAR")
+        except duckdb.CatalogException:
+            pass
     finally:
         conn.close()
 
@@ -631,14 +637,16 @@ def insert_trade_ideas(episode_id: int, episode_number: int, episode_title: str,
                     INSERT INTO trade_ideas
                       (episode_id, episode_number, episode_title,
                        episode_published_at, person, direction, instrument,
-                       conviction, rationale, quote, executable_on_ibkr, model)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                       conviction, rationale, quote, executable_on_ibkr,
+                       ibkr_expression, model)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     [episode_id, episode_number, episode_title,
                      episode_published_at,
                      t.get("person"), t.get("direction"), t.get("instrument"),
                      t.get("conviction"), t.get("rationale"), t.get("quote"),
-                     t.get("executable_on_ibkr"), model],
+                     t.get("executable_on_ibkr"), t.get("ibkr_expression"),
+                     model],
                 )
                 n += 1
             except Exception:  # noqa: BLE001
@@ -669,77 +677,56 @@ def episodes_needing_extraction(limit: int = 3) -> list[dict]:
 
 def trade_ideas_chronological(limit: int = 200,
                               episode_limit: int | None = None,
-                              per_episode_cap: bool = True) -> list[dict]:
-    """All extracted trade ideas, newest episode first.
+                              high_conviction_only: bool = True) -> list[dict]:
+    """Extracted trade ideas, newest episode first.
 
     `episode_limit`: only include ideas from the most recent N episodes
-    (e.g. episode_limit=3 → only Ep 93/92/91). Older episodes stay in DB
+    (e.g. episode_limit=2 → only Ep 93/92). Older episodes stay in DB
     for reference but aren't returned.
 
-    `per_episode_cap`: when True, returns the top 4 ideas per episode by
-    conviction (high → medium → low), expanding to 5 only if an episode
-    has 5+ high-conviction ideas. When False, returns all.
+    `high_conviction_only`: when True (default), filters to conviction IN
+    ('high', 'medium-high') only — drops 'medium' and 'low'. Reflects the
+    user's preference for high-conviction ideas in the active feed.
     """
-    # Build CTE: rank each idea within its episode by conviction, and
-    # count high-conviction ideas per episode. Then apply cap if requested.
-    sql = """
-        WITH base AS (
-            SELECT episode_number, episode_title, episode_published_at,
-                   person, direction, instrument, conviction, rationale,
-                   quote, executable_on_ibkr, extracted_at, id
-            FROM trade_ideas
-            {episode_filter}
-        ),
-        ranked AS (
-            SELECT *,
-                   ROW_NUMBER() OVER (
-                       PARTITION BY episode_number
-                       ORDER BY CASE conviction
-                                  WHEN 'high' THEN 1
-                                  WHEN 'medium' THEN 2
-                                  WHEN 'low' THEN 3
-                                  ELSE 4 END,
-                                id
-                   ) AS rn_in_ep,
-                   SUM(CASE WHEN conviction = 'high' THEN 1 ELSE 0 END)
-                       OVER (PARTITION BY episode_number) AS high_count_ep
-            FROM base
+    where_clauses: list[str] = []
+    params: list = []
+
+    if episode_limit is not None:
+        where_clauses.append(
+            "episode_number IN (SELECT DISTINCT episode_number FROM trade_ideas "
+            "WHERE episode_number IS NOT NULL "
+            "ORDER BY episode_number DESC LIMIT ?)"
         )
+        params.append(episode_limit)
+
+    if high_conviction_only:
+        where_clauses.append("LOWER(conviction) IN ('high', 'medium-high')")
+
+    where_sql = ("WHERE " + " AND ".join(where_clauses)) if where_clauses else ""
+
+    sql = f"""
         SELECT episode_number, episode_title, episode_published_at,
                person, direction, instrument, conviction, rationale,
-               quote, executable_on_ibkr, extracted_at
-        FROM ranked
-        {cap_filter}
-        ORDER BY episode_number DESC NULLS LAST, rn_in_ep
+               quote, executable_on_ibkr, ibkr_expression, extracted_at
+        FROM trade_ideas
+        {where_sql}
+        ORDER BY episode_number DESC NULLS LAST,
+                 CASE LOWER(conviction)
+                   WHEN 'high' THEN 1
+                   WHEN 'medium-high' THEN 2
+                   WHEN 'medium' THEN 3
+                   WHEN 'low' THEN 4
+                   ELSE 5 END,
+                 id
         LIMIT ?
     """
-
-    params: list = []
-    if episode_limit is not None:
-        episode_filter = """WHERE episode_number IN (
-            SELECT DISTINCT episode_number FROM trade_ideas
-            WHERE episode_number IS NOT NULL
-            ORDER BY episode_number DESC
-            LIMIT ?
-        )"""
-        params.append(episode_limit)
-    else:
-        episode_filter = ""
-
-    if per_episode_cap:
-        # 4 by default; 5 only if the episode has 5+ high-conviction ideas
-        cap_filter = "WHERE rn_in_ep <= CASE WHEN high_count_ep >= 5 THEN 5 ELSE 4 END"
-    else:
-        cap_filter = ""
-
     params.append(limit)
-    sql = sql.format(episode_filter=episode_filter, cap_filter=cap_filter)
 
     with get_conn() as conn:
         rows = conn.execute(sql, params).fetchall()
         cols = ["episode_number", "episode_title", "episode_published_at",
                 "person", "direction", "instrument", "conviction", "rationale",
-                "quote", "executable_on_ibkr", "extracted_at"]
+                "quote", "executable_on_ibkr", "ibkr_expression", "extracted_at"]
         return [dict(zip(cols, r)) for r in rows]
 
 

@@ -3,7 +3,7 @@
 {% block content %}
 <div class="panel">
   <div class="panel-header">
-    <h2>Sparta Trade Ideas &mdash; Chronological (newest first, last 3 episodes)</h2>
+    <h2>Sparta Trade Ideas &mdash; HIGH conviction, last 2 episodes (most recent = primary)</h2>
     <div class="actions">
       <button hx-post="/api/scrape/sparta_extract" hx-swap="none"
               hx-trigger="click"
@@ -11,7 +11,7 @@
     </div>
   </div>
   <div id="sparta-trades-panel-top"
-       hx-get="/fragments/sparta-trades?episodes=3"
+       hx-get="/fragments/sparta-trades?episodes=2"
        hx-trigger="load, refresh, every 120s"
        hx-swap="innerHTML">
     <div class="empty">Loading Sparta trade ideas&hellip;</div>

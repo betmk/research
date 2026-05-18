@@ -1,40 +1,49 @@
 {% if trades %}
-{# Group by episode_number for readable headings #}
-{% set ep_groups = trades|groupby('episode_number') %}
-{% for ep_num, group in ep_groups|sort(attribute=0, reverse=True) %}
-  {% set first = group|first %}
-  <div style="margin-top:1rem;padding:0.5rem 0.75rem;background:var(--bg-2);
-              border-left:3px solid var(--accent);border-radius:var(--r-sm);">
+{# Group by episode_number. First group (most recent) gets PRIMARY styling. #}
+{% set ep_groups = trades|groupby('episode_number')|list %}
+{% set sorted_groups = ep_groups|sort(attribute=0, reverse=True) %}
+{% set primary_ep = sorted_groups[0][0] if sorted_groups else None %}
+{% for ep_num, group in sorted_groups %}
+  {% set group_list = group|list %}
+  {% set first = group_list[0] %}
+  {% set is_primary = (ep_num == primary_ep) %}
+  <div style="margin-top:1rem;padding:0.6rem 0.85rem;
+              background:{% if is_primary %}var(--signal-up-bg){% else %}var(--bg-2){% endif %};
+              border-left:{% if is_primary %}4px{% else %}3px{% endif %} solid {% if is_primary %}var(--signal-up){% else %}var(--text-3){% endif %};
+              border-radius:var(--r-sm);">
     <div style="display:flex;justify-content:space-between;align-items:baseline;
-                font-family:var(--font-mono);font-size:0.82rem;">
-      <strong style="color:var(--text-0);">Ep {{ ep_num }} &mdash; {{ first.episode_title[:80] if first.episode_title else "" }}</strong>
+                font-family:var(--font-mono);font-size:{% if is_primary %}0.92rem{% else %}0.78rem{% endif %};">
+      <strong style="color:var(--text-0);">
+        {% if is_primary %}★ PRIMARY &middot; {% endif %}Ep {{ ep_num }} &mdash; {{ first.episode_title[:80] if first.episode_title else "" }}
+      </strong>
       <span style="color:var(--text-3);font-size:0.72rem;">
         {% if first.episode_published_at %}{{ first.episode_published_at.strftime("%Y-%m-%d") }}{% endif %}
-        &middot; {{ group|list|length }} ideas
+        &middot; {{ group_list|length }} {% if is_primary %}high-conv ideas{% else %}supporting ideas{% endif %}
       </span>
     </div>
   </div>
-  <table style="margin-bottom:0.25rem;">
+  <table style="margin-bottom:0.25rem;
+                {% if not is_primary %}font-size:0.85em;opacity:0.92;{% endif %}">
     <thead>
       <tr>
-        <th style="width:42px;"></th>
-        <th>Direction</th>
+        <th style="width:38px;"></th>
+        <th>Dir</th>
         <th>Instrument</th>
         <th>Person</th>
-        <th>Conv.</th>
-        <th>Rationale &middot; Quote</th>
+        <th>Conv</th>
+        <th>IBKR Expression &middot; Rationale</th>
       </tr>
     </thead>
     <tbody>
-      {% for t in group %}
+      {% for t in group_list %}
       <tr>
         <td style="text-align:center;font-family:var(--font-mono);font-size:0.9rem;">
           {% if t.executable_on_ibkr %}<span style="color:var(--signal-up);" title="IBKR-tradable">✓</span>
-          {% else %}<span style="color:var(--signal-warn);" title="framework only / not retail-IB tradable">⚠</span>{% endif %}
+          {% else %}<span style="color:var(--signal-warn);" title="framework only">⚠</span>{% endif %}
         </td>
         <td>
           {% set d = (t.direction or "")|lower %}
-          <span style="font-family:var(--font-mono);font-size:0.72rem;
+          <span style="font-family:var(--font-mono);font-size:0.7rem;
                        padding:1px 6px;border-radius:3px;letter-spacing:0.05em;
                        background:{% if d == 'long' %}var(--signal-up-bg);color:var(--signal-up){% elif d == 'short' %}var(--signal-down-bg);color:var(--signal-down){% elif d == 'avoid' or d == 'exit' %}var(--signal-warn-bg);color:var(--signal-warn){% else %}var(--bg-3);color:var(--text-2){% endif %};">
             {{ (t.direction or "—")|upper }}
@@ -44,13 +53,18 @@
         <td style="color:var(--text-2);font-size:0.78rem;">{{ t.person or "&mdash;" }}</td>
         <td>
           {% set c = (t.conviction or "")|lower %}
-          <span style="font-family:var(--font-mono);font-size:0.7rem;
+          <span style="font-family:var(--font-mono);font-size:0.66rem;
                        padding:1px 5px;border-radius:3px;letter-spacing:0.03em;
-                       background:{% if c == 'high' %}var(--signal-up-bg);color:var(--signal-up){% elif c == 'low' %}var(--signal-warn-bg);color:var(--text-2){% else %}var(--bg-3);color:var(--text-1){% endif %};">
+                       background:{% if c == 'high' %}var(--signal-up-bg);color:var(--signal-up){% elif c == 'medium-high' %}var(--signal-info-bg);color:var(--accent){% else %}var(--bg-3);color:var(--text-1){% endif %};">
             {{ (t.conviction or "—")|upper }}
           </span>
         </td>
         <td style="font-size:0.78rem;line-height:1.4;">
+          {% if t.ibkr_expression %}
+          <div style="color:var(--accent);font-family:var(--font-mono);font-size:0.74rem;margin-bottom:0.15rem;">
+            ▸ {{ t.ibkr_expression }}
+          </div>
+          {% endif %}
           <div style="color:var(--text-1);">{{ t.rationale or "" }}</div>
           {% if t.quote %}<div style="color:var(--text-3);font-style:italic;margin-top:0.15rem;">&ldquo;{{ t.quote }}&rdquo;</div>{% endif %}
         </td>
@@ -61,9 +75,11 @@
 {% endfor %}
 <div style="margin-top:0.75rem;padding:0.4rem 0.75rem;font-size:0.7rem;
             color:var(--text-3);font-style:italic;">
-  ✓ = IBKR-tradable (futures/options) &middot; ⚠ = framework only (Singapore-only,
-  physical OTC, freight, etc.)
+  Filter: HIGH + medium-high conviction only &middot;
+  ✓ = IBKR-tradable (spread/contract named) &middot;
+  ⚠ = framework only (Singapore product, physical OTC, freight FFA, etc.) &middot;
+  See Derived Spreads &amp; Cracks panel below for live levels on the named spreads.
 </div>
 {% else %}
-<div class="empty">No trade ideas extracted yet &mdash; first extraction pass running.</div>
+<div class="empty">No high-conviction trade ideas in the last 2 episodes yet &mdash; extractor running.</div>
 {% endif %}

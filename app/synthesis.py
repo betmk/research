@@ -50,15 +50,15 @@ def _build_data_context() -> dict:
     }
 
 
-def _sparta_trade_ideas_for_prompt(episode_limit: int = 3) -> list[dict]:
-    """Top 4-5 conviction-ranked Sparta trade ideas per episode, last N episodes.
+def _sparta_trade_ideas_for_prompt(episode_limit: int = 2) -> list[dict]:
+    """High-conviction Sparta trade ideas (HIGH + medium-high) from last N episodes.
 
-    Reuses the same cap logic as the dashboard fragment: top 4 by conviction,
-    expanding to 5 only if 5+ are HIGH.
+    Drops 'medium' and 'low' per user's filter preference. The most-recent
+    episode should receive primary emphasis in the synthesis.
     """
     from .db import trade_ideas_chronological
     return trade_ideas_chronological(
-        limit=200, episode_limit=episode_limit, per_episode_cap=True,
+        limit=200, episode_limit=episode_limit, high_conviction_only=True,
     )
 
 
@@ -198,21 +198,26 @@ def _build_claude_prompt(data: dict) -> str:
         for o in data.get("eia", [])
     )
 
-    # Sparta trade ideas — group by episode, then sort by conviction
+    # Sparta trade ideas — group by episode, label most-recent as PRIMARY
     sparta_lines: list[str] = []
     current_ep: int | None = None
-    for t in data.get("sparta_trades", []):
+    sparta_trades = data.get("sparta_trades", [])
+    most_recent_ep = (max((t.get("episode_number") or 0) for t in sparta_trades)
+                      if sparta_trades else None)
+    for t in sparta_trades:
         ep = t.get("episode_number")
         if ep != current_ep:
-            sparta_lines.append(f"\n### Ep {ep}: {t.get('episode_title','')[:70]}")
+            tag = " — **PRIMARY (most recent)**" if ep == most_recent_ep else " — supporting"
+            sparta_lines.append(f"\n### Ep {ep}: {t.get('episode_title','')[:70]}{tag}")
             current_ep = ep
         flag = "IBKR" if t.get("executable_on_ibkr") else "framework"
+        expr = t.get("ibkr_expression") or "(no expression captured)"
         sparta_lines.append(
             f"- [{(t.get('conviction') or '?').upper()}] "
             f"{(t.get('direction') or '?').upper()} {t.get('instrument','?')} "
-            f"({t.get('person','?')}) [{flag}] — {t.get('rationale','')}"
+            f"({t.get('person','?')}) [{flag}] — Expression: {expr} — {t.get('rationale','')}"
         )
-    sparta_md = "\n".join(sparta_lines) if sparta_lines else "(no Sparta trades extracted)"
+    sparta_md = "\n".join(sparta_lines) if sparta_lines else "(no high-conviction Sparta trades extracted)"
     positions_md = "\n".join(
         f"- {p['symbol']} {p.get('local_symbol', '')}: qty {p['position']:g}, "
         f"unr P&L {p.get('unrealized_pnl') or 0:+.0f}"
@@ -251,15 +256,19 @@ oil/distillate trade book. Write a markdown digest with these EXACT sections in 
 ## What materially changed
 Specific moves in prices/spreads vs prior session, cite levels.
 
-## Active Sparta trade book — last 3 episodes
-**Enumerate EVERY Sparta trade idea in the input below**, grouped by episode
-(newest first). For each: direction, instrument, conviction, person, IBKR-
-tradable flag. Do NOT skip ideas just because they aren't in the user's
-positions. Do NOT skip framework-only ideas (mark them as such). Include
-contrary views (e.g. someone saying long X while another host says short X).
+## Active Sparta trade book — last 2 episodes (HIGH + medium-high only)
+**Enumerate EVERY high-conviction Sparta trade idea in the input below**, grouped
+by episode (newest first). Place PRIMARY EMPHASIS on the most-recent episode —
+treat it as the live framework; the prior episode is supporting context.
+
+For each: direction, instrument, conviction, person, IBKR-tradable flag, AND
+the specific IBKR contract expression (or reason it's framework-only). Do NOT
+skip ideas just because they aren't in the user's positions. Do NOT skip
+framework-only ideas — mark them with their non-IBKR reason. Include contrary
+views explicitly (e.g. someone saying long X while another host says short X).
 
 Format each as:
-`- [CONV] DIR Instrument (Person) [IBKR/framework] — one-sentence rationale`
+`- [CONV] DIR Instrument (Person) [IBKR/framework] — Expression: X — Rationale`
 
 ## Position alignment
 For each of the user's current positions (in the Open Positions section
