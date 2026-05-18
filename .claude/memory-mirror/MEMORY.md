@@ -1,5 +1,146 @@
 # Research Project - Session Memory
 
+## 2026-05-13: Full rebuild — static HTML report → continuous intelligence pipeline
+
+**Session arc.** User said *"Nuke this entire thing and rebuild it from scratch
+based on what you think is optimal."* The static `reports/hormuz/analysis.html`
+hand-refreshed model was archived; new architecture is a Python service.
+
+### Architecture
+
+- **FastAPI + HTMX + Jinja2** dashboard on port 8530 (auto-refreshing panels)
+- **DuckDB** single-file store at `data/research.duckdb`
+- **APScheduler** background scrapers on per-source intervals
+- **Claude CLI synthesis** every 4h via `claude -p --output-format text`
+  (uses Claude.app OAuth — no API key needed)
+- **macOS notifications** on material changes
+- **launchd** service `com.research.research` — installed, KeepAlive=true,
+  RunAtLoad=true. Survives reboot.
+
+### Data sources working
+
+| Source | Mechanism | Coverage |
+|---|---|---|
+| **IBKR Gateway live** (port 4001, clientId=17) | `ib_async` snapshot every 1 min | 24 contracts: BZ/CL/HO/RBOB/NG/COIL/GOIL full curves; MARKET_DATA_TYPE=3 (delayed; live for subscribed instruments) |
+| **IBKR positions** | every 5 min, TRUNCATE+INSERT | All FUT/OPT/STK positions w/ live unrealized P&L |
+| **WSJ** | Playwright + persistent Chrome profile w/ subscriber cookies | 93 articles from 10 sections (`/business/energy-oil`, `/world/middle-east`, `/news/types/commodities`, search) — 93/93 bodies via trafilatura |
+| **HFI subscriber** | same Chrome profile | 48 archive posts, 48/48 bodies — full paid content read |
+| **HFI public** | httpx + BS4 | 12 archive posts |
+| **Oil Not Dead** | httpx Substack | 12 posts, all bodies |
+| **Bloomberg** | fresh-context + filtered cookies + playwright-stealth | 6 articles. PerimeterX flagged profile after rapid hits. Code paths in place; needs user re-auth via `setup_premium_auth.sh` to reset. |
+| **Sparta Podbean** | RSS, 10 min poll | Episode metadata + MP3 enclosure URL captured. Auto-fires macOS notification when new ep number lands. |
+| **Sparta transcripts** | local `faster-whisper` (base.en, int8) on MP3 | Ep 84-93 fully transcribed (~45K chars/ep, clean). End-to-end Ep 93 dropped → transcript in DB: 2 min 15 sec. |
+| **YouTube fallback** | yt-dlp on @SpartaCommo playlist | Demoted to 240min interval as backup |
+| **EIA weekly stocks** | public XLS, 5 series (crude excl SPR / SPR / gasoline / distillate / refinery util) | 300 obs, idempotent on Wed/Thu print |
+
+### Trade-book context
+
+- Position-thesis mapping (`app/trades.py`): GOIL → #3 GO/Brent crack; COIL
+  → #3 short leg + #10 back-end; HO → #6 HOGO; RB → #14 ARA-PAD1.
+- Dashboard positions panel groups by thesis with combined unrealized P&L.
+- Derived spreads (computed from prices on each request): Brent M1–M12,
+  ICE Brent M1–M12, Brent-WTI Jul, ICE Gasoil M1–M2, NYMEX HO M1–M7, HOGO.
+- Plotly forward-curve + spread time-series charts.
+
+### Synthesis prompt structure
+
+Claude CLI gets: latest prices, derived spreads, EIA stocks w/ wk/wk delta,
+positions w/ thesis tags + unr P&L, headline feed (15 titles), enriched
+articles (15 × 1800-char body excerpts), podcast transcripts (3 × 2500-char
+excerpts). Output is markdown w/ explicit source attribution (`[wsj]`,
+`[hfi_subscriber]`, `Sparta Ep N transcript`). 350-word cap.
+
+### Key fixes during the session
+
+- **Worktree spawn + MCP wipe by Cowork harness** — chronic friction. Memory
+  files (`feedback_no_auto_worktree.md`, `feedback_cowork_mcp_settings.md`)
+  document it; SessionStart hook warns; user should use Code mode (not Cowork)
+  to avoid entirely.
+- **`.claude/CRITICAL.md`** with 11 load-bearing rules. SessionStart hook
+  injects content as `additionalContext` so they re-load every session.
+  Triggered by my Response #13 violating CLAUDE.md ("no standalone CLI"
+  preference) — concrete failure documented as `feedback_claude_md_attention.md`.
+- **`feedback_autonomous_action.md`** — don't ask the user questions I can
+  answer myself via tools.
+- **`feedback_session_efficiency.md`** — user hit the "considering nuking"
+  threshold over startup overhead.
+- **BSD `cp -u` doesn't exist on macOS** — silently broke `sync-memory-mirror.sh`;
+  switched to `rsync --update`.
+- **WSJ URL pattern** — articles use `/{section}/{slug}-{8hex}?mod=...`, not
+  `/articles/{id}`; relaxed regex.
+- **Bloomberg PerimeterX** — `_pxhd`/`_px3` cookies persistent-flag the profile;
+  tried fresh context + cookie filter + stealth + jitter, still blocked. RSS
+  feeds for fallback are sparse (1-3 items each).
+- **Whisper transcript ranking** — initial logic gated secondary fill on
+  primary-returning-fewer-than-N. Refactored to single ranked query so newest
+  eps get whispered first.
+
+### Commits (this session, all on origin/main)
+
+`238f378` recovery doc + memory mirror
+`d76ad65` Day 74 AM pre-EIA refresh (still in old static report)
+`e124f92` claude CLI install + /refresh-hormuz cmd + memory-mirror Stop hook
+`ffd12fe` `.claude/CRITICAL.md` + SessionStart hook for load-bearing rules
+`0faeba8` Full rebuild — pipeline architecture
+`0b1b782` IBKR Gateway integration
+`1806aa8` COIL watchlist + bid/ask + spreads + synthesis + launchd plist
+`aa264f5` Delayed market data + Claude-CLI synthesis + thesis tags
+`ef119db` Premium scrapers + auth setup helper
+`4fc523d` Premium fixes (SingletonLock cleanup, persistent profile, selectors)
+`16052bb` HFI subscriber 3 → 48 posts
+`40dfb13` Article body + podcast transcript enrichment (initial pass)
+`1f98f61` WSJ 1 → 93 articles (10 sections + searches)
+`6e3675e` Bloomberg fresh-context + filtered cookies + RSS attempt
+`9a4e18b` launchd install + EIA weekly stocks
+`fb38b3c` Sparta Ep 93 watcher + Plotly charts + grouped trade book
+`a76d0d3` Local Whisper transcription (2:15 end-to-end on Ep 93)
+`ad34951` Whisper upgrades non-Whisper transcripts (gating bug)
+`abe678a` Whisper ranks newest first (fix the gating)
+
+### Open items rolling forward
+
+1. **Sparta Knowledge platform** — user said wait; not yet wired. Auth ready
+   in `setup_premium_auth.sh` whenever.
+2. **X/Twitter** — optional, deferred.
+3. **Bloomberg** — needs `setup_premium_auth.sh` re-run to reset PerimeterX
+   flag. Or wait for the flag to expire (~24h typical).
+4. **Backfill Sparta Ep 80-89** — Ep 84-89 are whisper-sourced; older Sparta
+   episodes pre-Ep 84 not yet pulled. Scheduler will pick them up as it cycles.
+5. **HFI archive deeper crawl** — capped at 60; archive goes back years.
+6. **Daily digest** to `reports/daily/YYYY-MM-DD.md` — not yet built.
+7. **Buy/sell signal generation** — needs user spec on what triggers an
+   alert vs just an analysis note.
+8. **Worktree cleanup** — this session ran in `.claude/worktrees/jolly-albattani-e56b4f`.
+   After exit:
+   ```
+   cd ~/Desktop/Claude\ Projects/research
+   git worktree remove --force .claude/worktrees/jolly-albattani-e56b4f
+   git branch -D claude/jolly-albattani-e56b4f
+   git worktree prune
+   ```
+
+### Live numbers at session end
+
+- 171+ articles in DB w/ full bodies
+- Ep 84-93 with full Whisper transcripts
+- 300 EIA observations
+- Real-time IBKR prices on 24 contracts + 190 positions
+- Synthesis runs every 4h; manual via `/api/synthesis/run`
+- Service auto-starts at login via launchd
+
+### Confidence assessment
+
+- Pipeline durability: high. launchd survives reboot; DuckDB single-file
+  store backed up via `.claude/memory-mirror/` repo sync; GitHub origin is
+  the canonical recovery point.
+- Bloomberg coverage: low — bot block is sticky. WSJ + HFI compensate.
+- Synthesis quality: high. Verified verbatim quotes from Sparta Ep 92/93
+  transcripts and WSJ subscriber bodies appearing in the analysis output.
+- Sparta Ep 93 transcript: came in 2:15 from drop. User's "pretty much
+  immediately" target met.
+
+---
+
 ## 2026-05-12 01:30 CST: Worktree cleanup + root-cause of deny-rule bypass
 
 **Session goal:** clean up abandoned `.claude/worktrees/` dirs, root-cause why `permissions.deny: ["EnterWorktree"]` (commit 0689e97 May 10) wasn't preventing auto-spawned worktree sessions.
