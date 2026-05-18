@@ -20,6 +20,7 @@ from .scrapers.ibkr_positions import IBKRPositions
 from .scrapers.ibkr_prices import IBKRPrices
 from .scrapers.oil_not_dead import OilNotDead
 from .scrapers.sparta_knowledge import SpartaKnowledge
+from .scrapers.sparta_extractor import SpartaTradeExtractor
 from .scrapers.sparta_podbean import SpartaPodbean
 from .scrapers.sparta_transcripts import SpartaTranscripts
 from .scrapers.sparta_whisper import SpartaWhisper
@@ -43,6 +44,7 @@ SCRAPERS = {
     "enrich_articles": ArticleEnricher,
     "sparta_whisper": SpartaWhisper,         # primary — local Whisper, fast
     "sparta_transcripts": SpartaTranscripts, # fallback — YouTube auto-captions
+    "sparta_extract": SpartaTradeExtractor,  # Claude-LLM trade-idea extraction
     "eia_weekly": EIAWeekly,
 }
 

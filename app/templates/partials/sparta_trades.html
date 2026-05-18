@@ -1,0 +1,69 @@
+{% if trades %}
+{# Group by episode_number for readable headings #}
+{% set ep_groups = trades|groupby('episode_number') %}
+{% for ep_num, group in ep_groups|sort(attribute=0, reverse=True) %}
+  {% set first = group|first %}
+  <div style="margin-top:1rem;padding:0.5rem 0.75rem;background:var(--bg-2);
+              border-left:3px solid var(--accent);border-radius:var(--r-sm);">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;
+                font-family:var(--font-mono);font-size:0.82rem;">
+      <strong style="color:var(--text-0);">Ep {{ ep_num }} &mdash; {{ first.episode_title[:80] if first.episode_title else "" }}</strong>
+      <span style="color:var(--text-3);font-size:0.72rem;">
+        {% if first.episode_published_at %}{{ first.episode_published_at.strftime("%Y-%m-%d") }}{% endif %}
+        &middot; {{ group|list|length }} ideas
+      </span>
+    </div>
+  </div>
+  <table style="margin-bottom:0.25rem;">
+    <thead>
+      <tr>
+        <th style="width:42px;"></th>
+        <th>Direction</th>
+        <th>Instrument</th>
+        <th>Person</th>
+        <th>Conv.</th>
+        <th>Rationale &middot; Quote</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for t in group %}
+      <tr>
+        <td style="text-align:center;font-family:var(--font-mono);font-size:0.9rem;">
+          {% if t.executable_on_ibkr %}<span style="color:var(--signal-up);" title="IBKR-tradable">✓</span>
+          {% else %}<span style="color:var(--signal-warn);" title="framework only / not retail-IB tradable">⚠</span>{% endif %}
+        </td>
+        <td>
+          {% set d = (t.direction or "")|lower %}
+          <span style="font-family:var(--font-mono);font-size:0.72rem;
+                       padding:1px 6px;border-radius:3px;letter-spacing:0.05em;
+                       background:{% if d == 'long' %}var(--signal-up-bg);color:var(--signal-up){% elif d == 'short' %}var(--signal-down-bg);color:var(--signal-down){% elif d == 'avoid' or d == 'exit' %}var(--signal-warn-bg);color:var(--signal-warn){% else %}var(--bg-3);color:var(--text-2){% endif %};">
+            {{ (t.direction or "—")|upper }}
+          </span>
+        </td>
+        <td>{{ t.instrument or "&mdash;" }}</td>
+        <td style="color:var(--text-2);font-size:0.78rem;">{{ t.person or "&mdash;" }}</td>
+        <td>
+          {% set c = (t.conviction or "")|lower %}
+          <span style="font-family:var(--font-mono);font-size:0.7rem;
+                       padding:1px 5px;border-radius:3px;letter-spacing:0.03em;
+                       background:{% if c == 'high' %}var(--signal-up-bg);color:var(--signal-up){% elif c == 'low' %}var(--signal-warn-bg);color:var(--text-2){% else %}var(--bg-3);color:var(--text-1){% endif %};">
+            {{ (t.conviction or "—")|upper }}
+          </span>
+        </td>
+        <td style="font-size:0.78rem;line-height:1.4;">
+          <div style="color:var(--text-1);">{{ t.rationale or "" }}</div>
+          {% if t.quote %}<div style="color:var(--text-3);font-style:italic;margin-top:0.15rem;">&ldquo;{{ t.quote }}&rdquo;</div>{% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endfor %}
+<div style="margin-top:0.75rem;padding:0.4rem 0.75rem;font-size:0.7rem;
+            color:var(--text-3);font-style:italic;">
+  ✓ = IBKR-tradable (futures/options) &middot; ⚠ = framework only (Singapore-only,
+  physical OTC, freight, etc.)
+</div>
+{% else %}
+<div class="empty">No trade ideas extracted yet &mdash; first extraction pass running.</div>
+{% endif %}

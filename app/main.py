@@ -26,6 +26,7 @@ from .db import (
     latest_spreads,
     recent_episodes,
     recent_news,
+    trade_ideas_chronological,
 )
 from .scheduler import run_all_once, run_one, start_scheduler, stop_scheduler
 from .synthesis import latest_analysis, run_synthesis
@@ -139,6 +140,15 @@ async def fragment_eia(request: Request):
 async def fragment_charts(request: Request):
     from .charts import all_charts_html
     return HTMLResponse(all_charts_html())
+
+
+@app.get("/fragments/sparta-trades", response_class=HTMLResponse)
+async def fragment_sparta_trades(request: Request):
+    return templates.TemplateResponse(
+        request,
+        "partials/sparta_trades.html",
+        {"trades": trade_ideas_chronological(limit=300)},
+    )
 
 
 @app.post("/api/synthesis/run")

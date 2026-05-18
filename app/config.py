@@ -40,6 +40,7 @@ INTERVALS = {
     "enrich_articles": 15, # full article body extraction (after scrapes)
     "sparta_whisper": 10,  # PRIMARY: local Whisper on MP3 — ~3 min from drop
     "sparta_transcripts": 240,  # FALLBACK: YouTube captions (slower path)
+    "sparta_extract": 30,  # Claude-LLM trade-idea extraction from transcripts
     "eia_weekly": 15,      # EIA weekly stocks; idempotent on Wed/Thu print
 }
 

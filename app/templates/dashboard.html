@@ -56,6 +56,23 @@
 
     <div class="panel">
       <div class="panel-header">
+        <h2>Sparta Trade Ideas &mdash; Chronological (newest first)</h2>
+        <div class="actions">
+          <button hx-post="/api/scrape/sparta_extract" hx-swap="none"
+                  hx-trigger="click"
+                  hx-on::after-request="htmx.trigger('#sparta-trades-panel', 'refresh')">Extract</button>
+        </div>
+      </div>
+      <div id="sparta-trades-panel"
+           hx-get="/fragments/sparta-trades"
+           hx-trigger="load, refresh, every 120s"
+           hx-swap="innerHTML">
+        <div class="empty">Loading Sparta trade ideas&hellip;</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
         <h2>Charts &mdash; Forward curves + spreads</h2>
       </div>
       <div id="charts-panel"

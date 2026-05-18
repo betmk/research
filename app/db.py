@@ -112,6 +112,25 @@ CREATE TABLE IF NOT EXISTS analysis_runs (
     model VARCHAR
 );
 
+CREATE SEQUENCE IF NOT EXISTS trade_ideas_seq START 1;
+CREATE TABLE IF NOT EXISTS trade_ideas (
+    id BIGINT PRIMARY KEY DEFAULT nextval('trade_ideas_seq'),
+    episode_id BIGINT NOT NULL,
+    episode_number INTEGER NOT NULL,
+    episode_title VARCHAR,
+    episode_published_at TIMESTAMP,
+    person VARCHAR,
+    direction VARCHAR,
+    instrument VARCHAR,
+    conviction VARCHAR,
+    rationale VARCHAR,
+    quote VARCHAR,
+    executable_on_ibkr BOOLEAN,
+    extracted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    model VARCHAR
+);
+CREATE INDEX IF NOT EXISTS idx_trade_ideas_ep ON trade_ideas(episode_number DESC);
+
 CREATE SEQUENCE IF NOT EXISTS eia_obs_seq START 1;
 CREATE TABLE IF NOT EXISTS eia_observations (
     id BIGINT PRIMARY KEY DEFAULT nextval('eia_obs_seq'),
@@ -451,6 +470,83 @@ def set_news_body(news_id: int, body: str, summary: str | None = None) -> None:
             )
         else:
             conn.execute("UPDATE news SET body = ? WHERE id = ?", [body, news_id])
+
+
+def insert_trade_ideas(episode_id: int, episode_number: int, episode_title: str,
+                       episode_published_at, trades: list[dict],
+                       model: str = "claude-cli") -> int:
+    """Insert extracted trade ideas for an episode. Returns count inserted."""
+    if not trades:
+        return 0
+    n = 0
+    with get_conn() as conn:
+        for t in trades:
+            try:
+                conn.execute(
+                    """
+                    INSERT INTO trade_ideas
+                      (episode_id, episode_number, episode_title,
+                       episode_published_at, person, direction, instrument,
+                       conviction, rationale, quote, executable_on_ibkr, model)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    [episode_id, episode_number, episode_title,
+                     episode_published_at,
+                     t.get("person"), t.get("direction"), t.get("instrument"),
+                     t.get("conviction"), t.get("rationale"), t.get("quote"),
+                     t.get("executable_on_ibkr"), model],
+                )
+                n += 1
+            except Exception:  # noqa: BLE001
+                pass
+    return n
+
+
+def episodes_needing_extraction(limit: int = 3) -> list[dict]:
+    """Sparta episodes with transcripts but no trade-idea extraction yet."""
+    with get_conn() as conn:
+        rows = conn.execute(
+            """
+            SELECT e.id, e.number, e.title, e.transcript, e.published_at
+            FROM episodes e
+            LEFT JOIN (SELECT DISTINCT episode_id FROM trade_ideas) ti
+              ON ti.episode_id = e.id
+            WHERE e.transcript IS NOT NULL
+              AND LENGTH(e.transcript) > 5000
+              AND ti.episode_id IS NULL
+            ORDER BY e.number DESC NULLS LAST
+            LIMIT ?
+            """,
+            [limit],
+        ).fetchall()
+        return [{"id": r[0], "number": r[1], "title": r[2],
+                 "transcript": r[3], "published_at": r[4]} for r in rows]
+
+
+def trade_ideas_chronological(limit: int = 200) -> list[dict]:
+    """All extracted trade ideas, newest episode first."""
+    with get_conn() as conn:
+        rows = conn.execute(
+            """
+            SELECT episode_number, episode_title, episode_published_at,
+                   person, direction, instrument, conviction, rationale,
+                   quote, executable_on_ibkr, extracted_at
+            FROM trade_ideas
+            ORDER BY episode_number DESC NULLS LAST,
+                     CASE conviction
+                       WHEN 'high' THEN 1
+                       WHEN 'medium' THEN 2
+                       WHEN 'low' THEN 3
+                       ELSE 4 END,
+                     id
+            LIMIT ?
+            """,
+            [limit],
+        ).fetchall()
+        cols = ["episode_number", "episode_title", "episode_published_at",
+                "person", "direction", "instrument", "conviction", "rationale",
+                "quote", "executable_on_ibkr", "extracted_at"]
+        return [dict(zip(cols, r)) for r in rows]
 
 
 def upsert_eia_observation(series: str, label: str, period, value: float,
