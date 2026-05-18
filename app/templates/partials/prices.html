@@ -1,54 +1,45 @@
-{% if prices %}
-<table>
-  <thead>
-    <tr>
-      <th>Instrument</th>
-      <th>Contract</th>
-      <th>Last</th>
-      <th>Bid</th>
-      <th>Ask</th>
-      <th>Close</th>
-      <th>Chg %</th>
-      <th>Updated</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for p in prices %}
-    <tr>
-      <td>{{ p.instrument }}</td>
-      <td style="color:var(--text-2);">{{ p.contract or "" }}</td>
-      <td>{{ "%.4f"|format(p.price) if p.price else "&mdash;" }}</td>
-      <td style="color:var(--text-2);">{{ "%.4f"|format(p.bid) if p.bid else "&mdash;" }}</td>
-      <td style="color:var(--text-2);">{{ "%.4f"|format(p.ask) if p.ask else "&mdash;" }}</td>
-      <td style="color:var(--text-3);">{{ "%.4f"|format(p.prev_close) if p.prev_close else "&mdash;" }}</td>
-      <td class="{% if p.change_pct and p.change_pct > 0 %}up{% elif p.change_pct and p.change_pct < 0 %}down{% endif %}">
-        {% if p.change_pct is not none %}{{ "%+.2f"|format(p.change_pct) }}%{% else %}&mdash;{% endif %}
-      </td>
-      <td style="color:var(--text-3);font-size:0.78rem;">{{ p.fetched_at.strftime("%H:%M:%S") if p.fetched_at else "" }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
 {% if spreads %}
-<div style="margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--border-1);">
-  <h2 style="margin-bottom:0.5rem;">Derived Spreads</h2>
-  <table>
+{# Group spreads by category for visual structure #}
+{% set groups = spreads|groupby('category') %}
+{% for category, group in groups %}
+  <div style="margin-top:0.6rem;font-family:var(--font-mono);font-size:0.72rem;
+              text-transform:uppercase;letter-spacing:0.08em;
+              color:var(--text-3);padding-bottom:0.25rem;
+              border-bottom:1px solid var(--border-1);">
+    {{ category }}
+  </div>
+  <table style="margin-bottom:0.2rem;">
     <thead>
-      <tr><th>Spread</th><th>Value</th><th>Unit</th><th>Note</th></tr>
+      <tr>
+        <th>Spread</th>
+        <th style="text-align:right;">Value</th>
+        <th>Unit</th>
+        <th style="font-size:0.7rem;">As of</th>
+        <th>Description</th>
+      </tr>
     </thead>
     <tbody>
-      {% for s in spreads %}
+      {% for s in group %}
       <tr>
         <td>{{ s.name }}</td>
-        <td>{{ "%+.3f"|format(s.value) }}</td>
+        <td style="text-align:right;" class="{% if s.value > 0 %}up{% elif s.value < 0 %}down{% endif %}">
+          {{ "{:+.3f}".format(s.value) }}
+        </td>
         <td style="color:var(--text-3);">{{ s.unit }}</td>
-        <td style="color:var(--text-2);font-size:0.78rem;">{{ s.note }}</td>
+        <td style="font-family:var(--font-mono);font-size:0.7rem;color:var(--text-3);">
+          {{ s.as_of.strftime("%H:%M:%S") if s.as_of else "—" }}
+        </td>
+        <td style="color:var(--text-2);font-size:0.76rem;line-height:1.35;">{{ s.note }}</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
+{% endfor %}
+<div style="margin-top:0.5rem;padding:0.3rem 0;font-size:0.68rem;
+            color:var(--text-3);font-style:italic;">
+  Legs aligned within 15 min of each other; "As of" = most recent leg's tick time.
+  HOGO normalizes HO ($/gal × 42) and Gasoil ($/MT ÷ 7.45) to $/bbl.
 </div>
-{% endif %}
 {% else %}
-<div class="empty">No price data yet &mdash; IBKR scheduler is fetching on first run.</div>
+<div class="empty">No spread data yet — IBKR scheduler fetching on first run.</div>
 {% endif %}

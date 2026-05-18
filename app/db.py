@@ -322,57 +322,199 @@ def latest_prices() -> list[dict]:
         return [dict(zip(cols, row)) for row in result]
 
 
-def latest_spreads() -> list[dict]:
-    """Derived spreads from latest prices. M1-M12 Brent compression etc."""
-    prices = {p["instrument"]: p for p in latest_prices()}
+def latest_spreads(window_minutes: int = 15) -> list[dict]:
+    """Derived spreads from latest aligned price snapshots.
 
-    def diff(a: str, b: str) -> float | None:
-        pa, pb = prices.get(a), prices.get(b)
+    All legs taken from quotes within `window_minutes` of the most recent
+    price tick — ensures the spread reflects a single point in time, not a
+    mix of stale + fresh quotes. Each spread carries `as_of` = max
+    fetched_at of its constituent legs.
+    """
+    from datetime import datetime, timedelta
+
+    with get_conn() as conn:
+        latest_ts = conn.execute(
+            "SELECT MAX(fetched_at) FROM prices"
+        ).fetchone()[0]
+        if latest_ts is None:
+            return []
+        cutoff = latest_ts - timedelta(minutes=window_minutes)
+        rows = conn.execute(
+            """
+            SELECT DISTINCT ON (instrument) instrument, price, fetched_at
+            FROM prices
+            WHERE fetched_at >= ?
+            ORDER BY instrument, fetched_at DESC
+            """,
+            [cutoff],
+        ).fetchall()
+
+    px = {r[0]: {"price": r[1], "fetched_at": r[2]} for r in rows}
+
+    spreads: list[dict] = []
+
+    def _add(name: str, category: str, value: float, unit: str,
+             note: str, legs: list[str]) -> None:
+        leg_times = [px[l]["fetched_at"] for l in legs if l in px]
+        if not leg_times:
+            return
+        spreads.append({
+            "name": name,
+            "category": category,
+            "value": round(value, 4),
+            "unit": unit,
+            "note": note,
+            "as_of": max(leg_times),
+            "legs": legs,
+        })
+
+    def diff(a: str, b: str) -> tuple[float, list[str]] | None:
+        pa, pb = px.get(a), px.get(b)
         if not pa or not pb or pa["price"] is None or pb["price"] is None:
             return None
-        return round(pa["price"] - pb["price"], 3)
+        return pa["price"] - pb["price"], [a, b]
 
-    spreads = []
-    # Brent (NYMEX BZ) M1–M12 compression
-    s = diff("BRENT_JUL26", "BRENT_DEC26")
-    if s is not None:
-        spreads.append({"name": "Brent M1–M12 (BZ Jul–Dec)", "value": s,
-                         "unit": "$/bbl", "note": "OND Frozen anchor; back-end has lifted"})
-    # ICE Brent (COIL) M1–M12
-    s = diff("ICE_BRENT_JUL26", "ICE_BRENT_DEC26")
-    if s is not None:
-        spreads.append({"name": "ICE Brent M1–M12 (COIL Jul–Dec)", "value": s,
-                         "unit": "$/bbl", "note": "matches user positions in COIL"})
-    # Brent-WTI Jul
-    s = diff("BRENT_JUL26", "WTI_JUL26")
-    if s is not None:
-        spreads.append({"name": "Brent-WTI (Jul)", "value": s, "unit": "$/bbl",
-                         "note": "WTI geopolitical discount"})
-    # ICE Gasoil time spread Jun-Jul
-    s = diff("ICE_GASOIL_JUN26", "ICE_GASOIL_JUL26")
-    if s is not None:
-        spreads.append({"name": "ICE Gasoil M1–M2 (GOIL Jun–Jul)",
-                         "value": s, "unit": "$/MT",
-                         "note": "Crosby Ep 92 'front spread very cheap' thesis"})
-    # HO time spread Jun-Dec
-    s = diff("NYMEX_HO_JUN26", "NYMEX_HO_DEC26")
-    if s is not None:
-        spreads.append({"name": "NYMEX HO M1–M7 (Jun–Dec)", "value": s,
-                         "unit": "$/gal",
-                         "note": "Dec premium = back-end HOGO support"})
-    # HOGO front (HO − Gasoil, normalized to $/bbl via *42 and /7.45)
-    ho = prices.get("NYMEX_HO_JUN26")
-    go = prices.get("ICE_GASOIL_JUN26")
-    if ho and go and ho["price"] and go["price"]:
-        # HO in $/gal × 42 = $/bbl. Gasoil in $/MT, ÷ 7.45 ≈ $/bbl.
-        ho_bbl = ho["price"] * 42
-        go_bbl = go["price"] / 7.45
+    # === BRENT (NYMEX BZ) forward curve ===
+    for label, b in [
+        ("Brent M1–M2 (BZ Jul–Aug)", "BRENT_AUG26"),
+        ("Brent M1–M3 (BZ Jul–Sep)", "BRENT_SEP26"),
+        ("Brent M1–M6 (BZ Jul–Oct)", "BRENT_OCT26"),
+        ("Brent M1–M12 (BZ Jul–Dec)", "BRENT_DEC26"),
+    ]:
+        d = diff("BRENT_JUL26", b)
+        if d is not None:
+            _add(label, "Brent forward curve", d[0], "$/bbl",
+                 "Positive = backwardation. M1-M12 anchored by OND 'Frozen' (Apr 24) at $27; compression = back-end caught bid.",
+                 d[1])
+
+    # === ICE BRENT (COIL) forward curve — user's actual position basis ===
+    for label, b in [
+        ("ICE Brent M1–M2 (COIL Jul–Aug)", "ICE_BRENT_AUG26"),
+        ("ICE Brent M1–M3 (COIL Jul–Sep)", "ICE_BRENT_SEP26"),
+        ("ICE Brent M1–M6 (COIL Jul–Oct)", "ICE_BRENT_OCT26"),
+        ("ICE Brent M1–M12 (COIL Jul–Dec)", "ICE_BRENT_DEC26"),
+    ]:
+        d = diff("ICE_BRENT_JUL26", b)
+        if d is not None:
+            _add(label, "ICE Brent (COIL)", d[0], "$/bbl",
+                 "User's #3 short leg + #10 back-end position basis. Same shape as BZ NYMEX clone but on ICE.",
+                 d[1])
+
+    # === WTI (CL) forward curve ===
+    d = diff("WTI_JUL26", "WTI_AUG26")
+    if d is not None:
+        _add("WTI M1–M2 (CL Jul–Aug)", "WTI forward curve", d[0], "$/bbl",
+             "Front WTI spread.", d[1])
+    d = diff("WTI_JUL26", "WTI_DEC26")
+    if d is not None:
+        _add("WTI M1–M12 (CL Jul–Dec)", "WTI forward curve", d[0], "$/bbl",
+             "Full WTI curve. Typically less backwardated than Brent due to Cushing.", d[1])
+
+    # === BRENT-WTI ARB ===
+    d = diff("BRENT_JUL26", "WTI_JUL26")
+    if d is not None:
+        _add("Brent–WTI front (BZ N6 – CL N6)", "Brent-WTI arb", d[0], "$/bbl",
+             "Front arb. > +$5 = US export pull strong. Asymmetric to product-export-ban risk per Crosby Ep 93.", d[1])
+    d = diff("BRENT_DEC26", "WTI_DEC26")
+    if d is not None:
+        _add("Brent–WTI back (BZ Z6 – CL Z6)", "Brent-WTI arb", d[0], "$/bbl",
+             "Back-end arb. Reflects long-term US export normalization.", d[1])
+
+    # === ICE GASOIL (GOIL) time spreads ===
+    d = diff("ICE_GASOIL_JUN26", "ICE_GASOIL_JUL26")
+    if d is not None:
+        _add("ICE Gasoil M1–M2 (GOIL Jun–Jul)", "ICE Gasoil curve",
+             d[0], "$/MT",
+             "Crosby Ep 92: 'front + M2-M3 too cheap'. MAY26 expired +$11; this is now the front spread.",
+             d[1])
+    d = diff("ICE_GASOIL_JUL26", "ICE_GASOIL_AUG26")
+    if d is not None:
+        _add("ICE Gasoil M2–M3 (GOIL Jul–Aug)", "ICE Gasoil curve",
+             d[0], "$/MT",
+             "Crosby Ep 92 'cheap directional expression' for the front-spread cheap thesis.", d[1])
+
+    # === NYMEX HO time spreads ===
+    d = diff("NYMEX_HO_JUN26", "NYMEX_HO_JUL26")
+    if d is not None:
+        _add("NYMEX HO M1–M2 (HO Jun–Jul)", "NYMEX HO curve", d[0], "$/gal",
+             "Front HO spread; reflects PAD1 distillate tightness.", d[1])
+    d = diff("NYMEX_HO_AUG26", "NYMEX_HO_SEP26")
+    if d is not None:
+        _add("NYMEX HO Q3 (HO Aug–Sep)", "NYMEX HO curve", d[0], "$/gal",
+             "Q3 HO time spread; key for #6 HOGO Aug/Sep expression on your book.", d[1])
+    d = diff("NYMEX_HO_JUN26", "NYMEX_HO_DEC26")
+    if d is not None:
+        _add("NYMEX HO M1–M7 (HO Jun–Dec)", "NYMEX HO curve", d[0], "$/gal",
+             "Full HO curve. Dec premium over front = back-end HOGO support for #6.", d[1])
+
+    # === HOGO (cross-product, normalized to $/bbl) ===
+    # HO $/gal × 42 = $/bbl. Gasoil $/MT ÷ 7.45 ≈ $/bbl (LSGO conversion).
+    def _hogo(name: str, ho_key: str, go_key: str, note: str) -> None:
+        ho, go = px.get(ho_key), px.get(go_key)
+        if ho and go and ho["price"] and go["price"]:
+            value = ho["price"] * 42 - go["price"] / 7.45
+            spreads.append({
+                "name": name,
+                "category": "HOGO (HO–Gasoil cross-product)",
+                "value": round(value, 3),
+                "unit": "$/bbl",
+                "note": note,
+                "as_of": max(ho["fetched_at"], go["fetched_at"]),
+                "legs": [ho_key, go_key],
+            })
+
+    _hogo("HOGO front (HOM6 – GOILM6)", "NYMEX_HO_JUN26", "ICE_GASOIL_JUN26",
+          "Crosby Ep 91 trade #6 anchor. Entered ~zero; spread rallied to +$11. Front leg exposed to US product-export ban risk.")
+    _hogo("HOGO Q3 (HOQ6 – GOILQ6)", "NYMEX_HO_AUG26", "ICE_GASOIL_AUG26",
+          "Your HOQ6 long position rides this. Aug-basis structurally cleaner than Jun front for ban risk.")
+    _hogo("HOGO Sep (HOU6 – GOIL Aug est)", "NYMEX_HO_SEP26", "ICE_GASOIL_AUG26",
+          "Sep HO vs Aug Gasoil (no Sep Gasoil contract). Your HOU6 long.")
+
+    # === CRACKS (against Brent flat) ===
+    bz = px.get("BRENT_JUL26")
+
+    # ICE Gasoil/Brent crack — GO M1 in $/MT ÷ 7.45 - Brent $/bbl
+    go_front = px.get("ICE_GASOIL_JUN26")
+    if bz and go_front and bz["price"] and go_front["price"]:
+        crack = go_front["price"] / 7.45 - bz["price"]
         spreads.append({
-            "name": "HOGO (HO–Gasoil, $/bbl)",
-            "value": round(ho_bbl - go_bbl, 2),
+            "name": "ICE Gasoil/Brent crack (GOM6 vs BZN6)",
+            "category": "Cracks (vs Brent)",
+            "value": round(crack, 3),
             "unit": "$/bbl",
-            "note": "Crosby Ep 91 trade #6 anchor",
+            "note": "Crosby Ep 92 anchor. Was ~$50.83 May 5; current vs that is the #3 trade scoreboard.",
+            "as_of": max(bz["fetched_at"], go_front["fetched_at"]),
+            "legs": ["ICE_GASOIL_JUN26", "BRENT_JUL26"],
         })
+
+    # HO/Brent crack
+    ho_front = px.get("NYMEX_HO_JUN26")
+    if bz and ho_front and bz["price"] and ho_front["price"]:
+        crack = ho_front["price"] * 42 - bz["price"]
+        spreads.append({
+            "name": "NYMEX HO/Brent crack (HOM6 vs BZN6)",
+            "category": "Cracks (vs Brent)",
+            "value": round(crack, 3),
+            "unit": "$/bbl",
+            "note": "Distillate margin proxy on the NYMEX side. Reflects PAD1 stocks below 10y lows.",
+            "as_of": max(bz["fetched_at"], ho_front["fetched_at"]),
+            "legs": ["NYMEX_HO_JUN26", "BRENT_JUL26"],
+        })
+
+    # RBOB/Brent crack
+    rb_front = px.get("RBOB_JUL26")
+    if bz and rb_front and bz["price"] and rb_front["price"]:
+        crack = rb_front["price"] * 42 - bz["price"]
+        spreads.append({
+            "name": "RBOB/Brent crack (RBN6 vs BZN6)",
+            "category": "Cracks (vs Brent)",
+            "value": round(crack, 3),
+            "unit": "$/bbl",
+            "note": "US summer gasoline margin. Schuurman Ep 91/93 long RBOB cracks anchor.",
+            "as_of": max(bz["fetched_at"], rb_front["fetched_at"]),
+            "legs": ["RBOB_JUL26", "BRENT_JUL26"],
+        })
+
     return spreads
 
 
@@ -523,26 +665,55 @@ def episodes_needing_extraction(limit: int = 3) -> list[dict]:
                  "transcript": r[3], "published_at": r[4]} for r in rows]
 
 
-def trade_ideas_chronological(limit: int = 200) -> list[dict]:
-    """All extracted trade ideas, newest episode first."""
+def trade_ideas_chronological(limit: int = 200, episode_limit: int | None = None) -> list[dict]:
+    """All extracted trade ideas, newest episode first.
+
+    `episode_limit`: only include ideas from the most recent N episodes
+    (e.g. episode_limit=3 → only Ep 93/92/91). Older episodes stay in DB
+    for reference but aren't returned.
+    """
     with get_conn() as conn:
-        rows = conn.execute(
+        if episode_limit is not None:
+            sql = """
+                WITH recent_eps AS (
+                    SELECT DISTINCT episode_number
+                    FROM trade_ideas
+                    WHERE episode_number IS NOT NULL
+                    ORDER BY episode_number DESC
+                    LIMIT ?
+                )
+                SELECT episode_number, episode_title, episode_published_at,
+                       person, direction, instrument, conviction, rationale,
+                       quote, executable_on_ibkr, extracted_at
+                FROM trade_ideas
+                WHERE episode_number IN (SELECT episode_number FROM recent_eps)
+                ORDER BY episode_number DESC NULLS LAST,
+                         CASE conviction
+                           WHEN 'high' THEN 1
+                           WHEN 'medium' THEN 2
+                           WHEN 'low' THEN 3
+                           ELSE 4 END,
+                         id
+                LIMIT ?
             """
-            SELECT episode_number, episode_title, episode_published_at,
-                   person, direction, instrument, conviction, rationale,
-                   quote, executable_on_ibkr, extracted_at
-            FROM trade_ideas
-            ORDER BY episode_number DESC NULLS LAST,
-                     CASE conviction
-                       WHEN 'high' THEN 1
-                       WHEN 'medium' THEN 2
-                       WHEN 'low' THEN 3
-                       ELSE 4 END,
-                     id
-            LIMIT ?
-            """,
-            [limit],
-        ).fetchall()
+            params = [episode_limit, limit]
+        else:
+            sql = """
+                SELECT episode_number, episode_title, episode_published_at,
+                       person, direction, instrument, conviction, rationale,
+                       quote, executable_on_ibkr, extracted_at
+                FROM trade_ideas
+                ORDER BY episode_number DESC NULLS LAST,
+                         CASE conviction
+                           WHEN 'high' THEN 1
+                           WHEN 'medium' THEN 2
+                           WHEN 'low' THEN 3
+                           ELSE 4 END,
+                         id
+                LIMIT ?
+            """
+            params = [limit]
+        rows = conn.execute(sql, params).fetchall()
         cols = ["episode_number", "episode_title", "episode_published_at",
                 "person", "direction", "instrument", "conviction", "rationale",
                 "quote", "executable_on_ibkr", "extracted_at"]

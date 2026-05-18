@@ -143,11 +143,11 @@ async def fragment_charts(request: Request):
 
 
 @app.get("/fragments/sparta-trades", response_class=HTMLResponse)
-async def fragment_sparta_trades(request: Request):
+async def fragment_sparta_trades(request: Request, episodes: int = 3):
     return templates.TemplateResponse(
         request,
         "partials/sparta_trades.html",
-        {"trades": trade_ideas_chronological(limit=300)},
+        {"trades": trade_ideas_chronological(limit=300, episode_limit=episodes)},
     )
 
 

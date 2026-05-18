@@ -46,7 +46,7 @@ def _build_data_context() -> dict:
         "enriched_news": _enriched_news_for_prompt(limit=15, body_chars=1800),
         "transcript_excerpts": _transcript_excerpts(limit=3, chars=2500),
         "eia": latest_eia(),
-        "sparta_trades": _sparta_trade_ideas_for_prompt(episode_limit=4),
+        "sparta_trades": _sparta_trade_ideas_for_prompt(episode_limit=3),
     }
 
 
@@ -269,7 +269,7 @@ oil/distillate trade book. Write a markdown digest with these EXACT sections in 
 ## What materially changed
 Specific moves in prices/spreads vs prior session, cite levels.
 
-## Active Sparta trade book — last 4 episodes
+## Active Sparta trade book — last 3 episodes
 **Enumerate EVERY Sparta trade idea in the input below**, grouped by episode
 (newest first). For each: direction, instrument, conviction, person, IBKR-
 tradable flag. Do NOT skip ideas just because they aren't in the user's
@@ -311,7 +311,7 @@ Snapshot — {now}
 ## Open Positions (FUT + OPT)
 {positions_md}
 
-## Sparta trade ideas (last 4 episodes, from transcripts)
+## Sparta trade ideas (last 3 episodes, from transcripts)
 {sparta_md}
 
 ## Headline Feed (titles only)
