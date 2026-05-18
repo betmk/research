@@ -50,34 +50,16 @@ def _build_data_context() -> dict:
     }
 
 
-def _sparta_trade_ideas_for_prompt(episode_limit: int = 4) -> list[dict]:
-    """All extracted Sparta trade ideas from the last N episodes, newest first."""
-    with get_conn() as conn:
-        rows = conn.execute(
-            """
-            WITH recent_eps AS (
-                SELECT DISTINCT episode_number
-                FROM trade_ideas
-                ORDER BY episode_number DESC NULLS LAST
-                LIMIT ?
-            )
-            SELECT episode_number, episode_title, person, direction,
-                   instrument, conviction, rationale, quote, executable_on_ibkr
-            FROM trade_ideas
-            WHERE episode_number IN (SELECT episode_number FROM recent_eps)
-            ORDER BY episode_number DESC,
-                     CASE conviction
-                       WHEN 'high' THEN 1
-                       WHEN 'medium' THEN 2
-                       WHEN 'low' THEN 3
-                       ELSE 4 END
-            """,
-            [episode_limit],
-        ).fetchall()
-    cols = ["episode_number", "episode_title", "person", "direction",
-            "instrument", "conviction", "rationale", "quote",
-            "executable_on_ibkr"]
-    return [dict(zip(cols, r)) for r in rows]
+def _sparta_trade_ideas_for_prompt(episode_limit: int = 3) -> list[dict]:
+    """Top 4-5 conviction-ranked Sparta trade ideas per episode, last N episodes.
+
+    Reuses the same cap logic as the dashboard fragment: top 4 by conviction,
+    expanding to 5 only if 5+ are HIGH.
+    """
+    from .db import trade_ideas_chronological
+    return trade_ideas_chronological(
+        limit=200, episode_limit=episode_limit, per_episode_cap=True,
+    )
 
 
 def _enriched_news_for_prompt(limit: int, body_chars: int) -> list[dict]:

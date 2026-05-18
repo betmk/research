@@ -667,54 +667,75 @@ def episodes_needing_extraction(limit: int = 3) -> list[dict]:
                  "transcript": r[3], "published_at": r[4]} for r in rows]
 
 
-def trade_ideas_chronological(limit: int = 200, episode_limit: int | None = None) -> list[dict]:
+def trade_ideas_chronological(limit: int = 200,
+                              episode_limit: int | None = None,
+                              per_episode_cap: bool = True) -> list[dict]:
     """All extracted trade ideas, newest episode first.
 
     `episode_limit`: only include ideas from the most recent N episodes
     (e.g. episode_limit=3 → only Ep 93/92/91). Older episodes stay in DB
     for reference but aren't returned.
+
+    `per_episode_cap`: when True, returns the top 4 ideas per episode by
+    conviction (high → medium → low), expanding to 5 only if an episode
+    has 5+ high-conviction ideas. When False, returns all.
     """
+    # Build CTE: rank each idea within its episode by conviction, and
+    # count high-conviction ideas per episode. Then apply cap if requested.
+    sql = """
+        WITH base AS (
+            SELECT episode_number, episode_title, episode_published_at,
+                   person, direction, instrument, conviction, rationale,
+                   quote, executable_on_ibkr, extracted_at, id
+            FROM trade_ideas
+            {episode_filter}
+        ),
+        ranked AS (
+            SELECT *,
+                   ROW_NUMBER() OVER (
+                       PARTITION BY episode_number
+                       ORDER BY CASE conviction
+                                  WHEN 'high' THEN 1
+                                  WHEN 'medium' THEN 2
+                                  WHEN 'low' THEN 3
+                                  ELSE 4 END,
+                                id
+                   ) AS rn_in_ep,
+                   SUM(CASE WHEN conviction = 'high' THEN 1 ELSE 0 END)
+                       OVER (PARTITION BY episode_number) AS high_count_ep
+            FROM base
+        )
+        SELECT episode_number, episode_title, episode_published_at,
+               person, direction, instrument, conviction, rationale,
+               quote, executable_on_ibkr, extracted_at
+        FROM ranked
+        {cap_filter}
+        ORDER BY episode_number DESC NULLS LAST, rn_in_ep
+        LIMIT ?
+    """
+
+    params: list = []
+    if episode_limit is not None:
+        episode_filter = """WHERE episode_number IN (
+            SELECT DISTINCT episode_number FROM trade_ideas
+            WHERE episode_number IS NOT NULL
+            ORDER BY episode_number DESC
+            LIMIT ?
+        )"""
+        params.append(episode_limit)
+    else:
+        episode_filter = ""
+
+    if per_episode_cap:
+        # 4 by default; 5 only if the episode has 5+ high-conviction ideas
+        cap_filter = "WHERE rn_in_ep <= CASE WHEN high_count_ep >= 5 THEN 5 ELSE 4 END"
+    else:
+        cap_filter = ""
+
+    params.append(limit)
+    sql = sql.format(episode_filter=episode_filter, cap_filter=cap_filter)
+
     with get_conn() as conn:
-        if episode_limit is not None:
-            sql = """
-                WITH recent_eps AS (
-                    SELECT DISTINCT episode_number
-                    FROM trade_ideas
-                    WHERE episode_number IS NOT NULL
-                    ORDER BY episode_number DESC
-                    LIMIT ?
-                )
-                SELECT episode_number, episode_title, episode_published_at,
-                       person, direction, instrument, conviction, rationale,
-                       quote, executable_on_ibkr, extracted_at
-                FROM trade_ideas
-                WHERE episode_number IN (SELECT episode_number FROM recent_eps)
-                ORDER BY episode_number DESC NULLS LAST,
-                         CASE conviction
-                           WHEN 'high' THEN 1
-                           WHEN 'medium' THEN 2
-                           WHEN 'low' THEN 3
-                           ELSE 4 END,
-                         id
-                LIMIT ?
-            """
-            params = [episode_limit, limit]
-        else:
-            sql = """
-                SELECT episode_number, episode_title, episode_published_at,
-                       person, direction, instrument, conviction, rationale,
-                       quote, executable_on_ibkr, extracted_at
-                FROM trade_ideas
-                ORDER BY episode_number DESC NULLS LAST,
-                         CASE conviction
-                           WHEN 'high' THEN 1
-                           WHEN 'medium' THEN 2
-                           WHEN 'low' THEN 3
-                           ELSE 4 END,
-                         id
-                LIMIT ?
-            """
-            params = [limit]
         rows = conn.execute(sql, params).fetchall()
         cols = ["episode_number", "episode_title", "episode_published_at",
                 "person", "direction", "instrument", "conviction", "rationale",
