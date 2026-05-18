@@ -370,7 +370,9 @@ def latest_spreads(window_minutes: int = 15) -> list[dict]:
 
     def diff(a: str, b: str) -> tuple[float, list[str]] | None:
         pa, pb = px.get(a), px.get(b)
-        if not pa or not pb or pa["price"] is None or pb["price"] is None:
+        if (not pa or not pb
+                or pa["price"] is None or pb["price"] is None
+                or pa["price"] <= 0 or pb["price"] <= 0):
             return None
         return pa["price"] - pb["price"], [a, b]
 

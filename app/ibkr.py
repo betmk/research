@@ -161,12 +161,20 @@ async def snapshot_quotes(labels: list[str] | None = None,
 
     out: dict[str, dict] = {}
     for label, contract, t in tickers:
-        def _nan_to_none(v):
-            return v if (v is not None and v == v) else None  # nan check
-        last = _nan_to_none(t.last)
-        close = _nan_to_none(t.close)
-        bid = _nan_to_none(t.bid)
-        ask = _nan_to_none(t.ask)
+        def _clean(v):
+            # NaN check + sentinel filter. IB returns -1.0 for "no quote
+            # available" on some delayed-data contracts. Treat as None.
+            if v is None:
+                return None
+            if v != v:  # NaN
+                return None
+            if v <= 0:
+                return None
+            return v
+        last = _clean(t.last)
+        close = _clean(t.close)
+        bid = _clean(t.bid)
+        ask = _clean(t.ask)
         change_pct = None
         if last and close:
             change_pct = round((last - close) / close * 100, 3)
