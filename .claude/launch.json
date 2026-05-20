@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "research-http",
-      "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "8530"],
+      "runtimeExecutable": "/Users/mikemadden/Desktop/Claude Projects/research/.venv/bin/python3",
+      "runtimeArgs": ["-m", "uvicorn", "app.main:app", "--host", "127.0.0.1", "--port", "8530", "--app-dir", "/Users/mikemadden/Desktop/Claude Projects/research"],
       "port": 8530
     }
   ]

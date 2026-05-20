@@ -1,22 +1,22 @@
 ---
-description: Refresh Hormuz crisis trade-book and analysis with overnight delta
+description: Refresh the Hormuz oil/distillate trade book — drive the pipeline's scrape + synthesis and surface the delta
 ---
 
-Refresh the Hormuz analysis with overnight/intraday delta.
+The live deliverable is the FastAPI dashboard on **port 8530** (`app/`), NOT a static HTML file — the old `reports/hormuz/analysis.html` was archived to `reports/_archive/hormuz_static_v1/`. Source priority, Sparta voices, and the hard constraints below live in `app/config.py`.
 
-Workflow (follow `reports/hormuz/methodology.md` for source priority):
-1. Pull priority sources in PARALLEL (Sparta Podbean for Ep 93 status, Sparta insights for new Deep Dives, HFI archive, Oil Not Dead archive, Brent JUL26 + ICE Gasoil + HO live levels, WebSearch overnight Iran/Hormuz news).
-2. Read current `reports/hormuz/analysis.html` subtitle + Industry Views + Watch sections.
-3. Make targeted edits in parallel: subtitle (date bump + delta summary), top callout (prepend new day block + archive previous day with subheader), HFI/OND/Industry sections (prepend new pieces), Watch items (bump dates).
-4. Prepend new entry to `reports/hormuz/CHANGELOG.md`.
-5. Commit + push from main repo absolute path; post-commit hook auto-pushes.
-6. Brief user-facing summary with sources at the end.
+Workflow:
+1. **Service up.** `preview_start research-http` (runs uvicorn), then `curl http://127.0.0.1:8530/api/health`. If it won't bind, the launchd job is likely TCC-blocked under `~/Desktop` — the preview launch covers the session. See project `CLAUDE.md`.
+2. **Fresh data.** IBKR prices need IB Gateway on 4001 (`nc -z 127.0.0.1 4001`). The running service scrapes on intervals; check freshness via `/api/prices` (`fetched_at`) and `/fragments/scrape-status`. Don't fire `/api/scrape/all` while startup's `run_all_once` is still running (IBKR clientId clash). Force one source with `POST /api/scrape/{scraper}`.
+3. **Regenerate.** `POST /api/synthesis/run` → `{headline, triggered_alert, model}`. Confirm `model == "claude-cli"`; if it fell back to `rule-based-v1`, retry once (the CLI cold-starts).
+4. **Verify.** `GET /fragments/analysis` shows the new claude-cli run; screenshot the dashboard for the user.
+5. **(Optional) Cross-check.** Pull overnight Iran/Hormuz headlines via WebSearch to sanity-check the synthesis narrative against primary reporting.
+6. **Surface.** Lead the response with what materially changed — price/spread deltas, EIA print, Sparta Ep N calls — sources inline (`[wsj]`, `[hfi_subscriber]`, `Sparta Ep N transcript`).
 
-Hard constraints (do not violate):
-- Write to main repo absolute paths (`/Users/mikemadden/Desktop/Claude Projects/research/...`) regardless of cwd.
-- No Singapore-only trade recommendations (user has no Singapore IB access).
+Hard constraints (load-bearing; mirrored in `app/config.py` TRADE_CONSTRAINTS / DONT_LIST):
+- Sparta is the primary source — don't start from others' framing.
+- No Singapore-only trade recommendations (user has no Singapore IB access) — framework-only, but still enumerate them.
 - No allocation percentages — directional conviction only.
-- Build trade book fresh — don't carry forward stale tiers from prior refreshes.
+- Rebuild the trade book fresh — don't carry forward stale tiers from prior refreshes.
+- Write to main-repo absolute paths (`/Users/mikemadden/Desktop/Claude Projects/research/...`) regardless of cwd.
 - No infrastructure callouts (worktree, MCP, injections) in user-facing chat unless they actually block work.
-- Do not propose plans before simple work — execute directly.
-- Brief summaries only at end; lead the response with what changed, not what you're about to do.
+- Do not propose a plan before simple work — execute directly. Brief summary only at the end, leading with what changed.
