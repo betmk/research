@@ -43,10 +43,9 @@ A sweep can graduate to a tracked topic — either the `reports/_template` livin
 
 ## Available tools
 - **Chrome DevTools** — pulling content from logged-in sources (HFI, Oil Not Dead, etc.).
-- **Serena** — symbol search across `app/`.
+- **Serena** — symbol search across `app/` (attaches via this repo's `.claude/settings.json`).
 - **Exa** — alternate web search backend.
-- **Context7** — library docs (Plotly, etc.).
-- **Sequential Thinking** — multi-source analytical reasoning during refreshes.
+- (Context7 and Sequential Thinking attach only to sessions rooted at the parent `Claude Projects` folder — not available in sessions rooted here.)
 
 ## API & scraping
 - Reduce web fetch volume: rely on the 15-min WebFetch cache, don't re-fetch sources already pulled this session, batch related queries, randomize timing on repeated polls.
@@ -55,7 +54,7 @@ A sweep can graduate to a tracked topic — either the `reports/_template` livin
 ## Research standards (project-specific)
 - For material claims about a company, go to primary documents directly (10-K, 10-Q, DEF 14A, earnings transcripts) rather than summaries. Footnotes are where earnings-quality issues hide.
 
-## Trade-book constraints (load-bearing — mirrored in `app/config.py`)
+## Trade-book constraints (load-bearing — `app/config.py` TRADE_CONSTRAINTS is canonical; this list mirrors it, edit there first)
 - Sparta is the primary source — don't start from others' framing.
 - No Singapore-only trades (user has no Singapore IB access) — framework-only, but still enumerate them.
 - No allocation percentages — directional conviction only.

@@ -12,7 +12,7 @@ Workflow:
 5. **(Optional) Cross-check.** Pull overnight Iran/Hormuz headlines via WebSearch to sanity-check the synthesis narrative against primary reporting.
 6. **Surface.** Lead the response with what materially changed — price/spread deltas, EIA print, Sparta Ep N calls — sources inline (`[wsj]`, `[hfi_subscriber]`, `Sparta Ep N transcript`).
 
-Hard constraints (load-bearing; mirrored in `app/config.py` TRADE_CONSTRAINTS / DONT_LIST):
+Hard constraints (load-bearing; `app/config.py` TRADE_CONSTRAINTS / DONT_LIST is canonical — this list mirrors it):
 - Sparta is the primary source — don't start from others' framing.
 - No Singapore-only trade recommendations (user has no Singapore IB access) — framework-only, but still enumerate them.
 - No allocation percentages — directional conviction only.
